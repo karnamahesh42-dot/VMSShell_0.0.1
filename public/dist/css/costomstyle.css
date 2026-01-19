@@ -1,0 +1,1506 @@
+
+    :root {
+      --sidebar-width: 220px;
+      --sidebar-collapsed: 0;
+      --topbar-height: 64px;
+      --footer-height: 40px;
+      --sidebar-bg: #0b2a57;
+      --topbar-bg: #ffffff;
+      --footer-bg: #f5f7fb;
+      --rfc-blue: #0056b3;
+      --rfc-red: #d60000;
+      --rfc-light-bg: #edf5ff;
+    }
+
+.brand-area {
+    width: 100%;        /* Full width of sidebar */
+         /* Optional padding */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the logo horizontally */
+    margin-bottom: 10px;
+
+}
+
+.brand-area img {
+    width: 100%;       
+    height: 62px;
+}
+
+
+
+.brand {
+    display: flex;
+    align-items: center;
+}
+
+.brand-logo {
+    height: 60px;          /* adjust as needed */
+    width: auto;
+    object-fit: contain;
+}
+
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: "Inter", Arial, sans-serif;
+      background: var(--rfc-light-bg);
+      color: #0b2238;
+    }
+
+   
+
+    .sidebar.closed {
+      width: var(--sidebar-collapsed);
+      padding: 20px 0;
+    }
+
+    .sidebar .nav-link {
+      color: #fff;
+      margin: 5px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    /* .sidebar .nav-link:hover {
+      background: rgba(14, 5, 136, 0.1);
+    }
+
+    .sidebar .nav-link.active {
+      background: #398aaa;
+    } */
+
+
+    .sidebar .nav-link {
+    transition: all 0.3s ease; /* Smooth effect */
+}
+
+.sidebar .nav-link:hover {
+    background: #be6969;
+    transform: scale(1.05); /* Slight zoom */
+    color:#fdfdfd
+}
+
+.sidebar .nav-link.active {
+    background: #be6969;
+    transform: scale(1); /* Ensure active is normal size */
+}
+
+    /* Topbar */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: var(--sidebar-width);
+      right: 0;
+      height: var(--topbar-height);
+      /* background: linear-gradient(90deg, #4aa8ff, #ff6b6b); */
+      /* border-bottom: 1px solid #ddd; */
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+      background: white;
+      display: flex;
+      align-items: center;
+      padding: 0 5px;
+      transition: all 0.3s ease;
+      z-index: 1050;
+      margin-bottom: 1px;
+    }
+
+  
+    .topbar.collapsed {
+      left: var(--sidebar-collapsed);
+    }
+
+
+    .topbar .top-actions {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Main content */
+    .main-content {
+      margin-top: var(--topbar-height);
+      margin-left: var(--sidebar-width);
+      padding: 20px;
+      min-height: calc(100vh - var(--topbar-height) - var(--footer-height));
+      transition: all 0.3s ease;
+    }
+
+    .main-content.expanded {
+      margin-left: var(--sidebar-collapsed);
+    }
+
+    /* Footer */
+    .footer {
+      height: var(--footer-height);
+      background: var(--footer-bg);
+      position: fixed;
+      bottom: 0;
+      left: var(--sidebar-width);
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      border-top: 1px solid #ddd;
+      font-size: 12px;
+    }
+
+    .footer.expanded {
+      left: var(--sidebar-collapsed);
+    }
+
+    /* Overlay for mobile */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: 1035;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    /* Dashboard cards */
+    .dash-row {
+      display: grid;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+    .row-small { grid-template-columns: repeat(6, 1fr); }
+    .row-medium { grid-template-columns: repeat(4, 1fr); }
+    .row-large { grid-template-columns: 2fr 1fr; }
+
+    @media (max-width:1200px){ .row-small { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width:768px){
+      .row-small { grid-template-columns: repeat(2, 1fr); }
+      .row-medium { grid-template-columns: repeat(2, 1fr);}
+      .row-large { grid-template-columns:1fr; }
+    }
+
+    .card-dash { 
+      
+        background:#ffffff; 
+        border-radius:10px;
+        padding:18px; 
+        box-shadow: 0 6px 20px rgba(3,16,46,0.06);
+        border-left:6px solid #398aaa; 
+        display:flex; flex-direction:column; 
+      
+        min-height:110px;
+         }
+    .card-dash .title { font-weight:700; color:#216cb8;; font-size:14px; }
+    .card-dash .value { font-size:22px; color:var(--rfc-red); font-weight:800; margin-top:8px; }
+
+    /* Grid Layout */
+    .dash-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+    }
+
+    .card-dash h5{
+        color: #0575a1;
+    }
+
+/* Compact Card Base */
+.card-dash-sm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;          /* Reduced padding */
+    min-height: 70px;            /* Smaller height */
+    /* background: #fff; */
+    background: linear-gradient(43deg, #eddaa1, #fdad80, #edd3d3);
+    border: solid 0.2px  #fdad80;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);  /* Slightly stronger shadow */
+    transition: all .18s ease;
+    cursor: pointer;
+}
+
+/* Hover Effect */
+.card-dash-sm:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.30); /* More shadow */
+}
+
+/* Text */
+.card-dash-sm .title {
+    font-weight: 600;
+    font-size: 14px;        /* Small text */
+    color: #195083;
+}
+
+.card-dash-sm .subtitle {
+    font-weight: bold;
+    font-size: 10px;
+    color: #195083;
+    padding-left: 5px;
+}
+
+.card-dash-sm .value {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 4px;
+    color: #085daf;
+
+}
+
+/* Icon */
+.card-dash-sm .right i {
+    font-size: 22px;        /* Slightly smaller icon */
+    opacity: 0.9;
+}
+
+/* Color Themes */
+.card-dash-sm.c1 { border-left: 5px solid #4e79ff; }
+.card-dash-sm.c1 .right i { color:#0543fc; }
+
+.card-dash-sm.c2 { border-left: 5px solid #ffae42; }
+.card-dash-sm.c2 .right i { color:#ff9306; }
+
+.card-dash-sm.c3 { border-left: 5px solid #34c759; }
+.card-dash-sm.c3 .right i { color:#06c034; }
+
+.card-dash-sm.c4 { border-left: 5px solid #ff5b5b; }
+.card-dash-sm.c4 .right i { color:#fd1616; }
+
+.card-dash-sm.c5 { border-left: 5px solid #7f67ff; }
+.card-dash-sm.c5 .right i { color:#573af8; }
+
+.card-dash-sm.c6 { border-left: 5px solid #00bcd4; }
+.card-dash-sm.c6 .right i { color:#018fa1; }
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+    .dash-row-sm {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .dash-row-sm {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .card-dash-sm {
+        min-height: 65px;
+        padding: 10px 10px;
+    }
+}
+
+    /* .card-medium { min-height:100px; } */
+    .card-large { min-height:300px; padding:22px; margin-top: 10px; }
+
+    .card-large-quick-links {
+    min-height: 180px;   /* reduce height */
+    padding: 16px;       /* tighter padding */
+}
+    
+.pending-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    /* 🔹 FIX: force normal top-to-bottom flow */
+    display: flex;
+    flex-direction: column;
+
+    /* optional but recommended */
+    max-height: 300px;   /* adjust if needed */
+    overflow-y: auto;
+}
+
+.pending-list li {
+    padding: 12px 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    background: #fafaff;
+    border: 1px solid #c0e4ec;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .quick-links a { font-size: 14px; display:block; padding:5px 8px; color:#0b2238; border-radius:8px; margin-bottom:5px; 
+        background:#ffffff; border:1px solid #e2edee; 
+        text-decoration:none; }
+
+    .muted { color:#677a8a; font-size:14px; }
+    .badge-pending { background:#ffefc6; color:#6a4b00; padding:6px 8px; border-radius:6px; font-weight:700; }
+    .badge-approved { background:#d9f6e2; color:#08723b; padding:6px 8px; border-radius:6px; font-weight:700; }
+  
+
+
+/* ----------------------------------------
+   SMART VISITOR MODAL DESIGN
+----------------------------------------- */
+
+/* Modal container */
+#visitorModal .modal-content {
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+/* Header */
+#visitorModal .modal-header {
+    padding: 8px 15px;
+    border-radius: 12px 12px 0 0;
+}
+
+#visitorModal .modal-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* Body */
+#visitorModal .modal-body {
+    padding: 10px 10px !important;
+}
+#visitorModal .modal-body label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+
+#visitorModal .modal-body .cardData {
+    font-size: 12px;
+    margin-bottom: 1px;
+}
+
+/* Table styling */
+#visitorModal table {
+    width: 100%;
+}
+
+#visitorModal table th {
+    width: 100px;
+    color: #1d1f20;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 6px 20px;
+}
+
+#visitorModal table td {
+    font-size: 14px;
+    padding: 6px 4px;
+}
+
+/* Border between rows */
+#visitorModal table tr {
+    border-bottom: 1px solid #eaeaea;
+}
+
+/* QR image style */
+#visitorModal img#v_qr {
+    width: 120px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Footer buttons */
+#visitorModal .modal-footer {
+    padding: 8px 15px;
+}
+
+#visitorModal .modal-footer .btn {
+    padding: 4px 16px;
+    font-size: 14px;
+    border-radius: 6px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    #visitorModal .modal-dialog {
+        margin: 10px;
+    }
+
+    #visitorModal table th {
+        width: 110px;
+        font-size: 13px;
+    }
+
+    #visitorModal table td {
+        font-size: 13px;
+    }
+
+    #visitorModal img#v_qr {
+        width: 100px;
+    }
+}
+
+
+/* ==========================================================
+   SMART VISITOR LIST TABLE DESIGN
+   Applies ONLY inside .visitor-list-card
+========================================================== */
+
+/* Reduce table font size */
+.visitor-list-card table {
+    font-size: 13px;
+}
+
+/* Compact padding for table cells */
+.visitor-list-card table th,
+.visitor-list-card table td {
+    padding: 6px 8px !important;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+/* Fix table header */
+.visitor-list-card thead th {
+    position: sticky;
+    top: 0;
+    background: #cee8ff !important;
+    z-index: 5;
+    font-weight: 700;
+    color:  #0673b3 !important;;
+}
+
+.visitor-list-card thead{
+    border: 1px solid #056094   ;
+}
+
+/* Scrollable table body */
+.visitor-list-card .table-responsive {
+    max-height: 550px; /* Adjust height as needed */
+    overflow-y: auto;
+}
+
+/* Borders & clean look */
+.visitor-list-card table th {
+    color: #495057;
+}
+
+.visitor-list-card table td {
+    color: #333;
+}
+
+/* Prevent content overlap */
+.visitor-list-card table td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Make action buttons smaller */
+.visitor-list-card table .btn {
+    padding: 3px 8px;
+    font-size: 12px;
+}
+
+
+
+/* card Form CSS */
+
+/* ================================
+   SMART VISITOR FORM – CLEAN UI
+   ================================ */
+
+/* Card Styling */
+.card.card-primary {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e3e3e3;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08); 
+    margin-bottom : 50px;
+}
+
+/* Card Header */
+.card-header {
+    background: #0d6efd;
+    color: #fff;
+    padding: 10px 15px !important;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Section Titles (Visitor Details / Visit Information / etc.) */
+.card-body h5 {
+    font-size: 1rem;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: 700;
+    color: #0d6efd;
+    border-left: 4px solid #0d6efd;
+    padding-left: 8px;
+}
+
+/* Label Styling */
+.card-body label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.card-body .form-control .select2 {
+    font-size: 0.8rem;
+}
+.card-body .form-select .select2 {
+    font-size: 0.8rem;
+}
+
+/* Input + Select + Textarea styling */
+.card-body .form-control .select2 {
+    padding: 7px 10px;
+    height: auto;
+    border: 1px solid #727070;
+    border-radius: 6px;
+    transition: all .2s;
+}
+
+/* Focus effect */
+.card-body .form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 4px rgba(13,110,253,0.3);
+}
+
+/* Row spacing */
+.card-body .mb-2 {
+    margin-bottom: 15px !important;
+}
+
+/* Submit Button */
+.card-footer .btn-primary {
+    padding: 6px 18px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+}
+
+/* Back Button */
+.card-footer .btn-danger {
+    padding: 6px 18px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+}
+
+/* File Input Styling */
+input[type="file"] {
+    padding: 4px;
+}
+
+/* Better spacing in Card Footer */
+.card-footer {
+    background: #f8f9fa;
+    border-top: 1px solid #ddd;
+}
+
+
+
+/* =====================================================
+   DYNAMIC TABLE FORM – SMART & COMPACT UI
+   Applies only to .dynamic-form-table wrapper
+   ===================================================== */
+
+/* Table Wrapper Scroll */
+.dynamic-form-table {
+    max-height: 420px;
+    overflow-y: auto;
+}
+
+/* Table Head */
+.dynamic-form-table thead th {
+    white-space: nowrap;
+    font-size: 0.78rem;
+    font-weight: 700;
+    background: #f2f2f2;
+    top: 0;
+    position: sticky;
+    z-index: 9;
+}
+
+/* Table Cells */
+.dynamic-form-table td,
+.dynamic-form-table th {
+    padding: 4px 6px !important;
+}
+
+/* Compact Inputs */
+.dynamic-form-table .form-control {
+    padding: 3px 6px !important;
+    font-size: 0.8rem !important;
+    height: 28px !important;
+    border-radius: 4px;
+}
+
+/* Compact Select */
+.dynamic-form-table select.form-control {
+    height: 28px !important;
+}
+
+/* Compact Textarea */
+.dynamic-form-table textarea.form-control {
+    height: 30px !important;
+    resize: vertical;
+    padding: 4px 6px !important;
+}
+
+/* Narrow Inputs */
+.dynamic-form-table input[type="text"],
+.dynamic-form-table input[type="email"],
+.dynamic-form-table input[type="date"],
+.dynamic-form-table input[type="time"] {
+    width: 130px; /* reduce width */
+}
+
+/* Very small columns */
+.dynamic-form-table td:first-child {
+    width: 40px;
+    text-align: center;
+}
+
+/* File Upload Button */
+.dynamic-form-table .uploadBtn {
+    padding: 3px 6px !important;
+    font-size: 0.75rem !important;
+    border-radius: 4px !important;
+}
+
+/* Add Row Button */
+.dynamic-form-table .addRow {
+    padding: 3px 6px !important;
+    font-size: 0.75rem !important;
+    border-radius: 4px !important;
+}
+
+/* Reduce Table Font Size */
+.dynamic-form-table table {
+    font-size: 0.8rem !important;
+}
+
+/* Prevent overflow */
+.dynamic-form-table td {
+    vertical-align: middle !important;
+    white-space: nowrap;
+}
+
+
+/* ===========================================================
+   VISITOR DETAILS CARD – SMART, CLEAN, LIGHTWEIGHT DESIGN
+   Applies only to elements inside .visitor-details-card
+   =========================================================== */
+
+/* Card */
+.visitor-details-card {
+    font-size: 0.85rem !important;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* Header */
+.visitor-details-card .card-header {
+    padding: 10px 15px !important;
+    border-radius: 10px 10px 0 0 !important;
+}
+
+/* Profile Section */
+.visitor-details-card h5 {
+    font-size: 1rem !important;
+    font-weight: 600;
+}
+
+.visitor-details-card .small {
+    font-size: 0.75rem !important;
+}
+
+/* Status Badge */
+.visitor-details-card #vStatus {
+    font-size: 0.75rem !important;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+/* Info Row Styling */
+.visitor-details-card .row p {
+    margin: 4px 0 !important;
+    font-size: 0.82rem !important;
+    line-height: 1.2rem;
+}
+
+/* Labels (Phone:, Purpose:, etc.) */
+.visitor-details-card .row p b {
+    color: #333;
+    font-weight: 600;
+}
+
+/* Icons (top left rounded-circle avatar) */
+.visitor-details-card .rounded-circle i {
+    font-size: 1.4rem !important;
+}
+
+/* Section Divider */
+.visitor-details-card hr {
+    margin: 10px 0;
+}
+
+/* Buttons */
+.visitor-details-card button {
+    font-size: 0.85rem !important;
+    padding: 7px !important;
+    border-radius: 6px;
+}
+
+/* Ensure spacing between text and icon */
+.visitor-details-card button i {
+    margin-right: 6px;
+}
+
+
+/* Smart Header Buttons */
+.card-header-actions .btn {
+    padding: 4px 10px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Light shadow for smart look */
+.card-header-actions .btn-warning {
+    background: #f7b733;
+    border: 1px solid #e0a106;
+    color: #000000;
+}
+/* /////////////////////// */
+.meetingCmpleteBtn {
+    font-size: 10px !important;
+    font-weight: bold;
+    line-height: 12px;   /* 🔹 Decreases line space */
+    background: #197be4;
+    border: 1px solid #0a79f0;
+    color: #ffffff;
+    transition: all 0.2s ease; /* smooth zoom */
+}
+
+.meetingCmpleteBtn:hover {
+  background: #197be4;
+    border: 1px solid #0a79f0;
+    color: #ffffff;
+    transform: scale(1.09); /* zoom effect */
+}
+
+/* Hover effect */
+.card-header-actions .btn-warning:hover {
+    background-color: #e09d00;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Icon Size */
+.card-header-actions i {
+    font-size: 14px;
+}
+
+/* Reduce space between the two buttons */
+.card-header-actions {
+    display: flex;
+    gap: 6px;
+}
+
+/* Dropdown Styling */
+.profile-dropdown {
+    width: 260px !important;
+    padding: 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Profile Header */
+.profile-box {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #6291df, #ef8989);
+}
+
+.profile-icon {
+    width: 50px;
+    height: 50px;
+    background: #e8ecf4;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin-right: 12px;
+    color: #3b57f7;
+}
+
+.profile-info h6 {
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.profile-info small {
+    font-size: 12px;
+    color: #6c757d;
+}
+
+/* Details Section */
+.profile-item {
+    font-size: 14px;
+    padding-left: 15px;
+}
+
+.profile-item-icon {
+    font-size: 18px;
+    margin-right: 10px;
+    color: #495057;
+}
+
+/* Logout Button */
+.logout-box {
+    padding: 12px;
+    background: #f8f9fa;
+}
+
+.logout-box .btn {
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+/* Hover effect for details */
+.profile-item:hover {
+    background: #eef4ff;
+    cursor: pointer;
+}
+
+
+
+/* Make all visitor details small font */
+.visitor-details p,
+.visitor-details .visitor-info,
+.visitor-details .visitor-email,
+.visitor-details .visitor-code {
+    font-size: 0.80rem !important; /* small font */
+    line-height: 1.20rem;
+    margin-bottom: 4px;
+}
+
+/* Visitor name slightly bigger but still compact */
+.visitor-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Code style */
+.visitor-code {
+    color: #007bff;
+    font-weight: 600;
+}
+
+/* QR Image */
+.visitor-qr {
+    max-width: 100px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.2);
+}
+
+/* Resend Button small */
+.resend-btn {
+    font-size: 0.7rem;
+    padding: 3px 6px;
+}
+
+/* Card Spacing */
+.visitor-card-body {
+    padding: 5px;
+}
+
+.visitor-card {
+    border-radius: 14px; 
+}
+
+
+/* ///////////////// */
+
+/* Hover effect */
+.quick-links a:hover {
+    transform: translateY(-3px);           /* subtle lift */
+    background: #f4faff;                    /* soft highlight */
+    border-color: #97cafd;                  /* border glow */
+    box-shadow: 0 6px 14px rgba(0, 85, 255, 0.12);
+    color: #0f4c97;
+}
+
+.quick-links a:hover i {
+    color: #0f4c97;
+}
+
+.card-medium {
+     min-height:100px; 
+     transition: all 0.35s ease;  /* smoother + longer */
+     background: linear-gradient(22deg, #91ffe7, #88d4c3);
+     border-top: 1px solid #37ddb9;
+}
+
+.card-medium:hover {
+    transform: translateY(-10px) scale(1.03); /* more zoom + more lift */   
+    box-shadow: 0 10px 20px rgba(0,0,0,0.40); /* deeper shadow */
+    border-color: #216cb8;
+    border-top: 1px solid #37ddb9;
+}
+
+.title-row {
+    display: flex;
+    align-items: center;
+  
+}
+
+.icon {
+    font-size: 26px;
+    color: #216cb8;
+    margin-right: 5px;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.count-number {
+    text-align: right;
+    font-size: 34px;
+    font-weight: 700;
+    color: #216cb8;
+}
+
+.form-label{
+    color: #0056b3 !important;
+}
+/* ////////////////////////// */
+
+.pending-list {
+    max-height: 260px;       /* FIXED HEIGHT (adjust as you need) */
+    overflow-y: auto;       
+    padding-right: 5px;      /* SPACE FOR SCROLLBAR */
+    margin: 0;
+
+}
+
+
+
+/* Optional: smooth scrollbar styling */
+.pending-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.pending-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 5px;
+}
+
+/* .pending-list::-webkit-scrollbar-thumb {
+    background: #b5b5b5;
+    border-radius: 5px;
+} */
+
+/* .pending-list li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+} */
+
+/* Hover effect */
+.pending-list li:hover {
+    transform: translateY(-3px);           /* subtle lift */
+    background: #f4faff;                    /* soft highlight */
+    border-color: #cbe5ff;                  /* border glow */
+    box-shadow: 0 6px 14px rgba(0, 85, 255, 0.12);
+    color: #0f4c97;
+}
+
+.pending-list li:hover i {
+    color: #0f4c97;
+}
+
+/* .pending-list li:last-child {
+    border-bottom: none;
+} */
+
+.brand {
+    font-size: 20px;
+    font-weight: 700;
+    color:#0056b3
+}
+
+
+.brand-subtitle {
+    font-size: 12px;
+    font-weight: 600;
+    /* color: rgba(19, 36, 189, 0.85); */
+            color: rgb(217 41 44);
+}
+
+
+#visitorCardsContainer {
+    overflow-x: auto;   /* enable horizontal scrolling */
+    max-width: 100%;    /* prevent overflowing modal */
+}
+
+#visitorCardsContainer table {
+    min-width: 900px;   /* or adjust based on columns */
+    font-size: 0.85rem;
+}
+
+#visitorCardsContainer th,
+#visitorCardsContainer td {
+    white-space: nowrap; /* prevent text wrap */
+}
+
+/* Title underline container */
+.title-underline {
+    width: 100%;
+    height: 2px;
+    margin-bottom: 6px;
+    background: #86bff1;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 6px;
+}
+.pending-header{
+    border-bottom: solid 2px #86bff1;
+    
+}
+.pending-header::after {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;  /* underline width */
+}
+
+#authorizedVisitorTable, #authorizedVisitorTablehead{
+    text-align: center !important;
+}
+
+.table-scroll {
+    max-height: 500px;      /* 🔹 scroll height */
+    overflow-y: auto;
+}
+
+.table-scroll thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #f8f9fa;    /* Bootstrap table-light */
+}
+
+/* =========================
+   STATUS TRACKER ANIMATION
+========================= */
+
+.circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #dee2e6;
+    color: #6c757d;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+
+    /* animation base */
+    transform: scale(0.6);
+    opacity: 0.4;
+    transition: all 0.35s ease;
+}
+
+/* ACTIVE ICON ANIMATION */
+.step.active .circle {
+    background: #198754;
+    color: #fff;
+
+    transform: scale(1);
+    opacity: 1;
+    animation: popIn 0.4s ease-out;
+}
+
+/* Label animation */
+.label {
+    display: block;
+    font-size: 11px;
+    color: #6c757d;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.step.active .label {
+    color: #0d6efd;
+    font-weight: 600;
+    opacity: 1;
+}
+
+/* =========================
+   LINE FILL ANIMATION
+========================= */
+
+.line {
+    height: 3px;
+    background: #dee2e6;
+    flex: 1;
+    margin: 0 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* animated fill */
+.line::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0%;
+    background: #198754;
+    transition: width 0.5s ease-in-out;
+}
+
+.line.active::after {
+    width: 100%;
+}
+
+/* =========================
+   ICON POP KEYFRAMES
+========================= */
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    70% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* ===============================
+   HORIZONTAL CONTINUOUS TRACKER
+================================ */
+
+.status-tracker-horizontal {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 25px;
+    margin: 5px 0;
+}
+/* BASE LINE */
+.status-tracker-horizontal::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: calc(25px + 14px); /* ✔ between icons */
+    width: 100%;
+    height: 3px;
+    background: #dee2e6;
+    z-index: 0;
+}
+
+/* LOADING LINE */
+.status-tracker-horizontal::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: calc(25px + 14px); /* ✔ between icons */
+    width: var(--progress, 0%);
+    height: 3px;
+    background: #198754;
+    transition: width 1s ease-in-out;
+    z-index: 1;
+}
+
+/* STEP */
+.step {
+    position: relative;
+    flex: 1;
+    text-align: center;
+}
+
+/* ICON */
+.circle {
+    position: relative;
+    z-index: 2; /* ✔ ensures icon is above line */
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #dee2e6;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+
+    transform: scale(1);
+    opacity: 0.4;
+    transition: all 2.5s ease;
+}
+
+/* LABEL */
+.label {
+    display: block;
+    margin-top: 6px;
+    font-size: 11px;
+    color: #6c757d;
+}
+
+/* ACTIVE STEP */
+.step.active .circle {
+    background: #198754;
+    color: #fff;
+    transform: scale(1);
+    opacity: 1;
+    animation: popIn 0.4s ease-out;
+}
+
+.step.active .label {
+    color: #0d6efd;
+    font-weight: 600;
+}
+
+/* ICON POP */
+@keyframes popIn {
+    0% { transform: scale(0.4); opacity: 0; }
+    70% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+:root {
+    --icon-size: 28px;
+    --tracker-padding: 25px;
+}
+
+/* LINE */
+.status-tracker-horizontal::before,
+.status-tracker-horizontal::after {
+    top: calc(var(--tracker-padding) + (var(--icon-size) / 2));
+}
+
+/* ==================================== */
+.photo-wrapper {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Image style */
+#visitorPhotoPreview {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+/* Camera button */
+.camera-upload {
+    width: 44px;
+    height: 44px;
+    margin-top: -18px; /* overlaps image slightly */
+    background: #0d6efd;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+/* Hover zoom */
+.camera-upload:hover {
+    background: #0b5ed7;
+}
+
+/* Icon */
+.camera-upload i {
+    font-size: 18px;
+}
+
+/* ❤️ Heartbeat animation */
+.heartbeat {
+    animation: heartbeat 1.6s ease-in-out infinite;
+}
+
+/* Keyframes */
+@keyframes heartbeat {
+    0%   { transform: scale(1); }
+    14%  { transform: scale(1.2); }
+    28%  { transform: scale(1); }
+    42%  { transform: scale(1.2); }
+    70%  { transform: scale(1); }
+}
+
+.select2-container .select2-selection--single {
+    height: 36px  !important;
+}
+.select2-selection__rendered {
+    line-height: 36px !important;
+}
+.select2-selection__arrow {
+    height: 36px !important;
+}
+
+#closeScanner {
+  display: none !important;
+}
+  
+
+
+/* 
+/////////////////////////// Mobile View Responsive //////////////////////////////////////////// */
+@media (max-width: 768px) {
+#qrScannerOverlay {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 9999;
+    display: none; /* 🔥 hidden initially */
+}
+
+#qr-reader {
+    width: 100%;
+    height: 80%;
+}
+
+#closeScanner {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;                 /* FIX */
+    transform: translateX(-50%); /* FIX */
+    z-index: 10000;
+    display: block !important;
+}
+
+
+
+/*//////////////////// end Scan Style //////////// */
+
+    .brand {
+        font-size: 16px;
+    }
+
+    .brand-subtitle {
+        font-size: 10px;
+    }
+
+     /* Default → show title */
+    .brand,
+    .brand-subtitle {
+        display: block;
+    }
+
+    /* Sidebar OPEN → hide title */
+    body.sidebar-open .brand,
+    body.sidebar-open .brand-subtitle {
+        display: none;
+    }
+
+.brand,
+.brand-subtitle {
+    transition: opacity 0.5s ease;
+}
+
+ /* Default → footer visible */
+    #footer {
+        display: flex;
+    }
+
+    /* Sidebar OPEN → hide footer */
+    body.sidebar-open #footer {
+        display: none;
+    }
+
+body.sidebar-open .brand,
+body.sidebar-open .brand-subtitle {
+    opacity: 0;
+}
+
+
+    #fullScreenBtn {
+        display: none;
+    }
+
+    #navebarUserName {
+        display: none;
+    }
+
+    /* Sidebar hidden by default */
+    #sidebar {
+        width: 0;
+        overflow: hidden;
+        transition: width 0s ease;
+    }
+    /* Topbar */
+    .topbar,.footer {
+      transition: all 0s ease;
+    }
+
+
+    #sidebar.closed {
+        width: 0;
+    }
+
+    #sidebar:not(.closed) {
+        width: 220px; /* your sidebar width */
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        z-index: 1051;
+        background: var(--sidebar-bg);
+    }
+
+    /* Content full width */
+    #mainContent,
+    #topbar,
+    #footer {
+        margin-left: 0 !important;
+    }
+
+    #mainContent{
+        padding: 5px 5px;
+    }
+    .container-fluid {
+          padding: 2px 5px;
+    }     
+
+
+    .card-header-actions .btn-warning {
+    background: #f7b733;
+    border: 1px solid #e0a106;
+    color: #000000;
+    font-size: 11px;
+
+}
+}
+
+
+
+/* 
+/////////////////////////// Mobile View Responsive End //////////////////////////////////////////// */
+

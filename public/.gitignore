@@ -1,0 +1,2 @@
+# Ignore CodeIgniter session files
+writable/session/*

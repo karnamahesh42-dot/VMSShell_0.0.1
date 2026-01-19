@@ -1,0 +1,572 @@
+DEBUG - 2025-12-01 03:46:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 03:46:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 03:46:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 03:47:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 03:49:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 03:51:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 03:51:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 03:52:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 03:52:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 03:53:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 03:56:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 03:57:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 03:59:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 03:59:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 03:59:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 03:59:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 03:59:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 03:59:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 03:59:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 03:59:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 03:59:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 04:24:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 04:26:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 04:30:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 04:30:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 04:31:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 04:33:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 04:39:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 04:39:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 04:40:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 04:40:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 04:41:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 04:46:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 04:47:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 04:47:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 04:49:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 05:22:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 05:22:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-01 05:22:55 --> ErrorException: Undefined property: App\Controllers\SecurityController::$db
+[Method: POST, Route: security/checkin]
+in APPPATH\Controllers\SecurityController.php on line 54.
+ 1 APPPATH\Controllers\SecurityController.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\SecurityController::$db', 'C:\\xampp\\htdocs\\VSMShell\\app\\Controllers\\SecurityController.php', 54)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->checkIn()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-01 05:23:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 05:24:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 05:31:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 05:31:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:02:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-01 11:02:04 --> ErrorException: Undefined property: App\Controllers\SecurityController::$db
+[Method: POST, Route: security/checkin]
+in APPPATH\Controllers\SecurityController.php on line 55.
+ 1 APPPATH\Controllers\SecurityController.php(55): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\SecurityController::$db', 'C:\\xampp\\htdocs\\VSMShell\\app\\Controllers\\SecurityController.php', 55)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->checkIn()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-01 05:35:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 05:35:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 05:46:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 05:49:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:19:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 05:50:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 05:51:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 05:58:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 06:00:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 06:01:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 06:06:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 06:10:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 06:13:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:44:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 06:14:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 06:22:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 06:25:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 06:25:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:10:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:15:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:15:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:15:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:15:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:20:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:33:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:36:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 08:38:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 08:39:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 08:42:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 08:44:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 08:49:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 08:51:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 08:51:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 08:51:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 08:54:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 08:54:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:05:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:06:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:07:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:11:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:12:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:16:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:17:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:19:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:20:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:20:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:20:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:21:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:21:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:21:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:21:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:23:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:23:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:24:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:25:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:26:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:27:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:28:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:29:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:30:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:31:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:31:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:32:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:32:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:33:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:34:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:37:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:37:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:37:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:37:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:50:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:50:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 09:58:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-01 09:58:19 --> mysqli_sql_exception: Table 'vsmshell_db.security_gate_log' doesn't exist in C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `vr`.`id...', 0)
+#1 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `vr`.`id...')
+#2 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `vr`.`id...')
+#3 C:\xampp\htdocs\VSMShell\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `vr`.`id...', Array, false)
+#4 C:\xampp\htdocs\VSMShell\app\Controllers\SecurityController.php(55): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+#6 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+#7 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\VSMShell\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\VSMShell\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\VSMShell\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-12-01 09:58:19 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'vsmshell_db.security_gate_log' doesn't exist
+[Method: GET, Route: security/authorized_visitors_list_data]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = :vr.status:
+ORDER BY `vr`.`id` DESC', [...], false)
+ 2 APPPATH\Controllers\SecurityController.php(55): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-01 09:58:19 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'vsmshell_db.security_gate_log' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = \'approved\'
+ORDER BY `vr`.`id` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = \'approved\'
+ORDER BY `vr`.`id` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = :vr.status:
+ORDER BY `vr`.`id` DESC', [...], false)
+ 4 APPPATH\Controllers\SecurityController.php(55): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-01 09:58:19 --> [Caused by] mysqli_sql_exception: Table 'vsmshell_db.security_gate_log' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = \'approved\'
+ORDER BY `vr`.`id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = \'approved\'
+ORDER BY `vr`.`id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = \'approved\'
+ORDER BY `vr`.`id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = :vr.status:
+ORDER BY `vr`.`id` DESC', [...], false)
+ 5 APPPATH\Controllers\SecurityController.php(55): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-01 10:01:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:01:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-01 10:01:08 --> mysqli_sql_exception: Table 'vsmshell_db.security_gate_log' doesn't exist in C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `vr`.`id...', 0)
+#1 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `vr`.`id...')
+#2 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `vr`.`id...')
+#3 C:\xampp\htdocs\VSMShell\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `vr`.`id...', Array, false)
+#4 C:\xampp\htdocs\VSMShell\app\Controllers\SecurityController.php(54): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+#6 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+#7 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\VSMShell\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\VSMShell\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\VSMShell\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-12-01 10:01:08 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'vsmshell_db.security_gate_log' doesn't exist
+[Method: GET, Route: security/authorized_visitors_list_data]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = :vr.status:
+ORDER BY `vr`.`id` DESC', [...], false)
+ 2 APPPATH\Controllers\SecurityController.php(54): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-01 10:01:08 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'vsmshell_db.security_gate_log' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = \'approved\'
+ORDER BY `vr`.`id` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = \'approved\'
+ORDER BY `vr`.`id` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = :vr.status:
+ORDER BY `vr`.`id` DESC', [...], false)
+ 4 APPPATH\Controllers\SecurityController.php(54): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-01 10:01:08 --> [Caused by] mysqli_sql_exception: Table 'vsmshell_db.security_gate_log' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = \'approved\'
+ORDER BY `vr`.`id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = \'approved\'
+ORDER BY `vr`.`id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = \'approved\'
+ORDER BY `vr`.`id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = :vr.status:
+ORDER BY `vr`.`id` DESC', [...], false)
+ 5 APPPATH\Controllers\SecurityController.php(54): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-01 10:01:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-01 10:01:08 --> mysqli_sql_exception: Table 'vsmshell_db.security_gate_log' doesn't exist in C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `vr`.`id...', 0)
+#1 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `vr`.`id...')
+#2 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `vr`.`id...')
+#3 C:\xampp\htdocs\VSMShell\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `vr`.`id...', Array, false)
+#4 C:\xampp\htdocs\VSMShell\app\Controllers\SecurityController.php(54): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+#6 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+#7 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\VSMShell\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\VSMShell\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\VSMShell\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-12-01 10:01:08 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'vsmshell_db.security_gate_log' doesn't exist
+[Method: GET, Route: security/authorized_visitors_list_data]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = :vr.status:
+ORDER BY `vr`.`id` DESC', [...], false)
+ 2 APPPATH\Controllers\SecurityController.php(54): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-01 10:01:08 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'vsmshell_db.security_gate_log' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = \'approved\'
+ORDER BY `vr`.`id` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = \'approved\'
+ORDER BY `vr`.`id` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = :vr.status:
+ORDER BY `vr`.`id` DESC', [...], false)
+ 4 APPPATH\Controllers\SecurityController.php(54): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-01 10:01:08 --> [Caused by] mysqli_sql_exception: Table 'vsmshell_db.security_gate_log' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = \'approved\'
+ORDER BY `vr`.`id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = \'approved\'
+ORDER BY `vr`.`id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = \'approved\'
+ORDER BY `vr`.`id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = :vr.status:
+ORDER BY `vr`.`id` DESC', [...], false)
+ 5 APPPATH\Controllers\SecurityController.php(54): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-12-01 10:01:08 --> mysqli_sql_exception: Table 'vsmshell_db.security_gate_log' doesn't exist in C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `vr`.`id...', 0)
+#1 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `vr`.`id...')
+#2 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `vr`.`id...')
+#3 C:\xampp\htdocs\VSMShell\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `vr`.`id...', Array, false)
+#4 C:\xampp\htdocs\VSMShell\app\Controllers\SecurityController.php(54): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+#6 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+#7 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\VSMShell\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\VSMShell\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\VSMShell\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2025-12-01 10:01:08 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'vsmshell_db.security_gate_log' doesn't exist
+[Method: GET, Route: security/authorized_visitors_list_data]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = :vr.status:
+ORDER BY `vr`.`id` DESC', [...], false)
+ 2 APPPATH\Controllers\SecurityController.php(54): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-01 10:01:08 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'vsmshell_db.security_gate_log' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = \'approved\'
+ORDER BY `vr`.`id` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = \'approved\'
+ORDER BY `vr`.`id` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = :vr.status:
+ORDER BY `vr`.`id` DESC', [...], false)
+ 4 APPPATH\Controllers\SecurityController.php(54): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-01 10:01:08 --> [Caused by] mysqli_sql_exception: Table 'vsmshell_db.security_gate_log' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = \'approved\'
+ORDER BY `vr`.`id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = \'approved\'
+ORDER BY `vr`.`id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = \'approved\'
+ORDER BY `vr`.`id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `vr`.`id`, `vr`.`v_code`, `vr`.`visitor_name`, `vr`.`visitor_email`, `vr`.`visitor_phone`, `vr`.`purpose`, `vr`.`visit_time`, `vr`.`visit_date`, `vr`.`description`, `vr`.`vehicle_no`, `vr`.`vehicle_type`, `vr`.`proof_id_type`, `vr`.`proof_id_number`, `vr`.`securityCheckStatus`, `log`.`check_in_time`, `log`.`check_out_time`, `log`.`verified_by`
+FROM `visitors` `vr`
+LEFT JOIN `security_gate_log` `log` ON `log`.`visitor_request_id` = `vr`.`id`
+WHERE `vr`.`status` = :vr.status:
+ORDER BY `vr`.`id` DESC', [...], false)
+ 5 APPPATH\Controllers\SecurityController.php(54): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-01 10:01:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:02:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:02:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:05:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:08:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:08:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:08:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:08:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:09:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:10:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:17:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:17:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:17:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:17:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:17:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:17:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:17:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:18:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:18:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:18:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:18:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:18:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:18:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:18:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:18:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:19:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:19:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:22:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:22:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:22:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:23:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:23:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:23:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:23:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:23:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:24:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:24:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:24:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:24:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:26:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:30:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:31:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:31:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:31:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:32:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:32:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:33:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:33:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:33:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:33:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:34:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 16:05:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 16:07:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:37:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:37:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:37:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:38:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:38:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:41:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:46:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:50:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:50:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:51:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:51:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:53:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:53:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:54:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:54:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:55:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:55:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:56:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:56:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:56:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:56:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:57:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:57:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:57:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:57:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:57:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:57:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:57:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:57:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:57:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 10:59:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:00:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:00:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:01:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:01:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:01:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:01:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:01:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:26:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:27:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:28:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:28:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:28:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:29:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:29:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:29:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:30:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:30:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:30:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:30:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:30:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 11:30:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

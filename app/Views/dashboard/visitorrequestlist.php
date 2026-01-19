@@ -1,0 +1,630 @@
+<?= $this->include('/dashboard/layouts/sidebar') ?>
+<?= $this->include('/dashboard/layouts/navbar') ?>
+<style>
+    /* #visitorModal .card {
+        border-radius: 16px !important;
+    }
+    #visitorModal .table th, 
+    #visitorModal .table td {
+        vertical-align: middle;
+    } */
+</style>
+
+<main class="main-content" id="mainContent">
+        <div class="container-fluid">
+
+                 <!-- Satart view Visitor Request Form Pop-Up  -->
+                    <!-- Visitor Request Modal -->
+<div class="modal fade" id="visitorModal">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content shadow-lg rounded-4 border-0">
+
+            <!-- HEADER -->
+            <div class="modal-header card-header text-white rounded-top-4">
+                <h5 class="modal-title">Visitor Request Details</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- BODY -->
+            <div class="modal-body">
+
+                <!-- HEADER INFO CARD -->
+                <div class="card mb-2 border-0 shadow-sm rounded-4">
+                    <div class="card-body visitor-card">
+    
+                        <div class="row g-2">
+
+                            <div class="col-md-3 col-6">
+                                <label class="fw-semibold">Request ID:</label>
+                                <div id="h_code" class="text-primary  cardData"></div>
+                            </div>
+
+                            <div class="col-md-3 col-6">
+                                <label class="fw-semibold">Requested By:</label>
+                                <div id="h_requested_by" class="cardData"></div>
+                            </div>
+
+                             <div class="col-md-3 col-6">
+                                <label class="fw-semibold">Referred By:</label>
+                                <div id="referred_by" class="cardData"></div>
+                            </div>
+
+                            
+                              
+                            <div class="col-md-3 col-6">
+                                <label class="fw-semibold">Company:</label>
+                                <div id="h_company" class="cardData"></div>
+                            </div>
+
+                             <div class="col-md-3 col-6">
+                                <label class="fw-semibold">Department</label>
+                                <div id="h_department" class="cardData"></div>
+                            </div>
+
+                             <div class="col-md-3 col-6">
+                                <label class="fw-semibold">Visitors Count </label>
+                                <div id="h_count" class="cardData"></div>
+                            </div>
+
+                             <div class="col-md-3 col-6">
+                                <label class="fw-semibold">Email</label>
+                                <div id="h_email" class="cardData"></div>
+                            </div>
+
+                            <div class="col-md-3 col-6">
+                                <label class="fw-semibold">Purpose </label>
+                                <div id="h_purpose" class="cardData"></div>
+                            </div>
+
+                            <div class="col-md-3 col-6">
+                                <label class="fw-semibold">Visit Date & Time </label>
+                                <div id="h_date" class="cardData"></div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label class="fw-semibold">Description </label>
+                                <div id="h_description" class="cardData"></div>
+                            </div>
+
+                            <div class="col-md-3 col-6">
+                                <label class="fw-semibold">Actions</label>
+                                <?php if(session()->get('role_id') <= 2){ ?>
+                               
+                                <div id= "actionBtns"></div>
+                                
+                                <?php } ?>
+                                  <p class="text-danger" id="remarkLablle"><p>      
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VISITOR CARDS -->
+             
+                <div class="row mx-1" id="visitorCardsContainer"></div>
+            </div>
+            <!-- FOOTER -->
+            <div class="modal-footer justify-content-between">
+                <button class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+                <!-- End view Visitor Request Form Pop-Up  -->
+                <div class="col-12">
+                    <div class="card  visitor-list-card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Visitor Request Management</h5>
+
+                            <div class="card-header-actions">
+                                <a href="<?= base_url('group_visito_request') ?>" class="btn btn-warning mx-1">
+                                    <i class="fa-solid fa-users"></i> Group Request
+                                </a>
+
+                                <a href="<?= base_url('visitorequest') ?>" class="btn btn-warning mx-1">
+                                    <i class="fa-solid fa-user"></i> New Request
+                                </a>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                         <!-- /.card-body -->
+                            <div class="card-body table-responsive">
+                                <table class="table table-bordered table-hover"  id="visitorTable">
+                                    <thead class="bg-light">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Request ID</th>
+                                            <th>Department</th>
+                                            <th>Purpose</th>
+                                            <th>Description</th>
+                                            <th>Visit Date</th>
+                                            <th>Visitors Count</th>
+                                            <th>Status</th>
+                                            <?php if($_SESSION['role_id'] == '1' || $_SESSION['role_id'] == '2'){?>
+                                            <th style="width:150px;" colspan="2">Actions</th>
+                                             <?php }?>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+    </div>
+</main>
+
+<?= $this->include('/dashboard/layouts/footer') ?>
+
+<script>
+$(document).ready(function() {
+    loadVisitorList();
+});
+
+//  CORRECT function
+function loadVisitorList() {
+
+    $.ajax({
+        url: "<?= base_url('/visitorlistdata') ?>",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            // console.log(data);
+
+            let rows = "";
+            let i = 1;
+
+            data.forEach(function(item){
+
+                // Status badge
+                let statusBadge =
+                    item.status === "approved" ? `<span class="badge bg-success">Approved</span>` :
+                    item.status === "rejected" ? `<span class="badge bg-danger">Rejected</span>` :
+                    `<span class="badge bg-warning">Pending</span>`;
+
+                // Action buttons only for pending
+                let actions = "";
+                let shareMail="";
+                if (item.status === "pending") {
+                    actions = `
+                        <button class="btn btn-success btn-sm approvalBtn mx-1" onclick = approvalProcess(${item.id},'approved','${item.header_code}','') ><i class="fa-solid fa-check"></i></button>
+                        <button class="btn btn-danger btn-sm approvalBtn mx-1" onclick = rejectComment(${item.id},'rejected','${item.header_code}','') ><i class="fa-solid fa-xmark"></i></button>
+                    `;
+                } else {
+                    actions = ``;
+                    shareMail = `
+                    <i class="bi bi-envelope-fill text-warning fs-5"
+                    role="button"
+                    title="Resend Mail"
+                    onclick="confirmResendMail('${item.email}','${item.id}')">
+                    </i>`;
+                }
+
+
+
+                rows += `
+                    <tr> 
+                        <td onclick="view_visitor(${item.id})">${i++}</td>
+                        <td onclick="view_visitor(${item.id})">${item.header_code}</td>
+                        <td onclick="view_visitor(${item.id})">${item.department}</td>
+                        <td onclick="view_visitor(${item.id})">${item.purpose}</td>
+                        <td onclick="view_visitor(${item.id})">${item.description}</td>
+                        <td onclick="view_visitor(${item.id})">${item.requested_date}</td>
+                        <td onclick="view_visitor(${item.id})">${item.total_visitors ?? ''}</td>
+                        <td onclick="view_visitor(${item.id})">${statusBadge}</td>
+                        </a>
+                        
+                        <td style="text-align:center"><?php if($_SESSION['role_id'] == '1' || $_SESSION['role_id'] == '2'){ ?> 
+                            ${actions} 
+                            <?php } ?>
+                        ${shareMail}
+                        </td>
+                        
+                        <td style="text-align:center">
+                        <button class="btn btn-info btn-sm " onclick="view_visitor(${item.id})" >
+                        <i class="fa-solid fa-eye"></i>
+                        </button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            $("#visitorTable tbody").html(rows);
+        }
+    });
+}
+
+
+// View Visitor Details Section 
+      
+
+// View Visitor Details Section
+
+function view_visitor(id){
+
+    // alert(id);
+    $.ajax({
+        url: "<?= base_url('getvisitorrequestdata/') ?>" + id,
+        type: "GET",
+        dataType: "json",
+
+        success: function (res) {
+
+              console.log(res)
+            if (res.status !== "success" || res.data.length === 0) {
+                alert("No data found");
+                return;
+            }  
+
+            // Fill header
+            let actionButtons = "";
+            let h = res.data[0];
+
+           // console.log(res)
+           // console.log(h.status);
+            
+            if (h.status === "pending" ) {
+
+                    actionButtons = `
+                        <button class="btn btn-success btn-sm"
+                            onclick="approvalProcess(${h.request_header_id}, 'approved', '${h.header_code}')">
+                            <i class="fas fa-check-circle"></i> Approve
+                        </button>
+
+                        <button class="btn btn-danger btn-sm"
+                            onclick="rejectComment(${h.request_header_id }, 'rejected', '${h.header_code}')">
+                            <i class="fas fa-times-circle"></i> Reject
+                        </button>
+                    `;
+                } 
+        
+            $("#actionBtns").html(actionButtons);
+            $("#h_code").text(h.header_code);
+            $("#h_requested_by").text(h.requested_by);
+            $("#h_department").text(h.department);
+            $("#h_email").text(h.email ?? "-");
+            $("#h_company").text(h.company);
+            $("#h_count").text(h.total_visitors);
+            $("#h_requested_by").text(h.visitor_created_by_name);
+            $("#h_purpose").text(h.purpose);
+            $("#h_date").text(h.requested_date +" & "+ h.requested_time);
+            $("#h_description").text(h.description);
+            $("#remarkLablle").text(h.remarks);
+            $("#referred_by").text(h.referred_by_name);
+        
+                        
+        let tableHtml = `
+            <table class="table table-bordered table-striped">
+                <thead class="table-light">
+                    <tr>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>ID Type</th>
+                        <th>ID Number</th>
+                        <th>Action</th>
+                        <th>Meet Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+
+            res.data.forEach((v, index) => {
+                let qrImg = v.qr_code 
+                    ? `<img src="<?= base_url('public/uploads/qr_codes/') ?>${v.qr_code}" class="visitor-qr" style="height:50px;">`
+                    : "--";
+
+                // let actionBtn = v.status === "approved" 
+                //     ? `<button class="btn btn-warning btn-sm" onclick="resendqr('${v.v_code}')">
+                //             <i class="fas fa-paper-plane"></i>
+                //     </button>`
+                //     : "--";
+
+
+let actionBtn = " -- ";
+let meetStatus = "";
+if (v.securityCheckStatus == 0 && v.status == 'approved') {
+    // Visitor not inside → Resend QR
+    actionBtn = `
+        <button class="btn btn-warning btn-sm" onclick="resendqr('${v.v_code}')">
+            <i class="fas fa-paper-plane"></i>
+        </button>
+    `;
+}
+
+
+    if (v.securityCheckStatus == 1 && v.meeting_status == 0) {
+        // Visitor inside → Meeting pending (click to complete)
+        meetStatus = `
+            <span class="btn cursor-pointer meetingCmpleteBtn"
+                style="cursor:pointer "
+                onclick="markMeetingCompleted('${v.v_code}')">
+                ${v.purpose} <br>
+                Not Yet Completed
+            </span>
+        `;
+    }
+    else if (v.meeting_status == 1) {
+        meetStatus = `
+            <span class="badge bg-success">
+                <i class="fas fa-check-double"></i> Completed
+            </span>
+        `;
+    }
+
+                tableHtml += `
+                     <tr>
+                        <td>${v.v_code}</td>
+                        <td>${v.visitor_name}</td>
+                        <td>${v.visitor_email}</td>
+                        <td>${v.visitor_phone}</td>
+                        <td>${v.proof_id_type}</td>
+                        <td>${v.proof_id_number}</td>
+                        <td class="text-center">${actionBtn}</td>
+                        <td class="text-center">${meetStatus}</td>
+                    </tr>
+                `;
+            });
+
+            tableHtml += `
+                    </tbody>
+                </table>
+            `;
+
+            $("#visitorCardsContainer").html(tableHtml);
+            $("#visitorModal").modal("show");
+        }
+    });
+
+}
+
+
+
+function rejectComment(head_id, status, header_code, comment) {
+    Swal.fire({
+        title: "Reject Visitor Request",
+        input: "text",
+        inputLabel: "Enter rejection comment",
+        inputPlaceholder: "Write your comment...",
+        showCancelButton: true,
+        confirmButtonText: "Submit",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let comment = result.value; // user comment
+            // Call your approval process with comment
+            approvalProcess(head_id, status, header_code, comment);
+        }
+    });
+}
+
+function sendMail(head_id) {
+    // alert(head_id);
+    $.ajax({
+        url: "<?= base_url('/send-email') ?>",
+        type: "POST",
+        data:{head_id : head_id },
+        dataType: "json",
+        success: function (mailRes) {
+            console.log(mailRes);
+        },
+        error: function () {
+            console.log("Email sending failed");
+        }
+    });
+}
+
+
+
+let approvalInProgress = false; // prevent Duble Click On approvel
+
+function approvalProcess(head_id, status, header_code, comment) {
+
+    if (approvalInProgress) {
+        return; // ❌ prevent double call
+    }
+
+    approvalInProgress = true;
+
+    $.ajax({
+        url: "<?= base_url('/approvalprocess') ?>",
+        type: "POST",
+        data: { 
+            head_id: head_id, 
+            status: status, 
+            header_code: header_code, 
+            comment: comment 
+        },
+        dataType: "json",
+
+        success: function (res) {
+            if (res.status === "success") {
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Action Completed Successfully!',
+                    showConfirmButton: false,
+                    timer: 900
+                });
+                
+                $("#visitorModal").modal("hide");
+                sendMail(res.head_id);
+                loadVisitorList();
+
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Update Failed!',
+                    text: res.message ?? "Please try again",
+                    confirmButtonColor: '#d33'
+                });
+            }
+        },
+
+        complete: function () {
+            approvalInProgress = false; // 🔓 unlock after request finishes
+        },
+
+        error: function () {
+            approvalInProgress = false;
+        }
+    });
+}
+
+
+// Resend QR To Mail Function 
+function resendqr(v_code) {
+
+    $.ajax({
+        url: "<?= base_url('send-email') ?>",
+        type: "POST",
+        data:{ re_send : v_code },
+        dataType: "json",
+        success: function(data) {
+
+        }
+    });
+
+    Swal.fire({
+        position: 'top-end',
+        toast: true,
+        icon: 'success',
+        title: 'Mail Sent Successfully',
+        showConfirmButton: false,
+        timer: 2000
+    });
+}
+
+
+function markMeetingCompleted(v_code) {
+   
+    Swal.fire({
+        title: "Complete Meeting?",
+        text: "Confirm that the visitor meeting is completed.",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Complete",
+        cancelButtonText: "Cancel"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "<?= base_url('/visitor/complete-meeting') ?>",
+                type: "POST",
+                data: { v_code: v_code },
+                dataType: "json",
+                success: function (res) {
+                    if (res.status === "success") {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Meeting Completed",
+                            timer: 1500,
+                            showConfirmButton: false
+                        });
+
+                        view_visitor(res.id);
+                        loadVisitorList(); // refresh table
+                    } else {
+                        Swal.fire("Error", res.message, "error");
+                    }
+                }
+            });
+        }
+    });
+}
+
+
+
+function confirmResendMail(mailId, header_id) {
+    Swal.fire({
+        title: "Resend Gate Pass..?",
+        html: `
+            <input id="resendEmail"
+                   type="email"
+                   class="swal2-input"
+                   value="${mailId || ''}"
+                   placeholder="Enter email address">
+        `,
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Send",
+        cancelButtonText: "Cancel",
+        confirmButtonColor: "#198754",
+        cancelButtonColor: "#dc3545",
+        focusConfirm: false,
+
+        preConfirm: () => {
+            const email = document.getElementById("resendEmail").value.trim();
+
+            if (!email) {
+                Swal.showValidationMessage("Email is required");
+                return false;
+            }
+
+            // basic email validation
+            if (!/^\S+@\S+\.\S+$/.test(email)) {
+                Swal.showValidationMessage("Enter a valid email");
+                return false;
+            }
+
+            return email;
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            re_send_group_qr(result.value, header_id);
+        }
+    });
+}
+
+
+function re_send_group_qr(email, header_id) {
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Mail Sent',
+            text: 'Group QR mail sent successfully'
+        });
+
+    $.ajax({
+        url: "<?= base_url('mail/group-qr') ?>",
+        type: "POST",
+        data: {
+            head_id: header_id,
+            email: email
+        },
+        dataType: "json",
+
+        success: function (res) {
+            
+            // if (res.status === 'success') {
+              
+            // } else {
+            //     Swal.fire({
+            //         icon: 'error',
+            //         title: 'Failed',
+            //         text: res.message || 'Something went wrong'
+            //     });
+            // }
+        },
+
+        error: function () {
+           
+            Swal.fire({
+                icon: 'error',
+                title: 'Server Error',
+                text: 'Unable to send mail'
+            });
+        }
+    });
+}
+
+
+
+
+</script>
+

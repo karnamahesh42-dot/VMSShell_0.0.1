@@ -1,0 +1,858 @@
+DEBUG - 2025-12-10 09:31:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:31:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:31:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:31:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:32:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:32:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:32:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:32:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:32:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:32:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:33:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:35:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 09:35:12 --> ErrorException: Undefined variable $roles
+[Method: GET, Route: userlist]
+in APPPATH\Views\dashboard\userlist.php on line 131.
+ 1 APPPATH\Views\dashboard\userlist.php(131): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $roles', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\userlist.php', 131)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\userlist.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard/userlist', [], true)
+ 5 APPPATH\Controllers\User.php(154): view('dashboard/userlist', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\User->userListData()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 09:37:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 09:37:30 --> ErrorException: Undefined variable $roles
+[Method: GET, Route: userlist]
+in APPPATH\Views\dashboard\userlist.php on line 131.
+ 1 APPPATH\Views\dashboard\userlist.php(131): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $roles', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\userlist.php', 131)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\userlist.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard/userlist', [], true)
+ 5 APPPATH\Controllers\User.php(190): view('dashboard/userlist', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\User->userListData()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 09:40:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:40:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:40:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:40:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:40:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:40:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:40:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:40:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:40:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:40:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:51:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:51:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:51:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:51:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:51:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:52:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 09:52:18 --> Error: Class "App\Controllers\RoleModel" not found
+[Method: GET, Route: userlist]
+in APPPATH\Controllers\User.php on line 163.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\User->userListData()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 09:53:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 09:53:15 --> Error: Class "App\Controllers\RoleModel" not found
+[Method: GET, Route: userlist]
+in APPPATH\Controllers\User.php on line 163.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\User->userListData()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 09:53:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 09:53:21 --> Error: Class "App\Controllers\RoleModel" not found
+[Method: GET, Route: userlist]
+in APPPATH\Controllers\User.php on line 163.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\User->userListData()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 09:53:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 09:53:29 --> Error: Class "App\Controllers\RoleModel" not found
+[Method: GET, Route: userlist]
+in APPPATH\Controllers\User.php on line 163.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\User->userListData()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 09:54:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:54:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:54:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:54:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:54:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:54:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:54:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:54:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:54:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:55:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:55:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:55:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:55:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:57:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 09:57:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 10:11:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 10:14:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 10:14:37 --> ErrorException: Undefined variable $departments
+[Method: GET, Route: authorized_visitors_list]
+in APPPATH\Views\dashboard\authorized_visitor_list.php on line 38.
+ 1 APPPATH\Views\dashboard\authorized_visitor_list.php(38): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $departments', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\authorized_visitor_list.php', 38)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\authorized_visitor_list.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard/authorized_visitor_list', [], true)
+ 5 APPPATH\Controllers\SecurityController.php(16): view('dashboard/authorized_visitor_list')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->View_authorized_visitor_list()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 10:15:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 10:15:22 --> ErrorException: Undefined variable $departments
+[Method: GET, Route: authorized_visitors_list]
+in APPPATH\Views\dashboard\authorized_visitor_list.php on line 38.
+ 1 APPPATH\Views\dashboard\authorized_visitor_list.php(38): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $departments', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\authorized_visitor_list.php', 38)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\authorized_visitor_list.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard/authorized_visitor_list', [], true)
+ 5 APPPATH\Controllers\SecurityController.php(16): view('dashboard/authorized_visitor_list')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->View_authorized_visitor_list()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 10:15:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 10:15:27 --> ErrorException: Undefined variable $departments
+[Method: GET, Route: authorized_visitors_list]
+in APPPATH\Views\dashboard\authorized_visitor_list.php on line 38.
+ 1 APPPATH\Views\dashboard\authorized_visitor_list.php(38): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $departments', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\authorized_visitor_list.php', 38)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\authorized_visitor_list.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard/authorized_visitor_list', [], true)
+ 5 APPPATH\Controllers\SecurityController.php(16): view('dashboard/authorized_visitor_list')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->View_authorized_visitor_list()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 10:15:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 10:15:28 --> ErrorException: Undefined variable $departments
+[Method: GET, Route: authorized_visitors_list]
+in APPPATH\Views\dashboard\authorized_visitor_list.php on line 38.
+ 1 APPPATH\Views\dashboard\authorized_visitor_list.php(38): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $departments', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\authorized_visitor_list.php', 38)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\authorized_visitor_list.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard/authorized_visitor_list', [], true)
+ 5 APPPATH\Controllers\SecurityController.php(16): view('dashboard/authorized_visitor_list')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->View_authorized_visitor_list()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 10:16:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 10:16:27 --> ErrorException: Undefined variable $departments
+[Method: GET, Route: authorized_visitors_list]
+in APPPATH\Views\dashboard\authorized_visitor_list.php on line 38.
+ 1 APPPATH\Views\dashboard\authorized_visitor_list.php(38): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $departments', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\authorized_visitor_list.php', 38)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\authorized_visitor_list.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard/authorized_visitor_list', [], true)
+ 5 APPPATH\Controllers\SecurityController.php(16): view('dashboard/authorized_visitor_list')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->View_authorized_visitor_list()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 10:16:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 10:16:29 --> ErrorException: Undefined variable $departments
+[Method: GET, Route: authorized_visitors_list]
+in APPPATH\Views\dashboard\authorized_visitor_list.php on line 38.
+ 1 APPPATH\Views\dashboard\authorized_visitor_list.php(38): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $departments', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\authorized_visitor_list.php', 38)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\authorized_visitor_list.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard/authorized_visitor_list', [], true)
+ 5 APPPATH\Controllers\SecurityController.php(16): view('dashboard/authorized_visitor_list')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->View_authorized_visitor_list()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 10:17:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 10:17:32 --> ErrorException: Undefined variable $departments
+[Method: GET, Route: authorized_visitors_list]
+in APPPATH\Views\dashboard\authorized_visitor_list.php on line 38.
+ 1 APPPATH\Views\dashboard\authorized_visitor_list.php(38): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $departments', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\authorized_visitor_list.php', 38)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\authorized_visitor_list.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard/authorized_visitor_list', [], true)
+ 5 APPPATH\Controllers\SecurityController.php(16): view('dashboard/authorized_visitor_list')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->View_authorized_visitor_list()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 10:17:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 10:17:34 --> ErrorException: Undefined variable $departments
+[Method: GET, Route: authorized_visitors_list]
+in APPPATH\Views\dashboard\authorized_visitor_list.php on line 38.
+ 1 APPPATH\Views\dashboard\authorized_visitor_list.php(38): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $departments', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\authorized_visitor_list.php', 38)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\authorized_visitor_list.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard/authorized_visitor_list', [], true)
+ 5 APPPATH\Controllers\SecurityController.php(16): view('dashboard/authorized_visitor_list')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->View_authorized_visitor_list()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 10:17:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 10:17:50 --> ErrorException: Undefined variable $departments
+[Method: GET, Route: authorized_visitors_list]
+in APPPATH\Views\dashboard\authorized_visitor_list.php on line 38.
+ 1 APPPATH\Views\dashboard\authorized_visitor_list.php(38): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $departments', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\authorized_visitor_list.php', 38)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\authorized_visitor_list.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard/authorized_visitor_list', [], true)
+ 5 APPPATH\Controllers\SecurityController.php(16): view('dashboard/authorized_visitor_list')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->View_authorized_visitor_list()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 10:20:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 10:27:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 10:30:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 10:30:59 --> ErrorException: Undefined variable $data
+[Method: GET, Route: authorized_visitors_list]
+in APPPATH\Views\dashboard\authorized_visitor_list.php on line 39.
+ 1 APPPATH\Views\dashboard\authorized_visitor_list.php(39): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $data', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\authorized_visitor_list.php', 39)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\dashboard\\authorized_visitor_list.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard/authorized_visitor_list', [], true)
+ 5 APPPATH\Controllers\SecurityController.php(17): view('dashboard/authorized_visitor_list')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->View_authorized_visitor_list()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 10:33:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 10:37:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 10:38:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 10:38:54 --> TypeError: CodeIgniter\HTTP\Response::setJSON(): Argument #2 ($unencoded) must be of type bool, array given, called in C:\xampp\htdocs\VSMShell\app\Controllers\SecurityController.php on line 83
+[Method: GET, Route: security/authorized_visitors_list_data]
+in SYSTEMPATH\HTTP\ResponseTrait.php on line 176.
+ 1 APPPATH\Controllers\SecurityController.php(83): CodeIgniter\HTTP\Response->setJSON([...], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 10:41:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 10:41:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 10:42:03 --> ErrorException: Undefined variable $data
+[Method: GET, Route: security/authorized_visitors_list_data]
+in APPPATH\Controllers\SecurityController.php on line 82.
+ 1 APPPATH\Controllers\SecurityController.php(82): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $data', 'C:\\xampp\\htdocs\\VSMShell\\app\\Controllers\\SecurityController.php', 82)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-10 10:42:04 --> ErrorException: Undefined variable $data
+[Method: GET, Route: security/authorized_visitors_list_data]
+in APPPATH\Controllers\SecurityController.php on line 82.
+ 1 APPPATH\Controllers\SecurityController.php(82): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $data', 'C:\\xampp\\htdocs\\VSMShell\\app\\Controllers\\SecurityController.php', 82)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-10 10:42:07 --> ErrorException: Undefined variable $data
+[Method: GET, Route: security/authorized_visitors_list_data]
+in APPPATH\Controllers\SecurityController.php on line 82.
+ 1 APPPATH\Controllers\SecurityController.php(82): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $data', 'C:\\xampp\\htdocs\\VSMShell\\app\\Controllers\\SecurityController.php', 82)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-10 10:42:07 --> ErrorException: Undefined variable $data
+[Method: GET, Route: security/authorized_visitors_list_data]
+in APPPATH\Controllers\SecurityController.php on line 82.
+ 1 APPPATH\Controllers\SecurityController.php(82): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $data', 'C:\\xampp\\htdocs\\VSMShell\\app\\Controllers\\SecurityController.php', 82)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-10 10:42:07 --> ErrorException: Undefined variable $data
+[Method: GET, Route: security/authorized_visitors_list_data]
+in APPPATH\Controllers\SecurityController.php on line 82.
+ 1 APPPATH\Controllers\SecurityController.php(82): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $data', 'C:\\xampp\\htdocs\\VSMShell\\app\\Controllers\\SecurityController.php', 82)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-10 10:42:10 --> ErrorException: Undefined variable $data
+[Method: GET, Route: security/authorized_visitors_list_data]
+in APPPATH\Controllers\SecurityController.php on line 82.
+ 1 APPPATH\Controllers\SecurityController.php(82): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $data', 'C:\\xampp\\htdocs\\VSMShell\\app\\Controllers\\SecurityController.php', 82)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 10:42:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 10:42:16 --> ErrorException: Undefined variable $data
+[Method: GET, Route: security/authorized_visitors_list_data]
+in APPPATH\Controllers\SecurityController.php on line 82.
+ 1 APPPATH\Controllers\SecurityController.php(82): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $data', 'C:\\xampp\\htdocs\\VSMShell\\app\\Controllers\\SecurityController.php', 82)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SecurityController->authorized_visitors_list_data()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SecurityController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 10:42:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 10:52:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 10:53:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 10:53:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 10:55:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:01:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:01:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:01:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:01:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:01:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:01:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:01:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:01:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:01:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:01:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:01:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:04:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:12:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:13:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:13:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:27:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:28:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:28:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:33:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:34:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:34:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:37:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:42:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:42:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:42:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:49:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:49:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:50:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:51:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:52:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:52:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:52:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:56:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:57:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:00:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:01:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:02:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:02:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:04:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:05:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:10:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:10:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:10:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:11:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:11:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:11:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:11:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 14:37:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 14:37:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 14:37:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 14:37:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 15:10:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 15:10:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 15:10:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 15:11:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 15:11:14 --> Error: Call to undefined method App\Controllers\MobileOTPController::respond()
+[Method: POST, Route: send-otp]
+in APPPATH\Controllers\MobileOTPController.php on line 45.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MobileOTPController->sendOtp()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MobileOTPController))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 15:12:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 15:12:18 --> Error: Call to undefined method App\Controllers\MobileOTPController::respond()
+[Method: POST, Route: send-otp]
+in APPPATH\Controllers\MobileOTPController.php on line 45.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MobileOTPController->sendOtp()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MobileOTPController))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 15:23:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 15:23:20 --> ErrorException: file_get_contents(https://www.fast2sms.com/dev/bulkV2?authorization=YOUR_FAST2SMS_API_KEY&amp;route=dlt&amp;sender_id=YOUR_SENDER_ID&amp;message=Your+OTP+is+133165&amp;variables_values=&amp;flash=0&amp;numbers=8919146333&amp;schedule_time=): Failed to open stream: HTTP request failed! HTTP/1.1 401 Unauthorized
+
+[Method: POST, Route: send-otp]
+in APPPATH\Controllers\MobileOTPController.php on line 36.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'file_get_contents(https://www.fast2sms.com/dev/bulkV2?authorization=YOUR_FAST2SMS_API_KEY&amp;route=dlt&amp;sender_id=YOUR_SENDER_ID&amp;message=Your+OTP+is+133165&amp;variables_values=&amp;flash=0&amp;numbers=8919146333&amp;schedule_time=): Failed to open stream: HTTP request failed! HTTP/1.1 401 Unauthorized
+', 'C:\\xampp\\htdocs\\VSMShell\\app\\Controllers\\MobileOTPController.php', 36)
+ 2 APPPATH\Controllers\MobileOTPController.php(36): file_get_contents('https://www.fast2sms.com/dev/bulkV2?authorization=YOUR_FAST2SMS_API_KEY&route=dlt&sender_id=YOUR_SENDER_ID&message=Your+OTP+is+133165&variables_values=&flash=0&numbers=8919146333&schedule_time=')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MobileOTPController->sendOtp()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MobileOTPController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 15:24:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 15:25:06 --> ErrorException: file_get_contents(https://www.fast2sms.com/dev/bulkV2?authorization=c6XtH7C2OjeS8DuGwlaqyxZvFJQNnh3IA5dWPkMzgE0brp4mfRLug58TW2NclG4YsVRxSjrpfQBIo9ZP&amp;route=dlt&amp;sender_id=YOUR_SENDER_ID&amp;message=Your+OTP+is+805959&amp;variables_values=&amp;flash=0&amp;numbers=8919146333&amp;schedule_time=): Failed to open stream: HTTP request failed! HTTP/1.1 400 Bad Request
+
+[Method: POST, Route: send-otp]
+in APPPATH\Controllers\MobileOTPController.php on line 36.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'file_get_contents(https://www.fast2sms.com/dev/bulkV2?authorization=c6XtH7C2OjeS8DuGwlaqyxZvFJQNnh3IA5dWPkMzgE0brp4mfRLug58TW2NclG4YsVRxSjrpfQBIo9ZP&amp;route=dlt&amp;sender_id=YOUR_SENDER_ID&amp;message=Your+OTP+is+805959&amp;variables_values=&amp;flash=0&amp;numbers=8919146333&amp;schedule_time=): Failed to open stream: HTTP request failed! HTTP/1.1 400 Bad Request
+', 'C:\\xampp\\htdocs\\VSMShell\\app\\Controllers\\MobileOTPController.php', 36)
+ 2 APPPATH\Controllers\MobileOTPController.php(36): file_get_contents('https://www.fast2sms.com/dev/bulkV2?authorization=c6XtH7C2OjeS8DuGwlaqyxZvFJQNnh3IA5dWPkMzgE0brp4mfRLug58TW2NclG4YsVRxSjrpfQBIo9ZP&route=dlt&sender_id=YOUR_SENDER_ID&message=Your+OTP+is+805959&variables_values=&flash=0&numbers=8919146333&schedule_time=')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MobileOTPController->sendOtp()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MobileOTPController))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 16:04:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 16:05:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 16:05:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 16:05:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 16:05:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 16:05:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 16:06:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 16:06:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 16:08:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 16:08:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 16:08:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 16:08:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 16:09:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 16:49:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 16:51:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 16:51:19 --> ErrorException: Undefined variable $VisitorRequestModel
+[Method: POST, Route: updateVisitorValidity]
+in APPPATH\Controllers\VisitorRequest.php on line 504.
+ 1 APPPATH\Controllers\VisitorRequest.php(504): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $VisitorRequestModel', 'C:\\xampp\\htdocs\\VSMShell\\app\\Controllers\\VisitorRequest.php', 504)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\VisitorRequest->updateVisitorValidity()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VisitorRequest))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 16:52:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 16:56:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-10 16:56:48 --> mysqli_sql_exception: Table 'vsmshell_db.security_gate_log' doesn't exist in C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `visitor...', 0)
+#1 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `visitor...')
+#2 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `visitor...')
+#3 C:\xampp\htdocs\VSMShell\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `visitor...', Array, false)
+#4 C:\xampp\htdocs\VSMShell\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\VSMShell\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\VSMShell\app\Controllers\VisitorRequest.php(512): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(933): App\Controllers\VisitorRequest->updateVisitorValidity()
+#8 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VisitorRequest))
+#9 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\VSMShell\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\VSMShell\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\VSMShell\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+CRITICAL - 2025-12-10 16:56:48 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'vsmshell_db.security_gate_log' doesn't exist
+[Method: POST, Route: updateVisitorValidity]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `visitor_request`.*
+FROM `visitors`
+LEFT JOIN `security_gate_log` ON `security_gate_log`.`visitor_id` = `visitor_request`.`visitor_id`
+WHERE `visitor_request`.`validity` = :visitor_request.validity:
+AND `visitor_request`.`visit_date` < :visitor_request.visit_date:
+AND `security_gate_log`.`visitor_id` IS NULL', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\VisitorRequest.php(512): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\VisitorRequest->updateVisitorValidity()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VisitorRequest))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-10 16:56:48 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'vsmshell_db.security_gate_log' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `visitor_request`.*
+FROM `visitors`
+LEFT JOIN `security_gate_log` ON `security_gate_log`.`visitor_id` = `visitor_request`.`visitor_id`
+WHERE `visitor_request`.`validity` = 1
+AND `visitor_request`.`visit_date` < \'2025-12-10\'
+AND `security_gate_log`.`visitor_id` IS NULL')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `visitor_request`.*
+FROM `visitors`
+LEFT JOIN `security_gate_log` ON `security_gate_log`.`visitor_id` = `visitor_request`.`visitor_id`
+WHERE `visitor_request`.`validity` = 1
+AND `visitor_request`.`visit_date` < \'2025-12-10\'
+AND `security_gate_log`.`visitor_id` IS NULL')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `visitor_request`.*
+FROM `visitors`
+LEFT JOIN `security_gate_log` ON `security_gate_log`.`visitor_id` = `visitor_request`.`visitor_id`
+WHERE `visitor_request`.`validity` = :visitor_request.validity:
+AND `visitor_request`.`visit_date` < :visitor_request.visit_date:
+AND `security_gate_log`.`visitor_id` IS NULL', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\VisitorRequest.php(512): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\VisitorRequest->updateVisitorValidity()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VisitorRequest))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-10 16:56:48 --> [Caused by] mysqli_sql_exception: Table 'vsmshell_db.security_gate_log' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `visitor_request`.*
+FROM `visitors`
+LEFT JOIN `security_gate_log` ON `security_gate_log`.`visitor_id` = `visitor_request`.`visitor_id`
+WHERE `visitor_request`.`validity` = 1
+AND `visitor_request`.`visit_date` < \'2025-12-10\'
+AND `security_gate_log`.`visitor_id` IS NULL', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `visitor_request`.*
+FROM `visitors`
+LEFT JOIN `security_gate_log` ON `security_gate_log`.`visitor_id` = `visitor_request`.`visitor_id`
+WHERE `visitor_request`.`validity` = 1
+AND `visitor_request`.`visit_date` < \'2025-12-10\'
+AND `security_gate_log`.`visitor_id` IS NULL')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `visitor_request`.*
+FROM `visitors`
+LEFT JOIN `security_gate_log` ON `security_gate_log`.`visitor_id` = `visitor_request`.`visitor_id`
+WHERE `visitor_request`.`validity` = 1
+AND `visitor_request`.`visit_date` < \'2025-12-10\'
+AND `security_gate_log`.`visitor_id` IS NULL')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `visitor_request`.*
+FROM `visitors`
+LEFT JOIN `security_gate_log` ON `security_gate_log`.`visitor_id` = `visitor_request`.`visitor_id`
+WHERE `visitor_request`.`validity` = :visitor_request.validity:
+AND `visitor_request`.`visit_date` < :visitor_request.visit_date:
+AND `security_gate_log`.`visitor_id` IS NULL', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\VisitorRequest.php(512): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\VisitorRequest->updateVisitorValidity()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VisitorRequest))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 16:57:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-10 16:57:22 --> mysqli_sql_exception: Unknown table 'vsmshell_db.visitor_request' in C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `visitor...', 0)
+#1 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `visitor...')
+#2 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `visitor...')
+#3 C:\xampp\htdocs\VSMShell\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `visitor...', Array, false)
+#4 C:\xampp\htdocs\VSMShell\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\VSMShell\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\VSMShell\app\Controllers\VisitorRequest.php(512): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(933): App\Controllers\VisitorRequest->updateVisitorValidity()
+#8 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VisitorRequest))
+#9 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\VSMShell\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\VSMShell\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\VSMShell\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+CRITICAL - 2025-12-10 16:57:22 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown table 'vsmshell_db.visitor_request'
+[Method: POST, Route: updateVisitorValidity]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `visitor_request`.*
+FROM `visitors`
+LEFT JOIN `security_gate_logs` ON `security_gate_logs`.`visitor_id` = `visitor_request`.`visitor_id`
+WHERE `visitor_request`.`validity` = :visitor_request.validity:
+AND `visitor_request`.`visit_date` < :visitor_request.visit_date:
+AND  `security_gate_logs`.`visitor_id` IS NULL', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\VisitorRequest.php(512): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\VisitorRequest->updateVisitorValidity()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VisitorRequest))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-10 16:57:22 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown table 'vsmshell_db.visitor_request'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `visitor_request`.*
+FROM `visitors`
+LEFT JOIN `security_gate_logs` ON `security_gate_logs`.`visitor_id` = `visitor_request`.`visitor_id`
+WHERE `visitor_request`.`validity` = 1
+AND `visitor_request`.`visit_date` < \'2025-12-10\'
+AND  `security_gate_logs`.`visitor_id` IS NULL')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `visitor_request`.*
+FROM `visitors`
+LEFT JOIN `security_gate_logs` ON `security_gate_logs`.`visitor_id` = `visitor_request`.`visitor_id`
+WHERE `visitor_request`.`validity` = 1
+AND `visitor_request`.`visit_date` < \'2025-12-10\'
+AND  `security_gate_logs`.`visitor_id` IS NULL')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `visitor_request`.*
+FROM `visitors`
+LEFT JOIN `security_gate_logs` ON `security_gate_logs`.`visitor_id` = `visitor_request`.`visitor_id`
+WHERE `visitor_request`.`validity` = :visitor_request.validity:
+AND `visitor_request`.`visit_date` < :visitor_request.visit_date:
+AND  `security_gate_logs`.`visitor_id` IS NULL', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\VisitorRequest.php(512): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\VisitorRequest->updateVisitorValidity()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VisitorRequest))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-10 16:57:22 --> [Caused by] mysqli_sql_exception: Unknown table 'vsmshell_db.visitor_request'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `visitor_request`.*
+FROM `visitors`
+LEFT JOIN `security_gate_logs` ON `security_gate_logs`.`visitor_id` = `visitor_request`.`visitor_id`
+WHERE `visitor_request`.`validity` = 1
+AND `visitor_request`.`visit_date` < \'2025-12-10\'
+AND  `security_gate_logs`.`visitor_id` IS NULL', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `visitor_request`.*
+FROM `visitors`
+LEFT JOIN `security_gate_logs` ON `security_gate_logs`.`visitor_id` = `visitor_request`.`visitor_id`
+WHERE `visitor_request`.`validity` = 1
+AND `visitor_request`.`visit_date` < \'2025-12-10\'
+AND  `security_gate_logs`.`visitor_id` IS NULL')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `visitor_request`.*
+FROM `visitors`
+LEFT JOIN `security_gate_logs` ON `security_gate_logs`.`visitor_id` = `visitor_request`.`visitor_id`
+WHERE `visitor_request`.`validity` = 1
+AND `visitor_request`.`visit_date` < \'2025-12-10\'
+AND  `security_gate_logs`.`visitor_id` IS NULL')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `visitor_request`.*
+FROM `visitors`
+LEFT JOIN `security_gate_logs` ON `security_gate_logs`.`visitor_id` = `visitor_request`.`visitor_id`
+WHERE `visitor_request`.`validity` = :visitor_request.validity:
+AND `visitor_request`.`visit_date` < :visitor_request.visit_date:
+AND  `security_gate_logs`.`visitor_id` IS NULL', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\VisitorRequest.php(512): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\VisitorRequest->updateVisitorValidity()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VisitorRequest))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 16:58:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-10 16:58:18 --> mysqli_sql_exception: Unknown column 'security_gate_logs.visitor_id' in 'where clause' in C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `visitor...', 0)
+#1 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `visitor...')
+#2 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `visitor...')
+#3 C:\xampp\htdocs\VSMShell\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `visitor...', Array, false)
+#4 C:\xampp\htdocs\VSMShell\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\VSMShell\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\VSMShell\app\Controllers\VisitorRequest.php(512): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(933): App\Controllers\VisitorRequest->updateVisitorValidity()
+#8 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VisitorRequest))
+#9 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\VSMShell\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\VSMShell\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\VSMShell\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+CRITICAL - 2025-12-10 16:58:18 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'security_gate_logs.visitor_id' in 'where clause'
+[Method: POST, Route: updateVisitorValidity]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `visitors`.*
+FROM `visitors`
+LEFT JOIN `security_gate_logs` ON `security_gate_logs`.`visitor_id` = `visitors`.`visitor_id`
+WHERE `visitors`.`validity` = :visitors.validity:
+AND `visitors`.`visit_date` < :visitors.visit_date:
+AND  `security_gate_logs`.`visitor_id` IS NULL', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\VisitorRequest.php(512): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\VisitorRequest->updateVisitorValidity()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VisitorRequest))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-10 16:58:18 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'security_gate_logs.visitor_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `visitors`.*
+FROM `visitors`
+LEFT JOIN `security_gate_logs` ON `security_gate_logs`.`visitor_id` = `visitors`.`visitor_id`
+WHERE `visitors`.`validity` = 1
+AND `visitors`.`visit_date` < \'2025-12-10\'
+AND  `security_gate_logs`.`visitor_id` IS NULL')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `visitors`.*
+FROM `visitors`
+LEFT JOIN `security_gate_logs` ON `security_gate_logs`.`visitor_id` = `visitors`.`visitor_id`
+WHERE `visitors`.`validity` = 1
+AND `visitors`.`visit_date` < \'2025-12-10\'
+AND  `security_gate_logs`.`visitor_id` IS NULL')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `visitors`.*
+FROM `visitors`
+LEFT JOIN `security_gate_logs` ON `security_gate_logs`.`visitor_id` = `visitors`.`visitor_id`
+WHERE `visitors`.`validity` = :visitors.validity:
+AND `visitors`.`visit_date` < :visitors.visit_date:
+AND  `security_gate_logs`.`visitor_id` IS NULL', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\VisitorRequest.php(512): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\VisitorRequest->updateVisitorValidity()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VisitorRequest))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-10 16:58:18 --> [Caused by] mysqli_sql_exception: Unknown column 'security_gate_logs.visitor_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `visitors`.*
+FROM `visitors`
+LEFT JOIN `security_gate_logs` ON `security_gate_logs`.`visitor_id` = `visitors`.`visitor_id`
+WHERE `visitors`.`validity` = 1
+AND `visitors`.`visit_date` < \'2025-12-10\'
+AND  `security_gate_logs`.`visitor_id` IS NULL', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `visitors`.*
+FROM `visitors`
+LEFT JOIN `security_gate_logs` ON `security_gate_logs`.`visitor_id` = `visitors`.`visitor_id`
+WHERE `visitors`.`validity` = 1
+AND `visitors`.`visit_date` < \'2025-12-10\'
+AND  `security_gate_logs`.`visitor_id` IS NULL')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `visitors`.*
+FROM `visitors`
+LEFT JOIN `security_gate_logs` ON `security_gate_logs`.`visitor_id` = `visitors`.`visitor_id`
+WHERE `visitors`.`validity` = 1
+AND `visitors`.`visit_date` < \'2025-12-10\'
+AND  `security_gate_logs`.`visitor_id` IS NULL')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `visitors`.*
+FROM `visitors`
+LEFT JOIN `security_gate_logs` ON `security_gate_logs`.`visitor_id` = `visitors`.`visitor_id`
+WHERE `visitors`.`validity` = :visitors.validity:
+AND `visitors`.`visit_date` < :visitors.visit_date:
+AND  `security_gate_logs`.`visitor_id` IS NULL', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\VisitorRequest.php(512): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\VisitorRequest->updateVisitorValidity()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VisitorRequest))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 16:59:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 17:04:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 17:13:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-10 17:13:57 --> ErrorException: Undefined array key "visitor_id"
+[Method: POST, Route: updateVisitorValidity]
+in APPPATH\Controllers\VisitorRequest.php on line 519.
+ 1 APPPATH\Controllers\VisitorRequest.php(519): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "visitor_id"', 'C:\\xampp\\htdocs\\VSMShell\\app\\Controllers\\VisitorRequest.php', 519)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\VisitorRequest->updateVisitorValidity()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VisitorRequest))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 17:16:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-10 17:16:13 --> mysqli_sql_exception: Unknown column 'visitor_code' in 'field list' in C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `ex...', 0)
+#1 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ex...')
+#2 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ex...')
+#3 C:\xampp\htdocs\VSMShell\system\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ex...', Array, false)
+#4 C:\xampp\htdocs\VSMShell\system\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\VSMShell\system\BaseModel.php(838): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\VSMShell\system\Model.php(797): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\VSMShell\app\Controllers\VisitorRequest.php(518): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(933): App\Controllers\VisitorRequest->updateVisitorValidity()
+#9 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VisitorRequest))
+#10 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\VSMShell\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\VSMShell\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\VSMShell\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-12-10 17:16:13 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'visitor_code' in 'field list'
+[Method: POST, Route: updateVisitorValidity]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `expired_visitor_passes` (`visitor_request_id`, `visitor_code`, `header_code`, `expired_at`) VALUES (:visitor_request_id:, :visitor_code:, :header_code:, :expired_at:)', [...], false)
+ 2 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(838): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(797): CodeIgniter\BaseModel->insert([...], true)
+ 5 APPPATH\Controllers\VisitorRequest.php(518): CodeIgniter\Model->insert([...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\VisitorRequest->updateVisitorValidity()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VisitorRequest))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-10 17:16:13 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'visitor_code' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `expired_visitor_passes` (`visitor_request_id`, `visitor_code`, `header_code`, `expired_at`) VALUES (\'3\', \'V000003\', \'GV000002\', \'2025-12-10 17:16:13\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `expired_visitor_passes` (`visitor_request_id`, `visitor_code`, `header_code`, `expired_at`) VALUES (\'3\', \'V000003\', \'GV000002\', \'2025-12-10 17:16:13\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `expired_visitor_passes` (`visitor_request_id`, `visitor_code`, `header_code`, `expired_at`) VALUES (:visitor_request_id:, :visitor_code:, :header_code:, :expired_at:)', [...], false)
+ 4 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(838): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(797): CodeIgniter\BaseModel->insert([...], true)
+ 7 APPPATH\Controllers\VisitorRequest.php(518): CodeIgniter\Model->insert([...])
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\VisitorRequest->updateVisitorValidity()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VisitorRequest))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-10 17:16:13 --> [Caused by] mysqli_sql_exception: Unknown column 'visitor_code' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `expired_visitor_passes` (`visitor_request_id`, `visitor_code`, `header_code`, `expired_at`) VALUES (\'3\', \'V000003\', \'GV000002\', \'2025-12-10 17:16:13\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `expired_visitor_passes` (`visitor_request_id`, `visitor_code`, `header_code`, `expired_at`) VALUES (\'3\', \'V000003\', \'GV000002\', \'2025-12-10 17:16:13\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `expired_visitor_passes` (`visitor_request_id`, `visitor_code`, `header_code`, `expired_at`) VALUES (\'3\', \'V000003\', \'GV000002\', \'2025-12-10 17:16:13\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `expired_visitor_passes` (`visitor_request_id`, `visitor_code`, `header_code`, `expired_at`) VALUES (:visitor_request_id:, :visitor_code:, :header_code:, :expired_at:)', [...], false)
+ 5 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(838): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(797): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\VisitorRequest.php(518): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\VisitorRequest->updateVisitorValidity()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VisitorRequest))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-10 17:16:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 17:21:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

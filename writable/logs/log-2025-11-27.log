@@ -1,0 +1,661 @@
+DEBUG - 2025-11-27 03:48:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 03:48:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 03:48:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 03:48:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 03:49:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 03:49:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 03:49:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-11-27 03:50:40 --> ErrorException: Undefined array key "rvr_code"
+[Method: POST, Route: visitorequest/create]
+in APPPATH\Controllers\GenerateCodesController.php on line 41.
+ 1 APPPATH\Controllers\GenerateCodesController.php(41): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "rvr_code"', 'C:\\xampp\\htdocs\\VSMShell\\app\\Controllers\\GenerateCodesController.php', 41)
+ 2 APPPATH\Controllers\VisitorRequest.php(37): App\Controllers\GenerateCodesController->generateVisitorsCode()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\VisitorRequest->submit()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VisitorRequest))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-27 03:52:18 --> ErrorException: Undefined array key "rvr_code"
+[Method: POST, Route: visitorequest/create]
+in APPPATH\Controllers\GenerateCodesController.php on line 41.
+ 1 APPPATH\Controllers\GenerateCodesController.php(41): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "rvr_code"', 'C:\\xampp\\htdocs\\VSMShell\\app\\Controllers\\GenerateCodesController.php', 41)
+ 2 APPPATH\Controllers\VisitorRequest.php(37): App\Controllers\GenerateCodesController->generateVisitorsCode()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\VisitorRequest->submit()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\VisitorRequest))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-11-27 03:54:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 03:55:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 03:55:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 03:57:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 04:14:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 04:14:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 04:14:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 04:16:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 04:18:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 04:19:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 04:20:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 04:20:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 04:21:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 04:24:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 04:25:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 04:28:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 04:43:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 04:44:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 04:47:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 04:48:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 04:50:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 04:51:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 04:54:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 04:56:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-11-27 04:56:09 --> mysqli_sql_exception: Unknown table 'vsmshell_db.reference_visitor_request' in C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `referen...', 0)
+#1 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `referen...')
+#2 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `referen...')
+#3 C:\xampp\htdocs\VSMShell\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `referen...', Array, false)
+#4 C:\xampp\htdocs\VSMShell\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\VSMShell\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\VSMShell\app\Models\ReferenceVisitorRequestModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\VSMShell\app\Controllers\ReferenceVisitorRequestController.php(21): App\Models\ReferenceVisitorRequestModel->getWithJoin()
+#8 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(933): App\Controllers\ReferenceVisitorRequestController->getAllReferenceVisitorRequest()
+#9 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReferenceVisitorRequestController))
+#10 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\VSMShell\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\VSMShell\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\VSMShell\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-11-27 04:56:09 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown table 'vsmshell_db.reference_visitor_request'
+[Method: GET, Route: rvr_list]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `reference_visitor_request`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_request`.`visitor_id`
+ORDER BY `reference_visitor_request`.`id` DESC', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\ReferenceVisitorRequestModel.php(30): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\ReferenceVisitorRequestController.php(21): App\Models\ReferenceVisitorRequestModel->getWithJoin()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReferenceVisitorRequestController->getAllReferenceVisitorRequest()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReferenceVisitorRequestController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-27 04:56:09 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown table 'vsmshell_db.reference_visitor_request'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `reference_visitor_request`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_request`.`visitor_id`
+ORDER BY `reference_visitor_request`.`id` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `reference_visitor_request`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_request`.`visitor_id`
+ORDER BY `reference_visitor_request`.`id` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `reference_visitor_request`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_request`.`visitor_id`
+ORDER BY `reference_visitor_request`.`id` DESC', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\ReferenceVisitorRequestModel.php(30): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\ReferenceVisitorRequestController.php(21): App\Models\ReferenceVisitorRequestModel->getWithJoin()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReferenceVisitorRequestController->getAllReferenceVisitorRequest()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReferenceVisitorRequestController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-27 04:56:09 --> [Caused by] mysqli_sql_exception: Unknown table 'vsmshell_db.reference_visitor_request'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `reference_visitor_request`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_request`.`visitor_id`
+ORDER BY `reference_visitor_request`.`id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `reference_visitor_request`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_request`.`visitor_id`
+ORDER BY `reference_visitor_request`.`id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `reference_visitor_request`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_request`.`visitor_id`
+ORDER BY `reference_visitor_request`.`id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `reference_visitor_request`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_request`.`visitor_id`
+ORDER BY `reference_visitor_request`.`id` DESC', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\ReferenceVisitorRequestModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\ReferenceVisitorRequestController.php(21): App\Models\ReferenceVisitorRequestModel->getWithJoin()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReferenceVisitorRequestController->getAllReferenceVisitorRequest()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReferenceVisitorRequestController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-11-27 04:56:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-11-27 04:56:26 --> mysqli_sql_exception: Unknown table 'vsmshell_db.reference_visitor_request' in C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `referen...', 0)
+#1 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `referen...')
+#2 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `referen...')
+#3 C:\xampp\htdocs\VSMShell\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `referen...', Array, false)
+#4 C:\xampp\htdocs\VSMShell\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\VSMShell\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\VSMShell\app\Models\ReferenceVisitorRequestModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\VSMShell\app\Controllers\ReferenceVisitorRequestController.php(21): App\Models\ReferenceVisitorRequestModel->getWithJoin()
+#8 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(933): App\Controllers\ReferenceVisitorRequestController->getAllReferenceVisitorRequest()
+#9 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReferenceVisitorRequestController))
+#10 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\VSMShell\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\VSMShell\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\VSMShell\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-11-27 04:56:26 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown table 'vsmshell_db.reference_visitor_request'
+[Method: GET, Route: rvr_list]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `reference_visitor_request`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_request`.`visitor_id`
+ORDER BY `reference_visitor_request`.`id` DESC', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\ReferenceVisitorRequestModel.php(30): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\ReferenceVisitorRequestController.php(21): App\Models\ReferenceVisitorRequestModel->getWithJoin()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReferenceVisitorRequestController->getAllReferenceVisitorRequest()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReferenceVisitorRequestController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-27 04:56:26 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown table 'vsmshell_db.reference_visitor_request'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `reference_visitor_request`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_request`.`visitor_id`
+ORDER BY `reference_visitor_request`.`id` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `reference_visitor_request`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_request`.`visitor_id`
+ORDER BY `reference_visitor_request`.`id` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `reference_visitor_request`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_request`.`visitor_id`
+ORDER BY `reference_visitor_request`.`id` DESC', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\ReferenceVisitorRequestModel.php(30): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\ReferenceVisitorRequestController.php(21): App\Models\ReferenceVisitorRequestModel->getWithJoin()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReferenceVisitorRequestController->getAllReferenceVisitorRequest()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReferenceVisitorRequestController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-27 04:56:26 --> [Caused by] mysqli_sql_exception: Unknown table 'vsmshell_db.reference_visitor_request'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `reference_visitor_request`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_request`.`visitor_id`
+ORDER BY `reference_visitor_request`.`id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `reference_visitor_request`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_request`.`visitor_id`
+ORDER BY `reference_visitor_request`.`id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `reference_visitor_request`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_request`.`visitor_id`
+ORDER BY `reference_visitor_request`.`id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `reference_visitor_request`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_request`.`visitor_id`
+ORDER BY `reference_visitor_request`.`id` DESC', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\ReferenceVisitorRequestModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\ReferenceVisitorRequestController.php(21): App\Models\ReferenceVisitorRequestModel->getWithJoin()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReferenceVisitorRequestController->getAllReferenceVisitorRequest()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReferenceVisitorRequestController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-11-27 04:57:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-11-27 04:57:18 --> mysqli_sql_exception: Unknown column 'visitors.name' in 'field list' in C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `referen...', 0)
+#1 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `referen...')
+#2 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `referen...')
+#3 C:\xampp\htdocs\VSMShell\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `referen...', Array, false)
+#4 C:\xampp\htdocs\VSMShell\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\VSMShell\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\VSMShell\app\Models\ReferenceVisitorRequestModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\VSMShell\app\Controllers\ReferenceVisitorRequestController.php(21): App\Models\ReferenceVisitorRequestModel->getWithJoin()
+#8 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(933): App\Controllers\ReferenceVisitorRequestController->getAllReferenceVisitorRequest()
+#9 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReferenceVisitorRequestController))
+#10 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\VSMShell\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\VSMShell\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\VSMShell\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-11-27 04:57:18 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'visitors.name' in 'field list'
+[Method: GET, Route: rvr_list]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `reference_visitor_requests`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_requests`.`visitor_id`
+ORDER BY `reference_visitor_requests`.`id` DESC', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\ReferenceVisitorRequestModel.php(30): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\ReferenceVisitorRequestController.php(21): App\Models\ReferenceVisitorRequestModel->getWithJoin()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReferenceVisitorRequestController->getAllReferenceVisitorRequest()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReferenceVisitorRequestController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-27 04:57:18 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'visitors.name' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `reference_visitor_requests`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_requests`.`visitor_id`
+ORDER BY `reference_visitor_requests`.`id` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `reference_visitor_requests`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_requests`.`visitor_id`
+ORDER BY `reference_visitor_requests`.`id` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `reference_visitor_requests`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_requests`.`visitor_id`
+ORDER BY `reference_visitor_requests`.`id` DESC', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\ReferenceVisitorRequestModel.php(30): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\ReferenceVisitorRequestController.php(21): App\Models\ReferenceVisitorRequestModel->getWithJoin()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReferenceVisitorRequestController->getAllReferenceVisitorRequest()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReferenceVisitorRequestController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-27 04:57:18 --> [Caused by] mysqli_sql_exception: Unknown column 'visitors.name' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `reference_visitor_requests`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_requests`.`visitor_id`
+ORDER BY `reference_visitor_requests`.`id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `reference_visitor_requests`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_requests`.`visitor_id`
+ORDER BY `reference_visitor_requests`.`id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `reference_visitor_requests`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_requests`.`visitor_id`
+ORDER BY `reference_visitor_requests`.`id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `reference_visitor_requests`.*, `visitors`.`name` as `visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_requests`.`visitor_id`
+ORDER BY `reference_visitor_requests`.`id` DESC', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\ReferenceVisitorRequestModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\ReferenceVisitorRequestController.php(21): App\Models\ReferenceVisitorRequestModel->getWithJoin()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReferenceVisitorRequestController->getAllReferenceVisitorRequest()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReferenceVisitorRequestController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-11-27 04:58:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-11-27 04:58:29 --> mysqli_sql_exception: Unknown column 'visitors.mobile' in 'field list' in C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\VSMShell\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `referen...', 0)
+#1 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `referen...')
+#2 C:\xampp\htdocs\VSMShell\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `referen...')
+#3 C:\xampp\htdocs\VSMShell\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `referen...', Array, false)
+#4 C:\xampp\htdocs\VSMShell\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\VSMShell\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\VSMShell\app\Models\ReferenceVisitorRequestModel.php(30): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\VSMShell\app\Controllers\ReferenceVisitorRequestController.php(21): App\Models\ReferenceVisitorRequestModel->getWithJoin()
+#8 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(933): App\Controllers\ReferenceVisitorRequestController->getAllReferenceVisitorRequest()
+#9 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReferenceVisitorRequestController))
+#10 C:\xampp\htdocs\VSMShell\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\VSMShell\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\VSMShell\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\VSMShell\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-11-27 04:58:29 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'visitors.mobile' in 'field list'
+[Method: GET, Route: rvr_list]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `reference_visitor_requests`.*, `visitors`.`visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_requests`.`visitor_id`
+ORDER BY `reference_visitor_requests`.`id` DESC', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\ReferenceVisitorRequestModel.php(30): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\ReferenceVisitorRequestController.php(21): App\Models\ReferenceVisitorRequestModel->getWithJoin()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReferenceVisitorRequestController->getAllReferenceVisitorRequest()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReferenceVisitorRequestController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-27 04:58:29 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'visitors.mobile' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `reference_visitor_requests`.*, `visitors`.`visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_requests`.`visitor_id`
+ORDER BY `reference_visitor_requests`.`id` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `reference_visitor_requests`.*, `visitors`.`visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_requests`.`visitor_id`
+ORDER BY `reference_visitor_requests`.`id` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `reference_visitor_requests`.*, `visitors`.`visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_requests`.`visitor_id`
+ORDER BY `reference_visitor_requests`.`id` DESC', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\ReferenceVisitorRequestModel.php(30): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\ReferenceVisitorRequestController.php(21): App\Models\ReferenceVisitorRequestModel->getWithJoin()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReferenceVisitorRequestController->getAllReferenceVisitorRequest()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReferenceVisitorRequestController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-27 04:58:29 --> [Caused by] mysqli_sql_exception: Unknown column 'visitors.mobile' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `reference_visitor_requests`.*, `visitors`.`visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_requests`.`visitor_id`
+ORDER BY `reference_visitor_requests`.`id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `reference_visitor_requests`.*, `visitors`.`visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_requests`.`visitor_id`
+ORDER BY `reference_visitor_requests`.`id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `reference_visitor_requests`.*, `visitors`.`visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_requests`.`visitor_id`
+ORDER BY `reference_visitor_requests`.`id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `reference_visitor_requests`.*, `visitors`.`visitor_name`, `visitors`.`mobile`
+FROM `reference_visitor_requests`
+LEFT JOIN `visitors` ON `visitors`.`id` = `reference_visitor_requests`.`visitor_id`
+ORDER BY `reference_visitor_requests`.`id` DESC', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\ReferenceVisitorRequestModel.php(30): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\ReferenceVisitorRequestController.php(21): App\Models\ReferenceVisitorRequestModel->getWithJoin()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\ReferenceVisitorRequestController->getAllReferenceVisitorRequest()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ReferenceVisitorRequestController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-11-27 05:01:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 05:01:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 05:01:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 05:03:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 05:05:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 05:05:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 05:06:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 05:06:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 05:06:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 05:06:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 05:42:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 05:42:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 05:42:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 05:43:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 05:43:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 05:43:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 05:48:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 05:49:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:03:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:04:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:05:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:07:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:28:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:28:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:28:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:28:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:29:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:29:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:29:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:29:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:29:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:29:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:31:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:31:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:31:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:32:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:32:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:33:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:33:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:33:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:33:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:33:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:33:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:33:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:34:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:34:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 06:40:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 08:54:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 08:54:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 08:54:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 08:54:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 08:54:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 09:12:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 09:13:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 09:15:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 09:21:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 09:21:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 09:26:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 09:26:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 09:27:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 09:27:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 09:27:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 09:27:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 09:33:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-11-27 09:33:43 --> ErrorException: Undefined array key "token"
+[Method: POST, Route: rvr_details]
+in APPPATH\Views\rvr_details_sheet.php on line 67.
+ 1 APPPATH\Views\rvr_details_sheet.php(67): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "token"', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php', 67)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('rvr_details_sheet', [], true)
+ 5 APPPATH\Controllers\RVRDetailsController.php(15): view('rvr_details_sheet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RVRDetailsController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RVRDetailsController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-11-27 09:33:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-11-27 09:34:06 --> ErrorException: Undefined array key "token"
+[Method: POST, Route: rvr_details]
+in APPPATH\Views\rvr_details_sheet.php on line 67.
+ 1 APPPATH\Views\rvr_details_sheet.php(67): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "token"', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php', 67)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('rvr_details_sheet', [], true)
+ 5 APPPATH\Controllers\RVRDetailsController.php(15): view('rvr_details_sheet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RVRDetailsController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RVRDetailsController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-11-27 09:34:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-11-27 09:34:58 --> ErrorException: Undefined array key "token"
+[Method: POST, Route: rvr_details]
+in APPPATH\Views\rvr_details_sheet.php on line 67.
+ 1 APPPATH\Views\rvr_details_sheet.php(67): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "token"', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php', 67)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('rvr_details_sheet', [], true)
+ 5 APPPATH\Controllers\RVRDetailsController.php(15): view('rvr_details_sheet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RVRDetailsController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RVRDetailsController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-11-27 09:44:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 09:44:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-11-27 09:44:44 --> ErrorException: Undefined array key "token"
+[Method: POST, Route: rvr_details]
+in APPPATH\Views\rvr_details_sheet.php on line 67.
+ 1 APPPATH\Views\rvr_details_sheet.php(67): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "token"', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php', 67)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('rvr_details_sheet', [], true)
+ 5 APPPATH\Controllers\RVRDetailsController.php(15): view('rvr_details_sheet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RVRDetailsController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RVRDetailsController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-11-27 10:14:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 10:14:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 10:15:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 10:22:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 10:23:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 10:27:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 10:27:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 10:28:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 10:28:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 10:28:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 10:28:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 10:30:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 10:30:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 10:38:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 10:38:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 10:38:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 10:38:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 10:39:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 10:40:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 10:40:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 10:46:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 10:46:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 10:47:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-11-27 10:51:00 --> ErrorException: Undefined array key "reason"
+[Method: GET, Route: rvr_details_sheet]
+in APPPATH\Views\rvr_details_sheet.php on line 14.
+ 1 APPPATH\Views\rvr_details_sheet.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "reason"', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php', 14)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('rvr_details_sheet', [], true)
+ 5 APPPATH\Controllers\RVRDetailsController.php(41): view('rvr_details_sheet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RVRDetailsController->rvr_details_sheet()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RVRDetailsController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-11-27 10:51:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-11-27 10:51:11 --> ErrorException: Undefined array key "reason"
+[Method: GET, Route: rvr_details_sheet]
+in APPPATH\Views\rvr_details_sheet.php on line 14.
+ 1 APPPATH\Views\rvr_details_sheet.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "reason"', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php', 14)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('rvr_details_sheet', [], true)
+ 5 APPPATH\Controllers\RVRDetailsController.php(41): view('rvr_details_sheet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RVRDetailsController->rvr_details_sheet()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RVRDetailsController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-11-27 10:51:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-11-27 10:51:18 --> ErrorException: Undefined array key "reason"
+[Method: GET, Route: rvr_details_sheet]
+in APPPATH\Views\rvr_details_sheet.php on line 14.
+ 1 APPPATH\Views\rvr_details_sheet.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "reason"', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php', 14)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('rvr_details_sheet', [], true)
+ 5 APPPATH\Controllers\RVRDetailsController.php(41): view('rvr_details_sheet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RVRDetailsController->rvr_details_sheet()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RVRDetailsController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-27 11:05:45 --> ErrorException: Undefined global variable $_SESSION
+[Method: GET, Route: rvr_details_sheet]
+in APPPATH\Views\rvr_details_sheet.php on line 35.
+ 1 APPPATH\Views\rvr_details_sheet.php(35): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined global variable $_SESSION', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php', 35)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('rvr_details_sheet', [], true)
+ 5 APPPATH\Controllers\RVRDetailsController.php(41): view('rvr_details_sheet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RVRDetailsController->rvr_details_sheet()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RVRDetailsController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-27 11:06:13 --> ErrorException: Undefined global variable $_SESSION
+[Method: GET, Route: rvr_details_sheet]
+in APPPATH\Views\rvr_details_sheet.php on line 35.
+ 1 APPPATH\Views\rvr_details_sheet.php(35): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined global variable $_SESSION', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php', 35)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('rvr_details_sheet', [], true)
+ 5 APPPATH\Controllers\RVRDetailsController.php(41): view('rvr_details_sheet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RVRDetailsController->rvr_details_sheet()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RVRDetailsController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-27 11:06:15 --> ErrorException: Undefined global variable $_SESSION
+[Method: GET, Route: rvr_details_sheet]
+in APPPATH\Views\rvr_details_sheet.php on line 35.
+ 1 APPPATH\Views\rvr_details_sheet.php(35): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined global variable $_SESSION', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php', 35)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('rvr_details_sheet', [], true)
+ 5 APPPATH\Controllers\RVRDetailsController.php(41): view('rvr_details_sheet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RVRDetailsController->rvr_details_sheet()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RVRDetailsController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-27 11:08:20 --> ErrorException: Undefined global variable $_SESSION
+[Method: GET, Route: rvr_details_sheet]
+in APPPATH\Views\rvr_details_sheet.php on line 38.
+ 1 APPPATH\Views\rvr_details_sheet.php(38): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined global variable $_SESSION', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php', 38)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('rvr_details_sheet', [], true)
+ 5 APPPATH\Controllers\RVRDetailsController.php(41): view('rvr_details_sheet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RVRDetailsController->rvr_details_sheet()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RVRDetailsController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-27 11:32:42 --> ErrorException: Undefined global variable $_SESSION
+[Method: GET, Route: rvr_details_sheet]
+in APPPATH\Views\rvr_details_sheet.php on line 59.
+ 1 APPPATH\Views\rvr_details_sheet.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined global variable $_SESSION', 'C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php', 59)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VSMShell\\app\\Views\\rvr_details_sheet.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('rvr_details_sheet', [], true)
+ 5 APPPATH\Controllers\RVRDetailsController.php(41): view('rvr_details_sheet', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RVRDetailsController->rvr_details_sheet()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RVRDetailsController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
