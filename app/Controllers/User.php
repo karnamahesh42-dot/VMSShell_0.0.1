@@ -89,6 +89,49 @@ class User extends BaseController
     }
 
 
+    public function changePassView()
+    {
+           return view('dashboard/change_password');
+    }
+    
+
+    public function changePass(){
+
+        $id = session()->get('user_id');
+        $new_password = $this->request->getPost('new_password');
+        
+        if(!$new_password){
+            return $this->response->setJSON(['status'=>'error','message'=>'User Password Required']);
+        }
+
+        $data = [
+            'password'      =>  md5($new_password . "HASHKEY123"),
+        ];
+
+        (new UserModel())->update($id, $data);
+
+        $db = \Config\Database::connect();
+        $vault = $db->table('user_password_vault');
+
+        // check if row exists
+        $exists = $vault->where('user_id', $id)->get()->getRow();
+
+        if ($exists) {
+            //UPDATE
+            $vault->where('user_id', $id)->update([
+                'password_enc' => $new_password
+            ]);
+        } else {
+            // INSERT
+            $vault->insert([
+                'user_id'      => $id,
+                'password_enc' => $new_password
+            ]);
+        }
+        return $this->response->setJSON(['status'=>'success','message'=>'User Updated']);
+    }
+
+
     public function userListData()
     {
         $session      = session();
@@ -202,9 +245,6 @@ class User extends BaseController
 
     }
 
-
-
-    
 
 
     public function toggleStatus()

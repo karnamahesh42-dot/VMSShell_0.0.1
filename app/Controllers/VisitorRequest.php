@@ -8,6 +8,7 @@ use App\Models\VisitorRequestHeaderModel;
 use App\Models\ExpiredVisitorPassModel;
 use App\Models\PurposeModel;
 use App\Models\RecceDetailsModel;
+use App\Models\VendorModel;
   
 
 class VisitorRequest extends BaseController
@@ -17,6 +18,7 @@ class VisitorRequest extends BaseController
     protected $VisitorRequestHeaderModel;
     protected $ExpiredVisitorPassModel;
     protected $RecceDetailsModel;
+    protected $VendorModel;
 
 
     public function __construct()
@@ -25,7 +27,8 @@ class VisitorRequest extends BaseController
         $this->logModel                     = new VisitorLogModel();
         $this->VisitorRequestHeaderModel    = new VisitorRequestHeaderModel();
         $this->ExpiredVisitorPassModel      = new ExpiredVisitorPassModel();
-         $this->recceDetailsModel           = new RecceDetailsModel();
+        $this->recceDetailsModel            = new RecceDetailsModel();
+        $this->VendorModel                  = new VendorModel();
     }
 
     // public function index(): string
@@ -72,10 +75,17 @@ class VisitorRequest extends BaseController
             ->findAll();
 
         $db = \Config\Database::connect();
-
-        $data['recceTypes'] = $db->table('recce_master')
+        $data['recceTypes'] = $db->table('category_master')
             ->where('status', 1)
-            ->orderBy('name', 'ASC')
+            ->where('purpose', 'Recce')
+            ->orderBy('category_name', 'ASC')
+            ->get()
+            ->getResultArray();
+
+        $data['vendorTypes'] = $db->table('category_master')
+            ->where('status', 1)
+            ->where('purpose', 'Vendor')
+            ->orderBy('category_name', 'ASC')
             ->get()
             ->getResultArray();
 
@@ -121,11 +131,19 @@ class VisitorRequest extends BaseController
             ->findAll();
 
         $db = \Config\Database::connect();
-        $data['recceTypes'] = $db->table('recce_master')
-        ->where('status', 1)
-        ->orderBy('name', 'ASC')
-        ->get()
-        ->getResultArray(); 
+            $data['recceTypes'] = $db->table('category_master')
+            ->where('status', 1)
+            ->where('purpose', 'Recce')
+            ->orderBy('category_name', 'ASC')
+            ->get()
+            ->getResultArray();
+
+        $data['vendorTypes'] = $db->table('category_master')
+            ->where('status', 1)
+            ->where('purpose', 'Vendor')
+            ->orderBy('category_name', 'ASC')
+            ->get()
+            ->getResultArray();
 
         return view('dashboard/group_visitor_request',$data);
     }
@@ -264,11 +282,31 @@ class VisitorRequest extends BaseController
                 'company'        => $this->request->getPost('company'),
                 'contact_person' => $this->request->getPost('contact_person'),
                 'shooting_date'  => $this->request->getPost('shooting_date'),
+                'mail_id'        => $this->request->getPost('contact_person_email'),
+                'mobile'         => $this->request->getPost('contact_person_phone'),
                 'created_at'     => date('Y-m-d H:i:s'),
                 'created_by'     => session()->get('user_id'),
             ];
 
             $this->recceDetailsModel->insert($recceData);
+        }
+
+        if ($headerId && $this->request->getPost('purpose') == 'Vendor') {
+
+            $vendorData = [
+                'header_id'        => $headerId,
+                'category' => $this->request->getPost('vendor_category'),
+                'status'   => $this->request->getPost('vendor_status'),
+                'company'  => $this->request->getPost('vendor_company'),
+                'location' => $this->request->getPost('vendor_location'),
+                'contact_person'  => $this->request->getPost('vendor_contact_name'),
+                'email'           => $this->request->getPost('vendor_email'),
+                'mobile'          => $this->request->getPost('vendor_mobile'),
+                'created_at'      => date('Y-m-d H:i:s'),
+                'created_by'      => session()->get('user_id'),
+            ];
+
+            $this->VendorModel->insert($vendorData);
         }
 
         // Log entry
@@ -349,12 +387,34 @@ public function groupSubmit()
             'company'        => $this->request->getPost('company'),
             'contact_person' => $this->request->getPost('contact_person'),
             'shooting_date'  => $this->request->getPost('shooting_date'),
+            'mail_id'        => $this->request->getPost('contact_person_email'),
+            'mobile'         => $this->request->getPost('contact_person_phone'),
             'created_at'     => date('Y-m-d H:i:s'),
             'created_by'     => session()->get('user_id'),
         ];
 
         $this->recceDetailsModel->insert($recceData);
     }
+
+
+    if ($headerId && $this->request->getPost('purpose') == 'Vendor') {
+
+        $vendorData = [
+            'header_id'        => $headerId,
+            'category' => $this->request->getPost('vendor_category'),
+            'status'   => $this->request->getPost('vendor_status'),
+            'company'  => $this->request->getPost('vendor_company'),
+            'location' => $this->request->getPost('vendor_location'),
+            'contact_person'  => $this->request->getPost('vendor_contact_name'),
+            'email'           => $this->request->getPost('vendor_email'),
+            'mobile'          => $this->request->getPost('vendor_mobile'),
+            'created_at'      => date('Y-m-d H:i:s'),
+            'created_by'      => session()->get('user_id'),
+        ];
+
+        $this->VendorModel->insert($vendorData);
+    }
+
 
     // 2️ Loop through visitors
     foreach ($names as $i => $name)

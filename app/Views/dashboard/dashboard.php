@@ -84,7 +84,7 @@
                             <?php } ?>
                             </div>
 
-                              <div class="row" id="recceData" style="display:none">
+                              <!-- <div class="row" id="recceData" style="display:none">
                                     <h5 class="text-primary font-weight-bold m-2">Recce Details</h5>
                                     <div class="col-md-3 col-sm-6 col-6">
                                         <label class="fw-semibold">Type of Recce</label>
@@ -109,6 +109,86 @@
                                     <div class="col-md-3 col-sm-6 col-6">
                                         <label class="fw-semibold">Tentative Shooting Date</label>
                                          <div id="shootingDate" class="cardData"></div>
+                                    </div>
+                                </div> -->
+
+                                   <!-- Reccee Details -->
+                                <div class="row" id="recceData" style="display:none;" >
+                                    <h5 class="text-primary font-weight-bold m-2">Recce Details</h5>
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Type of Recce</label>
+                                        <div id="typeOfRecce" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Art Director / Director</label>
+                                         <div id="director" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Company / Production</label>
+                                        <div id="production" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Tentative Shooting Date</label>
+                                         <div id="shootingDate" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Contact Person</label>
+                                        <div id="contactPerson" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Contact Peson Mail</label>
+                                        <div id="contactPersonEmail" class="cardData"></div>
+                                    </div>
+
+                                      <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Contact Peson Mobile</label>
+                                        <div id="contactPersonMobile" class="cardData"></div>
+                                    </div>
+                                </div>
+
+
+                                                                <!-- Vendor Details -->
+                                <div class="row" id="vendorData" style="display:none;">
+                                    <h5 class="text-primary font-weight-bold m-2">Vendor Details</h5>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Vendor Category</label>
+                                        <div id="vendorCategory" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Vendor Status</label>
+                                        <div id="vendorStatus" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Company</label>
+                                        <div id="vendorCompany" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Location</label>
+                                        <div id="vendorLocation" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Contact Person</label>
+                                        <div id="vendorContactPerson" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Email</label>
+                                        <div id="vendorEmail" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Mobile</label>
+                                        <div id="vendorMobile" class="cardData"></div>
                                     </div>
                                 </div>
                         
@@ -383,18 +463,18 @@
             
             if (h.status === "pending" ) {
 
-                    actionButtons = `
-                        <button class="btn btn-success btn-sm"
-                            onclick="approvalProcess(${h.request_header_id}, 'approved', '${h.header_code}')">
-                            <i class="fas fa-check-circle"></i> Approve
-                        </button>
+                actionButtons = `
+                    <button class="btn btn-success btn-sm"
+                        onclick="approvalProcess(${h.request_header_id}, 'approved', '${h.header_code}')">
+                        <i class="fas fa-check-circle"></i> Approve
+                    </button>
 
-                        <button class="btn btn-danger btn-sm"
-                            onclick="rejectComment(${h.request_header_id }, 'rejected', '${h.header_code}')">
-                            <i class="fas fa-times-circle"></i> Reject
-                        </button>
-                    `;
-                } 
+                    <button class="btn btn-danger btn-sm"
+                        onclick="rejectComment(${h.request_header_id }, 'rejected', '${h.header_code}')">
+                        <i class="fas fa-times-circle"></i> Reject
+                    </button>
+                `;
+            } 
         
             $("#actionBtns").html(actionButtons);
             $("#h_code").text(h.header_code);
@@ -410,17 +490,44 @@
             $("#h_description").text(h.description);
             $("#referred_by").text(h.referred_by_name);
 
-            $("#director").text(h.art_director);
-            $("#production").text(h.productio);
-            $("#contactPerson").text(h.contact_person);
-            $("#typeOfRecce").text(h.recce_type);
-            $("#shootingDate").text(h.shooting_date);
+         
+            // if (h.purpose === "Recce") {
+            // $('#recceData').show();   // Recce Details
+            // $("#director").text(h.art_director);
+            // $("#production").text(h.productio);
+            // $("#contactPerson").text(h.contact_person);
+            // $("#typeOfRecce").text(h.recce_type);
+            // $("#shootingDate").text(h.shooting_date);
+            // }
 
-            if (h.purpose === "Recce") {
-            $('#recceData').show();   // Recce Details
+            if (h.purpose === "Vendor") {
+
+            $('#vendorData').show();
+            $('#recceData').hide();
+
+            $("#vendorCategory").text(h.v_category);
+            $("#vendorStatus").text(h.v_status);
+            $("#vendorCompany").text(h.v_company);
+            $("#vendorLocation").text(h.v_location);
+            $("#vendorContactPerson").text(h.v_contact_person);
+            $("#vendorEmail").text(h.v_email);
+            $("#vendorMobile").text(h.v_mobile);
             }
 
 
+            if (h.purpose === "Recce") {
+
+            $('#recceData').show();
+            $('#vendorData').hide();
+
+            $("#typeOfRecce").text(h.recce_type);
+            $("#director").text(h.art_director);
+            $("#production").text(h.company);
+            $("#shootingDate").text(h.shooting_date);
+            $("#contactPerson").text(h.contact_person);
+            $("#contactPersonEmail").text(h.mail_id);
+            $("#contactPersonMobile").text(h.mobile);
+            }
 
 
 

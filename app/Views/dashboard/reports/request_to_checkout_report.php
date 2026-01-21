@@ -26,26 +26,36 @@
                                             <option value="DHPL">DHPL</option>
                                             <option value="ETPL">ETPL</option>
                                         </select> -->
-
-                                         <select name="company" class="form-control" required>
-                                            <option value="">Select Department</option>
-                                            <?php foreach ($companies as $comp): ?>
-                                                <option value="<?= $comp['company_name'] ?>"><?= esc($comp['company_name']) ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
+                                    <?php if($_SESSION['role_id'] == 1){?>
+                                        <select name="company" class="form-select" >
+                                        <option value="">-- Select Company --</option>
+                                        <?php foreach ($companies as $comp): ?>
+                                            <option value="<?= $comp['company_name'] ?>" <?= (($_GET['company'] ?? '') == $comp['company_name']) ? 'selected' : '' ?>>
+                                            
+                                            <?= esc($comp['company_name']) ?></option>
+                                        <?php endforeach; ?>
+                                     </select>
+                                        <?php }else{?>
+                                                <input type="text" name="company" class="form-control" value="<?php echo $_SESSION['company_name']?>">
+                                        <?php }?>
                                     </div>
 
                                     <div class="col-md-2">
                                         <label>Department</label>
-                                        <select name="department" class="form-control">
-                                               <option value="">-- Select Department --</option>
-                                            <?php foreach ($departments as $dept): ?>
-                                                <option value="<?= esc($dept['department_name']) ?>"
-                                                    <?= (($_GET['department'] ?? '') == $dept['department_name']) ? 'selected' : '' ?>>
-                                                    <?= esc($dept['department_name']) ?>
-                                                </option>
-                                            <?php endforeach; ?>
-                                        </select>
+                                        <?php if($_SESSION['role_id'] == 1){?>
+                                            <select name="department" class="form-select">
+                                                <option value="">-- Select Department --</option>
+                                                <?php foreach ($departments as $dept): ?>
+                                                    <option value="<?= esc($dept['department_name']) ?>"
+                                                        <?= (($_GET['department'] ?? '') == $dept['department_name']) ? 'selected' : '' ?>>
+                                                        <?= esc($dept['department_name']) ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            </select>
+
+                                            <?php }else{ ?>
+                                            <input type="text" name="department" class="form-control" value="<?php echo $_SESSION['department_name']?>">
+                                        <?php } ?>
                                     </div>
 
                                     <div class="col-md-2">
@@ -56,7 +66,7 @@
 
                                     <div class="col-md-2">
                                         <label>Purpose</label>
-                                        <select name="purpose" class="form-control">
+                                        <select name="purpose" class="form-select">
                                             <option value="">-- Select Purpose --</option>
                                             <?php foreach ($purposes as $p): ?>
                                                 <option value="<?= esc($p['purpose_name']) ?>"
@@ -70,7 +80,7 @@
 
                                     <div class="col-md-2">
                                        <label>Request Status</label>  
-                                        <select name="status" class="form-control">
+                                        <select name="status" class="form-select">
                                             <option value="">--Select Request Status --</option>
                                             <option value="pending">Pending</option>
                                             <option value="approved">Approved</option>
@@ -82,7 +92,7 @@
 
                                     <div class="col-md-2">
                                          <label>Meeting Status</label>
-                                        <select name="meeting_status" class="form-control">
+                                        <select name="meeting_status" class="form-select">
                                             <option value="">-- Select Meeting Status --</option>
                                             <option value="1">Completed</option>
                                             <option value="0">Pending</option>

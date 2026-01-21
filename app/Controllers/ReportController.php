@@ -12,12 +12,12 @@ public function dailyVisitorReport()
 {
     $db = \Config\Database::connect();
 
-    // 🔍 Filters
+    //  Filters
 
-        // 🔹 Default today date
+        //  Default today date
     $today = date('Y-m-d');
 
-    // 🔍 Filters (fallback to today)
+    //  Filters (fallback to today)
     $fromDate   = $this->request->getGet('from_date') ?? $today;
     $toDate     = $this->request->getGet('to_date') ?? $today;
 
@@ -47,12 +47,8 @@ public function dailyVisitorReport()
         vrh.company,
         vrh.department,
         ref_by.name as reffered_by,
-        MAX(sgl.check_in_time)  AS check_in_time,
-        MAX(sgl.check_out_time) AS check_out_time,
-        CASE
-            WHEN MAX(sgl.check_out_time) IS NULL THEN 'IN'
-            ELSE 'OUT'
-        END AS visit_status
+        sgl.check_in_time AS check_in_time,
+        sgl.check_out_time AS check_out_time,
     ");
 
     $builder->join(
@@ -89,30 +85,42 @@ public function dailyVisitorReport()
         $builder->where('vrh.department', $department);
     }
 
-    // 🔍 V-Code filter
+    //  V-Code filter
     if (!empty($vCode)) {
         $builder->where('vr.v_code', $vCode);
     }
 
     $builder->where('vr.status', 'approved');
 
-    // 🧠 Important to avoid duplicates
+    //  Important to avoid duplicates
     $builder->groupBy('vr.id');
 
     $builder->orderBy('check_in_time', 'DESC');
 
 
-        // 🔹 Fetch distinct departments
+        //  Fetch distinct departments
     $deptBuilder = $db->table('visitor_request_header');
 
-    $departments = $deptBuilder
-        ->select('DISTINCT(department) as department')
-        ->where('department IS NOT NULL')
-        ->orderBy('department', 'ASC')
-        ->get()
-        ->getResultArray();
+    // $departments = $deptBuilder
+    //     ->select('DISTINCT(department) as department')
+    //     ->where('department IS NOT NULL')
+    //     ->orderBy('department', 'ASC')
+    //     ->get()
+    //     ->getResultArray();
 
-    $data['departments'] = $departments;
+    // $data['departments'] = $departments;
+
+    
+        //  Load Departments dynamically
+    $departmentModel = new DepartmentModel();
+    $data['departments'] = $departmentModel
+        ->orderBy('department_name', 'ASC')
+        ->findAll();
+
+
+    $companyModel = new CompanyModel();
+    $data['companies'] = $companyModel->orderBy('company_name', 'ASC')->findAll();
+
 
     $data['fromDate'] = $fromDate;
     $data['toDate'] = $toDate;
@@ -128,7 +136,7 @@ public function requestToCheckoutReport()
     $db = \Config\Database::connect();
     $request = service('request');
 
-    // 🔹 Get filter values
+    //  Get filter values
     $department     = $request->getGet('department');
     $company        = $request->getGet('company');
     $status         = $request->getGet('status');
@@ -136,6 +144,7 @@ public function requestToCheckoutReport()
     $fromDate       = $request->getGet('from_date');
     $toDate         = $request->getGet('to_date');
     $purpose         = $request->getGet('purpose');
+    $group_code         = $request->getGet('group_code');
 
     $builder = $db->table('visitors vr');
 
@@ -188,6 +197,12 @@ public function requestToCheckoutReport()
                 ->where('vr.visit_date <=', $toDate);
     }
 
+    
+    if (!empty($group_code)) {
+        $builder->where('vr.group_code ', $group_code);
+    }
+
+
     /* ===================================================== */
 
     $builder->orderBy('vr.created_at', 'DESC');
@@ -195,20 +210,19 @@ public function requestToCheckoutReport()
     $data['report'] = $builder->get()->getResultArray();
 
 
-        // 🔹 Load Departments dynamically
+        //  Load Departments dynamically
     $departmentModel = new DepartmentModel();
     $data['departments'] = $departmentModel
         ->orderBy('department_name', 'ASC')
         ->findAll();
 
 
-  $companyModel = new CompanyModel();
-  $data['companies'] = $companyModel->orderBy('company_name', 'ASC')->findAll();
-   
-       
-
-
+    $companyModel = new CompanyModel();
+    $data['companies'] = $companyModel->orderBy('company_name', 'ASC')->findAll();
     
+        
+
+        
 $purposeModel = new PurposeModel();
 
 $data['purposes'] = $purposeModel

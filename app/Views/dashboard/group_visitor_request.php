@@ -28,7 +28,7 @@
 
                                 <div class="col-md-2 mb-2">
                                     <label class="form-label">Purpose</label>
-                                   <select name="purpose" id="purpose" class="form-control select2" onchange="recceDetails()" required >
+                                   <select name="purpose" id="purpose" class="form-control select2" onchange="purposeEvent()" required >
                                             <option value="">-- Select Purpose --</option>
                                             <?php foreach ($purposes as $p): ?>
                                                 <option value="<?= esc($p['purpose_name']) ?>"
@@ -90,7 +90,7 @@
                                     </label>
                                 </div>
                             </div>
-                            
+                                     <!-- Recce Details  -->
                                  <div class="row" id="recceData" style="display:none">
                                     <h5 class="text-primary font-weight-bold m-2">Recce Details</h5>
                                     <div class="col-md-3 mb-2">
@@ -99,9 +99,9 @@
                                             <select class="form-control" name="recce_type" id="recce_type">
                                                 <option value="">Select Recce Type</option>
 
-                                                <?php foreach ($recceTypes as $recce): ?>
-                                                    <option value="<?= esc($recce['name']) ?>">
-                                                        <?= esc($recce['name']) ?>
+                                                  <?php foreach ($recceTypes as $recce): ?>
+                                                    <option value="<?= esc($recce['category_name']) ?>">
+                                                        <?= esc($recce['category_name']) ?>
                                                     </option>
                                                 <?php endforeach; ?>
                                             </select>
@@ -129,6 +129,14 @@
                                     </div>
 
                                     <div class="col-md-3 mb-2">
+                                        <label class="form-label">Tentative Shooting Date</label>
+                                        <input type="date" 
+                                            name="shooting_date" 
+                                            class="form-control" 
+                                            placeholder="Select Tentative Shooting Date">
+                                    </div>
+                                               
+                                    <div class="col-md-3 mb-2">
                                         <label class="form-label">Contact Person</label>
                                         <input type="text" 
                                             name="contact_person" 
@@ -137,17 +145,90 @@
                                     </div>
 
                                     <div class="col-md-3 mb-2">
-                                        <label class="form-label">Tentative Shooting Date</label>
-                                        <input type="date" 
-                                            name="shooting_date" 
+                                        <label class="form-label">Email</label>
+                                        <input type="email" 
+                                            name="contact_person_email" 
                                             class="form-control" 
-                                            placeholder="Select Tentative Shooting Date">
+                                            placeholder="Enter Contact Person Email">
+                                    </div>
+
+                                        <div class="col-md-3 mb-2">
+                                        <label class="form-label">Mobile No</label>
+                                        <input type="phone" 
+                                            name="contact_person_phone" 
+                                            class="form-control" 
+                                            placeholder="Enter Contact Person Mobile No">
                                     </div>
                                 </div>
 
+                                    <!-- Vendor Details  -->
+                            <div class="row" id="vendorData" style="display:none">
+
+                                <h5 class="text-primary font-weight-bold m-2">Vendor Details</h5>
+                                <div class="col-md-3 mb-2">
+                                    <label class="form-label">Vendor Category</label>
+                                    <select name="vendor_category" id="vendor_category" class="form-control" >
+                                        <option value="">-- Select Vendor Category --</option>
+                                        <?php foreach ($vendorTypes as $recce): ?>
+                                        <option value="<?= esc($recce['category_name']) ?>"><?= esc($recce['category_name']) ?></option>
+                                        <?php endforeach; ?>        
+                                    </select>
+                                </div>
+                        
+                                <div class="col-md-3 mb-2">
+                                    <label class="form-label">Vendor Status</label>
+                                    <select name="vendor_status" class="form-control" >
+                                        <option value="">-- Select Vendor Status --</option>
+                                        <option value="New">New</option>
+                                        <option value="Existing">Existing</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-3 mb-2">
+                                    <label class="form-label">Company Name</label>
+                                    <input type="text"
+                                        name="vendor_company"
+                                        class="form-control"
+                                        placeholder="Enter Company Name">
+                                </div>
+
+                                <div class="col-md-3 mb-2">
+                                    <label class="form-label">Location</label>
+                                    <input type="text"
+                                        name="vendor_location"
+                                        class="form-control"
+                                        placeholder="Enter Vendor Location">
+                                </div>
+                            
+                                <div class="col-md-3 mb-2">
+                                    <label class="form-label">Contact Person</label>
+                                    <input type="text"
+                                        name="vendor_contact_name"
+                                        class="form-control"
+                                        placeholder="Enter Contact Person Name">
+                                </div>
+                         
+                                <div class="col-md-3 mb-2">
+                                    <label class="form-label">Email</label>
+                                    <input type="email"
+                                        name="vendor_email"
+                                        class="form-control"
+                                        placeholder="Enter Email Address">
+                                </div>
+                                
+                                <div class="col-md-3 mb-2">
+                                    <label class="form-label">Mobile No</label>
+                                    <input type="tel"
+                                        name="vendor_mobile"
+                                        class="form-control"
+                                        placeholder="Enter Mobile Number"
+                                        pattern="[0-9]{10}">
+                                </div>
+                            </div>
+
                             <hr>
 
-                            <!-- ********* DYNAMIC TABLE ********* -->
+                                 <!-- ********* DYNAMIC TABLE ********* -->
                             <div class="table-responsive dynamic-form-table">
                                 <table class="table table-bordered" id="visitorGrid">
                                     <thead class="bg-light">
@@ -367,18 +448,7 @@ let isGroupSubmitting = false;
 $("#visitorForm").submit(function(e){
     e.preventDefault();
 
-    let purpose = $('#purpose').val();  
-    let receeType = $('#recce_type').val();  
-
-    if(purpose == 'Recce' && receeType == ''){
-        Swal.fire({
-        icon: 'error',
-        title: 'Missing Information',
-        text: 'Recce Type is mandatory when Purpose is Recce',
-        confirmButtonColor: '#3085d6'
-        });
-        return;
-    }
+    if (!validateForm()) return; // validation 
 
     if(isGroupSubmitting){
         return false;
@@ -445,7 +515,7 @@ function sendMail(head_id) {
         $.ajax({
         url: "<?= base_url('/send-email') ?>",
         type: "POST",
-        data: { head_id: head_id },   // 🔥 single variable
+        data: { head_id: head_id },   //  single variable
         success: function(res) {
         console.log(res);
         }
@@ -456,6 +526,35 @@ $(document).on('click', '.uploadBtn', function () {
     $(this).closest('td').find('.fileInput').click();
 });
 
+
+
+function validateForm() {
+
+    let purpose    = $('#purpose').val();
+    let recceType  = $('#recce_type').val();
+    let vendorType = $('#vendor_category').val();
+
+    // Purpose-based validation
+    const rules = {
+        Recce:  { field: '#recce_type',  msg: 'Recce Type is mandatory when Purpose is Recce' },
+        Vendor: { field: '#vendor_category', msg: 'Vendor Type is mandatory when Purpose is Vendor' }
+    };
+
+    if (rules[purpose]) {
+        let value = $(rules[purpose].field).val();
+        if (!value) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Missing Information',
+                text: rules[purpose].msg,
+                confirmButtonColor: '#3085d6'
+            });
+            return false;
+        }
+    }
+
+    return true;
+}
 
 
 // CSV Upload Event
@@ -567,12 +666,18 @@ $("#excelUpload").change(function () {
         this.value = val;
     });
 
-  function recceDetails() {
+  function purposeEvent() {
         let purpose = $('#purpose').val();
         if (purpose === "Recce") {
          $('#recceData').show();   // show section
         }else{
           $('#recceData').hide();   // show section
+        }
+
+        if (purpose === "Vendor") {
+         $('#vendorData').show();   // show section
+        }else{
+          $('#vendorData').hide();   // show section
         }
     }
 

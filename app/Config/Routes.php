@@ -19,6 +19,8 @@ $routes->get('/userlist', 'User::userListData');
 $routes->get('/user/get/(:num)', 'User::get/$1');
 $routes->post('user/update', 'User::update');
 $routes->post('user/toggleStatus', 'User::toggleStatus');
+$routes->get('/user/changePass', 'User::changePassview');
+$routes->post('/user/cahangePass', 'User::changePass');
 
 $routes->post('send-otp', 'MobileOTPController::sendOtp');// Mobile Otp Contriollr
 

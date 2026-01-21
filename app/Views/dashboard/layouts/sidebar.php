@@ -145,7 +145,7 @@ h1, h2, h3 {
       <?php } ?>
 
       
-<?php if (in_array($_SESSION['role_id'], ['1'])) { ?>
+<?php if (in_array($_SESSION['role_id'], ['1','2'])) { ?>
 <li class="nav-item">
     <a class="nav-link <?= in_array(uri_string(), [
             'report/daily',
@@ -164,7 +164,7 @@ h1, h2, h3 {
 
     <ul class="collapse list-unstyled ps-3 <?= in_array(uri_string(), [
             'daily_visitor_report',
-            'report/current',
+            'request_to_checkout',
             'report/history'
         ]) ? 'show' : '' ?>" id="reportMenu">
 
@@ -192,20 +192,24 @@ h1, h2, h3 {
 </li>
 <?php } ?>
 
+    <li>
+        <a class="nav-link <?= (uri_string()=='about') ? 'active' : '' ?>"
+            href="<?= base_url('about') ?>">
+            <i class="bi bi-grid-1x2"></i>  About Access360
+        </a>
+    </li>
+    <li>
+        <a class="nav-link <?= (uri_string()=='user/changePass') ? 'active' : '' ?>"
+        href="<?= base_url('user/changePass') ?>">
+        <i class="bi bi-lock"></i> Change Password
+        </a>
+    </li>
 
-        <li>
-            <a class="nav-link <?= (uri_string()=='about') ? 'active' : '' ?>"
-                href="<?= base_url('about') ?>">
-                <i class="bi bi-grid-1x2"></i>  About Access360
-            </a>
-        </li>
-
-
-        <li>
-            <a class="nav-link" href="<?= base_url('logout') ?>">
-            <i class="bi bi-box-arrow-right"></i> Logout
-            </a>
-        </li>
+    <li>
+        <a class="nav-link" href="<?= base_url('logout') ?>">
+        <i class="bi bi-box-arrow-right"></i> Logout
+        </a>
+    </li>
 
   </ul>
 

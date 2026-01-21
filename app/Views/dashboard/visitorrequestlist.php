@@ -95,7 +95,86 @@
                                 <?php } ?>
                                   <p class="text-danger" id="remarkLablle"><p>      
                             </div>
-                        
+                                <!-- Reccee Details -->
+                                <div class="row" id="recceData" style="display:none;" >
+                                    <h5 class="text-primary font-weight-bold m-2">Recce Details</h5>
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Type of Recce</label>
+                                        <div id="typeOfRecce" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Art Director / Director</label>
+                                         <div id="director" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Company / Production</label>
+                                        <div id="production" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Tentative Shooting Date</label>
+                                         <div id="shootingDate" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Contact Person</label>
+                                        <div id="contactPerson" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Contact Peson Mail</label>
+                                        <div id="contactPersonEmail" class="cardData"></div>
+                                    </div>
+
+                                      <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Contact Peson Mobile</label>
+                                        <div id="contactPersonMobile" class="cardData"></div>
+                                    </div>
+                                </div>
+
+
+                                <!-- Vendor Details -->
+                                <div class="row" id="vendorData" style="display:none;">
+                                    <h5 class="text-primary font-weight-bold m-2">Vendor Details</h5>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Vendor Category</label>
+                                        <div id="vendorCategory" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Vendor Status</label>
+                                        <div id="vendorStatus" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Company</label>
+                                        <div id="vendorCompany" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Location</label>
+                                        <div id="vendorLocation" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Contact Person</label>
+                                        <div id="vendorContactPerson" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Email</label>
+                                        <div id="vendorEmail" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-6">
+                                        <label class="fw-semibold">Mobile</label>
+                                        <div id="vendorMobile" class="cardData"></div>
+                                    </div>
+                                </div>
+
                         </div>
                     </div>
                 </div>
@@ -134,19 +213,19 @@
                             <div class="card-body table-responsive">
                                 <table class="table table-bordered table-hover"  id="visitorTable">
                                     <thead class="bg-light">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Request ID</th>
-                                            <th>Department</th>
-                                            <th>Purpose</th>
-                                            <th>Description</th>
-                                            <th>Visit Date</th>
-                                            <th>Visitors Count</th>
-                                            <th>Status</th>
-                                            <?php if($_SESSION['role_id'] == '1' || $_SESSION['role_id'] == '2'){?>
-                                            <th style="width:150px;" colspan="2">Actions</th>
-                                             <?php }?>
-                                        </tr>
+                                    <tr>
+                                    <th>#</th>
+                                    <th>Request ID</th>
+                                    <th>Department</th>
+                                    <th>Purpose</th>
+                                    <th>Description</th>
+                                    <th>Visit Date</th>
+                                    <th>Visitors Count</th>
+                                    <th>Status</th>
+                                    <?php if($_SESSION['role_id'] == '1' || $_SESSION['role_id'] == '2'){?>
+                                    <th style="width:150px;" colspan="2">Actions</th>
+                                    <?php }?>
+                                    </tr>
                                     </thead>
                                     <tbody></tbody>
                                 </table>
@@ -240,10 +319,6 @@ function loadVisitorList() {
     });
 }
 
-
-// View Visitor Details Section 
-      
-
 // View Visitor Details Section
 
 function view_visitor(id){
@@ -298,7 +373,46 @@ function view_visitor(id){
             $("#remarkLablle").text(h.remarks);
             $("#referred_by").text(h.referred_by_name);
         
-                        
+            
+            $("#director").text(h.art_director);
+            $("#production").text(h.productio);
+            $("#contactPerson").text(h.contact_person);
+            $("#typeOfRecce").text(h.recce_type);
+            $("#shootingDate").text(h.shooting_date);
+            $("#contactPersonEmail").text(h.mail_id);
+            $("#contactPersonMobile").text(h.mobile);
+
+        
+            if (h.purpose === "Vendor") {
+
+                $('#vendorData').show();
+                $('#recceData').hide();
+
+                $("#vendorCategory").text(h.v_category);
+                $("#vendorStatus").text(h.v_status);
+                $("#vendorCompany").text(h.v_company);
+                $("#vendorLocation").text(h.v_location);
+                $("#vendorContactPerson").text(h.v_contact_person);
+                $("#vendorEmail").text(h.v_email);
+                $("#vendorMobile").text(h.v_mobile);
+            }
+
+
+            if (h.purpose === "Recce") {
+
+                $('#recceData').show();
+                $('#vendorData').hide();
+
+                $("#typeOfRecce").text(h.recce_type);
+                $("#director").text(h.art_director);
+                $("#production").text(h.company);
+                $("#shootingDate").text(h.shooting_date);
+                $("#contactPerson").text(h.contact_person);
+                $("#contactPersonEmail").text(h.mail_id);
+                $("#contactPersonMobile").text(h.mobile);
+            }
+  
+
         let tableHtml = `
             <table class="table table-bordered table-striped">
                 <thead class="table-light">
@@ -427,7 +541,7 @@ let approvalInProgress = false; // prevent Duble Click On approvel
 function approvalProcess(head_id, status, header_code, comment) {
 
     if (approvalInProgress) {
-        return; // ❌ prevent double call
+        return; // prevent double call
     }
 
     approvalInProgress = true;

@@ -10,47 +10,53 @@ class MasterDataController extends BaseController
         $data['companies'] = $db->table('companies')->get()->getResultArray();
         $data['departments'] = $db->table('departments')->get()->getResultArray();
         $data['purposes'] = $db->table('purposes')->get()->getResultArray();
+        $data['categories'] = $db->table('category_master')->orderBy('purpose', 'ASC')->get()->getResultArray();
 
         return view('dashboard/masterDataManagement', $data);
     }
 
 
-    public function save()
+        public function save()
         {
             $db = \Config\Database::connect();
 
             $type = $this->request->getPost('type');
             $name = trim($this->request->getPost('name'));
+            $purpose = $this->request->getPost('purpose_name');
 
             if ($name == '') {
                 return redirect()->back()->with('error', 'Value required');
             }
 
             switch ($type) {
-                case 'company':
-                    $db->table('companies')->insert([
-                        'company_name' => $name,
-                      
-                    ]);
-                    break;
-
-                case 'department':
-                    $db->table('departments')->insert([
-                        'department_name' => $name,
-                       
-                    ]);
-                    break;
-
-                case 'purpose':
-                    $db->table('purposes')->insert([
-                        'purpose_name' => $name,
-                      
-                    ]);
-                    break;
+            case 'company':
+                $db->table('companies')->insert([
+                    'company_name' => $name,
+                    
+                ]);
+                break;
+            case 'department':
+                $db->table('departments')->insert([
+                    'department_name' => $name,
+                    
+                ]);
+                break;
+            case 'purpose':
+                $db->table('purposes')->insert([
+                    'purpose_name' => $name,
+                    
+                ]);
+                break;
+            case 'category':
+                $db->table('category_master')->insert([
+                    'category_name' => $name,    
+                    'purpose' => $purpose,    
+                ]);
+                break;
             }
 
-        return redirect()->back()->with('success', 'Saved successfully');
-    }
+           return redirect()->back()->with('success', 'Saved successfully');
+        }
 
 
     
@@ -76,5 +82,9 @@ class MasterDataController extends BaseController
 
         return redirect()->back();
     }
+
+    
+
+
 
 }

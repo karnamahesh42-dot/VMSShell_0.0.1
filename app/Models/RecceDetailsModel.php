@@ -1,7 +1,5 @@
 <?php
 
-// app/Models/RecceDetailsModel.php
-
 namespace App\Models;
 
 use CodeIgniter\Model;
@@ -18,6 +16,8 @@ class RecceDetailsModel extends Model
         'company',
         'contact_person',
         'shooting_date',
+        'mail_id',
+        'mobile',
         'created_at',
         'created_by'
     ];

@@ -35,7 +35,7 @@ class MailController extends Controller
 
                     $email = $row['visitor_email'];
                     // print_r($row);
-                    // 1️⃣ Generate PDF from HTML
+                    //  Generate PDF from HTML
                     $html = view('emails/gate_pass_layout', ['mailData' => $row]);
 
                     $options = new Options();
@@ -79,18 +79,18 @@ class MailController extends Controller
                     }
                 }
                 
-                if ($data[0]['purpose'] == 'Recce') {
-                   $this->recceMail($data);
-                }
+                // if ($data[0]['purpose'] == 'Recce') {
+                //    $this->recceMail($data);
+                // }
 
 
-                // return $this->response->setJSON([
-                //     "status" => "success",
-                //     "sendType" => $mailType,
-                //     "message" => "Mail process completed",
-                //     "sent" => $successCount,
-                //     "failed" => $failed
-                // ]);
+                return $this->response->setJSON([
+                    "status" => "success",
+                    "sendType" => $mailType,
+                    "message" => "Mail process completed",
+                    "sent" => $successCount,
+                    "failed" => $failed
+                ]);
 
             } catch (\Exception $e){
                 return $this->response->setJSON([

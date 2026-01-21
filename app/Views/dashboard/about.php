@@ -18,7 +18,7 @@
                                     designed to simplify, secure, and streamline entry control across organizations.
                                 </p>
 
-                                <h6 class="mt-3">Key Features</h6>
+                                <h6 class="mt-3" style="color: #6cabd8;     font-weight: 600;">Key Features</h6>
                                 <ul class="list-unstyled">
                                     <li>✔ Visitor & Employee Access Management</li>
                                     <li>✔ QR Code Based Entry & Exit Tracking</li>
@@ -26,16 +26,16 @@
                                     <li>✔ Secure Authentication & Role Management</li>
                                 </ul>
 
-                                <h6 class="mt-3">Purpose</h6>
+                                <h6 class="mt-3" style="color: #6cabd8; font-weight: 600;">Purpose</h6>
                                 <p class="text-muted">
                                     The system helps organizations maintain security, improve operational efficiency,
                                     and ensure seamless access control with a user-friendly interface.
                                 </p>
 
-                                <h6 class="mt-3">Version</h6>
+                                <h6 class="mt-3" style="color:  #6cabd8; font-weight: bold;">Version</h6>
                                 <p class="text-muted mb-0">
                                     Version: <strong>1.0.0</strong><br>
-                                    Developed by: <strong>UKMPL - INFORMATION TECHNOLOGY TEAM</strong>
+                                    Developed by: <strong style="font-family: sans-serif;font-style: normal; color: #3177aa;">UKMPL - Information Technology Team</strong>
                                 </p>
                             </div>
                         </div>

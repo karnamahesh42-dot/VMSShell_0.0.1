@@ -59,6 +59,15 @@ class VisitorRequestHeaderModel extends Model
         recce_details.company as productio,
         recce_details.contact_person,
         recce_details.shooting_date,
+        recce_details.mail_id,
+        recce_details.mobile,
+        vendors.category as v_category,
+        vendors.status as v_status,
+        vendors.company as v_company,
+        vendors.location as v_location,
+        vendors.contact_person as v_contact_person,
+        vendors.email as v_email,
+        vendors.mobile as v_mobile,
         u1.name AS visitor_created_by_name,
         u1.email AS visitor_created_by_email,
         u2.name AS referred_by_name,
@@ -68,6 +77,7 @@ class VisitorRequestHeaderModel extends Model
     ->join('users u1', 'u1.id = visitors.created_by', 'left')
     ->join('users u2', 'u2.id = visitor_request_header.referred_by', 'left')
     ->join('recce_details', 'recce_details.header_id = visitor_request_header.id', 'left')
+    ->join('vendors', 'vendors.header_id = visitor_request_header.id', 'left')
     ->where('visitor_request_header.id', $headerId)
     ->findAll();
 }
@@ -97,6 +107,15 @@ public function getHeaderWithVisitorsMailData($headerId)
             recce_details.company as productio,
             recce_details.contact_person,
             recce_details.shooting_date,
+            recce_details.mail_id,
+            recce_details.mobile,
+            vendors.category as v_category,
+            vendors.status as v_status,
+            vendors.company as v_company,
+            vendors.location as v_location,
+            vendors.contact_person as v_contact_person,
+            vendors.email as v_email,
+            vendors.mobile as v_mobile,
         ")
         ->join(
             'visitors',
@@ -118,6 +137,7 @@ public function getHeaderWithVisitorsMailData($headerId)
             'departments.id = users.department_id',
             'left'
         )->join('recce_details', 'recce_details.header_id = visitor_request_header.id', 'left')
+         ->join('vendors', 'vendors.header_id = visitor_request_header.id', 'left')
         ->where('visitor_request_header.id', $headerId)
         ->findAll();
 }

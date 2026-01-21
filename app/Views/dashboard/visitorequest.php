@@ -4,12 +4,6 @@
 <main class="main-content" id="mainContent">
     <div class="container-fluid">
 
-
-
-  
-
-
-
         <div class="row d-flex justify-content-center">
             <div class="col-md-11">
                 <div class="card card-primary">
@@ -26,7 +20,7 @@
 
                                 <div class="col-md-3 mb-2">
                                     <label class="form-label">Purpose</label>
-                                    <select name="purpose" class="form-control select2" id="purpose" onchange="recceDetails()" required >
+                                    <select name="purpose" class="form-control select2" id="purpose" onchange="purposeEvent()" required >
                                         <option value="">-- Select Purpose --</option>
                                         <?php foreach ($purposes as $p): ?>
                                             <option value="<?= esc($p['purpose_name']) ?>"
@@ -39,7 +33,7 @@
                                                   
                                 <div class="col-md-3 mb-2">
                                     <label class="form-label">Referred By</label>
-                                        <select name="referred_by" class="form-control" required title="Select Referred By">
+                                        <select name="referred_by" class="form-select" required title="Select Referred By">
                                             <!-- <option value="">--Select Admin --</option> -->
                                             <?php if (!empty($admins)) : ?>
                                                 <?php foreach ($admins as $admin) : ?>
@@ -62,27 +56,19 @@
                                     </div>  
                                 </div>
                             
-                            
-                                <div class="row" id="recceData" style="display:none">
+                                    <!-- Recce Details Start -->
+                                    <div class="row" id="recceData" style="display:none">
                                         <h5 class="text-primary font-weight-bold m-2">Recce Details</h5>
                                         <div class="col-md-3 mb-2">
                                             <label class="form-label">Type of Recce</label>
                                             <select class="form-control" name="recce_type" id="recce_type">
                                                 <option value="">-Select Recce Type-</option>
                                                 <?php foreach ($recceTypes as $recce): ?>
-                                                    <option value="<?= esc($recce['name']) ?>">
-                                                        <?= esc($recce['name']) ?>
+                                                    <option value="<?= esc($recce['category_name']) ?>">
+                                                        <?= esc($recce['category_name']) ?>
                                                     </option>
                                                 <?php endforeach; ?>
                                             </select>
-                                        </div>
-
-                                        <div class="col-md-3 mb-2">
-                                            <label class="form-label">Art Director / Director</label>
-                                            <input type="text" 
-                                                name="art_director" 
-                                                class="form-control" 
-                                                placeholder="Enter Art Director / Director Name">
                                         </div>
 
                                         <div class="col-md-3 mb-2">
@@ -94,11 +80,11 @@
                                         </div>
 
                                         <div class="col-md-3 mb-2">
-                                            <label class="form-label">Contact Person</label>
+                                            <label class="form-label">Art Director / Director</label>
                                             <input type="text" 
-                                                name="contact_person" 
+                                                name="art_director" 
                                                 class="form-control" 
-                                                placeholder="Enter Contact Person Name">
+                                                placeholder="Enter Art Director / Director Name">
                                         </div>
 
                                         <div class="col-md-3 mb-2">
@@ -108,8 +94,101 @@
                                                 class="form-control" 
                                                 placeholder="Select Tentative Shooting Date">
                                         </div>
+
+                                        <div class="col-md-3 mb-2">
+                                            <label class="form-label">Contact Person</label>
+                                            <input type="text" 
+                                                name="contact_person" 
+                                                class="form-control" 
+                                                placeholder="Enter Contact Person Name">
+                                        </div>
+
+                                        <div class="col-md-3 mb-2">
+                                            <label class="form-label">Email</label>
+                                            <input type="email" 
+                                                name="contact_person_email" 
+                                                class="form-control" 
+                                                placeholder="Enter Contact Person Email">
+                                        </div>
+
+                                         <div class="col-md-3 mb-2">
+                                            <label class="form-label">Mobile No</label>
+                                            <input type="phone" 
+                                                name="contact_person_phone" 
+                                                class="form-control" 
+                                                placeholder="Enter Contact Person Mobile No">
+                                        </div>
+                                    </div>
+                            <!-- Recce Details End  -->
+
+                            <!-- Vendor Details Start -->
+                                                
+                            <div class="row" id="vendorData" style="display:none">
+
+                                <h5 class="text-primary font-weight-bold m-2">Vendor Details</h5>
+
+                                <div class="col-md-3 mb-2">
+                                    <label class="form-label">Vendor Category</label>
+                                    <select name="vendor_category" id="vendor_category" class="form-control" >
+                                        <option value="">-- Select Vendor Category --</option>
+                                        <?php foreach ($vendorTypes as $recce): ?>
+                                            <option value="<?= esc($recce['category_name']) ?>"><?= esc($recce['category_name']) ?></option>
+                                        <?php endforeach; ?>            
+                                    </select>
                                 </div>
-                    
+                        
+                                <div class="col-md-3 mb-2">
+                                    <label class="form-label">Vendor Status</label>
+                                    <select name="vendor_status" class="form-control" >
+                                        <option value="">-- Select Vendor Status --</option>
+                                        <option value="New">New</option>
+                                        <option value="Existing">Existing</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-3 mb-2">
+                                    <label class="form-label">Company Name</label>
+                                    <input type="text"
+                                        name="vendor_company"
+                                        class="form-control"
+                                        placeholder="Enter Company Name">
+                                </div>
+
+                                <div class="col-md-3 mb-2">
+                                    <label class="form-label">Location</label>
+                                    <input type="text"
+                                        name="vendor_location"
+                                        class="form-control"
+                                        placeholder="Enter Vendor Location">
+                                </div>
+                            
+                                <div class="col-md-3 mb-2">
+                                    <label class="form-label">Contact Person</label>
+                                    <input type="text"
+                                        name="vendor_contact_name"
+                                        class="form-control"
+                                        placeholder="Enter Contact Person Name">
+                                </div>
+                         
+                                <div class="col-md-3 mb-2">
+                                    <label class="form-label">Email</label>
+                                    <input type="email"
+                                        name="vendor_email"
+                                        class="form-control"
+                                        placeholder="Enter Email Address">
+                                </div>
+
+                                <div class="col-md-3 mb-2">
+                                    <label class="form-label">Mobile No</label>
+                                    <input type="tel"
+                                        name="vendor_mobile"
+                                        class="form-control"
+                                        placeholder="Enter Mobile Number"
+                                        pattern="[0-9]{10}">
+                                </div>
+                            </div>
+
+                            <!--Vendor Details End  -->
 
                             <!-- Visitor Details -->
                             <h5 class="text-primary font-weight-bold">Visitor Details</h5>
@@ -161,11 +240,9 @@
                             </div>
 
                         <!-- Vehicle Details -->
-                          <h5 class="text-primary font-weight-bold">Vehicle Details & Attachments </h5>                       
+                        <h5 class="text-primary font-weight-bold">Vehicle Details & Attachments </h5>                       
                         <div class="row">
-                    
-                              
-                            
+
                                 <div class="col-md-3 mb-2">
                                     <label class="form-label">Vehicle Number</label>
                                     <input type="text" name="vehicle_no" id="vehicleNo"
@@ -194,11 +271,8 @@
                                     <label class="form-label">Visitor ID Proof</label>
                                     <input type="file" name="visitor_id_proof" class="form-control">
                                 </div>
-
                           </div>
-
                             <input type="hidden" name="host_user_id" value="<?= $_SESSION['user_id']; ?>">
-
                         </div>
 
                         <div class="card-footer py-2">
@@ -312,38 +386,10 @@ let isSubmitting = false;
 $("#visitorForm").submit(function(e){
     e.preventDefault();
 
-
-    
-    let purpose = $('#purpose').val();  
-    let receeType = $('#recce_type').val();  
-
-    if(purpose == 'Recce' && receeType == ''){
-        Swal.fire({
-        icon: 'error',
-        title: 'Missing Information',
-        text: 'Recce Type is mandatory when Purpose is Recce',
-        confirmButtonColor: '#3085d6'
-        });
-        return;
-    }
-
-
-
+    if (!validateForm()) return; // validation 
 
     if (isSubmitting) {
         return false; // block second submit
-    }
-
-    // Phone check
-    let phone = $("#phone").val();
-    if(phone.length !== 10){
-        Swal.fire({
-            icon: "error",
-            title: "Phone number must be 10 digits",
-            timer: 1500,
-            showConfirmButton: false
-        });
-        return;
     }
 
     isSubmitting = true; // lock submit
@@ -396,6 +442,49 @@ $("#visitorForm").submit(function(e){
 });
 
 
+
+function validateForm() {
+
+    let purpose    = $('#purpose').val();
+    let recceType  = $('#recce_type').val();
+    let vendorType = $('#vendor_category').val();
+    let phone      = $('#phone').val().trim();
+
+    // Purpose-based validation
+    const rules = {
+        Recce:  { field: '#recce_type',  msg: 'Recce Type is mandatory when Purpose is Recce' },
+        Vendor: { field: '#vendor_category', msg: 'Vendor Type is mandatory when Purpose is Vendor' }
+    };
+
+    if (rules[purpose]) {
+        let value = $(rules[purpose].field).val();
+        if (!value) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Missing Information',
+                text: rules[purpose].msg,
+                confirmButtonColor: '#3085d6'
+            });
+            return false;
+        }
+    }
+
+    // Phone validation (10 digits, numbers only)
+    if (!/^\d{10}$/.test(phone)) {
+        Swal.fire({
+            icon: "error",
+            title: "Invalid Phone Number",
+            text: "Phone number must be exactly 10 digits",
+            timer: 1500,
+            showConfirmButton: false
+        });
+        return false;
+    }
+
+    return true;
+}
+
+
 // // Send Mail
 // function sendMail(postData) {
 //     $.ajax({
@@ -409,7 +498,7 @@ $("#visitorForm").submit(function(e){
 //     });
 // }
 
-function sendMail(head_id) {
+    function sendMail(head_id) {
         $.ajax({
         url: "<?= base_url('/send-email') ?>",
         type: "POST",
@@ -418,16 +507,22 @@ function sendMail(head_id) {
         console.log(res);
         }
         });
-}
+    }
 
 
 
-    function recceDetails() {
+    function purposeEvent() {
         let purpose = $('#purpose').val();
         if (purpose === "Recce") {
          $('#recceData').show();   // show section
         }else{
           $('#recceData').hide();   // show section
+        }
+
+        if (purpose === "Vendor") {
+         $('#vendorData').show();   // show section
+        }else{
+          $('#vendorData').hide();   // show section
         }
     }
 

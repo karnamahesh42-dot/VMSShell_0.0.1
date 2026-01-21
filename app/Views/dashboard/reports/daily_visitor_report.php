@@ -20,9 +20,6 @@
 
                             <form method="get" class="row g-3 mb-3 align-items-end">
 
-
-
-
                                 <!-- From Date -->
                                 <div class="col-md-2">
                                     <label class="form-label fw-bold">From Date</label>
@@ -41,42 +38,41 @@
                                 <!-- Company (Static Dropdown) -->
                                 <div class="col-md-2">
                                     <label class="form-label fw-bold">Company</label>
-                                    <select name="company"
-                                            class="form-control"
-                                            onchange="this.form.submit()">
+                                    <?php if($_SESSION['role_id'] == 1){?>
 
+                                    <select name="company" class="form-select">
                                         <option value="">All Companies</option>
-
-                                        <option value="UKMPL"
-                                            <?= (@$_GET['company'] == 'UKMPL') ? 'selected' : '' ?>>
-                                            UKMPL
-                                        </option>
-
-                                        <option value="DHPL"
-                                            <?= (@$_GET['company'] == 'DHPL') ? 'selected' : '' ?>>
-                                            DHPL
-                                        </option>
-
-                                        <option value="ETPL"
-                                            <?= (@$_GET['company'] == 'ETPL') ? 'selected' : '' ?>>
-                                            ETPL
-                                        </option>
+                                            <?php foreach ($companies as $comp): ?>
+                                                <option value="<?= $comp['company_name'] ?>" <?= (($_GET['company'] ?? '') == $comp['company_name']) ? 'selected' : '' ?>>
+                                                    <?= esc($comp['company_name']) ?></option>
+                                            <?php endforeach; ?>
                                     </select>
+                                    <?php }else{ ?>
+                                            
+                                      <input type="text" name="company" class="form-control" value="<?php echo $_SESSION['company_name']?>">
+
+                                    <?php } ?>
                                 </div>
 
 
                                 <!-- Department (Dynamic Dropdown) -->
                                 <div class="col-md-2">
                                     <label class="form-label fw-bold">Department</label>
-                                    <select name="department" class="form-select">
-                                        <option value="">All Departments</option>
-                                        <?php foreach ($departments as $dept): ?>
-                                            <option value="<?= esc($dept['department']) ?>"
-                                                <?= (@$_GET['department'] == $dept['department']) ? 'selected' : '' ?>>
-                                                <?= esc($dept['department']) ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
+                                    <?php if($_SESSION['role_id'] == 1){?>
+                                        <select name="department" class="form-select">
+                                            <option value="">All Departments</option>
+                                            <?php foreach ($departments as $dept): ?>
+                                                <option value="<?= esc($dept['department_name']) ?>"
+                                                    <?= (@$_GET['department'] == $dept['department_name']) ? 'selected' : '' ?>>
+                                                    <?= esc($dept['department_name']) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                      <?php }else{ ?>
+                                            
+                                      <input type="text" name="department" class="form-control" value="<?php echo $_SESSION['department_name']?>">
+
+                                    <?php } ?>
                                 </div>
 
                                 <!-- V-Code -->
@@ -97,17 +93,16 @@
                                 <!-- Reload -->
                                 <div class="col-md-1">
                                     <label class="form-label invisible">Reload</label>
-                                    <a href="<?= current_url() ?>" class="btn btn-secondary w-100" title="Reload">
+                                    <a href="<?= base_url('/daily_visitor_report') ?>" class="btn btn-secondary w-100" title="Reload">
                                         <i class="fas fa-rotate-right"></i>
                                     </a>
                                 </div>
-
-
                             </form>
-
+                                
+                            <div class='table-scroll'>
 
                                 <table class="table table-bordered table-hover">
-                                <thead>
+                                   <thead>
                                     <tr>
                                         <th>Request ID</th>
                                         <th>V-Code</th>
@@ -125,7 +120,7 @@
                                     </tr>
                                     </thead>
 
-                                  <tbody>
+                                    <tbody >
                                         <?php foreach ($report as $row): ?>
                                         <tr>
                                             <td><?= esc($row['group_code']) ?></td>
@@ -141,20 +136,27 @@
                                             <td><?= esc($row['check_out_time'] ?? '-') ?></td>
                                             <td><?= esc($row['spendTime'] ?? '-') ?></td>
                                             <td>
-                                                <span class="badge <?= $row['visit_status'] == 'IN' ? 'bg-success' : 'bg-secondary' ?>">
-                                                    <?= $row['visit_status'] ?>
-                                                </span>
+                                           
+                                                <?php if($row['securityCheckStatus'] == '0'){
+                                                    echo "Not Entered";
+                                                }else if($row['securityCheckStatus'] == '1'){
+                                                    echo "Inside";
+                                                }else{
+                                                    echo "Exit";
+                                                }?>
+                                  
                                             </td>
                                         </tr>
                                         <?php endforeach; ?>
-                                        </tbody>
+                                    </tbody>
 
                                 </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-   </div>
+           </div>
 </main>
 
 
