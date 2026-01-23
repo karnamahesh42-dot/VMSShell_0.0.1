@@ -98,6 +98,7 @@
                                             <option value="2">Admin</option>
                                             <option value="3">User</option>
                                             <option value="4">Security</option>
+                                            <option value="5">Super User</option>
                                         </select>
                                     </div>
                                 </div>

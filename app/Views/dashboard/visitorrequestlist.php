@@ -48,8 +48,6 @@
                                 <label class="fw-semibold">Referred By:</label>
                                 <div id="referred_by" class="cardData"></div>
                             </div>
-
-                            
                               
                             <div class="col-md-3 col-6">
                                 <label class="fw-semibold">Company:</label>
@@ -180,8 +178,13 @@
                 </div>
 
                 <!-- VISITOR CARDS -->
-             
-                <div class="row mx-1" id="visitorCardsContainer"></div>
+                     <!-- <div class="row mx-1" id="visitorCardsContainer"></div> -->
+                <!-- VISITOR CARDS END -->
+                <!-- VISITOR CARDS-2  -->
+                 <h6 class="fw-bold text-primary">| Visitor Details</h6>
+                    <div id="visitorCardsDetails" style="height:250px; width:100%; overflow:auto; overflow-x:hidden;">
+                    </div>
+                <!-- VISITOR CARDS-2  -->
             </div>
             <!-- FOOTER -->
             <div class="modal-footer justify-content-between">
@@ -222,7 +225,7 @@
                                     <th>Visit Date</th>
                                     <th>Visitors Count</th>
                                     <th>Status</th>
-                                    <?php if($_SESSION['role_id'] == '1' || $_SESSION['role_id'] == '2'){?>
+                                    <?php if(in_array($_SESSION['role_id'] , [1,2,5] )){?>
                                     <th style="width:150px;" colspan="2">Actions</th>
                                     <?php }?>
                                     </tr>
@@ -430,51 +433,46 @@ function view_visitor(id){
                 <tbody>
         `;
 
+
+             let htmlvisitorCard = '';
+
             res.data.forEach((v, index) => {
                 let qrImg = v.qr_code 
                     ? `<img src="<?= base_url('public/uploads/qr_codes/') ?>${v.qr_code}" class="visitor-qr" style="height:50px;">`
                     : "--";
 
-                // let actionBtn = v.status === "approved" 
-                //     ? `<button class="btn btn-warning btn-sm" onclick="resendqr('${v.v_code}')">
-                //             <i class="fas fa-paper-plane"></i>
-                //     </button>`
-                //     : "--";
+                let actionBtn = "";
+                let meetStatus = "";
+                if (v.securityCheckStatus == 0 && v.status == 'approved') {
+                // Visitor not inside → Resend QR
+                actionBtn = `
+                    <button class="btn btn-warning btn-sm" title="Re-send Gate Pass"  onclick="resendqr('${v.v_code}')">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                `;
+                }
 
-
-let actionBtn = " -- ";
-let meetStatus = "";
-if (v.securityCheckStatus == 0 && v.status == 'approved') {
-    // Visitor not inside → Resend QR
-    actionBtn = `
-        <button class="btn btn-warning btn-sm" onclick="resendqr('${v.v_code}')">
-            <i class="fas fa-paper-plane"></i>
-        </button>
-    `;
-}
-
-
-    if (v.securityCheckStatus == 1 && v.meeting_status == 0) {
-        // Visitor inside → Meeting pending (click to complete)
-        meetStatus = `
-            <span class="btn cursor-pointer meetingCmpleteBtn"
-                style="cursor:pointer "
-                onclick="markMeetingCompleted('${v.v_code}')">
-                ${v.purpose} <br>
-                Not Yet Completed
-            </span>
-        `;
-    }
-    else if (v.meeting_status == 1) {
-        meetStatus = `
-            <span class="badge bg-success">
-                <i class="fas fa-check-double"></i> Completed
-            </span>
-        `;
-    }
+                if (v.securityCheckStatus == 1 && v.meeting_status == 0) {
+                    // Visitor inside → Meeting pending (click to complete)
+                    meetStatus = `
+                        <span class="btn cursor-pointer meetingCmpleteBtn"
+                            style="cursor:pointer "
+                            onclick="markMeetingCompleted('${v.v_code}')">
+                            ${v.purpose} <br>
+                            Not Yet Completed
+                        </span>
+                    `;
+                }
+                else if (v.meeting_status == 1) {
+                    meetStatus = `
+                        <span class="badge bg-success">
+                            <i class="fas fa-check-double"></i> Completed
+                        </span>
+                    `;
+                }
 
                 tableHtml += `
-                     <tr>
+                        <tr>
                         <td>${v.v_code}</td>
                         <td>${v.visitor_name}</td>
                         <td>${v.visitor_email}</td>
@@ -485,7 +483,131 @@ if (v.securityCheckStatus == 0 && v.status == 'approved') {
                         <td class="text-center">${meetStatus}</td>
                     </tr>
                 `;
-            });
+
+        window.BASE_URL = "<?= base_url() ?>";
+          let imgPath =  window.BASE_URL + 'public/dist/User_Profile.png'
+
+        if (v.v_phopto_path && v.v_phopto_path !== '') {
+          imgPath = window.BASE_URL + 'public/uploads/visitor_photos/' + v.v_phopto_path;
+        } else {
+          imgPath = window.BASE_URL + 'public/dist/User_Profile.png'
+        }
+
+         htmlvisitorCard += `
+                          <div class="card shadow-sm p-2 mb-2"  style="background-color:#f9feff">
+                             <div class="row align-items-center">
+
+                                <!-- VISITOR PHOTO (3 columns) -->
+                                <div class="col-md-3 text-center mb-3 mb-md-0">
+                                    <div class="photo-wrapper">
+                                        <img id="visitorPhotoPreview"
+                                            src="${imgPath}"
+                                            alt="Visitor Photo">
+                                    </div>
+
+                                <div class="photo-loader text-center" style="display:none;">
+                                <div class="spinner-border text-primary" role="status"></div>
+                                <div class="mt-2">Uploading photo...</div>
+                                </div>
+                                </div>
+
+                                    <!-- VISITOR DETAILS (9 columns) -->
+                                    <div class="col-md-9">
+                                        <div class="row mt-2">
+
+                                            <div class="col-md-4 col-6">
+                                                <label class="fw-semibold">Visitor Code</label>
+                                                <div id="v_code" class="cardData text-primary">${v.v_code}</div>
+                                            </div>
+
+                                            <div class="col-md-4 col-6">
+                                                <label class="fw-semibold">Visitor Name</label>
+                                                <div id="v_name" class="cardData">${v.visitor_name}</div>
+                                            </div>
+
+                                            <div class="col-md-4 col-6">
+                                                <label class="fw-semibold">Visitor Phone</label>
+                                                <div id="v_phone" class="cardData">${v.visitor_phone}</div>
+                                            </div>
+
+                                            <div class="col-md-4 col-6">
+                                                <label class="fw-semibold">Visitor Email</label>
+                                                <div id="v_email" class="cardData">${v.visitor_email}</div>
+                                            </div>
+
+                                            <div class="col-md-4 col-6">
+                                                <label class="fw-semibold">Vehicle No</label>
+                                                <div id="v_vehicle_no" class="cardData">${v.vehicle_no}</div>
+                                            </div>
+
+                                            <div class="col-md-4 col-6">
+                                                <label class="fw-semibold">Vehicle Type</label>
+                                                <div id="v_vehicle_type" class="cardData">${v.vehicle_type}</div>
+                                            </div>
+
+                                            <div class="col-md-4 col-6">
+                                                <label class="fw-semibold">Vehicle Type</label>
+                                                <div id="v_vehicle_type" class="cardData">${v.vehicle_type}</div>
+                                            </div>
+
+                                            <div class="col-md-4 col-6">
+                                            <label class="fw-semibold">Actions</label>
+                                            <div class="cardData"> ${actionBtn} ${meetStatus}</div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <!-- Status Tracker start -->
+                                <div class="status-tracker" id="statusTraker">
+                                    <div class="status-tracker-horizontal"
+                                        style="--progress: ${
+                                            v.securityCheckStatus >= 2 ? '100%' :
+                                            v.meeting_status >= 1 ? '75%' :
+                                            v.securityCheckStatus >= 1 ? '50%' :
+                                            v.status == 'approved' ? '25%' : '0%'
+                                        };">
+
+                                        <div class="step ${v.status == 'approved' ? 'active' : ''}">
+                                            <span class="circle">
+                                                <i class="fa-solid fa-file-circle-check"></i>
+                                            </span>
+                                            <span class="label">Request Approved</span>
+                                        </div>
+
+                                        <div class="step ${v.securityCheckStatus >= 1 ? 'active' : ''}">
+                                            <span class="circle">
+                                                <i class="fa-solid fa-right-to-bracket"></i>
+                                            </span>
+                                            <span class="label">Check In</span>
+                                            <span class="label"  style="margin-top:-6px;">${v.check_in} </br> ${v.check_in_by}</span>
+
+                                        </div>
+
+                                        <div class="step ${v.meeting_status >= 1 ? 'active' : ''}">
+                                            <span class="circle">
+                                                <i class="fa-solid fa-people-arrows"></i>
+                                            </span>
+                                            <span class="label">Session Complete</span>
+                                     
+
+                                        </div>
+
+                                        <div class="step ${v.securityCheckStatus >= 2 ? 'active' : ''}">
+                                            <span class="circle">
+                                                <i class="fa-solid fa-right-from-bracket"></i>
+                                            </span>
+                                            <span class="label">Check Out</span>
+                                           <span class="label" style="margin-top:-6px;">${v.check_out}<br>${v.check_out_by}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                         `;
+
+             });
 
             tableHtml += `
                     </tbody>
@@ -493,6 +615,9 @@ if (v.securityCheckStatus == 0 && v.status == 'approved') {
             `;
 
             $("#visitorCardsContainer").html(tableHtml);
+            $("#visitorCardsDetails").html(htmlvisitorCard);
+
+            
             $("#visitorModal").modal("show");
         }
     });
@@ -582,7 +707,7 @@ function approvalProcess(head_id, status, header_code, comment) {
         },
 
         complete: function () {
-            approvalInProgress = false; // 🔓 unlock after request finishes
+            approvalInProgress = false; //  unlock after request finishes
         },
 
         error: function () {

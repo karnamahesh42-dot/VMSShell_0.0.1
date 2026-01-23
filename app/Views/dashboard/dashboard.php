@@ -226,7 +226,7 @@
               <?php endforeach; ?>
             </section>
           <!-- ROW 2: Medium Cards -->
-    <?php if (!in_array($_SESSION['role_id'], [3, 4])) { ?>
+    <?php if (!in_array($_SESSION['role_id'], [3,4])) { ?>
     <section class="dash-row row-medium mb-3">
         <?php foreach($meds as $m): ?>
         <div class="card-dash card-medium">
@@ -287,7 +287,7 @@
                                         </div>
 
                                         <div class="text-end">
-                                             <?php if (in_array($_SESSION['role_id'], [1, 2])) { ?>
+                                             <?php if (in_array($_SESSION['role_id'], [1,2,5])) { ?>
                                                 <!-- Accept -->
                                                 <a href="#" class="btn btn-sm btn-outline-success" title="Accept"   onclick="approvalProcess(<?= $item['id'] ?>, 'approved', '<?= $item['header_code'] ?>')" >
                                                     <i class="fas fa-check"></i>
@@ -314,13 +314,13 @@
                 <!--  Pending List End  -->
                 <!-- Recent Entries Example Table -->
                 <?php if($_SESSION['role_id'] == 4){?>
-                  <div class="col-md-9 mt-2"> 
+                  <div class="col-md-12 mt-2"> 
                     <div class="card visitor-list-card" >
                             <div class="card-header text-white d-flex justify-content-between align-items-center">
                                 <h5 class="mb-0">
                                     <i class="fas fa-users"></i>  Today Visitor List
                                 </h5>
-                             <div><a href="<?= base_url('authorized_visitors_list') ?>" class="btn btn-light"><i class="bi bi-card-checklist"></i></a></div>
+                             <div><a href="<?= base_url('authorized_visitors_list') ?>" class="btn btn-warning"><i class="bi bi-card-checklist"></i></a></div>
                             </div>
                         <div class="card-body p-2">
                               <div class="table-responsive" style="font-size: 14px;">
@@ -334,7 +334,7 @@
                                         <th>Company</th>
                                         <th>Department</th>
                                         <th>Referred</th>
-                                        <th>Rquested By</th>
+                                        <th>Requested By</th>
                                         <th>Visitor</th>
                                         <th>Contact</th>
                                         <th>Purpose</th>
@@ -352,6 +352,8 @@
                 <?php } ?>
                 <!-- Recent Entries Example Table end -->
                 <!-- Quick Links -->
+
+            <?php if($_SESSION['role_id'] != 4){?>
                 <div class="col-md-3"> 
                     <div class="card-dash card-large">
                     <h5 class="mb-1">Quick Links</h5>
@@ -375,8 +377,9 @@
                     </div>
                     </div>
                 </div>
+            <?php } ?>
                 <!-- Quick Links end -->
-                <?php if(in_array($_SESSION['role_id'], [1,3,2])) { ?>
+                <?php if(in_array($_SESSION['role_id'], [1,3,2,5])) { ?>
 
                 <!--//////////////// Recent Otherisation List To the User ///////////////////  -->
                
@@ -499,12 +502,13 @@
             // $("#typeOfRecce").text(h.recce_type);
             // $("#shootingDate").text(h.shooting_date);
             // }
-
+            
+            $('#recceData').hide();
+            $('#vendorData').hide();
+            
             if (h.purpose === "Vendor") {
-
             $('#vendorData').show();
             $('#recceData').hide();
-
             $("#vendorCategory").text(h.v_category);
             $("#vendorStatus").text(h.v_status);
             $("#vendorCompany").text(h.v_company);
@@ -514,12 +518,9 @@
             $("#vendorMobile").text(h.v_mobile);
             }
 
-
             if (h.purpose === "Recce") {
-
             $('#recceData').show();
             $('#vendorData').hide();
-
             $("#typeOfRecce").text(h.recce_type);
             $("#director").text(h.art_director);
             $("#production").text(h.company);
@@ -528,10 +529,7 @@
             $("#contactPersonEmail").text(h.mail_id);
             $("#contactPersonMobile").text(h.mobile);
             }
-
-
-
-                           
+     
             
             let cardsHtml = "";
 
@@ -668,7 +666,7 @@ function sendMail(head_id) {
         $.ajax({
         url: "<?= base_url('/send-email') ?>",
         type: "POST",
-        data: { head_id: head_id },   // 🔥 single variable
+        data: { head_id: head_id },   //  single variable
         success: function(res) {
         console.log(res);
         }
@@ -809,149 +807,145 @@ function todayVisitorsList() {
 
 
 
-function loadAuthorizedVisitors() {
+    function loadAuthorizedVisitors() {
 
-    $.ajax({
-        url: "<?= base_url('/security/authorized_visitors_list_data') ?>",
-        type: "GET",
-        dataType: "json",
-        data: {
-            company: $("#filterCompany").val(),
-            department: $("#filterDepartment").val(),
-            securityCheckStatus: $("#filterSecurity").val(),
-            requestcode:  $("#requestcode").val(),
-            v_code:   $("#f_v_code").val()
-        },
-        success: function(res) {
+        $.ajax({
+            url: "<?= base_url('/security/authorized_visitors_list_data') ?>",
+            type: "GET",
+            dataType: "json",
+            data: {
+                company: $("#filterCompany").val(),
+                department: $("#filterDepartment").val(),
+                securityCheckStatus: $("#filterSecurity").val(),
+                requestcode:  $("#requestcode").val(),
+                v_code:   $("#f_v_code").val()
+            },
+            success: function(res) {
 
-            // console.log(res[0].meeting_status);
+                // console.log(res[0].meeting_status);
+                
+                let tbody = $("#authorizedVisitorTable");
+                tbody.empty();
+
+                if (!res.length) {
+                    tbody.append(`
+                        <tr>
+                            <td colspan='13' class='text-center text-muted'>No authorized visitors found</td>
+                        </tr>
+                    `);
+                    return;
+                }
+
+                res.forEach((v, index) => {
             
-            let tbody = $("#authorizedVisitorTable");
-            tbody.empty();
+                    let statusBadge = "";
+                    if (v.securityCheckStatus == 0) {
+                        statusBadge = `
+                            <span class="badge bg-secondary">
+                                Not Entered
+                            </span>
+                        `;
+                    } else if (v.securityCheckStatus == 1 && v.meeting_status == 0) {
 
-            if (!res.length) {
-                tbody.append(`
-                    <tr>
-                        <td colspan='13' class='text-center text-muted'>No authorized visitors found</td>
-                    </tr>
-                `);
-                return;
-            }
-
-            res.forEach((v, index) => {
-         
-                let statusBadge = "";
-                if (v.securityCheckStatus == 0) {
-                    statusBadge = `
-                        <span class="badge bg-secondary">
-                            Not Entered
-                        </span>
-                    `;
-                } else if (v.securityCheckStatus == 1 && v.meeting_status == 0) {
-
-                           <?php if($_SESSION['role_id'] == '2' || $_SESSION['role_id'] == '1'){?>
-                            statusBadge = ` <span class="btn meetingCmpleteBtn cursor-pointer" onclick="markMeetingCompleted('${v.v_code}')">
-                                        Inside <br>
-                                        ${v.purpose} Not Yet Completed <br>
-                                    In: ${v.check_in_time ?? '-'} <br>
-                                    Out: ${v.check_out_time ?? '-'} <br>
-                                </span> `;
-                             
-                          <?php }else{ ?>
-                                statusBadge = `<span class="badge bg-primary text-lite" >
-                                        Inside <br>
-                                        ${v.purpose} Not Yet Completed <br>
+                            <?php if($_SESSION['role_id'] == '2' || $_SESSION['role_id'] == '1'){?>
+                                statusBadge = ` <span class="btn meetingCmpleteBtn cursor-pointer" onclick="markMeetingCompleted('${v.v_code}')">
+                                            Inside <br>
+                                            ${v.purpose} Not Yet Completed <br>
                                         In: ${v.check_in_time ?? '-'} <br>
                                         Out: ${v.check_out_time ?? '-'} <br>
-                                      </span>`;
-                          <?php } ?>
-                } 
-                else if (v.securityCheckStatus == 1 && v.meeting_status == 1){
-                      statusBadge = `
-                        <span class="badge bg-warning text-dark" >
-                             Inside <br>
-                ${v.purpose} Completed <br>
-                            In: ${v.check_in_time ?? '-'} <br>
-                            Out: ${v.check_out_time ?? '-'} <br>
-                          
-                        </span>
-                    `;
-                }else {
-                    statusBadge = `
-                        <span class="badge bg-success">
-                            Completed <br>
-                            In: ${v.check_in_time ?? '-'} <br>
-                            Out: ${v.check_out_time ?? '-'} <br>
-                          
-                        </span>
-                    `;
-                }
-                let validityBadge = "";
-           
-                if (v.validity == 1) {
-                     validityBadge = `<i class="bi bi-check-circle text-success" style="font-size: large; font-weight: bold;"></i>`;
-                } 
-                else {
-                   validityBadge = `<i class="bi bi-x-circle text-danger" style="font-size: large; font-weight: bold;"></i>`;
-                }
-
-
-                tbody.append(`
-                    <tr>
-                        <td>${v.visit_date}</td>
-                        <td>${v.company}</td>
-                        <td>${v.department_name}</td>
-                        <td>${v.referred_by_name}</td>
-                        <td>${v.created_by_name}</td>
-                        <td>${v.visitor_name}</td>
-                        <td>${v.visitor_phone}</td>
-                        <td>${v.purpose}</td>
-                        <td>${validityBadge}</td>
-                        <td>${statusBadge}</td>
-                    </tr>
-                `);
-            });
-        }
-    });
-}
-
-
-function markMeetingCompleted(v_code) {
-    Swal.fire({
-        title: "Complete Session?",
-        text: "Confirm that the visitor Session is completed.",
-        icon: "question",
-        showCancelButton: true,
-        confirmButtonText: "Yes, Complete",
-        cancelButtonText: "Cancel"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                url: "<?= base_url('/visitor/complete-meeting') ?>",
-                type: "POST",
-                data: { v_code: v_code },
-                dataType: "json",
-                success: function (res) {
-                    if (res.status === "success") {
-                        Swal.fire({
-                            icon: "success",
-                            title: "Session Completed",
-                            timer: 1500,
-                            showConfirmButton: false
-                        });
-                        location.reload();
-                    
-                    } else {
-                        Swal.fire("Error", res.message, "error");
+                                    </span> `;
+                                
+                            <?php }else{ ?>
+                                    statusBadge = `<span class="badge bg-primary text-lite" >
+                                            Inside <br>
+                                            ${v.purpose} Not Yet Completed <br>
+                                            In: ${v.check_in_time ?? '-'} <br>
+                                            Out: ${v.check_out_time ?? '-'} <br>
+                                        </span>`;
+                            <?php } ?>
+                    } 
+                    else if (v.securityCheckStatus == 1 && v.meeting_status == 1){
+                        statusBadge = `
+                            <span class="badge bg-warning text-dark" >
+                                Inside <br>
+                    ${v.purpose} Completed <br>
+                                In: ${v.check_in_time ?? '-'} <br>
+                                Out: ${v.check_out_time ?? '-'} <br>
+                            
+                            </span>
+                        `;
+                    }else {
+                        statusBadge = `
+                            <span class="badge bg-success">
+                                Completed <br>
+                                In: ${v.check_in_time ?? '-'} <br>
+                                Out: ${v.check_out_time ?? '-'} <br>
+                            
+                            </span>
+                        `;
                     }
-                }
-            });
-        }
-    });
-}
+                    let validityBadge = "";
+            
+                    if (v.validity == 1) {
+                        validityBadge = `<i class="bi bi-check-circle text-success" style="font-size: large; font-weight: bold;"></i>`;
+                    } 
+                    else {
+                    validityBadge = `<i class="bi bi-x-circle text-danger" style="font-size: large; font-weight: bold;"></i>`;
+                    }
 
 
+                    tbody.append(`
+                        <tr>
+                            <td>${v.visit_date}</td>
+                            <td>${v.company}</td>
+                            <td>${v.department_name}</td>
+                            <td>${v.referred_by_name}</td>
+                            <td>${v.created_by_name}</td>
+                            <td>${v.visitor_name}</td>
+                            <td>${v.visitor_phone}</td>
+                            <td>${v.purpose}</td>
+                            <td>${validityBadge}</td>
+                            <td>${statusBadge}</td>
+                        </tr>
+                    `);
+                });
+            }
+        });
+    }
 
 
+    function markMeetingCompleted(v_code) {
+        Swal.fire({
+            title: "Complete Session?",
+            text: "Confirm that the visitor Session is completed.",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Yes, Complete",
+            cancelButtonText: "Cancel"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "<?= base_url('/visitor/complete-meeting') ?>",
+                    type: "POST",
+                    data: { v_code: v_code },
+                    dataType: "json",
+                    success: function (res) {
+                        if (res.status === "success") {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Session Completed",
+                                timer: 1500,
+                                showConfirmButton: false
+                            });
+                            location.reload();
+                        
+                        } else {
+                            Swal.fire("Error", res.message, "error");
+                        }
+                    }
+                });
+            }
+        });
+    }
 
   </script>

@@ -226,8 +226,10 @@ public function uploadPhoto()
     ]);
 }
 
-/// ..........Visitor Photo Upload  Start.............. ///
+/// ..........Visitor Photo Upload  Start End .............. ///
 
+
+/// ..........Recent Authoriced Visitor List + Security Authoriced List Data  Start.............. ///
 
 public function authorized_visitors_list_data()
 {
@@ -324,10 +326,13 @@ public function authorized_visitors_list_data()
     }
 
     $builder->orderBy('vr.id', 'DESC');
+    $builder->limit(200);
 
     return $this->response->setJSON($builder->get()->getResultArray());
 }
 
+
+/// ..........Recent Authoriced Visitor List + Security Authoriced List Data End .............. ///
 
 
 public function verifyVisitor()

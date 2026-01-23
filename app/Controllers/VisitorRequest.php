@@ -112,11 +112,11 @@ class VisitorRequest extends BaseController
         // CASE 2: Admin (role_id = 2) → Show ONLY same department admins ordered by priority
         else {
             $admins = $userModel
-                        ->where('role_id', 2)
-                        ->where('department_id', $dep_id)
-                        ->where('company_name', $company)
-                        ->orderBy('priority', 'ASC')
-                        ->findAll();
+                    ->where('role_id', 2)
+                    ->where('department_id', $dep_id)
+                    ->where('company_name', $company)
+                    ->orderBy('priority', 'ASC')
+                    ->findAll();
         }
         
         $data = [
@@ -217,7 +217,8 @@ class VisitorRequest extends BaseController
         $vCode     = $codeGen->generateVisitorsCode();
         $groupCode = $codeGen->generateGroupVisitorsCode();
 
-        $status = (session()->get('role_id') <= 2) ? "approved" : "pending";
+        // $status = (session()->get('role_id') == 1 || session()->get('role_id') == 5) ? "approved" : "pending";
+        $status = in_array(session()->get('role_id'), [1, 5]) ? 'approved' : 'pending';
 
         // Generate QR
         $qrFile = ($status === 'approved') ? $this->generateQRcode($vCode) : "";
@@ -351,11 +352,12 @@ public function groupSubmit()
         $visit_date   = $this->request->getPost('visit_date');
         $purpose   = $this->request->getPost('purpose');
         $description   = $this->request->getPost('description');
-        $autoApprove = (session()->get('role_id') <= 2);
+        $autoApprove = (in_array(session()->get('role_id'), [1, 5]));
         $vehicleFiles = $this->request->getFileMultiple('vehicle_id_proof');
         $visitorFiles = $this->request->getFileMultiple('visitor_id_proof');
         $mailDataList = []; // Collect mail data
 
+         
     // 1️ Insert Header Record
     $headerData = [
         'header_code'    => $groupCode,
@@ -551,7 +553,8 @@ public function groupSubmit()
             $uid  = session()->get('user_id');
 
             $query = $this->VisitorRequestHeaderModel
-                        ->orderBy('id', 'DESC');
+                      ->orderBy('id', 'DESC')
+                      ->limit(200);
 
             // Role-wise conditions
             if ($role == 2) {

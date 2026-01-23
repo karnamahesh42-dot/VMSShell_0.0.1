@@ -71,13 +71,21 @@ class VisitorRequestHeaderModel extends Model
         u1.name AS visitor_created_by_name,
         u1.email AS visitor_created_by_email,
         u2.name AS referred_by_name,
-        u2.email AS referred_by_email
+        u2.email AS referred_by_email,
+        security_gate_logs.check_in_time as check_in,
+        security_gate_logs.check_out_time as check_out,
+        u3.name as check_in_by,
+        u4.name as check_out_by,
+
     ")
     ->join('visitors', 'visitors.request_header_id = visitor_request_header.id', 'left')
     ->join('users u1', 'u1.id = visitors.created_by', 'left')
     ->join('users u2', 'u2.id = visitor_request_header.referred_by', 'left')
     ->join('recce_details', 'recce_details.header_id = visitor_request_header.id', 'left')
     ->join('vendors', 'vendors.header_id = visitor_request_header.id', 'left')
+    ->join('security_gate_logs', 'security_gate_logs.visitor_request_id = visitors.id', 'left')
+    ->join('users u3', 'u3.id = security_gate_logs.verified_by', 'left')
+    ->join('users u4', 'u4.id = security_gate_logs.updated_by', 'left')
     ->where('visitor_request_header.id', $headerId)
     ->findAll();
 }

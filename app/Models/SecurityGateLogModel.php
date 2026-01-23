@@ -14,7 +14,9 @@ class SecurityGateLogModel extends Model
         'v_code',
         'check_in_time',
         'check_out_time',
-        'verified_by'
+        'verified_by',
+        'updated_by',
+
     ];
 
     protected $useTimestamps = false; // We are manually storing times

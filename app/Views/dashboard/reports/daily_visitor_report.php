@@ -38,7 +38,7 @@
                                 <!-- Company (Static Dropdown) -->
                                 <div class="col-md-2">
                                     <label class="form-label fw-bold">Company</label>
-                                    <?php if($_SESSION['role_id'] == 1){?>
+                                    <?php if(in_array($_SESSION['role_id'], [1,5]) ){?>
 
                                     <select name="company" class="form-select">
                                         <option value="">All Companies</option>
@@ -58,7 +58,7 @@
                                 <!-- Department (Dynamic Dropdown) -->
                                 <div class="col-md-2">
                                     <label class="form-label fw-bold">Department</label>
-                                    <?php if($_SESSION['role_id'] == 1){?>
+                                    <?php if(in_array($_SESSION['role_id'], [1,5]) ){?>
                                         <select name="department" class="form-select">
                                             <option value="">All Departments</option>
                                             <?php foreach ($departments as $dept): ?>

@@ -195,6 +195,8 @@ class Dashboard extends BaseController
         $builder->where('visitor_request_header.referred_by', $userId);
     } elseif ($roleId == 3) {
         $builder->where('visitor_request_header.requested_by', $userId);
+    }elseif ($roleId == 5){
+        $builder->where('visitor_request_header.department', $departmentName);
     }
 
     $pendingList = $builder
@@ -291,8 +293,6 @@ if ($roleId == 2) {
 }
 
 $todayVisitors = $todayQuery->countAllResults();
-
-
 
 //////////////////////////////////////////////////////////////////////////////////////////
 

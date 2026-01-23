@@ -64,7 +64,7 @@ class UserModel extends Model
                     FROM users u
                     LEFT JOIN roles r ON r.id = u.role_id
                     LEFT JOIN departments d ON d.id = u.department_id
-                    WHERE u.username = ? 
+                    WHERE BINARY u.username = ? 
                     AND u.active = 1
                     LIMIT 1";
 

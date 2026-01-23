@@ -333,7 +333,7 @@
                                             <th>Company</th>
                                             <th>Department</th>
                                             <th>Referred</th>
-                                            <th>Rquested By</th>
+                                            <th>Requested By</th>
                                             <th>Visitor</th>
                                             <th>Contact</th>
                                             <th>Purpose</th>

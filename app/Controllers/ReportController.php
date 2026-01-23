@@ -96,6 +96,8 @@ public function dailyVisitorReport()
     $builder->groupBy('vr.id');
 
     $builder->orderBy('check_in_time', 'DESC');
+    $builder->limit(500);
+
 
 
         //  Fetch distinct departments
@@ -206,6 +208,7 @@ public function requestToCheckoutReport()
     /* ===================================================== */
 
     $builder->orderBy('vr.created_at', 'DESC');
+    $builder->limit(500);
 
     $data['report'] = $builder->get()->getResultArray();
 
@@ -220,17 +223,15 @@ public function requestToCheckoutReport()
     $companyModel = new CompanyModel();
     $data['companies'] = $companyModel->orderBy('company_name', 'ASC')->findAll();
     
-        
+            
+    $purposeModel = new PurposeModel();
 
-        
-$purposeModel = new PurposeModel();
+    $data['purposes'] = $purposeModel
+        ->where('status', 1)
+        ->orderBy('purpose_name', 'ASC')
+        ->findAll();
 
-$data['purposes'] = $purposeModel
-    ->where('status', 1)
-    ->orderBy('purpose_name', 'ASC')
-    ->findAll();
-
-    return view('dashboard/reports/request_to_checkout_report', $data);
+        return view('dashboard/reports/request_to_checkout_report', $data);
 }
 
 

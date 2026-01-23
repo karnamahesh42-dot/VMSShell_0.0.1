@@ -57,17 +57,30 @@
                                                      
                                 <div class="col-md-2 mb-2">
                                     <label class="form-label">Referred By</label>
-                                    <select name="referred_by" class="form-control" required>
-                                        <option value="">--Select Admin --</option>
-                                        <?php if (!empty($admins)) : ?>
-                                            <?php foreach ($admins as $admin) : ?>
-                                                <option value="<?= $admin['id']; ?>">
-                                                    <?= $admin['name']; ?>
+                                      <?php if($_SESSION['role_id'] == 5){?>
+                                            <select name="referred_by" class="form-select" required title="Select Referred By">
+                                                <option value="<?= session()->get('user_id'); ?>">
+                                                <?= session()->get('name'); ?>
                                                 </option>
-                                            <?php endforeach; ?>
-                                        <?php endif; ?>
-                                    </select>
+                                            </select>  
+                                      <?php } else{ ?>
+                                            <select name="referred_by" class="form-control" required>
+                                                <option value="">--Select Admin --</option>
+                                                <?php if (!empty($admins)) : ?>
+                                                    <?php foreach ($admins as $admin) : ?>
+                                                        <option value="<?= $admin['id']; ?>">
+                                                            <?= $admin['name']; ?>
+                                                        </option>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
+                                            </select>
+                                      <?php }  ?>
                                 </div>
+
+
+
+                                
+                                          
 
                                 <div class="col-md-6 mb-2">
                                     <label class="form-label">Description</label>
