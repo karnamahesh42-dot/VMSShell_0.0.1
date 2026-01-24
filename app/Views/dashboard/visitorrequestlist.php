@@ -465,9 +465,7 @@ function view_visitor(id){
                 }
                 else if (v.meeting_status == 1) {
                     meetStatus = `
-                        <span class="badge bg-success">
-                            <i class="fas fa-check-double"></i> Completed
-                        </span>
+                       
                     `;
                 }
 
@@ -568,7 +566,7 @@ function view_visitor(id){
                                             v.meeting_status >= 1 ? '75%' :
                                             v.securityCheckStatus >= 1 ? '50%' :
                                             v.status == 'approved' ? '25%' : '0%'
-                                        };">
+                                             }; margin-top:-20px;">
 
                                         <div class="step ${v.status == 'approved' ? 'active' : ''}">
                                             <span class="circle">
@@ -582,7 +580,7 @@ function view_visitor(id){
                                                 <i class="fa-solid fa-right-to-bracket"></i>
                                             </span>
                                             <span class="label">Check In</span>
-                                            <span class="label"  style="margin-top:-6px;">${v.check_in} </br> ${v.check_in_by}</span>
+                                            <span class="label"  style="margin-top:-6px;">${v.check_in ? v.check_in  : '' } </br> ${v.check_in_by ? v.check_in_by : ''}</span>
 
                                         </div>
 
@@ -600,7 +598,7 @@ function view_visitor(id){
                                                 <i class="fa-solid fa-right-from-bracket"></i>
                                             </span>
                                             <span class="label">Check Out</span>
-                                           <span class="label" style="margin-top:-6px;">${v.check_out}<br>${v.check_out_by}</span>
+                                           <span class="label" style="margin-top:-6px;">${v.check_out ? v.check_out : '' }<br>${v.check_out_by ? v.check_out_by : '' }</span>
                                         </div>
                                     </div>
                                 </div>
@@ -863,6 +861,15 @@ function re_send_group_qr(email, header_id) {
 }
 
 
+//// focuss  the user image ///
+const photo = document.getElementById("visitorPhotoPreview");
+
+photo?.addEventListener("click", () => {
+    photo.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+});
 
 
 </script>

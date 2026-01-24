@@ -310,7 +310,7 @@
                                         <!--////////// Hidden File Input /////////////-->
 
 
-                                        <?php if($_SESSION['role_id'] == '1'){?>
+                                        <?php if(in_array($_SESSION['role_id'],[1])){?>
                                             <!-- Export Button -->
                                             <button class="btn btn-success" onclick="exportTable()" title="Export Data">
                                                 <i class="fas fa-file-export"></i>
@@ -398,15 +398,15 @@ function processSecurity(vCode) {
             else if (res.status === 'meeting_not_completed') {
                 let hostDetails = `
                 <div style="text-align:center; font-size:14px; line-height:1.6;">
-                    <div style="margin-bottom:8px;">
+                    <div style="margin-bottom:1px;">
                         <i class="fa fa-user" style="color:#0d6efd; margin-right:6px;"></i>
                         ${res.name ?? '--'}
                     </div>
-                    <div style="margin-bottom:8px;">
+                    <div style="margin-bottom:1px;">
                         <i class="fa fa-building" style="color:#0d6efd; margin-right:6px;"></i>
                         ${res.company_name ?? '--'}
                     </div>
-                    <div style="margin-bottom:8px;">
+                    <div style="margin-bottom:1px;">
                         <i class="fa fa-envelope" style="color:#0d6efd; margin-right:6px;"></i>
                        ${res.email ?? '--'}
                     </div>
@@ -724,7 +724,7 @@ function openVisitorPopup(v_code){
         data: { v_code: v_code },
         dataType: "json",
         success: function (d) {
-            // console.log(d)
+             //console.log(d)
         if(d.status == 'success'){
                     // HEADER FIELDS
                     $("#h_code").text(d.data.header_code);
@@ -856,20 +856,20 @@ function uploadVisitorPhoto(input) {
         return;
     }
 
-    // 🔴 Hide camera icon
+    //  Hide camera icon
     $('.camera-upload').fadeOut(300);
 
-    // 🟡 Show loader
+    //  Show loader
     $('.photo-loader').fadeIn(200);
 
-    // 🔍 Preview instantly
+    //  Preview instantly
     const reader = new FileReader();
     reader.onload = e => {
         document.getElementById('visitorPhotoPreview').src = e.target.result;
     };
     reader.readAsDataURL(file);
 
-    // 📦 Prepare upload
+    //  Prepare upload
     const formData = new FormData();
     formData.append('photo', file);
     formData.append('v_code', document.getElementById('v_code').innerText);
@@ -881,7 +881,7 @@ function uploadVisitorPhoto(input) {
     .then(res => res.json())
     .then(res => {
 
-        // 🟢 Hide loader
+        //  Hide loader
         $('.photo-loader').fadeOut(200);
 
         if (res.status === 'success') {
@@ -893,7 +893,7 @@ function uploadVisitorPhoto(input) {
 
         } else {
 
-            // 🔁 Restore camera on error
+            //  Restore camera on error
             $('.camera-upload').fadeIn(300);
 
             Swal.fire("Error", res.message, "error");
@@ -901,7 +901,7 @@ function uploadVisitorPhoto(input) {
     })
     .catch(() => {
 
-        // 🔴 Hide loader & restore camera
+        //  Hide loader & restore camera
         $('.photo-loader').fadeOut(200);
         $('.camera-upload').fadeIn(300);
 

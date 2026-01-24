@@ -1341,7 +1341,7 @@ input[type="file"] {
     font-size: 18px;
 }
 
-/* ❤️ Heartbeat animation */
+/* Heartbeat animation */
 .heartbeat {
     animation: heartbeat 1.6s ease-in-out infinite;
 }
@@ -1373,7 +1373,7 @@ input[type="file"] {
 
 /* 
 /////////////////////////// Mobile View Responsive //////////////////////////////////////////// */
-@media (max-width: 768px) {
+@media (max-width: 800px) {
 #qrScannerOverlay {
     position: fixed;
     inset: 0;

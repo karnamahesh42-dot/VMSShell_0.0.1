@@ -291,7 +291,7 @@ public function authorized_visitors_list_data()
    
     
 
-    if($role_id == '4' || $role_id == '1' ){        /// Securuty Condition 
+    if(in_array($role_id,[1,4,5])){        /// Securuty Condition 
            
         if (!empty($company)) {
             $builder->where('hr.company', $company);

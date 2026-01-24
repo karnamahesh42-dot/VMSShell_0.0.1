@@ -18,11 +18,11 @@ class GenerateCodesController extends BaseController
             $nextNumber = 1;
             } else {
             // Extract last 4-digit number
-            $lastCode = intval(substr($last['rvr_code'], -4));
+            $lastCode = intval(substr($last['rvr_code'], -6));
             $nextNumber = $lastCode + 1;
             }
             // Format as 4-digit padded number
-            $formatted = str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
+            $formatted = str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
             return "RVR" . $formatted;
         }
 
@@ -40,11 +40,11 @@ class GenerateCodesController extends BaseController
             $nextNumber = 1;
             } else {
             // Extract last 4-digit number
-            $lastCode = intval(substr($last['v_code'], -6));
+            $lastCode = intval(substr($last['v_code'], -8));
             $nextNumber = $lastCode + 1;
             }
             // Format as 4-digit padded number
-            $formatted = str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
+            $formatted = str_pad($nextNumber, 8, '0', STR_PAD_LEFT);
             return "V" . $formatted;
         }
 
@@ -59,15 +59,12 @@ class GenerateCodesController extends BaseController
             $nextNumber = 1;
             } else {
             // Extract last 4-digit number
-            $lastCode = intval(substr($last['group_code'], -6));
+            $lastCode = intval(substr($last['group_code'], -8));
             $nextNumber = $lastCode + 1;
             }
             // Format as 4-digit padded number
-            $formatted = str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
+            $formatted = str_pad($nextNumber, 8, '0', STR_PAD_LEFT);
             return "GV" . $formatted;
         }
-
-
-
         
 }

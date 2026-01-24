@@ -15,119 +15,79 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-const sidebar = document.getElementById('sidebar');
-const overlay = document.getElementById('overlay');
-const mobileToggle = document.getElementById('mobileSidebarToggle');
-const collapseBtn = document.getElementById('sidebarCollapse');
-const mainContent = document.getElementById('mainContent');
-const topbar = document.getElementById('topbar');
-const footer = document.getElementById('footer');
-
+   
 document.addEventListener('DOMContentLoaded', function () {
+
     const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const mobileToggle = document.getElementById('mobileSidebarToggle');
+    const collapseBtn = document.getElementById('sidebarCollapse');
     const mainContent = document.getElementById('mainContent');
     const topbar = document.getElementById('topbar');
     const footer = document.getElementById('footer');
-    const mobileToggle = document.getElementById('mobileSidebarToggle');
 
-    function initMobileView() {
-        if (window.innerWidth <= 425) {
+    const mobileQuery = window.matchMedia('(max-width: 800px)');
+
+    function applyResponsiveLayout() {
+        if (mobileQuery.matches) {
+            // Mobile / Tablet
             sidebar.classList.add('closed');
             mainContent.classList.add('expanded');
             topbar.classList.add('collapsed');
             footer.classList.add('expanded');
-            document.body.classList.remove('sidebar-open'); // important
+            overlay?.classList.remove('active');
+            document.body.classList.remove('sidebar-open');
+        } else {
+            // Desktop
+            sidebar.classList.remove('closed');
+            mainContent.classList.remove('expanded');
+            topbar.classList.remove('collapsed');
+            footer.classList.remove('expanded');
+            overlay?.classList.remove('active');
+            document.body.classList.remove('sidebar-open');
         }
     }
 
-    // Run on page load
-    initMobileView();
+    // Initial check (after layout settles)
+    setTimeout(applyResponsiveLayout, 100);
 
-    // Run on resize
-    window.addEventListener('resize', initMobileView);
+    // Listen for real breakpoint changes
+    mobileQuery.addEventListener('change', applyResponsiveLayout);
 
-    // Toggle sidebar
-    mobileToggle?.addEventListener('click', function () {
-
+    // Toggle sidebar (mobile)
+    mobileToggle?.addEventListener('click', () => {
         sidebar.classList.toggle('closed');
         mainContent.classList.toggle('expanded');
         topbar.classList.toggle('collapsed');
         footer.classList.toggle('expanded');
 
-        if (!sidebar.classList.contains('closed') && window.innerWidth <= 768) {
+        if (!sidebar.classList.contains('closed') && mobileQuery.matches) {
+            overlay?.classList.add('active');
             document.body.classList.add('sidebar-open');
         } else {
+            overlay?.classList.remove('active');
             document.body.classList.remove('sidebar-open');
         }
-
     });
 
-});
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    const fullScreenBtn = document.getElementById('fullScreenBtn');
-    fullScreenBtn?.addEventListener('click', function () {
-        // Desktop only
-        if (window.innerWidth <= 425) return;
-        if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen().catch(err => {
-                console.error('Fullscreen error:', err);
-            });
-        } else {
-            document.exitFullscreen();
-        }
+    // Overlay click
+    overlay?.addEventListener('click', () => {
+        sidebar.classList.add('closed');
+        mainContent.classList.add('expanded');
+        topbar.classList.add('collapsed');
+        footer.classList.add('expanded');
+        overlay.classList.remove('active');
+        document.body.classList.remove('sidebar-open');
     });
-});
 
+    // Desktop collapse
+    collapseBtn?.addEventListener('click', () => {
+        sidebar.classList.toggle('closed');
+        mainContent.classList.toggle('expanded');
+        topbar.classList.toggle('collapsed');
+        footer.classList.toggle('expanded');
+    });
 
-// document.addEventListener('DOMContentLoaded', function () {
-//     const fullScreenBtn = document.getElementById('fullScreenBtn');
-//     // Restore fullscreen on reload
-//     if (
-//         localStorage.getItem('isFullscreen') === 'true' &&
-//         window.innerWidth > 425
-//     ) {
-//         document.documentElement.requestFullscreen().catch(() => {});
-//     }
-//     fullScreenBtn?.addEventListener('click', function () {
-//         // Desktop only
-//         if (window.innerWidth <= 425) return;
-//         if (!document.fullscreenElement) {
-//             document.documentElement.requestFullscreen()
-//                 .then(() => {
-//                     localStorage.setItem('isFullscreen', 'true');
-//                 })
-//                 .catch(err => console.error('Fullscreen error:', err));
-//         } else {
-//             document.exitFullscreen()
-//                 .then(() => {
-//                     localStorage.setItem('isFullscreen', 'false');
-//                 });
-//         }
-//     });
-
-//     // Sync state if user exits fullscreen manually (ESC)
-//     document.addEventListener('fullscreenchange', () => {
-//         localStorage.setItem(
-//             'isFullscreen',
-//             document.fullscreenElement ? 'true' : 'false'
-//         );
-//     });
-// });
-
-
-overlay?.addEventListener('click', () => {
-  sidebar.classList.remove('open');
-  overlay.classList.remove('active');
-});
-
-// Desktop collapse
-collapseBtn?.addEventListener('click', () => {
-  sidebar.classList.toggle('closed');
-  mainContent.classList.toggle('expanded');
-  topbar.classList.toggle('collapsed');
-  footer.classList.toggle('expanded');
 });
 
 </script>
