@@ -413,14 +413,32 @@ function processSecurity(vCode) {
                 </div>
                 `;
 
+            let gateCheckInStatus = `
+                    <div style="text-align:center; font-size:14px; line-height:1.6; color: green; font-weight: bold;">  
+                        <div style="margin-bottom:2px;">
+                            <i class="fa fa-door-open" style="margin-right:6px;"></i>
+                            <span>Checked In At :</span>
+                            <span>${res.check_in_at ?? '--'} </span>
+                        </div>
+
+                        <div style="margin-bottom:2px;">
+                            <i class="fa fa-user-check" style="margin-right:6px;"></i>
+                            <span>Checked In By :</span>
+                            <span>${res.check_in_by ?? '--'} </span>
+                        </div>
+                    </div>
+                    `;
+
                 Swal.fire({
                     icon: 'warning',
                     title: 'Action Restricted',
                     html: `
                         <p><b class="text-primary">${res.purpose ?? '--'}</b> has not been completed by the host.</p>
                         <p><b>Please contact the host to complete the session.</b></p>
-                        <hr>
+                       <hr>
                         ${hostDetails}
+                        <hr>
+                        ${gateCheckInStatus}
                     `,
                     confirmButtonText: 'OK'
                 });
@@ -724,7 +742,7 @@ function openVisitorPopup(v_code){
         data: { v_code: v_code },
         dataType: "json",
         success: function (d) {
-             //console.log(d)
+             console.log(d)
         if(d.status == 'success'){
                     // HEADER FIELDS
                     $("#h_code").text(d.data.header_code);
@@ -788,6 +806,7 @@ function openVisitorPopup(v_code){
                                     <i class="fa-solid fa-right-to-bracket"></i>
                                 </span>
                                 <span class="label">Check In</span>
+                                <span class="label"  style="margin-top:-6px;">${d.data.check_in ? d.data.check_in  : '' } </br> ${d.data.check_in_by ? d.data.check_in_by : ''}</span>
                             </div>
 
                             <div class="step ${d.data.meeting_status >= 1 ? 'active' : ''}">
@@ -802,6 +821,7 @@ function openVisitorPopup(v_code){
                                     <i class="fa-solid fa-right-from-bracket"></i>
                                 </span>
                                 <span class="label">Check Out</span>
+                              <span class="label" style="margin-top:-6px;">${d.data.check_out ? d.data.check_out : '' }<br>${d.data.check_out_by ? d.data.check_out_by : '' }</span>
                             </div>
 
                         </div>`;

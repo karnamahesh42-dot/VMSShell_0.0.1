@@ -1,0 +1,135 @@
+
+    /* ? Tablet-specific CSS */
+@media (pointer: coarse) and (min-width: 768px) and (max-width: 1024px) {
+  #qrScannerOverlay {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 9999;
+    display: none; /* hidden initially */
+}
+
+#qr-reader {
+    width: 100%;
+    height: 100%;
+}
+
+#closeScanner {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;                 /* FIX */
+    transform: translateX(-50%); /* FIX */
+    z-index: 10000;
+    display: block !important;
+    margin-bottom:50px;
+}
+
+
+
+/*//////////////////// end Scan Style //////////// */
+
+    .brand {
+        font-size: 16px;
+    }
+
+    .brand-subtitle {
+        font-size: 10px;
+    }
+
+     /* Default ? show title */
+    .brand,
+    .brand-subtitle {
+        display: block;
+    }
+
+    /* Sidebar OPEN ? hide title */
+    body.sidebar-open .brand,
+    body.sidebar-open .brand-subtitle {
+        display: none;
+    }
+
+.brand,
+.brand-subtitle {
+    transition: opacity 0.5s ease;
+}
+
+ /* Default ? footer visible */
+    #footer {
+        display: flex;
+    }
+
+    /* Sidebar OPEN ? hide footer */
+    body.sidebar-open #footer {
+        display: none;
+    }
+
+body.sidebar-open .brand,
+body.sidebar-open .brand-subtitle {
+    opacity: 0;
+}
+
+
+    #fullScreenBtn {
+        display: none;
+    }
+
+    #navebarUserName {
+        display: none;
+    }
+
+    /* Sidebar hidden by default */
+    #sidebar {
+        width: 0;
+        overflow: hidden;
+        transition: width 0s ease;
+    }
+    /* Topbar */
+    .topbar,.footer {
+      transition: all 0s ease;
+    }
+
+
+    #sidebar.closed {
+        width: 0;
+    }
+
+    #sidebar:not(.closed) {
+        width: 220px; /* your sidebar width */
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        z-index: 1051;
+        background: var(--sidebar-bg);
+    }
+
+    /* Content full width */
+    #mainContent,
+    #topbar,
+    #footer {
+        margin-left: 0 !important;
+    }
+
+    #mainContent{
+        padding: 5px 5px;
+    }
+    .container-fluid {
+          padding: 2px 5px;
+    }     
+
+
+    .card-header-actions .btn-warning {
+    background: #f7b733;
+    border: 1px solid #e0a106;
+    color: #000000;
+    font-size: 11px;
+    }
+
+    .modal {
+        --bs-modal-width: 600px;
+    }
+
+}
+
+
+

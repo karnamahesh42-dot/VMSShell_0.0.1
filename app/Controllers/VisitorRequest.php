@@ -729,36 +729,36 @@ public function groupSubmit()
 
         public function updateVisitorValidity()
         {
-                // Get all expired visitors (older than 1 day & validity = 1)
-                $visitorRequestModelObj = new VisitorRequestModel();
-                $expiredVisitorPassModel = new ExpiredVisitorPassModel();
-                    
-                $expiredVisitors = $visitorRequestModelObj
-                                    ->where('validity', 1)
-                                    ->where('securityCheckStatus', 0)    // Visitor not checked in / not in gate log
-                                    ->where('visit_date <', date('Y-m-d'))  // Visit date older than today
-                                    ->findAll();
+            // Get all expired visitors (older than 1 day & validity = 1)
+            $visitorRequestModelObj = new VisitorRequestModel();
+            $expiredVisitorPassModel = new ExpiredVisitorPassModel();
+                
+            $expiredVisitors = $visitorRequestModelObj
+                                ->where('validity', 1)
+                                ->where('securityCheckStatus', 0)    // Visitor not checked in / not in gate log
+                                ->where('visit_date <', date('Y-m-d'))  // Visit date older than today
+                                ->findAll();
 
-                    // print_r($expiredVisitors);
+                // print_r($expiredVisitors);
 
-                foreach ($expiredVisitors as $visitor) {
+            foreach ($expiredVisitors as $visitor) {
 
-                    // Insert into expired_visitor_passes table
-                    $expiredVisitorPassModel->insert([
-                        'visitor_request_id' => $visitor['id'],
-                        'v_code'       => $visitor['v_code'],   // change column names if needed
-                        'header_code'        => $visitor['group_code'],    // change column names if needed
-                        'expired_at'         => date('Y-m-d H:i:s')
-                    ]);
-                    
-                    $visitorRequestModelObj->update($visitor['id'], ['validity' => 0]);     
-                }
-
-                return $this->response->setJSON([
-                    'status' => 'success',
-                    'expired_count' => count($expiredVisitors),
-                    'message' => 'Expired visitor passes stored successfully'
+                // Insert into expired_visitor_passes table
+                $expiredVisitorPassModel->insert([
+                    'visitor_request_id' => $visitor['id'],
+                    'v_code'       => $visitor['v_code'],   // change column names if needed
+                    'header_code'        => $visitor['group_code'],    // change column names if needed
+                    'expired_at'         => date('Y-m-d H:i:s')
                 ]);
+                
+                $visitorRequestModelObj->update($visitor['id'], ['validity' => 0]);     
+            }
+
+            return $this->response->setJSON([
+                'status' => 'success',
+                'expired_count' => count($expiredVisitors),
+                'message' => 'Expired visitor passes stored successfully'
+            ]);
         }
 
 

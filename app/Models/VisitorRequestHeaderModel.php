@@ -175,12 +175,20 @@ public function getHeaderWithVisitorsMailDataByVCode($vCode)
             'users.name as created_by_name',
             'users.email as created_by_email',
             'refUser.name as referred_by_name',
-            'departments.department_name'
+            'departments.department_name',
+            'security_gate_logs.check_in_time as check_in',
+            'security_gate_logs.check_out_time as check_out',
+            'u3.name as check_in_by',
+            'u4.name as check_out_by',
         ])
         ->join('visitors', 'visitors.request_header_id = visitor_request_header.id', 'left')
         ->join('users', 'users.id = visitors.created_by', 'left')
         ->join('users AS refUser', 'refUser.id = visitor_request_header.referred_by', 'left')
         ->join('departments', 'departments.id = users.department_id', 'left')
+        ->join('security_gate_logs', 'security_gate_logs.visitor_request_id = visitors.id', 'left')
+        ->join('users u3', 'u3.id = security_gate_logs.verified_by', 'left')
+        ->join('users u4', 'u4.id = security_gate_logs.updated_by', 'left')
+
         ->where('visitors.v_code', $vCode)
         ->findAll();
 }

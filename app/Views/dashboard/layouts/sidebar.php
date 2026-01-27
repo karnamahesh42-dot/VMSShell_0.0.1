@@ -20,6 +20,8 @@ if (!$session->has('isLoggedIn') || !$session->has('user_id') || !$session->has(
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.5/dist/sweetalert2.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
   <link rel="stylesheet" href="<?= base_url('public/dist/css/costomstyle.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('public/dist/css/tabstylesheet.css') ?>">
+
   
 <!-- Select2 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />

@@ -454,12 +454,18 @@ public function  todayVisitorListOfDashboard()
         $visitorId = $visitor['id'];
 
         // 🔹 Check active log (decides action)
-        $activeLog = $logModel
+        // $activeLog = $logModel
+        //     ->where('visitor_request_id', $visitorId)
+        //     ->where('check_out_time IS NULL', null, false)
+        //     ->first();
+
+            $activeLog = $logModel
+            ->select('security_gate_logs.*, users.name as check_in_by')
+            ->join('users', 'users.id = security_gate_logs.verified_by', 'left')
             ->where('visitor_request_id', $visitorId)
             ->where('check_out_time IS NULL', null, false)
             ->first();
-
-            
+                    
         if ($visitor['validity'] != 1) {
             return $this->response->setJSON([
                 'status' => 'invalid',
@@ -566,7 +572,9 @@ public function  todayVisitorListOfDashboard()
                     'name'         => $host['name'] ?? '--',
                     'company_name'  => $host['company_name'] ?? '--',
                     'email'        => $host['email'] ?? '--',
-                    'purpose'      =>  $visitor['purpose'] ?? '--'
+                    'purpose'      =>  $visitor['purpose'] ?? '--',
+                    'check_in_by' => $activeLog['check_in_by'],
+                    'check_in_at' => $activeLog['check_in_time'],
                 ]);
          }
 
