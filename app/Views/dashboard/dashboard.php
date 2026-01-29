@@ -373,7 +373,7 @@
                      <?php } ?>
                       
                         <!-- <a href="<?= base_url('security_authorization') ?>"><i class="bi bi-shield-lock-fill me-2"></i> Security Authorization</a> -->
-                      
+                        <a href="<?= base_url('usermanuals') ?>"><i class="bi bi-collection-play me-2"></i>User Manuals</a>
                     </div>
                     </div>
                 </div>

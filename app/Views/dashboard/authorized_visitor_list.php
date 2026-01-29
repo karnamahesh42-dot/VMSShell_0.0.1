@@ -17,6 +17,54 @@
 <!---- Camera PopUp Start --->
 
 
+<!--  Visitor Belongings Popup Start -->
+   <div class="modal fade" id="belongingsModal" tabindex="-1">
+        <div class="modal-dialog modal-md modal-dialog-centered">
+            <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Visitor Belongings</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <!-- Dropdown 1 -->
+                <div class="mb-3">
+                <label class="form-label">Belonging Type</label>
+                <select class="form-select">
+                    <option value="">Select</option>
+                    <option>Laptop</option>
+                    <option>Mobile</option>
+                    <option>Camera</option>
+                    <option>Bag</option>
+                </select>
+                </div>
+
+                <!-- Dropdown 2 -->
+                <div class="mb-3">
+                <label class="form-label">Quantity</label>
+                <select class="form-select">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary">Save</button>
+            </div>
+
+            </div>
+        </div>
+    </div>
+<!--  Visitor Belongings Popup End -->
+
+
+
     <!-- view Pop-up Form start  -->
     <div class="modal fade" id="visitorModal">
         <div class="modal-dialog modal-lg">
@@ -26,6 +74,7 @@
                 <div class="modal-header bg-primary text-white rounded-top-4">
                     <h5 class="modal-title">Visitor Details</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                   
                 </div>
 
                 <!-- BODY -->
@@ -102,8 +151,9 @@
                                
                             </div>
                             <!-- Status Tracker End -->
-                                <hr>
-                                <h5 class="fw-bold text-primary">Visitor Details</h5>
+                      
+                               
+                                <!-- <h5 class="fw-bold text-primary">Visitor Details</h5>   <span class='text-primary'> +Belongings</span> -->
                                     <div class="card shadow-sm p-3">
                                         <div class="row align-items-center">
 
@@ -185,6 +235,87 @@
 
                                                 </div>
                                             </div>
+                                        
+                                        <table class="table table-bordered table-sm mt-3" id="belongingsTable">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th style="width:30%;">Belonging</th>
+                                              
+                                                    <th>Description</th>
+                                                    <th class="text-center" style="width:80px;">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <!-- Column 1: Dropdown -->
+                                                    <td width="20%">
+                                                        <select class="form-select form-select-sm">
+                                                            <option value="">-- Select --</option>
+                                                            <optgroup label="Tools & Equipment">
+                                                                <option value="Tool Kit">Tool Kit</option>
+                                                                <option value="Measuring Instruments">Measuring Instruments</option>
+                                                                <option value="Multimeter">Multimeter</option>
+                                                                <option value="Drill Machine">Drill Machine</option>
+                                                                <option value="Testing Device">Testing Device</option>
+                                                            </optgroup>
+
+                                                            <optgroup label="Electronic Devices">
+                                                                <option value="Laptop">Laptop</option>
+                                                                <option value="Mobile Phone">Mobile Phone</option>
+                                                                <option value="Tablet">Tablet</option>
+                                                                <option value="Camera">Camera</option>
+                                                                <option value="Hard Disk">Hard Disk</option>
+                                                                <option value="Pen Drive">Pen Drive</option>
+                                                                <option value="Walkie-Talkie">Walkie-Talkie</option>
+                                                            </optgroup>
+
+                                                            <optgroup label="Personal / Safety">
+                                                                <option value="Bag">Bag</option>
+                                                                <option value="Helmet">Helmet</option>
+                                                                <option value="Safety Jacket">Safety Jacket</option>
+                                                                <option value="Safety Shoes">Safety Shoes</option>
+                                                                <option value="Lunch Box">Lunch Box</option>
+                                                            </optgroup>
+
+                                                            <optgroup label="Vendor / Delivery">
+                                                                <option value="Carton Box">Carton Box</option>
+                                                                <option value="Parcel">Parcel</option>
+                                                                <option value="Spare Parts">Spare Parts</option>
+                                                                <option value="Raw Materials">Raw Materials</option>
+                                                                <option value="Sample Materials">Sample Materials</option>
+                                                            </optgroup>
+                                                        </select>
+
+                                                    </td>
+                                                   
+                                                    <!-- Column 2: Description -->
+                                                    <td width="70%">
+                                                        <input type="text"
+                                                            class="form-control form-control-sm"
+                                                            placeholder="Enter description" value="">
+                                                    </td>
+
+                                                    <!-- Column 3: Add Button -->
+                                                    <td class="text-center" width="10%">
+                                                        <button type="button"
+                                                                class="btn btn-sm btn-success"
+                                                                onclick="addBelongingRow(this)">
+                                                            +
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+
+                                            <tfoot>
+                                            <tr>
+                                                <td colspan="3" class="text-center">
+                                                    <button class="btn btn-success" id="saveBtn" onclick="saveBelongings()">Save</button>
+                                                </td>
+                                            </tr>
+                                            </tfoot>
+                                             
+                                        </table>
+
 
                                         </div>
                                     </div>
@@ -199,7 +330,7 @@
                 </div>
 
                 <!-- FOOTER -->
-                <div class="modal-footer justify-content-between">
+                <div class="modal-footer justify-content-end">
                     <button class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                 </div>
 
@@ -852,9 +983,12 @@ function openVisitorPopup(v_code){
                 }
 
                 $("#actionBtns").html(actionHTML);
-                            // Open Modal
-                            $("#visitorModal").modal("show");
-                
+                // Open Modal
+                $("#visitorModal").modal("show");
+                // Show Belongings Data
+                  
+                    showBelongingsData(d.data.v_code);
+                                                
                 }else{
 
                  Swal.fire("Error", d.message, "error");
@@ -928,5 +1062,193 @@ function uploadVisitorPhoto(input) {
         Swal.fire("Error", "Upload failed", "error");
     });
 }
+
+
+
+
+
+
+function addBelongingRow(btn) {
+    const row = btn.closest('tr');
+
+    // Validate current row
+    const select = row.querySelector('select');
+    if (!select.value) {
+        alert('Please select a belonging');
+        return;
+    }
+
+    // Change + to delete on existing row
+    btn.classList.remove('btn-success');
+    btn.classList.add('btn-danger');
+    btn.innerText = '×';
+    btn.onclick = function () {
+        row.remove();
+    };
+
+    // Create new empty row
+    const newRow = row.cloneNode(true);
+
+    newRow.querySelector('select').value = '';
+    newRow.querySelector('input').value = '';
+
+    const newBtn = newRow.querySelector('button');
+    newBtn.classList.remove('btn-danger');
+    newBtn.classList.add('btn-success');
+    newBtn.innerText = '+';
+    newBtn.onclick = function () {
+        addBelongingRow(this);
+    };
+
+    document.querySelector('#belongingsTable tbody').appendChild(newRow);
+}
+
+
+
+function saveBelongings() {
+    const rows = document.querySelectorAll('#belongingsTable tbody tr');
+    let belongings = [];
+    let  v_code   =  $("#v_code").text();
+
+    rows.forEach((row, index) => {
+        const select = row.querySelector('select');
+        const input  = row.querySelector('input');
+
+        // Skip empty rows
+        if (!select.value && !input.value) return;
+
+        // Validation
+        if (!select.value || !input.value) {
+            alert(`Please fill all fields in row ${index + 1}`);
+            return;
+        }
+
+        belongings.push({
+            name: select.value,
+            description: input.value
+        });
+    });
+
+    if (belongings.length === 0) {
+        alert('No belongings to save');
+        return;
+    }
+                                    
+    // console.log(belongings); // Check data before sending
+
+    // Send to backend (AJAX / Fetch)
+    $.ajax({
+        url: "<?= base_url('/security/saveBelongings') ?>",
+        type: "POST",
+        data: { 'belongings': belongings,'v_code' : v_code},
+        dataType: "json",
+        success: function (d) {
+            if (d.status === 'success') {
+                // alert(d.message);
+                   Swal.fire("Data Saved", d.message, "success");
+                   showBelongingsData(d.v_code);
+            } else {
+                alert(d.message);
+            }
+        }
+    });
+}
+
+
+function showBelongingsData(v_code){
+    $.ajax({
+        url: "<?= base_url('/security/detBelongingsData') ?>",
+        type: "POST",
+        data: { v_code: v_code },
+        dataType: "json",
+        success: function (d) {
+
+            const tbody = document.querySelector('#belongingsTable tbody');
+
+            // ✅ Always reset table
+            tbody.innerHTML = '';
+
+            if (d.status === 'success' && d.data.length > 0) {
+
+                // 🔹 Existing belongings → view mode
+                d.data.forEach(item => {
+                    tbody.innerHTML += `
+                        <tr>
+                            <td width="20%">
+                                <select class="form-select form-select-sm" disabled>
+                                    <option value="${item.name}" selected>${item.name}</option>
+                                </select>
+                            </td>
+                            <td width="70%">
+                                <input type="text"
+                                       class="form-control form-control-sm"
+                                       value="${item.description}" readonly>
+                            </td>
+                        </tr>`;
+                });
+
+                $('#saveBtn').hide(); // hide save if data exists
+
+            } else {
+                // 🔹 No data → normal popup (add mode)
+
+                tbody.innerHTML = `
+                    <tr>
+                        <td width="20%">
+                            <select class="form-select form-select-sm">
+                              <option value="">-- Select --</option>
+                                                            <optgroup label="Tools & Equipment">
+                                                                <option value="Tool Kit">Tool Kit</option>
+                                                                <option value="Measuring Instruments">Measuring Instruments</option>
+                                                                <option value="Multimeter">Multimeter</option>
+                                                                <option value="Drill Machine">Drill Machine</option>
+                                                                <option value="Testing Device">Testing Device</option>
+                                                            </optgroup>
+
+                                                            <optgroup label="Electronic Devices">
+                                                                <option value="Laptop">Laptop</option>
+                                                                <option value="Mobile Phone">Mobile Phone</option>
+                                                                <option value="Tablet">Tablet</option>
+                                                                <option value="Camera">Camera</option>
+                                                                <option value="Hard Disk">Hard Disk</option>
+                                                                <option value="Pen Drive">Pen Drive</option>
+                                                                <option value="Walkie-Talkie">Walkie-Talkie</option>
+                                                            </optgroup>
+
+                                                            <optgroup label="Personal / Safety">
+                                                                <option value="Bag">Bag</option>
+                                                                <option value="Helmet">Helmet</option>
+                                                                <option value="Safety Jacket">Safety Jacket</option>
+                                                                <option value="Safety Shoes">Safety Shoes</option>
+                                                                <option value="Lunch Box">Lunch Box</option>
+                                                            </optgroup>
+
+                                                            <optgroup label="Vendor / Delivery">
+                                                                <option value="Carton Box">Carton Box</option>
+                                                                <option value="Parcel">Parcel</option>
+                                                                <option value="Spare Parts">Spare Parts</option>
+                                                                <option value="Raw Materials">Raw Materials</option>
+                                                                <option value="Sample Materials">Sample Materials</option>
+                                                            </optgroup>
+                            </select>
+                        </td>
+                        <td width="70%">
+                            <input type="text"
+                                   class="form-control form-control-sm"
+                                   placeholder="Enter description">
+                        </td>
+                        <td width="10%" class="text-center">
+                            <button type="button"
+                                    class="btn btn-sm btn-success"
+                                    onclick="addBelongingRow(this)">+</button>
+                        </td>
+                    </tr>`;
+
+                $('#saveBtn').show(); // show save button
+            }
+        }
+    });
+}
+
 
 </script>

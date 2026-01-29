@@ -10,6 +10,7 @@ $routes->get('/home', 'Dashboard::index');
 $routes->get('about', 'Dashboard::about');
 $routes->get('/login', 'Login::index');
 $routes->get('/logout', 'Login::logout');
+$routes->get('/usermanuals', 'Dashboard::usermanuals');
 
 $routes->post('/login', 'Login::checkLogin');
 
@@ -69,14 +70,14 @@ $routes->get('rvr_redirect/(:any)', 'RVRDetailsController::rvr_redirect/$1');
 // Load the visitor form page
 $routes->get('rvr_details_sheet', 'RVRDetailsController::rvr_details_sheet');
 
-
-
 $routes->get('/security_authorization', 'SecurityController::index');
 $routes->get('/authorized_visitors_list', 'SecurityController::View_authorized_visitor_list');
 $routes->get('/security/authorized_visitors_list_data', 'SecurityController::authorized_visitors_list_data');
 $routes->get('/security/todayVisitorListOfDashboard', 'SecurityController::todayVisitorListOfDashboard');
+$routes->post('/security/detBelongingsData', 'SecurityController::detBelongingsData');
 
 $routes->post('/security/verify', 'SecurityController::verifyVisitor');
+$routes->post('/security/saveBelongings', 'SecurityController::saveBelongings');
 // $routes->post('/security/checkin', 'SecurityController::checkIn');
 // $routes->post('/security/checkout', 'SecurityController::checkOut');
 $routes->post('/security/securityAction', 'SecurityController::securityAction');

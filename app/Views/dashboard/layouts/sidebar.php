@@ -200,6 +200,14 @@ h1, h2, h3 {
             <i class="bi bi-grid-1x2"></i>  About Access360
         </a>
     </li>
+
+     <li>
+        <a class="nav-link <?= (uri_string()=='usermanuals') ? 'active' : '' ?>"
+            href="<?= base_url('usermanuals') ?>">
+            <i class="bi bi-collection-play"></i> User Manuals
+        </a>
+    </li>
+
     <li>
         <a class="nav-link <?= (uri_string()=='user/changePass') ? 'active' : '' ?>"
         href="<?= base_url('user/changePass') ?>">

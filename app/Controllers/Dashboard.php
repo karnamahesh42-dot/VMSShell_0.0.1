@@ -312,6 +312,10 @@ class Dashboard extends BaseController
         return view('dashboard/dashboard', $data);
     }
 
+    
+      public function usermanuals(){
+          return view('dashboard/usermanuals');
+      }
 
       public function about(){
           return view('dashboard/about');

@@ -23,102 +23,6 @@ class SecurityController extends BaseController
           return view('dashboard/authorized_visitor_list',$data);
     }
 
-
-
-// /// ..........Visitor Photo Upload  Start.............. ///
-// public function uploadPhoto()
-// {
-//     $file   = $this->request->getFile('photo');
-//     $v_code = $this->request->getPost('v_code');
-
-//     if (!$file || !$file->isValid()) {
-//         return $this->response->setJSON([
-//             'status' => 'error',
-//             'message' => 'Invalid image'
-//         ]);
-//     }
-
-//     // 🔐 Security check
-//     $visitorModel = new \App\Models\VisitorRequestModel();
-//     $visitor = $visitorModel->where('v_code', $v_code)->first();
-
-//     if (!$visitor || $visitor['securityCheckStatus'] == 0) {
-//         return $this->response->setJSON([
-//             'status' => 'error',
-//             'message' => 'Photo upload not allowed at this stage'
-//         ]);
-//     }
-
-//     // 🔍 Validate MIME
-//     if (!in_array($file->getMimeType(), ['image/jpeg', 'image/png', 'image/jpg'])) {
-//         return $this->response->setJSON([
-//             'status' => 'error',
-//             'message' => 'Only JPG or PNG images are allowed'
-//         ]);
-//     }
-
-//     // 📁 Upload path
-//     $uploadPath = FCPATH . 'public/uploads/visitor_photos/';
-//     if (!is_dir($uploadPath)) {
-//         mkdir($uploadPath, 0777, true);
-//     }
-
-//     // 🏷️ File name
-//     $newName  = 'v_pic_' . $v_code . '_' . time() . '.jpg';
-//     $fullPath = $uploadPath . $newName;
-
-//     $tempPath = $file->getTempName();
-
-//     /**
-//      * ✅ STEP 1: FIX ROTATION USING EXIF (IMPORTANT)
-//      */
-//     if (function_exists('exif_read_data') && in_array($file->getMimeType(), ['image/jpeg', 'image/jpg'])) {
-
-//         $exif = @exif_read_data($tempPath);
-
-//         if (!empty($exif['Orientation'])) {
-
-//             $source = imagecreatefromjpeg($tempPath);
-
-//             switch ($exif['Orientation']) {
-//                 case 3:
-//                     $source = imagerotate($source, 180, 0);
-//                     break;
-//                 case 6:
-//                     $source = imagerotate($source, -90, 0); // RIGHT
-//                     break;
-//                 case 8:
-//                     $source = imagerotate($source, 90, 0);  // LEFT
-//                     break;
-//             }
-
-//             imagejpeg($source, $tempPath, 100);
-//             imagedestroy($source);
-//         }
-//     }
-
-//     /**
-//      * ✅ STEP 2: RESIZE & COMPRESS (Mobile optimized)
-//      */
-//     $image = \Config\Services::image('gd');
-
-//     $image->withFile($tempPath)
-//           ->resize(1024, 1024, true, 'auto')
-//           ->save($fullPath, 70); // 70% quality = sharp + small size
-
-//     /**
-//      * 💾 STEP 3: SAVE PATH
-//      */
-//     $visitorModel->where('v_code', $v_code)
-//                  ->set(['v_phopto_path' => $newName])
-//                  ->update();
-
-//     return $this->response->setJSON([
-//         'status' => 'success',
-//         'path'   => base_url('public/uploads/visitor_photos/' . $newName)
-//     ]);
-// }
-
 public function uploadPhoto()
 {
     $file   = $this->request->getFile('photo');
@@ -131,7 +35,7 @@ public function uploadPhoto()
         ]);
     }
 
-    // 🔐 Security validation
+    //  Security validation
     $visitorModel = new \App\Models\VisitorRequestModel();
     $visitor = $visitorModel->where('v_code', $v_code)->first();
 
@@ -142,7 +46,7 @@ public function uploadPhoto()
         ]);
     }
 
-    // 🔍 MIME validation
+    //  MIME validation
     $mime = $file->getMimeType();
     if (!in_array($mime, ['image/jpeg', 'image/jpg', 'image/png'])) {
         return $this->response->setJSON([
@@ -151,7 +55,7 @@ public function uploadPhoto()
         ]);
     }
 
-    // 📁 Upload directory
+    //  Upload directory
     $uploadPath = FCPATH . 'public/uploads/visitor_photos/';
     if (!is_dir($uploadPath)) {
         mkdir($uploadPath, 0755, true);
@@ -164,7 +68,7 @@ public function uploadPhoto()
 
     /**
      * ==================================================
-     * 🔁 STEP 1: FIX IMAGE ROTATION (ONCE & BEFORE RESIZE)
+     *  STEP 1: FIX IMAGE ROTATION (ONCE & BEFORE RESIZE)
      * ==================================================
      */
     if ($mime !== 'image/png' && function_exists('exif_read_data')) {
@@ -194,7 +98,7 @@ public function uploadPhoto()
 
     /**
      * ====================================
-     * ⚡ STEP 2: FAST PATH FOR SMALL IMAGES
+     *  STEP 2: FAST PATH FOR SMALL IMAGES
      * ====================================
      */
     if ($file->getSize() < 500 * 1024) { // < 500 KB
@@ -203,7 +107,7 @@ public function uploadPhoto()
 
         /**
          * ===============================
-         * ⚡ STEP 3: RESIZE & COMPRESS
+         *  STEP 3: RESIZE & COMPRESS
          * ===============================
          */
         $image = \Config\Services::image('gd');
@@ -214,7 +118,7 @@ public function uploadPhoto()
     }
 
     /**
-     * 💾 STEP 4: SAVE FILE PATH
+     *  STEP 4: SAVE FILE PATH
      */
     $visitorModel->where('v_code', $v_code)
                  ->set(['v_phopto_path' => $newName])
@@ -432,8 +336,81 @@ public function  todayVisitorListOfDashboard()
     return $this->response->setJSON($builder->get()->getResultArray());
 }
 
-    /////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////// Belongings Save ////////////////////////////////////////////////
    
+    public function saveBelongings()
+    {
+        $belongingsData = $this->request->getPost('belongings');
+        $v_code         = $this->request->getPost('v_code');
+
+        if (empty($belongingsData) || empty($v_code)) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Invalid data'
+            ]);
+        }
+
+        $db = \Config\Database::connect();
+        $builder = $db->table('belongings');
+
+        $insertData = [];
+
+        foreach ($belongingsData as $row) {
+            $insertData[] = [
+                'v_code'      => $v_code,
+                'name'        => $row['name'],
+                'description' => $row['description'],
+                'created_at'  => date('Y-m-d H:i:s'),
+                'created_by'  => session()->get('user_id')
+            ];
+        }
+
+        // Bulk insert (FAST & SAFE)
+        $builder->insertBatch($insertData);
+
+        return $this->response->setJSON([
+            'status' => 'success',
+            'message' => 'Belongings saved successfully',
+            'v_code' =>   $v_code 
+        ]);
+    }
+
+
+ public function detBelongingsData()
+{
+    $v_code = $this->request->getPost('v_code');
+    if (empty($v_code)) {
+        return $this->response->setJSON([
+            'status' => 'error',
+            'message' => 'Visitor code missing'
+        ]);
+    }
+
+    $db = \Config\Database::connect();
+
+    $data = $db->table('belongings')
+               ->where('v_code', $v_code)
+               ->get()
+               ->getResultArray();
+
+            if (empty($data)) {
+                return $this->response->setJSON([
+                    'status' => 'error',
+                    'message' => 'No belongings found'
+                ]);
+            }
+
+            return $this->response->setJSON([
+                'status' => 'success',
+                'data'   => $data
+            ]);
+            
+}
+
+
+
+
+    //////////////////////////////////// Security Scan Logic /////////////////////////////////////////////////
     public function securityAction()
     {
         date_default_timezone_set('Asia/Kolkata');
@@ -442,7 +419,7 @@ public function  todayVisitorListOfDashboard()
         $visitorModel = new \App\Models\VisitorRequestModel();
         $v_code = $this->request->getPost('v_code');
 
-        // 🔹 Validate V-Code
+        //  Validate V-Code
         $visitor = $visitorModel->where('v_code', $v_code)->first();
 
         if (!$visitor) {
@@ -453,7 +430,7 @@ public function  todayVisitorListOfDashboard()
         }
         $visitorId = $visitor['id'];
 
-        // 🔹 Check active log (decides action)
+        // Check active log (decides action)
         // $activeLog = $logModel
         //     ->where('visitor_request_id', $visitorId)
         //     ->where('check_out_time IS NULL', null, false)
@@ -551,32 +528,32 @@ public function  todayVisitorListOfDashboard()
 
         /////////////////////// Checking Meeting Status //////////////////
 
-         if($visitor['meeting_status'] == 0 && $visitor['securityCheckStatus'] == 1){
-               
-                // return $this->response->setJSON([
-                //     'status' => 'meeting_not_completed'
-                // ]);
+        if($visitor['meeting_status'] == 0 && $visitor['securityCheckStatus'] == 1){
+            
+            // return $this->response->setJSON([
+            //     'status' => 'meeting_not_completed'
+            // ]);
 
-                // Fetch host details
-                $requestHeaderModel = new \App\Models\VisitorRequestHeaderModel();
-                
-                $requestId = $visitor['request_header_id'];
-                $host = $requestHeaderModel
-                    ->select('u.company_name, u.name,u.email')
-                    ->join('users u', 'u.id = visitor_request_header.referred_by', 'left')
-                    ->where('visitor_request_header.id', $requestId)
-                    ->first();
+            // Fetch host details
+            $requestHeaderModel = new \App\Models\VisitorRequestHeaderModel();
+            
+            $requestId = $visitor['request_header_id'];
+            $host = $requestHeaderModel
+                ->select('u.company_name, u.name,u.email')
+                ->join('users u', 'u.id = visitor_request_header.referred_by', 'left')
+                ->where('visitor_request_header.id', $requestId)
+                ->first();
 
-                return $this->response->setJSON([
-                    'status'            => 'meeting_not_completed',
-                    'name'         => $host['name'] ?? '--',
-                    'company_name'  => $host['company_name'] ?? '--',
-                    'email'        => $host['email'] ?? '--',
-                    'purpose'      =>  $visitor['purpose'] ?? '--',
-                    'check_in_by' => $activeLog['check_in_by'],
-                    'check_in_at' => $activeLog['check_in_time'],
-                ]);
-         }
+            return $this->response->setJSON([
+                'status'            => 'meeting_not_completed',
+                'name'         => $host['name'] ?? '--',
+                'company_name'  => $host['company_name'] ?? '--',
+                'email'        => $host['email'] ?? '--',
+                'purpose'      =>  $visitor['purpose'] ?? '--',
+                'check_in_by' => $activeLog['check_in_by'],
+                'check_in_at' => $activeLog['check_in_time'],
+            ]);
+        }
 
        
         return $this->response->setJSON([
