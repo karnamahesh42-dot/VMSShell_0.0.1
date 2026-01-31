@@ -249,6 +249,9 @@ $(document).ready(function() {
     loadVisitorList();
 });
 
+
+
+
 //  CORRECT function
 function loadVisitorList() {
 
@@ -287,8 +290,6 @@ function loadVisitorList() {
                     onclick="confirmResendMail('${item.email}','${item.id}')">
                     </i>`;
                 }
-
-
 
                 rows += `
                     <tr> 
@@ -416,25 +417,7 @@ function view_visitor(id){
             }
   
 
-        let tableHtml = `
-            <table class="table table-bordered table-striped">
-                <thead class="table-light">
-                    <tr>
-                        <th>Code</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>ID Type</th>
-                        <th>ID Number</th>
-                        <th>Action</th>
-                        <th>Meet Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-        `;
-
-
-             let htmlvisitorCard = '';
+            let htmlvisitorCard = '';
 
             res.data.forEach((v, index) => {
                 let qrImg = v.qr_code 
@@ -445,11 +428,9 @@ function view_visitor(id){
                 let meetStatus = "";
                 if (v.securityCheckStatus == 0 && v.status == 'approved') {
                 // Visitor not inside → Resend QR
-                actionBtn = `
-                    <button class="btn btn-warning btn-sm" title="Re-send Gate Pass"  onclick="resendqr('${v.v_code}')">
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                `;
+                actionBtn = `<button class="btn btn-warning btn-md" onclick="resendqr('${v.v_code}')">
+                       <i class="fas fa-paper-plane" title="Re-send Gate Pass"></i>
+                    </button> `;
                 }
 
                 if (v.securityCheckStatus == 1 && v.meeting_status == 0) {
@@ -463,25 +444,9 @@ function view_visitor(id){
                         </span>
                     `;
                 }
-                else if (v.meeting_status == 1) {
-                    meetStatus = `
-                       
-                    `;
-                }
+                
 
-                tableHtml += `
-                        <tr>
-                        <td>${v.v_code}</td>
-                        <td>${v.visitor_name}</td>
-                        <td>${v.visitor_email}</td>
-                        <td>${v.visitor_phone}</td>
-                        <td>${v.proof_id_type}</td>
-                        <td>${v.proof_id_number}</td>
-                        <td class="text-center">${actionBtn}</td>
-                        <td class="text-center">${meetStatus}</td>
-                    </tr>
-                `;
-
+              
         window.BASE_URL = "<?= base_url() ?>";
           let imgPath =  window.BASE_URL + 'public/dist/User_Profile.png'
 
@@ -607,12 +572,7 @@ function view_visitor(id){
 
              });
 
-            tableHtml += `
-                    </tbody>
-                </table>
-            `;
-
-            $("#visitorCardsContainer").html(tableHtml);
+        
             $("#visitorCardsDetails").html(htmlvisitorCard);
 
             
@@ -832,7 +792,9 @@ function re_send_group_qr(email, header_id) {
         type: "POST",
         data: {
             head_id: header_id,
-            email: email
+            email: email,
+            mailType : 're_send'
+
         },
         dataType: "json",
 
