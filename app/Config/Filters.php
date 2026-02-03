@@ -34,7 +34,11 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'ipwhitelist' => \App\Filters\IpWhitelist::class,
+        'authtokenfilter' => \App\Filters\AuthTokenFilter::class,
     ];
+
+ 
 
     /**
      * List of special required filters.

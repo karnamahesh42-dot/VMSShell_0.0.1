@@ -278,4 +278,17 @@ class User extends BaseController
         return redirect()->back()->with('error', 'Invalid request');
     }
 
+
+    function expoerUserData(){
+    
+        $expDataQry = "SELECT u.company_name AS Company, 
+        LTRIM(dp.department_name) AS Department,
+        CASE WHEN LOWER(rl.role_name) = 'admin' THEN 'Approver' WHEN LOWER(rl.role_name) = 'user' THEN 'User' WHEN LOWER(rl.role_name) = 'security' THEN 'Security' ELSE rl.role_name END AS Role, 
+        LTRIM(u.name) AS Name,
+        u.username AS Username FROM users u 
+        LEFT JOIN departments dp ON u.department_id = dp.id 
+        LEFT JOIN roles rl ON u.role_id = rl.id 
+        ORDER BY u.company_name, dp.department_name;";
+    }
+
 }

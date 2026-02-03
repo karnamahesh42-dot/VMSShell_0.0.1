@@ -5,6 +5,8 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
+
+
 $routes->get('/', 'Dashboard::index');
 $routes->get('/home', 'Dashboard::index');
 $routes->get('about', 'Dashboard::about');
@@ -24,7 +26,6 @@ $routes->get('/user/changePass', 'User::changePassview');
 $routes->post('/user/cahangePass', 'User::changePass');
 
 $routes->post('send-otp', 'MobileOTPController::sendOtp');// Mobile Otp Contriollr
-
 
 $routes->get('/visitorequest', 'VisitorRequest::index'); // add User Form
 $routes->get('/group_visito_request', 'VisitorRequest::groupVisitorRequestForm'); // add User Form
@@ -89,6 +90,22 @@ $routes->get('/request_to_checkout', 'ReportController::requestToCheckoutReport'
 ///////////////////////////////////// Reports  End /////////////////////////////////////////////////////////////
 $routes->get('/masterdata', 'MasterDataController::index');
 $routes->post('master/save', 'MasterDataController::save');
+
+
+$routes->group('api', ['filter' => 'authtokenfilter'], function ($routes) {
+
+    $routes->get('visitors', 'API\TestAPIController::visitorsList');
+
+    $routes->post('request/create', 'API\TestAPIController::createRequest');
+
+    $routes->post('request/approve', 'API\TestAPIController::approveRequest');
+
+    $routes->post('request/send-gatepass', 'API\TestAPIController::sendGatePass');
+
+    $routes->post('request/meeting-complete', 'API\TestAPIController::completeMeeting');
+
+});
+
 
 
 // $routes->get('/', 'VisitorController::create');

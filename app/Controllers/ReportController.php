@@ -137,6 +137,14 @@ public function requestToCheckoutReport()
 {
     $db = \Config\Database::connect();
     $request = service('request');
+    $session = session();
+
+    $sessionDep_id     = $session->get('dep_id');
+    $sessionRole_id    = $session->get('role_id');
+    $sessionUser_id    = $session->get('user_id');
+    $sessionCompany    = $session->get('company_name');
+    $sessionDepartment    = $session->get('department_name');
+
 
     //  Get filter values
     $department     = $request->getGet('department');
@@ -147,6 +155,8 @@ public function requestToCheckoutReport()
     $toDate         = $request->getGet('to_date');
     $purpose         = $request->getGet('purpose');
     $group_code         = $request->getGet('group_code');
+
+
 
     $builder = $db->table('visitors vr');
 
@@ -176,10 +186,14 @@ public function requestToCheckoutReport()
 
     if (!empty($department)) {
         $builder->where('vrh.department', $department);
+    }else{
+        $builder->where('vrh.department', $sessionDepartment);
     }
 
     if (!empty($company)) {
         $builder->where('vrh.company', $company);
+    }else{
+         $builder->where('vrh.company', $sessionCompany);
     }
 
     if (!empty($status)) {
@@ -211,7 +225,7 @@ public function requestToCheckoutReport()
     $builder->limit(500);
 
     $data['report'] = $builder->get()->getResultArray();
-
+    
 
         //  Load Departments dynamically
     $departmentModel = new DepartmentModel();

@@ -53,6 +53,12 @@ class VisitorRequest extends BaseController
                         ->orderBy('priority', 'ASC')
                         ->findAll();
         }
+        elseif ($role_id == 2) {
+            $admins = $userModel
+                        ->where('id', $user_id)
+                        ->orderBy('priority', 'ASC')
+                        ->findAll();
+        }
         // CASE 2: Admin (role_id = 2) → Show ONLY same department admins ordered by priority
         else {
             $admins = $userModel
@@ -101,15 +107,18 @@ class VisitorRequest extends BaseController
         $company    = $session->get('company_name');
 
         $userModel = new \App\Models\UserModel();
-
-        // CASE 1: Super Admin (role_id = 1) → Show ALL Admins ordered by priority
         if ($role_id == 1) {
             $admins = $userModel
                         ->where('role_id', 2)
                         ->orderBy('priority', 'ASC')
                         ->findAll();
         }
-        // CASE 2: Admin (role_id = 2) → Show ONLY same department admins ordered by priority
+        elseif ($role_id == 2) {
+            $admins = $userModel
+                        ->where('id', $user_id)
+                        ->orderBy('priority', 'ASC')
+                        ->findAll();
+        }
         else {
             $admins = $userModel
                     ->where('role_id', 2)
@@ -118,7 +127,6 @@ class VisitorRequest extends BaseController
                     ->orderBy('priority', 'ASC')
                     ->findAll();
         }
-        
         $data = [
             'admins' => $admins,
             'logged_user_id' => $user_id,
@@ -218,7 +226,7 @@ class VisitorRequest extends BaseController
         $groupCode = $codeGen->generateGroupVisitorsCode();
 
         // $status = (session()->get('role_id') == 1 || session()->get('role_id') == 5) ? "approved" : "pending";
-        $status = in_array(session()->get('role_id'), [1, 5]) ? 'approved' : 'pending';
+        $status = in_array(session()->get('role_id'), [1,2,5]) ? 'approved' : 'pending';
 
         // Generate QR
         $qrFile = ($status === 'approved') ? $this->generateQRcode($vCode) : "";
@@ -352,7 +360,7 @@ public function groupSubmit()
         $visit_date   = $this->request->getPost('visit_date');
         $purpose   = $this->request->getPost('purpose');
         $description   = $this->request->getPost('description');
-        $autoApprove = (in_array(session()->get('role_id'), [1, 5]));
+        $autoApprove = (in_array(session()->get('role_id'), [1,2,5]));
         $vehicleFiles = $this->request->getFileMultiple('vehicle_id_proof');
         $visitorFiles = $this->request->getFileMultiple('visitor_id_proof');
         $mailDataList = []; // Collect mail data
