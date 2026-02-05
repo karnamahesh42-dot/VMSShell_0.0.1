@@ -1,14 +1,5 @@
 <?= $this->include('/dashboard/layouts/sidebar') ?>
 <?= $this->include('/dashboard/layouts/navbar') ?>
-<style>
-    /* #visitorModal .card {
-        border-radius: 16px !important;
-    }
-    #visitorModal .table th, 
-    #visitorModal .table td {
-        vertical-align: middle;
-    } */
-</style>
 
 <main class="main-content" id="mainContent">
         <div class="container-fluid">
@@ -182,8 +173,10 @@
                 <!-- VISITOR CARDS END -->
                 <!-- VISITOR CARDS-2  -->
                  <h6 class="fw-bold text-primary">| Visitor Details</h6>
-                    <div id="visitorCardsDetails" style="height:250px; width:100%; overflow:auto; overflow-x:hidden;">
-                    </div>
+                   
+                   
+                        <div id="visitorCardsDetails" style="height:250px; width:100%; overflow:auto; overflow-x:hidden;">
+                        </div>
                 <!-- VISITOR CARDS-2  -->
             </div>
             <!-- FOOTER -->
@@ -406,7 +399,6 @@ function view_visitor(id){
 
                 $('#recceData').show();
                 $('#vendorData').hide();
-
                 $("#typeOfRecce").text(h.recce_type);
                 $("#director").text(h.art_director);
                 $("#production").text(h.company);
@@ -465,16 +457,11 @@ function view_visitor(id){
                                     <div class="photo-wrapper">
                                         <img id="visitorPhotoPreview"
                                             src="${imgPath}"
-                                            alt="Visitor Photo">
+                                            alt="Visitor Photo" class="zoomable">
                                     </div>
-
-                                <div class="photo-loader text-center" style="display:none;">
-                                <div class="spinner-border text-primary" role="status"></div>
-                                <div class="mt-2">Uploading photo...</div>
-                                </div>
                                 </div>
 
-                                    <!-- VISITOR DETAILS (9 columns) -->
+                                <!-- VISITOR DETAILS (9 columns) -->
                                     <div class="col-md-9">
                                         <div class="row mt-2">
 

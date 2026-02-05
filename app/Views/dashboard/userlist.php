@@ -5,197 +5,224 @@
 <main class="main-content" id="mainContent">
    <div class="container-fluid">
 
-          <!-- Edit User Modal -->
-<div class="modal fade" id="editUserModal">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content shadow-lg border-0">
+                        <!-- Edit User Modal -->
+                <div class="modal fade" id="editUserModal">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content shadow-lg border-0">
 
-            <!-- Header -->
-            <div class="card-header text-white py-3">
-                <h5 class="fw-semibold">
-                    <i class="fas fa-user-edit me-2"></i>Edit User Details
-                </h5>
-            
-            </div>
-
-            <form id="editUserForm">
-                <?= csrf_field() ?>
-
-                <div class="modal-body">
-
-                 <div class="row">
-
-                    <input type="hidden" id="edit_id" name="id">
-
-                    <!-- Company -->
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label fw-medium">Company</label>
-                        <input type="text" id="edit_company" name="company_name"
-                               class="form-control p-2" readonly>
-                    </div>
-
-                    <!-- Department -->
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label fw-medium">Department</label>
-                        <select id="edit_department" name="department_id"
-                                class="form-control p-2">
-                            <?php foreach ($departments as $dept): ?>
-                                <option value="<?= $dept['id'] ?>"><?= $dept['department_name'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                </div>
-                    <!-- Row 1 -->
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label fw-medium">Name</label>
-                            <input type="text" id="name" name="name" class="form-control p-2">
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label fw-medium">Email</label>
-                            <input type="email" id="edit_email" name="email" class="form-control p-2">
-                        </div>
-                    </div>
-
-                    <!-- Row 2 -->
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label fw-medium">Priority</label>
-                            <input type="number" id="priority" name="priority" class="form-control p-2">
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label fw-medium">Employee Code</label>
-                            <input type="text" id="edit_empcode" name="employee_code" class="form-control p-2">
-                        </div>
-                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-medium">Username</label>
-                            <input type="text" id="edit_usename" name="edit_usename" class="form-control p-2" readonly>
-                        </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label fw-medium">Password</label>
-
-                        <div class="input-group">
-                            <input type="password"
-                                    id="edit_password"
-                                    name="new_password"
-                                    class="form-control p-2"
-                                    required>
-
-                            <span class="input-group-text" style="cursor:pointer"
-                                    onclick="togglePassword()">
-                                <i id="toggleEye" class="fa fa-eye"></i>
-                            </span>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Footer -->
-                <div class="modal-footer d-flex justify-content-end">
-                    <button type="submit" class="btn btn-success px-4">
-                        <i class="fas fa-save me-1"></i> Update
-                    </button>
-                    <button type="button" class="btn btn-danger px-4" data-bs-dismiss="modal">
-                        Close
-                    </button>
-                </div>
-
-            </form>
-        </div>
-    </div>
-</div>
-<!-- Edit User Modal -->
-
-                <div class="row d-flex justify-content-center">
-                    <div class="col-md-12">
-                        <div class="card visitor-list-card">
-                            <div class="card-header d-flex justify-content-between align-items-center card-header-actions">
-                                <h5 class="mb-0">User Management</h5>
-
-                                <a href="<?= base_url('user') ?>" class="btn btn-warning">
-                                    <i class="bi bi-person-plus-fill"></i> New User
-                                </a>
-                            </div>
-
-                            <div class="card-body table-responsive">
-
-                        <!-- Filters Section -->
-                        <form method="GET" class="mb-3" id="filterform">
-                            <div class="row">
-
-                            <!-- Company Filter -->
-                            <div class="col-md-2 mb-2">
-                                <!-- <select name="company" class="form-control" onchange="this.form.submit()">
-                                    <option value="">All Companies</option>
-                                    <option value="UKMPL" <?= (isset($_GET['company']) && $_GET['company']=="UKMPL")?'selected':'' ?>>UKMPL</option>
-                                    <option value="DHPL" <?= (isset($_GET['company']) && $_GET['company']=="DHPL")?'selected':'' ?>>DHPL</option>
-                                    <option value="ETPL" <?= (isset($_GET['company']) && $_GET['company']=="ETPL")?'selected':'' ?>>ETPL</option>
-                                </select> -->
-
-
-                            <select name="company" id='companyfilter' class="form-control select2" >
-                                    <option value="">All Companies</option>
-                                    <?php if(isset($_GET['company_name'])){
-                                        echo $_GET['company_name'];
-                                    } foreach ($companies as $comp): ?>
-                                            <option value="<?= $comp['company_name'] ?>" 
-                                                <?= (isset($_GET['company']) && $_GET['company']==$comp['company_name'])?'selected':'' ?>>
-                                                <?= $comp['company_name'] ?>
-                                            </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-
-                            <!-- Department Filter -->
-                            <div class="col-md-2 mb-2">
-                                <select name="department" id='departmentfilter' class="form-control select2" >
-                                    <option value="">All Departments</option>
-                                    <?php foreach ($departments as $dept): ?>
-                                        <option value="<?= $dept['id'] ?>" 
-                                            <?= (isset($_GET['department']) && $_GET['department']==$dept['id'])?'selected':'' ?>>
-                                            <?= $dept['department_name'] ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-
-                            <!-- Role Filter -->
-                            <div class="col-md-2 mb-2">
-                                <select name="role" class="form-control" onchange="this.form.submit()">
-                                    <option value="">All Roles</option>
-
-                                    <?php foreach ($roles as $role): ?>
-                                        <option value="<?= $role['id'] ?>"
-                                            <?= (isset($_GET['role']) && $_GET['role']==$role['id'])?'selected':'' ?>>
-                                            <?= $role['role_name'] ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-
-
+                            <!-- Header -->
+                            <div class="card-header text-white py-3">
+                                <h5 class="fw-semibold">
+                                    <i class="fas fa-user-edit me-2"></i>Edit User Details
+                                </h5>
                             
-                            <!-- Role Filter -->
-                            <div class="col-md-2 mb-2">
-                                <select name="username" id="usernamefilter" class="form-control select2">
-                                    <option value="">All Usernames</option>
-
-                                    <?php foreach ($users as $user): ?>
-                                        <option value="<?= $user['username'] ?>"
-                                            <?= (isset($_GET['username']) && $_GET['username']==$user['username'])?'selected':'' ?>>
-                                            <?= $user['username']?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
                             </div>
 
-                            <!-- Reset Button -->
-                                    <div class="col-md-1 mb-2">
-                                        <a href="<?= base_url('userlist') ?>" class="btn btn-secondary w-100">
+                            <form id="editUserForm">
+                                <?= csrf_field() ?>
+
+                                <div class="modal-body">
+
+                                <div class="row">
+
+                                    <input type="hidden" id="edit_id" name="id">
+
+                                    <!-- Company -->
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label fw-medium">Company</label>
+                                        <input type="text" id="edit_company" name="company_name"
+                                            class="form-control p-2" readonly>
+                                    </div>
+
+                                    <!-- Department -->
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label fw-medium">Department</label>
+                                        <select id="edit_department" name="department_id"
+                                                class="form-control p-2">
+                                            <?php foreach ($departments as $dept): ?>
+                                                <option value="<?= $dept['id'] ?>"><?= $dept['department_name'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                    <!-- Row 1 -->
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label fw-medium">Name</label>
+                                            <input type="text" id="name" name="name" class="form-control p-2">
+                                        </div>
+
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label fw-medium">Email</label>
+                                            <input type="email" id="edit_email" name="email" class="form-control p-2">
+                                        </div>
+                                    </div>
+
+                                    <!-- Row 2 -->
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label fw-medium">Priority</label>
+                                            <input type="number" id="priority" name="priority" class="form-control p-2">
+                                        </div>
+
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label fw-medium">Employee Code</label>
+                                            <input type="text" id="edit_empcode" name="employee_code" class="form-control p-2">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label fw-medium">Username</label>
+                                            <input type="text" id="edit_usename" name="edit_usename" class="form-control p-2" readonly>
+                                        </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label fw-medium">Password</label>
+
+                                        <div class="input-group">
+                                            <input type="password"
+                                                    id="edit_password"
+                                                    name="new_password"
+                                                    class="form-control p-2"
+                                                    required>
+
+                                            <span class="input-group-text" style="cursor:pointer"
+                                                    onclick="togglePassword()">
+                                                <i id="toggleEye" class="fa fa-eye"></i>
+                                            </span>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Footer -->
+                                <div class="modal-footer d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-success px-4">
+                                        <i class="fas fa-save me-1"></i> Update
+                                    </button>
+                                    <button type="button" class="btn btn-danger px-4" data-bs-dismiss="modal">
+                                        Close
+                                    </button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Edit User Modal -->
+
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-12">
+                            <div class="card visitor-list-card">
+                                <div class="card-header d-flex justify-content-between align-items-center card-header-actions">
+                                    <h5 class="mb-0">User Management</h5>
+
+                                    <a href="<?= base_url('user') ?>" class="btn btn-warning">
+                                        <i class="bi bi-person-plus-fill"></i> New User
+                                    </a>
+                                </div>
+
+                                <div class="card-body table-responsive">
+
+                            <!-- Filters Section -->
+                            <form method="GET" class="mb-3" id="filterform">
+                                <div class="row">
+
+                                <!-- Company Filter -->
+                                <div class="col-md-2 mb-2">
+                                    <!-- <select name="company" class="form-control" onchange="this.form.submit()">
+                                        <option value="">All Companies</option>
+                                        <option value="UKMPL" <?= (isset($_GET['company']) && $_GET['company']=="UKMPL")?'selected':'' ?>>UKMPL</option>
+                                        <option value="DHPL" <?= (isset($_GET['company']) && $_GET['company']=="DHPL")?'selected':'' ?>>DHPL</option>
+                                        <option value="ETPL" <?= (isset($_GET['company']) && $_GET['company']=="ETPL")?'selected':'' ?>>ETPL</option>
+                                    </select> -->
+
+
+                                <select name="company" id='companyfilter' class="form-control select2" >
+                                        <option value="">All Companies</option>
+                                        <?php if(isset($_GET['company_name'])){
+                                            echo $_GET['company_name'];
+                                        } foreach ($companies as $comp): ?>
+                                                <option value="<?= $comp['company_name'] ?>" 
+                                                    <?= (isset($_GET['company']) && $_GET['company']==$comp['company_name'])?'selected':'' ?>>
+                                                    <?= $comp['company_name'] ?>
+                                                </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+
+                                <!-- Department Filter -->
+                                <div class="col-md-2 mb-2">
+                                    <select name="department" id='departmentfilter' class="form-control select2" >
+                                        <option value="">All Departments</option>
+                                        <?php foreach ($departments as $dept): ?>
+                                            <option value="<?= $dept['id'] ?>" 
+                                                <?= (isset($_GET['department']) && $_GET['department']==$dept['id'])?'selected':'' ?>>
+                                                <?= $dept['department_name'] ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+
+                                <!-- Role Filter -->
+                                <div class="col-md-2 mb-2">
+                                    <select name="role" class="form-control" onchange="this.form.submit()">
+                                        <option value="">All Roles</option>
+
+                                        <?php foreach ($roles as $role): ?>
+                                            <option value="<?= $role['id'] ?>"
+                                                <?= (isset($_GET['role']) && $_GET['role']==$role['id'])?'selected':'' ?>>
+                                                <?= $role['role_name'] ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+
+
+                                
+                                <!-- Role Filter -->
+                                <div class="col-md-2 mb-2">
+                                    <select name="username" id="usernamefilter" class="form-control select2">
+                                        <option value="">All Usernames</option>
+
+                                        <?php foreach ($users as $user): ?>
+                                            <option value="<?= $user['username'] ?>"
+                                                <?= (isset($_GET['username']) && $_GET['username']==$user['username'])?'selected':'' ?>>
+                                                <?= $user['username']?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+
+                       
+                                    <div class="col-md-2 mb-2">
+                                            <!-- Reset Button -->
+                                        <a href="<?= base_url('userlist') ?>" class="btn btn-secondary ">
                                             <i class="fa fa-rotate-left me-1"></i> 
                                         </a>
+
+                                          <!-- Download Button -->
+                                        <a href="<?= base_url('user/download-template') ?>" 
+                                        class="btn btn-success" title = 'Download Users Template'>
+                                        <i class="fa fa-download" ></i>
+                                        </a>
+
+                                        <!-- Import Button  -->                                      
+                                        <a href="javascript:void(0)"
+                                        class="btn btn-primary"
+                                        title="Import Users Template"
+                                        onclick="document.getElementById('userImportFile').click()">
+                                            <i class="fa fa-upload"></i>
+                                        </a>
+                                        <input type="file"
+                                            id="userImportFile"
+                                            hidden
+                                            accept=".csv"
+                                            onchange="uploadUsers(this.files[0])">
+
+                                        <a href="<?= base_url('user/export') ?>" 
+                                                class="btn btn-info"
+                                                title="Export Users"  title="Export Users">
+                                             <i class="fa fa-file-export"></i>
+                                        </a>
+
                                     </div>
                             </div>
                         </form>
@@ -256,7 +283,6 @@
                             </div>
                         </div>
                     </div>
-          
                 </div>
 
    </div>
@@ -393,5 +419,28 @@ $(document).ready(function () {
     });
 
 });
+
+function uploadUsers(file) {
+
+    if (!file) return;
+
+    let fd = new FormData();
+    fd.append("file", file);
+
+    fetch("<?= base_url('user/import') ?>", {
+        method: "POST",
+        body: fd,
+        headers:{
+             "X-Requested-With": "XMLHttpRequest"
+        }
+    })
+    .then(res => res.json())
+    .then(res => {
+        alert(res.message);
+        // location.reload(); // optional refresh
+    })
+    .catch(() => alert("Import failed"));
+}
+
 </script>
 

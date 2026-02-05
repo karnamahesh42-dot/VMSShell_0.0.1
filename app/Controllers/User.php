@@ -88,6 +88,221 @@ class User extends BaseController
         ]);
     }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+    // download user import template
+    public function downloadUserTemplate()
+    {
+        $filename = "User_Import_Template.csv";
+
+        // CSV Header Row
+        $header = [
+            "S.No",
+            "Name",
+            "Priority",
+            "Company Name",
+            "Department ID",
+            "Email",
+            "Employee Code",
+            "Username",
+            "Password",
+            "Role ID",
+            "Active"
+        ];
+
+        // Allowed values / help row
+        $allowedPriority = "Options: 1|2|3";
+        $roleType   = "Options: 2=Approver | 3=User";
+        $allowedActive   = "Options: 1=Active | 0=Inactive";
+
+
+        // Sample rows
+        $sampleRows = [
+            [
+                1,
+                "Mahesh Kumar",
+                1,
+                "UKMPL",
+                2,
+                "mahesh@test.com",
+                "EMP001",
+                "mahesh",
+                "Welcome@123",
+                3,
+                1
+            ],
+            [
+                2,
+                "Ravi Kumar",
+                2,
+                "UKMPL",
+                1,
+                "ravi@test.com",
+                "EMP002",
+                "ravi",
+                "Welcome@123",
+                2,
+                1
+            ]
+        ];
+
+        // Force CSV download
+        header("Content-Type: text/csv");
+        header("Content-Disposition: attachment; filename={$filename}");
+
+        $output = fopen("php://output", "w");
+
+        // write header
+        fputcsv($output, $header);
+
+        // write help/options row
+        fputcsv($output, [
+            "",
+            "Type : String",
+            $allowedPriority,
+            "Type : Integer",
+            "Type : String",
+            "Type : String",
+            "",
+            "",
+            "",
+            $roleType,
+            $allowedActive
+        ]);
+
+        // write sample data
+        foreach ($sampleRows as $row) {
+            fputcsv($output, $row);
+        }
+
+        fclose($output);
+        exit;
+    }
+
+////////////////////////////////////Import //////////////////////////////////////////////////////////////
+
+public function importUsers()
+{
+    if (!$this->request->isAJAX()) {
+        return redirect()->back();
+    }
+
+    $file = $this->request->getFile('file');
+
+    if (!$file || !$file->isValid()) {
+        return $this->response->setJSON([
+            'status' => 'error',
+            'message' => 'Please upload valid CSV file'
+        ]);
+    }
+
+    $userModel = new \App\Models\UserModel();
+    $db = \Config\Database::connect();
+
+    $handle = fopen($file->getTempName(), "r");
+
+    // skip header + options row
+    fgetcsv($handle);
+    fgetcsv($handle);
+
+    // 🚀 preload existing users (BIG performance boost)
+    $existingUsers  = array_column($userModel->select('username')->findAll(), 'username');
+    $existingEmails = array_column($userModel->select('email')->findAll(), 'email');
+
+    $inserted = 0;
+    $skipped  = 0;
+    $errors   = 0;
+
+    $db->transStart(); // transaction start
+
+    while (($row = fgetcsv($handle)) !== false) {
+
+        try {
+
+            // trim all columns
+            $row = array_map('trim', $row);
+
+            // skip empty rows
+            if (!array_filter($row)) continue;
+
+            [
+                $sno,
+                $name,
+                $priority,
+                $company_name,
+                $department_id,
+                $email,
+                $employee_code,
+                $username,
+                $password,
+                $role_id,
+                $active
+            ] = $row;
+
+            // normalize
+            $email    = strtolower($email);
+            $username = strtolower($username);
+
+            // required check
+            if (!$username || !$email || !$password) {
+                $skipped++;
+                continue;
+            }
+
+            // duplicate check (no DB hit now)
+            if (in_array($username, $existingUsers) || in_array($email, $existingEmails)) {
+                $skipped++;
+                continue;
+            }
+
+            // clean name spaces
+            $name = preg_replace('/\s+/', ' ', $name);
+
+            $data = [
+                'name'           => $name,
+                'priority'       => (int)$priority,
+                'company_name'   => $company_name,
+                'department_id'  => (int)$department_id,
+                'email'          => $email,
+                'employee_code'  => $employee_code,
+                'username'       => $username,
+                'password'       => md5($password . "HASHKEY123"),
+                'role_id'        => (int)$role_id,
+                'hash_key'       => "HASHKEY123",
+                'active'         => ($active !== '' ? (int)$active : 1),
+                'created_by'     => session()->get('user_id')
+            ];
+
+            $userModel->insert($data);
+
+            $userId = $userModel->getInsertID();
+
+            $db->table('user_password_vault')->insert([
+                'user_id'      => $userId,
+                'password_enc' => $password
+            ]);
+
+            // add to arrays to avoid duplicates inside same file
+            $existingUsers[]  = $username;
+            $existingEmails[] = $email;
+
+            $inserted++;
+
+        } catch (\Throwable $e) {
+            $errors++;
+        }
+    }
+
+    fclose($handle);
+
+    $db->transComplete(); // commit
+
+    return $this->response->setJSON([
+        'status'  => 'success',
+        'message' => "✅ Imported: $inserted | ⏭ Skipped: $skipped | ❌ Errors: $errors"
+    ]);
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
     public function changePassView()
     {
@@ -174,6 +389,8 @@ class User extends BaseController
             $userModel->where('users.username', $username);
         }
 
+        $userModel ->orderBy('users.id', 'DESC');
+              
         // Fetch data
         $data['users']       = $userModel->findAll();
         $data['departments'] = $deptModel->findAll();
@@ -290,5 +507,84 @@ class User extends BaseController
         LEFT JOIN roles rl ON u.role_id = rl.id 
         ORDER BY u.company_name, dp.department_name;";
     }
+
+
+        public function exportUsers()
+        {
+            // session validation first
+            if (!session()->get('user_id') || !session()->get('username')) {
+                return redirect()->to('/login');
+            }
+
+            $db = \Config\Database::connect();
+
+            $builder = $db->table('users u');
+            $builder->select("
+            u.id,
+            u.name,
+            u.priority,
+            u.company_name,
+            d.department_name as department_name,
+            u.email,
+            u.employee_code,
+            u.username,
+
+            CASE
+            WHEN u.role_id = 1 THEN 'Superadmin'
+            WHEN u.role_id = 2 THEN 'Approver'
+            WHEN u.role_id = 3 THEN 'User'
+            WHEN u.role_id = 4 THEN 'Security'
+            WHEN u.role_id = 5 THEN 'Superuser'
+            ELSE 'Unknown'
+            END AS role_name,
+
+            u.active
+            ", false); 
+
+
+            $builder->join('departments d', 'd.id = u.department_id', 'left');
+            $builder->orderBy('u.id', 'DESC');
+
+            $users = $builder->get()->getResultArray();
+
+            $filename = "Users_Export_" . date('Ymd_His') . ".csv";
+
+            header("Content-Type: text/csv");
+            header("Content-Disposition: attachment; filename={$filename}");
+
+            $output = fopen("php://output", "w");
+
+            // header row
+            fputcsv($output, [
+                "USER ID",
+                "Name",
+                "Priority",
+                "Company",
+                "Department",
+                "Email",
+                "Employee Code",
+                "Username",
+                "Role",
+                "Active"
+            ]);
+
+            foreach ($users as $row) {
+                fputcsv($output, [
+                    $row['id'],
+                    $row['name'],
+                    $row['priority'],
+                    $row['company_name'],
+                    $row['department_name'],
+                    $row['email'],
+                    $row['employee_code'],
+                    $row['username'],
+                    $row['role_name'],
+                    $row['active'] ? 'Active' : 'Inactive'
+                ]);
+            }
+
+            fclose($output);
+            exit;
+        }
 
 }

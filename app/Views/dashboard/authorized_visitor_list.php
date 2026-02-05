@@ -162,7 +162,7 @@
                                                 <div class="photo-wrapper">
                                                     <img id="visitorPhotoPreview"
                                                         src="<?= base_url('public/dist/User_Profile.png') ?>"
-                                                        alt="Visitor Photo">
+                                                        alt="Visitor Photo" class="zoomable">
 
                                                     <div class="camera-upload heartbeat" id="camIcon"
                                                         onclick="document.getElementById('visitorPhoto').click()">

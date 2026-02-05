@@ -19,7 +19,7 @@
                             <div class="row">
 
                                 <div class="col-md-3 mb-2">
-                                    <label class="form-label">Purpose</label>
+                                    <label class="form-label required">Purpose</label>
                                     <select name="purpose" class="form-control select2" id="purpose" onchange="purposeEvent()" required >
                                         <option value="">-- Select Purpose --</option>
                                         <?php foreach ($purposes as $p): ?>
@@ -32,10 +32,10 @@
                                 </div>
                                                   
                                 <div class="col-md-3 mb-2">
-                                    <label class="form-label">Referred By</label>
+                                    <label class="form-label required">Referred By</label>
                                         
                                         <?php if($_SESSION['role_id'] == 5){?>
-                                            <select name="referred_by" class="form-select" required title="Select Referred By">
+                                            <select name="referred_by" class="form-select" required title="Select Referred By" require>
                                                         <option value="<?= session()->get('user_id'); ?>">
                                                         <?= session()->get('name'); ?>
                                                         </option>
@@ -43,7 +43,7 @@
 
                                          <?php } else{ ?>                                    
 
-                                            <select name="referred_by" class="form-select" required title="Select Referred By">
+                                            <select name="referred_by" class="form-select" required title="Select Referred By" require>
                                                 <!-- <option value="">--Select Admin --</option> -->
                                                 <?php if (!empty($admins)) : ?>
                                                     <?php foreach ($admins as $admin) : ?>
@@ -57,19 +57,19 @@
                                     </div>
                                         
                                     <div class="col-md-3 mb-2">
-                                        <label class="form-label">Date of Visit</label>
+                                        <label class="form-label required">Date of Visit</label>
                                         <input type="date" name="visit_date" class="form-control" required>
                                     </div>
 
                                     <div class="col-md-3 mb-2">
-                                        <label class="form-label">Time of Visit</label>
+                                        <label class="form-label required">Time of Visit</label>
                                         <input type="time" name="visit_time" class="form-control" required>
                                     </div>  
                                 </div>
                             
                                     <!-- Recce Details Start -->
                                     <div class="row" id="recceData" style="display:none">
-                                        <h5 class="text-primary font-weight-bold m-2">Recce Details</h5>
+                                        <h5 class="text-primary font-weight-bold m-2 required">Recce Details</h5>
                                         <div class="col-md-3 mb-2">
                                             <label class="form-label">Type of Recce</label>
                                             <select class="form-control" name="recce_type" id="recce_type">
@@ -139,8 +139,8 @@
                                 <h5 class="text-primary font-weight-bold m-2">Vendor Details</h5>
 
                                 <div class="col-md-3 mb-2">
-                                    <label class="form-label">Vendor Category</label>
-                                    <select name="vendor_category" id="vendor_category" class="form-control" >
+                                    <label class="form-label required">Vendor Category</label>
+                                    <select name="vendor_category" id="vendor_category" class="form-control" require>
                                         <option value="">-- Select Vendor Category --</option>
                                         <?php foreach ($vendorTypes as $recce): ?>
                                             <option value="<?= esc($recce['category_name']) ?>"><?= esc($recce['category_name']) ?></option>
@@ -206,27 +206,25 @@
                             <div class="row">
 
                                 <div class="col-md-3 mb-2">
-                                    <label class="form-label">Visitor Name</label>
+                                    <label class="form-label required">Visitor Name</label>
                                     <input type="text" name="visitor_name" id="visitorName"
                                            class="form-control" placeholder="Enter visitor full name" required>
                                 </div>
 
                                 <div class="col-md-3 mb-2">
-                                    <label class="form-label">Email</label>
-                                    <input type="email" name="visitor_email" class="form-control"
-                                           placeholder="Enter email address" required>
+                                    <label class="form-label required">Email</label>
+                                    <input type="email" name="visitor_email" class="form-control" placeholder="Enter email address" required>
                                 </div>
 
                                 <div class="col-md-3 mb-2">
-                                    <label class="form-label">Phone</label>
+                                    <label class="form-label required">Phone</label>
                                     <input type="text" name="visitor_phone" id="phone"
-                                           class="form-control" maxlength="10"
-                                           placeholder="Enter phone number" required>
+                                           class="form-control" maxlength="10" placeholder="Enter phone number" required>
                                 </div>
 
                                 <div class="col-md-3 mb-2">
                                     <label class="form-label">ID Proof Type</label>
-                                    <select name="proof_id_type" class="form-control" required>
+                                    <select name="proof_id_type" class="form-control" >
                                         <option value="">-- Select ID Type --</option>
                                         <option>Aadhar Card</option>
                                         <option>PAN Card</option>
@@ -240,8 +238,7 @@
 
                                 <div class="col-md-3 mb-2">
                                     <label class="form-label">ID Number</label>
-                                    <input type="text" name="proof_id_number" id="idNumber"
-                                           class="form-control" placeholder="Enter ID card number" required>
+                                    <input type="text" name="proof_id_number" id="idNumber" class="form-control" placeholder="Enter ID card number" >
                                 </div>
 
                                  <div class="col-md-9 mb-2">

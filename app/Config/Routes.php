@@ -24,6 +24,9 @@ $routes->post('user/update', 'User::update');
 $routes->post('user/toggleStatus', 'User::toggleStatus');
 $routes->get('/user/changePass', 'User::changePassview');
 $routes->post('/user/cahangePass', 'User::changePass');
+$routes->get('user/download-template', 'User::downloadUserTemplate');
+$routes->post('user/import', 'User::importUsers');
+$routes->get('user/export', 'User::exportUsers');
 
 $routes->post('send-otp', 'MobileOTPController::sendOtp');// Mobile Otp Contriollr
 

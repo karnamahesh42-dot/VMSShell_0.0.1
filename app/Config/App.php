@@ -16,11 +16,11 @@ class App extends BaseConfig
      *
      * E.g., http://example.com/
      */
-     public string $baseURL = 'http://localhost/VMSShell_0.0.1/';
+    //  public string $baseURL = 'http://localhost/VMSShell_0.0.1/';
       // public string $baseURL = 'http://192.168.24.186/VMSShell/';
     // public string $baseURL ='http://125.16.26.146/VMSShell/';
 
-    // public string $baseURL ='http://access360.ramojifilmcity.com/';
+    public string $baseURL ='http://access360.ramojifilmcity.com/';
 
 
     

@@ -1,4 +1,11 @@
 
+<!-- // works for ANY current/future image with class="zoomable" -->
+<div id="imageZoomModal" class="zoom-modal">
+    <span class="zoom-close">&times;</span>
+    <img id="zoomedImage" class="zoom-img">
+</div>
+<!-- // works for ANY current/future image with class="zoomable" -->
+
 <!-- Footer -->
 <footer class="footer" id="footer" >
   <strong> ©2026 <a href="https://adminlte.io" class="text-decoration-none">Ushakiron Movies Private Limited. &nbsp;</a></strong>All rights reserved.
@@ -91,4 +98,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
+
+
+// works for ANY current/future image with class="zoomable"
+
+$(document).on('click', '.zoomable', function () {
+
+    let imgSrc = $(this).attr('src');
+
+    $('#zoomedImage').attr('src', imgSrc);
+    $('#imageZoomModal').fadeIn();
+});
+
+$(document).on('click', '.zoom-close, #imageZoomModal', function (e) {
+
+    // prevent closing when clicking image itself
+    if ($(e.target).is('#zoomedImage')) return;
+
+    $('#imageZoomModal').fadeOut();
+});
+
+//Image preview in scann Visitor Popup and request management Popup End 
 </script>

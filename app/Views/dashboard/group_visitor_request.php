@@ -17,17 +17,17 @@
                             <!-- ********* COMMON HEADER FIELDS ********* -->
                           <div class="row">
                                 <div class="col-md-2 mb-2">
-                                    <label class="form-label">Company</label>
+                                    <label class="form-label required">Company</label>
                                     <input type="text" name="company" class="form-control" value="<?= session()->get('company_name')?>" placeholder="Enter Company" required readonly>
                                 </div>
 
                                 <div class="col-md-2 mb-2">
-                                    <label class="form-label">Department</label>
+                                    <label class="form-label required">Department</label>
                                     <input type="text" name="department" class="form-control input-readonly-dark" value="<?= session()->get('department_name')?>" placeholder="Enter Department" required readonly>
                                 </div>
 
                                 <div class="col-md-2 mb-2">
-                                    <label class="form-label">Purpose</label>
+                                    <label class="form-label required">Purpose</label>
                                    <select name="purpose" id="purpose" class="form-control select2" onchange="purposeEvent()" required >
                                             <option value="">-- Select Purpose --</option>
                                             <?php foreach ($purposes as $p): ?>
@@ -40,23 +40,23 @@
                                 </div>
                                 
                                 <div class="col-md-2 mb-2">
-                                    <label class="form-label">Visit Date</label>
+                                    <label class="form-label required">Visit Date</label>
                                     <input type="date" name="visit_date" class="form-control idNumberField" placeholder="Select Date" required>
                                 </div>
 
                                 <div class="col-md-2 mb-2">
-                                    <label class="form-label">Visit Time</label>
+                                    <label class="form-label required">Visit Time</label>
                                     <input type="time" name="visit_time" class="form-control" placeholder="Select Time" required>
                                 </div>
                                 
                                 <div class="col-md-2 mb-2">
-                                    <label class="form-label">Email</label>
+                                    <label class="form-label required">Email</label>
                                     <input type="email" name="email"  class="form-control" placeholder=" Please Enter Email" required>
                                 </div>
 
                                                      
                                 <div class="col-md-2 mb-2">
-                                    <label class="form-label">Referred By</label>
+                                    <label class="form-label required">Referred By</label>
                                       <?php if($_SESSION['role_id'] == 5){?>
                                             <select name="referred_by" class="form-select" required title="Select Referred By">
                                                 <option value="<?= session()->get('user_id'); ?>">
@@ -77,10 +77,6 @@
                                       <?php }  ?>
                                 </div>
 
-
-
-                                
-                                          
 
                                 <div class="col-md-6 mb-2">
                                     <label class="form-label">Description</label>
@@ -247,9 +243,9 @@
                                     <thead class="bg-light">
                                         <tr>
                                             <th>S.No</th>
-                                            <th>Visitor Name</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
+                                            <th class="required">Visitor Name</th>
+                                            <th class="required">Email</th>
+                                            <th class="required">Phone</th>
                                             <th>ID Type</th>
                                             <th>ID Number</th>
                                             <th>Vehicle No</th>
@@ -271,7 +267,7 @@
                                             <td><input type="text" name="visitor_phone[]" class="form-control phoneField" required></td>
 
                                             <td>
-                                                <select name="proof_id_type[]" class="form-control" required>
+                                                <select name="proof_id_type[]" class="form-control" >
                                                     <option value="">Select</option>
                                                     <option>Aadhaar Card</option>
                                                     <option>PAN Card</option>
@@ -281,7 +277,7 @@
                                                 </select>
                                             </td>
 
-                                            <td><input type="text" name="proof_id_number[]" class="form-control idNumberField" required></td>
+                                            <td><input type="text" name="proof_id_number[]" class="form-control idNumberField" ></td>
 
                                             <td><input type="text" name="vehicle_no[]" class="form-control"></td>
 
@@ -351,7 +347,7 @@ $(document).on('click', '.addRow', function () {
             <td><input type="text" name="visitor_phone[]" class="form-control" required></td>
 
             <td>
-                <select name="proof_id_type[]" class="form-control" required>
+                <select name="proof_id_type[]" class="form-control" >
                     <option value="">Select</option>
                     <option>Aadhaar Card</option>
                     <option>PAN Card</option>
@@ -361,7 +357,7 @@ $(document).on('click', '.addRow', function () {
                 </select>
             </td>
 
-            <td><input type="text" name="proof_id_number[]" class="form-control" required></td>
+            <td><input type="text" name="proof_id_number[]" class="form-control"></td>
             <td><input type="text" name="vehicle_no[]" class="form-control"></td>
 
             <td>
