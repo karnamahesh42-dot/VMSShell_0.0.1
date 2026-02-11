@@ -404,51 +404,23 @@ $(document).on('click', '.removeRow', function () {
 <!-- AJAX Submit -->
 <script>
 
-// $("#visitorForm").submit(function(e){
-//     e.preventDefault();
+$(document).ready(function () {
 
-//     let formData = new FormData(this);
+    $('.select2').select2({
+        width: '100%',
+        allowClear: false
+    });
 
-//     $.ajax({
-//         url: "<?= base_url('/visitorequest/create_group')?>",
-//         type: "POST",
-//         data: formData,
-//         dataType: "json",
-//         contentType: false,
-//         processData: false,
-//         cache: false,
 
-//         success: function(res){
-//             if(res.status === "success"){
-//                 $("#visitorForm")[0].reset();
-              
-//                 Swal.fire({
-//                 icon: "success",
-//                 title: "Visitor Saved Successfully",
-//                 timer: 1000,
-//                 showConfirmButton: false
-//                 });
-//                 setTimeout(() => location.reload(), 800);
-//                     // Send mails only for approved ones
-//                   if(res.submit_type === 'admin'){
-//                     sendMail(res.head_id); 
-//                   }
-//             }
-//         },
+    let now = new Date();
+    let date = now.toISOString().split('T')[0];
+    let hours = String(now.getHours()).padStart(2, '0');
+    let minutes = String(now.getMinutes()).padStart(2, '0');
+    let time = hours + ':' + minutes;
 
-//         error: function(){
-//             Swal.fire({
-//                 position: 'top-end',
-//                 toast: true,
-//                 icon: 'error',
-//                 title: 'Something went wrong!',
-//                 showConfirmButton: false,
-//                 timer: 3000,
-//                 timerProgressBar: true
-//             });
-//         }
-//     });
-// });
+    $('input[name="visit_date"]').val(date);
+    $('input[name="visit_time"]').val(time);
+});
 
 
 //////////////////////////////////////Form Submission start/////////////////////////////////////////////////
@@ -561,6 +533,26 @@ function validateForm() {
             return false;
         }
     }
+
+    
+            // Date validation
+            let visitDate = $('input[name="visit_date"]').val();
+            if (visitDate) {
+                let today = new Date();
+                today.setHours(0,0,0,0);
+
+                let selected = new Date(visitDate);
+
+                if (selected < today) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Invalid Date',
+                        text: 'Visit date cannot be earlier than today',
+                        confirmButtonColor: '#3085d6'
+                    });
+                    return false;
+                }
+            }
 
     return true;
 }
@@ -690,13 +682,5 @@ $("#excelUpload").change(function () {
         }
     }
 
-
-$(document).ready(function () {
-
-    $('.select2').select2({
-        width: '100%',
-        allowClear: false
-    });
-});
 
 </script>

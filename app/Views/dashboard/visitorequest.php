@@ -208,7 +208,7 @@
                                 <div class="col-md-3 mb-2">
                                     <label class="form-label required">Visitor Name</label>
                                     <input type="text" name="visitor_name" id="visitorName"
-                                           class="form-control" placeholder="Enter visitor full name" required>
+                                           class="form-control" placeholder="Enter visitor full name"  maxlength="20" required>
                                 </div>
 
                                 <div class="col-md-3 mb-2">
@@ -267,6 +267,8 @@
                                         <option>Bus</option>
                                         <option>Auto</option>
                                         <option>Truck</option>
+                                        <option>Lorry</option>
+                                        <option>DCM</option>
                                     </select>
                                 </div>
                         
@@ -302,6 +304,23 @@
 
 <!-- =============== VALIDATION + AJAX SUBMIT JS =============== -->
 <script>
+$(document).ready(function () {
+
+    $('.select2').select2({
+        width: '100%',
+        allowClear: false
+    });
+    
+    let now = new Date();
+    let date = now.toISOString().split('T')[0];
+    let hours = String(now.getHours()).padStart(2, '0');
+    let minutes = String(now.getMinutes()).padStart(2, '0');
+    let time = hours + ':' + minutes;
+
+    $('input[name="visit_date"]').val(date);
+    $('input[name="visit_time"]').val(time);
+
+});
 
 // Phone Number Validation (only digits + 10 length)
 $("#phone").on("input", function () {
@@ -329,65 +348,6 @@ $("#idNumber").on("input", function () {
 $("#vehicleNo").on("input", function () {
     this.value = this.value.toUpperCase();
 });
-
-
-// // FORM SUBMIT
-// $("#visitorForm").submit(function(e){
-//     e.preventDefault();
-
-//     // Phone check
-//     let phone = $("#phone").val();
-//     if(phone.length !== 10){
-//         Swal.fire({
-//             icon: "error",
-//             title: "Phone number must be 10 digits",
-//             timer: 1500,
-//             showConfirmButton: false
-//         });
-//         return;
-//     }
-
-//     let formData = new FormData(this);
-
-//     $.ajax({
-//         url: "<?= base_url('/visitorequest/create')?>",
-//         type: "POST",
-//         data: formData,
-//         dataType: "json",
-//         contentType: false,
-//         processData: false,
-//         cache: false,
-
-//         success: function(res){
-//             if(res.status === "success"){
-//                 $("#visitorForm")[0].reset();
-
-//                 Swal.fire({
-//                     icon: "success",
-//                     title: "Visitor Saved Successfully",
-//                     timer: 1200,
-//                     showConfirmButton: false
-//                 });
-
-//                 // setTimeout(() => location.reload(), 800);
-
-//                 if(res.submit_type === 'admin'){
-//                     sendMail(res.head_id); 
-//                 }
-//             }
-//         },
-
-//         error: function(){
-//             Swal.fire({
-//                 icon: 'error',
-//                 title: 'Something went wrong!',
-//                 timer: 1200,
-//                 showConfirmButton: false
-//             });
-//         }
-//     });
-// });
-
 
 let isSubmitting = false;
 
@@ -449,48 +409,65 @@ $("#visitorForm").submit(function(e){
     });
 });
 
+        function validateForm() {
 
+            let purpose    = $('#purpose').val();
+            let recceType  = $('#recce_type').val();
+            let vendorType = $('#vendor_category').val();
+            let phone      = $('#phone').val().trim();
 
-function validateForm() {
+            const rules = {
+                Recce:  { field: '#recce_type',  msg: 'Recce Type is mandatory when Purpose is Recce' },
+                Vendor: { field: '#vendor_category', msg: 'Vendor Type is mandatory when Purpose is Vendor' }
+            };
 
-    let purpose    = $('#purpose').val();
-    let recceType  = $('#recce_type').val();
-    let vendorType = $('#vendor_category').val();
-    let phone      = $('#phone').val().trim();
+            if (rules[purpose]) {
+                let value = $(rules[purpose].field).val();
+                if (!value) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Missing Information',
+                        text: rules[purpose].msg,
+                        confirmButtonColor: '#3085d6'
+                    });
+                    return false;
+                }
+            }
 
-    // Purpose-based validation
-    const rules = {
-        Recce:  { field: '#recce_type',  msg: 'Recce Type is mandatory when Purpose is Recce' },
-        Vendor: { field: '#vendor_category', msg: 'Vendor Type is mandatory when Purpose is Vendor' }
-    };
+            // Phone validation
+            if (!/^\d{10}$/.test(phone)) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Invalid Phone Number",
+                    text: "Phone number must be exactly 10 digits",
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+                return false;
+            }
 
-    if (rules[purpose]) {
-        let value = $(rules[purpose].field).val();
-        if (!value) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Missing Information',
-                text: rules[purpose].msg,
-                confirmButtonColor: '#3085d6'
-            });
-            return false;
+            // Date validation
+            let visitDate = $('input[name="visit_date"]').val();
+            if (visitDate) {
+                let today = new Date();
+                today.setHours(0,0,0,0);
+
+                let selected = new Date(visitDate);
+
+                if (selected < today) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Invalid Date',
+                        text: 'Visit date cannot be earlier than today',
+                        confirmButtonColor: '#3085d6'
+                    });
+                    return false;
+                }
+            }
+
+            return true;
         }
-    }
 
-    // Phone validation (10 digits, numbers only)
-    if (!/^\d{10}$/.test(phone)) {
-        Swal.fire({
-            icon: "error",
-            title: "Invalid Phone Number",
-            text: "Phone number must be exactly 10 digits",
-            timer: 1500,
-            showConfirmButton: false
-        });
-        return false;
-    }
-
-    return true;
-}
 
 
 // // Send Mail
@@ -551,12 +528,5 @@ function validateForm() {
 // }
 
  
-$(document).ready(function () {
-
-    $('.select2').select2({
-        width: '100%',
-        allowClear: false
-    });
-});
 
 </script>

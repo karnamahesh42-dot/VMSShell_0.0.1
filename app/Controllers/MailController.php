@@ -5,6 +5,8 @@ use CodeIgniter\Controller;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use App\Models\GatepassMailLogModel;
+use App\Controllers\WhatsappController;
+
 class MailController extends Controller
 {
     
@@ -16,8 +18,10 @@ class MailController extends Controller
                 $request_head_id = $this->request->getPost('head_id');
                 $headerModel = new \App\Models\VisitorRequestHeaderModel();
                 $GatepassMailLogModel = new GatepassMailLogModel(); // Mail  Log Model
-                $mailType = "";
+                $whatsapp = new WhatsappController(); //Whatsapp Controller
 
+
+                $mailType = "";
                 if(isset($resendVId['re_send']) && $resendVId['re_send'] != ''){
                     $data = $headerModel->getHeaderWithVisitorsMailDataByVCode($resendVId);
                     $mailType = 'Resend';
@@ -26,7 +30,6 @@ class MailController extends Controller
                     $mailType = 'Approval Send';
                     // print_r($data);
                 }
-
                 $emailService = \Config\Services::email();
                 $successCount = 0;
                 $failed = [];
@@ -62,7 +65,15 @@ class MailController extends Controller
                     // Save new PDF
                     file_put_contents($pdfFile, $dompdf->output());
 
-                    // 2️ Prepare Email
+                    //////////////======= Send Whatsapp ===========////////////
+                    $pdfUrl = 'https://access360.ramojifilmcity.com/public/uploads/gate_pass_pdf/GatePass_V00000092.pdf';
+                    // $pdfUrl = base_url('public/uploads/gate_pass_pdf/GatePass_' . $row['v_code'] . '.pdf');
+                    $mobileNo =  $row['visitor_phone'];   
+                    $waResponse = $whatsapp->send($mobileNo,$pdfUrl);
+                    print_r($waResponse);
+                   
+                    /////////======== Send Email ==========/////////////////////
+        
                     $emailService->clear(true);
                     $emailService->setTo($email);
                     $emailService->setFrom(env('app.email.fromEmail'), env('app.email.fromName'));
@@ -70,12 +81,10 @@ class MailController extends Controller
                     $emailService->setMessage("Dear Visitor,<br><br>Please find your Gate Pass attached.<br><br>Regards,<br>Security Team");
                     $emailService->attach($pdfFile);
 
-                    // Send Email
                     if($emailService->send()){
                         $status = 'SENT';
                         $successCount++;
-
-                            // =====GATE PASS MAIL LOG  =====
+                        // =====GATE PASS MAIL LOG  =====
                         $GatepassMailLogModel->insert([
                             'request_id'    => $row['id'],
                             'v_code'        => $row['v_code'],
@@ -89,7 +98,7 @@ class MailController extends Controller
                         ]);
                         
                     } else {
-                                // =====GATE PASS MAIL LOG  =====
+                        // =====GATE PASS MAIL LOG  =====
                         $GatepassMailLogModel->insert([
                             'request_id'    => $row['id'],
                             'v_code'        => $row['v_code'],
@@ -349,8 +358,6 @@ class MailController extends Controller
                     <strong>Security Team</strong>
                     </p>
                 ";
-
-
 
 
                 $emailService->clear(true);

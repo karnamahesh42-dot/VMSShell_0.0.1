@@ -86,11 +86,21 @@ $routes->post('/security/saveBelongings', 'SecurityController::saveBelongings');
 // $routes->post('/security/checkout', 'SecurityController::checkOut');
 $routes->post('/security/securityAction', 'SecurityController::securityAction');
 $routes->post('/visitor/uploadPhoto', 'SecurityController::uploadPhoto');
-///////////////////////////////////// Reports  Start /////////////////////////////////////////////////////////////
+
+$routes->get('feedback', 'FeedbackController::index');
+$routes->post('feedback/save', 'FeedbackController::save');
+$routes->post('feedback/status/(:num)', 'FeedbackController::updateStatus/$1');
+$routes->post('feedback/delete/(:num)', 'FeedbackController::delete/$1');
+
+///////////////////////////// Whatsapp /////////////////////////////////////////////////////////////////
+$routes->get('whatsapp-test', 'WhatsappController::send');
+$routes->get('whatsapp/(:any)/(:any)', 'WhatsappController::send/$1/$2');
+
+///////////////////////////////////// Reports  Start ///////////////////////////////////////////////////
 $routes->get('/daily_visitor_report', 'ReportController::dailyVisitorReport');
 $routes->get('/request_to_checkout', 'ReportController::requestToCheckoutReport');
 
-///////////////////////////////////// Reports  End /////////////////////////////////////////////////////////////
+///////////////////////////////////// Reports  End /////////////////////////////////////////////////////
 $routes->get('/masterdata', 'MasterDataController::index');
 $routes->post('master/save', 'MasterDataController::save');
 

@@ -214,7 +214,7 @@
                                     <th>Request ID</th>
                                     <th>Department</th>
                                     <th>Purpose</th>
-                                    <th>Description</th>
+                                    <th style="width:250px;" >Description</th>
                                     <th>Visit Date</th>
                                     <th>Visitors Count</th>
                                     <th>Status</th>
@@ -241,7 +241,6 @@
 $(document).ready(function() {
     loadVisitorList();
 });
-
 
 
 
@@ -338,7 +337,7 @@ function view_visitor(id){
             let actionButtons = "";
             let h = res.data[0];
 
-           // console.log(res)
+            console.log(res)
            // console.log(h.status);
             
             if (h.status === "pending" ) {
@@ -422,7 +421,12 @@ function view_visitor(id){
                 // Visitor not inside → Resend QR
                 actionBtn = `<button class="btn btn-warning btn-md" onclick="resendqr('${v.v_code}')">
                        <i class="fas fa-paper-plane" title="Re-send Gate Pass"></i>
-                    </button> `;
+                    </button> 
+                    <a href=" <?= base_url('public/uploads/gate_pass_pdf/GatePass_')?>${v.v_code}.pdf"
+                    class="btn btn-success btn-md"
+                    download>
+                        <i class="fas fa-download" title="Download Gate Pass"></i>
+                    </a>`;
                 }
 
                 if (v.securityCheckStatus == 1 && v.meeting_status == 0) {
@@ -541,8 +545,6 @@ function view_visitor(id){
                                                 <i class="fa-solid fa-people-arrows"></i>
                                             </span>
                                             <span class="label">Session Complete</span>
-                                     
-
                                         </div>
 
                                         <div class="step ${v.securityCheckStatus >= 2 ? 'active' : ''}">
@@ -603,8 +605,6 @@ function sendMail(head_id) {
         }
     });
 }
-
-
 
 let approvalInProgress = false; // prevent Duble Click On approvel
 

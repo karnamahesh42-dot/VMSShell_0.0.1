@@ -12,6 +12,9 @@ if (!$session->has('isLoggedIn') || !$session->has('user_id') || !$session->has(
   <meta charset="utf-8" />
   <title>RFC Access360</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- <restrict Google Console Acces > -->
+  <meta name="robots" content="noindex,nofollow"> 
+
   <link rel="icon" type="image/png" href="<?= base_url('public/dist/ramoji-logo-3.png') ?>">
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -193,6 +196,15 @@ h1, h2, h3 {
 </li>
 <?php } ?>
 
+    
+    <li>
+        <a class="nav-link <?= (uri_string()=='feedback') ? 'active' : '' ?>"
+            href="<?= base_url('feedback') ?>">
+            <i class="fa fa-comments"></i>  Feedback
+        </a>
+    </li>
+
+    
     <li>
         <a class="nav-link <?= (uri_string()=='about') ? 'active' : '' ?>"
             href="<?= base_url('about') ?>">

@@ -156,8 +156,6 @@ public function requestToCheckoutReport()
     $purpose         = $request->getGet('purpose');
     $group_code         = $request->getGet('group_code');
 
-
-
     $builder = $db->table('visitors vr');
 
     $builder->select("

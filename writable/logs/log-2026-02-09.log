@@ -1,0 +1,479 @@
+CRITICAL - 2026-02-09 14:30:05 --> Error: Class "App\Models\FeedbackModel" not found
+[Method: GET, Route: feedback]
+in APPPATH\Controllers\FeedbackController.php on line 13.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\FeedbackController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-02-09 14:30:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-02-09 14:30:36 --> Error: Class "App\Models\FeedbackModel" not found
+[Method: GET, Route: feedback]
+in APPPATH\Controllers\FeedbackController.php on line 13.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\FeedbackController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-02-09 14:31:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-02-09 14:31:43 --> Error: Class "App\Models\FeedbackModel" not found
+[Method: GET, Route: feedback]
+in APPPATH\Controllers\FeedbackController.php on line 13.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\FeedbackController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-02-09 14:32:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 14:32:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 14:35:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 14:35:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 14:35:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 14:35:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 14:50:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 14:52:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 14:52:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 14:53:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 14:59:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 14:59:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:00:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:01:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:09:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:09:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-02-09 15:10:31 --> [DEPRECATED] Creation of dynamic property App\Controllers\VisitorRequest::$recceDetailsModel is deprecated in APPPATH\Controllers\VisitorRequest.php on line 30.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\VisitorRequest->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-02-09 15:10:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-02-09 15:10:31 --> [DEPRECATED] Creation of dynamic property App\Controllers\VisitorRequest::$recceDetailsModel is deprecated in APPPATH\Controllers\VisitorRequest.php on line 30.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\VisitorRequest->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-02-09 15:10:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-02-09 15:10:33 --> [DEPRECATED] Creation of dynamic property App\Controllers\VisitorRequest::$recceDetailsModel is deprecated in APPPATH\Controllers\VisitorRequest.php on line 30.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\VisitorRequest->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-09 15:16:25 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\FeedbackModel::getFeedbackWithUserDetails
+[Method: GET, Route: feedback/list]
+in SYSTEMPATH\Model.php on line 927.
+ 1 APPPATH\Controllers\FeedbackController.php(74): CodeIgniter\Model->__call('getFeedbackWithUserDetails', [])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FeedbackController->list()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FeedbackController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-02-09 15:17:30 --> mysqli_sql_exception: Unknown column 'u.company_id' in 'on clause' in C:\xampp\htdocs\VMSShell_0.0.1\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\VMSShell_0.0.1\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `feedbac...', 0)
+#1 C:\xampp\htdocs\VMSShell_0.0.1\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `feedbac...')
+#2 C:\xampp\htdocs\VMSShell_0.0.1\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `feedbac...')
+#3 C:\xampp\htdocs\VMSShell_0.0.1\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `feedbac...', Array, false)
+#4 C:\xampp\htdocs\VMSShell_0.0.1\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\VMSShell_0.0.1\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\VMSShell_0.0.1\app\Models\FeedbackModel.php(45): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\VMSShell_0.0.1\app\Controllers\FeedbackController.php(74): App\Models\FeedbackModel->getFeedbackWithUserDetails()
+#8 C:\xampp\htdocs\VMSShell_0.0.1\system\CodeIgniter.php(933): App\Controllers\FeedbackController->list()
+#9 C:\xampp\htdocs\VMSShell_0.0.1\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FeedbackController))
+#10 C:\xampp\htdocs\VMSShell_0.0.1\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\VMSShell_0.0.1\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\VMSShell_0.0.1\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\VMSShell_0.0.1\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2026-02-09 15:17:30 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'u.company_id' in 'on clause'
+[Method: GET, Route: feedback/list]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `feedback`.*, `u`.`name` as `user_name`, `u`.`email` as `user_email`, `d`.`department_name`, `c`.`company_name`
+FROM `feedback`
+LEFT JOIN `users` `u` ON `u`.`id` = `feedback`.`create_by`
+LEFT JOIN `departments` `d` ON `d`.`id` = `u`.`department_id`
+LEFT JOIN `companies` `c` ON `c`.`id` = `u`.`company_id`
+ORDER BY `feedback`.`feedback_id` DESC', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\FeedbackModel.php(45): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\FeedbackController.php(74): App\Models\FeedbackModel->getFeedbackWithUserDetails()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FeedbackController->list()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FeedbackController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-09 15:17:30 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'u.company_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `feedback`.*, `u`.`name` as `user_name`, `u`.`email` as `user_email`, `d`.`department_name`, `c`.`company_name`
+FROM `feedback`
+LEFT JOIN `users` `u` ON `u`.`id` = `feedback`.`create_by`
+LEFT JOIN `departments` `d` ON `d`.`id` = `u`.`department_id`
+LEFT JOIN `companies` `c` ON `c`.`id` = `u`.`company_id`
+ORDER BY `feedback`.`feedback_id` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `feedback`.*, `u`.`name` as `user_name`, `u`.`email` as `user_email`, `d`.`department_name`, `c`.`company_name`
+FROM `feedback`
+LEFT JOIN `users` `u` ON `u`.`id` = `feedback`.`create_by`
+LEFT JOIN `departments` `d` ON `d`.`id` = `u`.`department_id`
+LEFT JOIN `companies` `c` ON `c`.`id` = `u`.`company_id`
+ORDER BY `feedback`.`feedback_id` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `feedback`.*, `u`.`name` as `user_name`, `u`.`email` as `user_email`, `d`.`department_name`, `c`.`company_name`
+FROM `feedback`
+LEFT JOIN `users` `u` ON `u`.`id` = `feedback`.`create_by`
+LEFT JOIN `departments` `d` ON `d`.`id` = `u`.`department_id`
+LEFT JOIN `companies` `c` ON `c`.`id` = `u`.`company_id`
+ORDER BY `feedback`.`feedback_id` DESC', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\FeedbackModel.php(45): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\FeedbackController.php(74): App\Models\FeedbackModel->getFeedbackWithUserDetails()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FeedbackController->list()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FeedbackController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-09 15:17:30 --> [Caused by] mysqli_sql_exception: Unknown column 'u.company_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `feedback`.*, `u`.`name` as `user_name`, `u`.`email` as `user_email`, `d`.`department_name`, `c`.`company_name`
+FROM `feedback`
+LEFT JOIN `users` `u` ON `u`.`id` = `feedback`.`create_by`
+LEFT JOIN `departments` `d` ON `d`.`id` = `u`.`department_id`
+LEFT JOIN `companies` `c` ON `c`.`id` = `u`.`company_id`
+ORDER BY `feedback`.`feedback_id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `feedback`.*, `u`.`name` as `user_name`, `u`.`email` as `user_email`, `d`.`department_name`, `c`.`company_name`
+FROM `feedback`
+LEFT JOIN `users` `u` ON `u`.`id` = `feedback`.`create_by`
+LEFT JOIN `departments` `d` ON `d`.`id` = `u`.`department_id`
+LEFT JOIN `companies` `c` ON `c`.`id` = `u`.`company_id`
+ORDER BY `feedback`.`feedback_id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `feedback`.*, `u`.`name` as `user_name`, `u`.`email` as `user_email`, `d`.`department_name`, `c`.`company_name`
+FROM `feedback`
+LEFT JOIN `users` `u` ON `u`.`id` = `feedback`.`create_by`
+LEFT JOIN `departments` `d` ON `d`.`id` = `u`.`department_id`
+LEFT JOIN `companies` `c` ON `c`.`id` = `u`.`company_id`
+ORDER BY `feedback`.`feedback_id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `feedback`.*, `u`.`name` as `user_name`, `u`.`email` as `user_email`, `d`.`department_name`, `c`.`company_name`
+FROM `feedback`
+LEFT JOIN `users` `u` ON `u`.`id` = `feedback`.`create_by`
+LEFT JOIN `departments` `d` ON `d`.`id` = `u`.`department_id`
+LEFT JOIN `companies` `c` ON `c`.`id` = `u`.`company_id`
+ORDER BY `feedback`.`feedback_id` DESC', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\FeedbackModel.php(45): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\FeedbackController.php(74): App\Models\FeedbackModel->getFeedbackWithUserDetails()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FeedbackController->list()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FeedbackController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-02-09 15:18:02 --> mysqli_sql_exception: Unknown column 'c.company_name' in 'field list' in C:\xampp\htdocs\VMSShell_0.0.1\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\VMSShell_0.0.1\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `feedbac...', 0)
+#1 C:\xampp\htdocs\VMSShell_0.0.1\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `feedbac...')
+#2 C:\xampp\htdocs\VMSShell_0.0.1\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `feedbac...')
+#3 C:\xampp\htdocs\VMSShell_0.0.1\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `feedbac...', Array, false)
+#4 C:\xampp\htdocs\VMSShell_0.0.1\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\VMSShell_0.0.1\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\VMSShell_0.0.1\app\Models\FeedbackModel.php(44): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\VMSShell_0.0.1\app\Controllers\FeedbackController.php(74): App\Models\FeedbackModel->getFeedbackWithUserDetails()
+#8 C:\xampp\htdocs\VMSShell_0.0.1\system\CodeIgniter.php(933): App\Controllers\FeedbackController->list()
+#9 C:\xampp\htdocs\VMSShell_0.0.1\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FeedbackController))
+#10 C:\xampp\htdocs\VMSShell_0.0.1\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\VMSShell_0.0.1\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\VMSShell_0.0.1\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\VMSShell_0.0.1\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2026-02-09 15:18:03 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'c.company_name' in 'field list'
+[Method: GET, Route: feedback/list]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `feedback`.*, `u`.`name` as `user_name`, `u`.`email` as `user_email`, `d`.`department_name`, `c`.`company_name`
+FROM `feedback`
+LEFT JOIN `users` `u` ON `u`.`id` = `feedback`.`create_by`
+LEFT JOIN `departments` `d` ON `d`.`id` = `u`.`department_id`
+ORDER BY `feedback`.`feedback_id` DESC', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\FeedbackModel.php(44): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\FeedbackController.php(74): App\Models\FeedbackModel->getFeedbackWithUserDetails()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FeedbackController->list()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FeedbackController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-09 15:18:03 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'c.company_name' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `feedback`.*, `u`.`name` as `user_name`, `u`.`email` as `user_email`, `d`.`department_name`, `c`.`company_name`
+FROM `feedback`
+LEFT JOIN `users` `u` ON `u`.`id` = `feedback`.`create_by`
+LEFT JOIN `departments` `d` ON `d`.`id` = `u`.`department_id`
+ORDER BY `feedback`.`feedback_id` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `feedback`.*, `u`.`name` as `user_name`, `u`.`email` as `user_email`, `d`.`department_name`, `c`.`company_name`
+FROM `feedback`
+LEFT JOIN `users` `u` ON `u`.`id` = `feedback`.`create_by`
+LEFT JOIN `departments` `d` ON `d`.`id` = `u`.`department_id`
+ORDER BY `feedback`.`feedback_id` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `feedback`.*, `u`.`name` as `user_name`, `u`.`email` as `user_email`, `d`.`department_name`, `c`.`company_name`
+FROM `feedback`
+LEFT JOIN `users` `u` ON `u`.`id` = `feedback`.`create_by`
+LEFT JOIN `departments` `d` ON `d`.`id` = `u`.`department_id`
+ORDER BY `feedback`.`feedback_id` DESC', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\FeedbackModel.php(44): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\FeedbackController.php(74): App\Models\FeedbackModel->getFeedbackWithUserDetails()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FeedbackController->list()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FeedbackController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-02-09 15:18:03 --> [Caused by] mysqli_sql_exception: Unknown column 'c.company_name' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `feedback`.*, `u`.`name` as `user_name`, `u`.`email` as `user_email`, `d`.`department_name`, `c`.`company_name`
+FROM `feedback`
+LEFT JOIN `users` `u` ON `u`.`id` = `feedback`.`create_by`
+LEFT JOIN `departments` `d` ON `d`.`id` = `u`.`department_id`
+ORDER BY `feedback`.`feedback_id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `feedback`.*, `u`.`name` as `user_name`, `u`.`email` as `user_email`, `d`.`department_name`, `c`.`company_name`
+FROM `feedback`
+LEFT JOIN `users` `u` ON `u`.`id` = `feedback`.`create_by`
+LEFT JOIN `departments` `d` ON `d`.`id` = `u`.`department_id`
+ORDER BY `feedback`.`feedback_id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `feedback`.*, `u`.`name` as `user_name`, `u`.`email` as `user_email`, `d`.`department_name`, `c`.`company_name`
+FROM `feedback`
+LEFT JOIN `users` `u` ON `u`.`id` = `feedback`.`create_by`
+LEFT JOIN `departments` `d` ON `d`.`id` = `u`.`department_id`
+ORDER BY `feedback`.`feedback_id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `feedback`.*, `u`.`name` as `user_name`, `u`.`email` as `user_email`, `d`.`department_name`, `c`.`company_name`
+FROM `feedback`
+LEFT JOIN `users` `u` ON `u`.`id` = `feedback`.`create_by`
+LEFT JOIN `departments` `d` ON `d`.`id` = `u`.`department_id`
+ORDER BY `feedback`.`feedback_id` DESC', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\FeedbackModel.php(44): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\FeedbackController.php(74): App\Models\FeedbackModel->getFeedbackWithUserDetails()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FeedbackController->list()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FeedbackController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-02-09 15:18:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:20:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:20:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:23:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:25:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:25:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:26:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:26:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:26:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:27:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:30:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:30:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:30:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:30:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:30:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:30:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:30:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:30:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:30:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:30:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:31:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:39:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-02-09 15:39:44 --> ErrorException: Undefined variable $feedbacks
+[Method: GET, Route: feedback]
+in APPPATH\Views\dashboard\feedback.php on line 40.
+ 1 APPPATH\Views\dashboard\feedback.php(40): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $feedbacks', 'C:\\xampp\\htdocs\\VMSShell_0.0.1\\app\\Views\\dashboard\\feedback.php', 40)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\VMSShell_0.0.1\\app\\Views\\dashboard\\feedback.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard/feedback', [], true)
+ 5 APPPATH\Controllers\FeedbackController.php(21): view('dashboard/feedback')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\FeedbackController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\FeedbackController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-02-09 15:48:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:48:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:48:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:48:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:48:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:48:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:49:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:49:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:54:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:54:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:54:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:54:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:58:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:58:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 15:58:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:00:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:00:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:05:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:06:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:06:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:06:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:07:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:08:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:08:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:08:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:08:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:08:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:08:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-02-09 16:08:53 --> [DEPRECATED] Creation of dynamic property App\Controllers\VisitorRequest::$recceDetailsModel is deprecated in APPPATH\Controllers\VisitorRequest.php on line 30.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\VisitorRequest->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-02-09 16:08:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-02-09 16:08:53 --> [DEPRECATED] Creation of dynamic property App\Controllers\VisitorRequest::$recceDetailsModel is deprecated in APPPATH\Controllers\VisitorRequest.php on line 30.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\VisitorRequest->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-02-09 16:08:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:08:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:08:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:09:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:09:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:10:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:10:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:10:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:11:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:12:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:12:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:13:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:13:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:13:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:18:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:27:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:27:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:27:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:28:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:28:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:29:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:29:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:32:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:37:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:38:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:39:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:39:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:39:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:41:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:42:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:42:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:46:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:54:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:58:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:58:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:58:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 16:59:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:03:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:03:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:03:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:05:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:07:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:07:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:10:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:11:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:12:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:12:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:18:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:18:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:19:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:19:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:21:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:21:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:21:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:21:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:22:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:22:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-02-09 17:22:05 --> [DEPRECATED] Creation of dynamic property App\Controllers\VisitorRequest::$recceDetailsModel is deprecated in APPPATH\Controllers\VisitorRequest.php on line 30.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\VisitorRequest->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-02-09 17:22:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-02-09 17:22:05 --> [DEPRECATED] Creation of dynamic property App\Controllers\VisitorRequest::$recceDetailsModel is deprecated in APPPATH\Controllers\VisitorRequest.php on line 30.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\VisitorRequest->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-02-09 17:22:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:22:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-02-09 17:22:08 --> [DEPRECATED] Creation of dynamic property App\Controllers\VisitorRequest::$recceDetailsModel is deprecated in APPPATH\Controllers\VisitorRequest.php on line 30.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\VisitorRequest->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-02-09 17:22:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-02-09 17:22:09 --> [DEPRECATED] Creation of dynamic property App\Controllers\VisitorRequest::$recceDetailsModel is deprecated in APPPATH\Controllers\VisitorRequest.php on line 30.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\VisitorRequest->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-02-09 17:22:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:22:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:22:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:22:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-02-09 17:22:11 --> [DEPRECATED] Creation of dynamic property App\Controllers\VisitorRequest::$recceDetailsModel is deprecated in APPPATH\Controllers\VisitorRequest.php on line 30.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\VisitorRequest->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-02-09 17:22:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-02-09 17:22:11 --> [DEPRECATED] Creation of dynamic property App\Controllers\VisitorRequest::$recceDetailsModel is deprecated in APPPATH\Controllers\VisitorRequest.php on line 30.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\VisitorRequest->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-02-09 17:22:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:22:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:22:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:22:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:22:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:22:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:22:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:24:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:25:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:25:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:25:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:25:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:25:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:26:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:26:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:27:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:28:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-02-09 17:29:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

@@ -59,7 +59,7 @@ class Dashboard extends BaseController
                 $pendingVisitors = $pendingQuery->countAllResults();
 
             
-        ///////////////////////////////////////////////////////////////////////////////
+      ///////////////////////////////////////////////////////////////////////////////
 
                 $approvedQuery = $this->visitorModel
                 ->join(
@@ -303,7 +303,7 @@ class Dashboard extends BaseController
         ['title' => 'This Month', 'count' => $monthVisitors, 'icon' => 'fa-calendar', 'desc' => $monthVisitors . ' visitors this month.'],
         ['title' => 'This Year', 'count' => $thisYearVisitors, 'icon' => 'fa-user', 'desc' => $thisYearVisitors . ' visitors this Year.'],  
         ];
-// ['title' => 'Alerts', 'count' => $alerts, 'icon' => 'fa-bell', 'desc' => $alerts == 0 ? 'No security alerts.' : $alerts . ' alerts pending.'],
+        // ['title' => 'Alerts', 'count' => $alerts, 'icon' => 'fa-bell', 'desc' => $alerts == 0 ? 'No security alerts.' : $alerts . ' alerts pending.'],
                 
         $recentAuthorized = $this->SecurityGateLogModel->getRecentAuthorized(10);
 

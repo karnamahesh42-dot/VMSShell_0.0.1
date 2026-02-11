@@ -194,9 +194,9 @@
                                         <td><?= $row['meeting_status'] ? 'Completed' : 'Pending' ?></td>
                                         <td><?= esc($row['meeting_completed_at'] ?? '-') ?></td>
                                         <td><?= esc($row['s_checkin_by'] ?? '-') ?></td>
-                                        <td><?= esc($row['created_at']) ?></td>
+                                        <td><?= esc($row['check_in_time']) ?></td>
                                         <td><?= esc($row['s_checkout_by'] ?? '-') ?> </td>
-                                        <td><?= esc($row['updated_at']) ?></td>
+                                        <td><?= esc($row['check_out_time']) ?></td>
                                         <td><?= esc($row['spendTime'] ?? '-') ?></td>
                                     </tr>
                                     <?php $i++; endforeach; ?>
