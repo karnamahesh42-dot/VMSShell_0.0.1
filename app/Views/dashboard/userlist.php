@@ -192,7 +192,7 @@
                                 </div>
 
                        
-                                    <div class="col-md-2 mb-2">
+                                    <div class="col-md-4 mb-2">
                                             <!-- Reset Button -->
                                         <a href="<?= base_url('userlist') ?>" class="btn btn-secondary ">
                                             <i class="fa fa-rotate-left me-1"></i> 

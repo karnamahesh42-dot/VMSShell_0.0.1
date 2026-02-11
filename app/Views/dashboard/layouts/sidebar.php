@@ -63,7 +63,7 @@ h1, h2, h3 {
     background-image: url('<?= base_url("public/dist/sidebarpic.png") ?>');
     background-size: cover;
     background-position: center;
-    opacity: 0.8;
+    opacity: 0.3;
     z-index: -1;
 }
 
@@ -76,7 +76,7 @@ h1, h2, h3 {
       width: var(--sidebar-width);
       height: 100%;
       /* background: linear-gradient(180deg, #4aa8ff,#ff7272); */
-      background: rgba(129, 129, 129, 0.65);
+      background: rgba(0, 0, 0, 0.65);
       color: #fff;
       transition: all 0.3s ease;
       overflow-y: auto;

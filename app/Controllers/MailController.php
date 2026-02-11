@@ -20,7 +20,6 @@ class MailController extends Controller
                 $GatepassMailLogModel = new GatepassMailLogModel(); // Mail  Log Model
                 $whatsapp = new WhatsappController(); //Whatsapp Controller
 
-
                 $mailType = "";
                 if(isset($resendVId['re_send']) && $resendVId['re_send'] != ''){
                     $data = $headerModel->getHeaderWithVisitorsMailDataByVCode($resendVId);
@@ -35,6 +34,10 @@ class MailController extends Controller
                 $failed = [];
                 $status = 'FAILED';
                 $error  = null;
+
+                $whatsappSuccessCount = 0;
+                $whatsappFailed = [];
+
 
                 foreach($data as $row){
 
@@ -65,13 +68,28 @@ class MailController extends Controller
                     // Save new PDF
                     file_put_contents($pdfFile, $dompdf->output());
 
-                    //////////////======= Send Whatsapp ===========////////////
-                    $pdfUrl = 'https://access360.ramojifilmcity.com/public/uploads/gate_pass_pdf/GatePass_V00000092.pdf';
-                    // $pdfUrl = base_url('public/uploads/gate_pass_pdf/GatePass_' . $row['v_code'] . '.pdf');
-                    $mobileNo =  $row['visitor_phone'];   
-                    $waResponse = $whatsapp->send($mobileNo,$pdfUrl);
-                    print_r($waResponse);
-                   
+
+                    //////////////======= Send Whatsapp When Appraval Time ===========////////////
+
+                    if($mailType != 'Resend'){
+                       
+                        $pdfUrl = 'https://morth.nic.in/sites/default/files/dd12-13_0.pdf';
+                        // $pdfUrl = base_url('public/uploads/gate_pass_pdf/GatePass_' . $row['v_code'] . '.pdf');
+                        $mobileNo =  $row['visitor_phone']; 
+                        // $mobileNo = '8919146333';   
+
+                        $waResponse = $whatsapp->send($mobileNo, $pdfUrl);
+                        if (
+                            $waResponse['status'] === 'success' &&
+                            ($waResponse['response']['success'] ?? false)
+                        ) {
+                            $whatsappSuccessCount++;
+                        } else {
+                            $whatsappFailed[] = $mobileNo;
+                        }
+                    }
+                    //////////////======= Send Whatsapp End  ===========////////////
+
                     /////////======== Send Email ==========/////////////////////
         
                     $emailService->clear(true);
@@ -112,7 +130,6 @@ class MailController extends Controller
                         ]);
                         $error  = $emailService->printDebugger();
                     }
-               
                 
                     }
               
@@ -121,7 +138,9 @@ class MailController extends Controller
                     "sendType" => $mailType,
                     "message" => "Mail process completed",
                     "sent" => $successCount,
-                    "failed" => $failed
+                    "failed" => $failed,
+                    "whatsappSuccessCount" =>   $whatsappSuccessCount,
+                    "whatsappFailed" =>   $whatsappFailed,
                 ]);
 
             } catch (\Exception $e){
@@ -157,6 +176,8 @@ class MailController extends Controller
                 $head_id = $this->request->getPost('head_id');
                 $email = $this->request->getPost('email');
                 $GatepassMailLogModel = new GatepassMailLogModel(); // Mail  Log Model
+                $whatsapp = new WhatsappController(); //Whatsapp Controller
+
                 $mailType = ($this->request->getPost('mailType') === 're_send') ? 'Resend' : 'Approve';
 
                 $status = 'SENT';
@@ -188,20 +209,12 @@ class MailController extends Controller
                     mkdir($pdfDir, 0755, true);
                 }
 
-                /**
-                 * ==================================================
-                 * LOAD GROUP QR HTML (MULTIPLE CARDS)
-                 * ==================================================
-                 */
+                 ///////// LOAD GROUP QR HTML (MULTIPLE CARDS)/////////////////
                 $html = view('emails/group_gatepass_layout', [
                     'visitors' => $visitors
                 ]);
 
-                /**
-                 * ==================================================
-                 * GENERATE PDF
-                 * ==================================================
-                 */
+                //////////////////    GENERATE PDF   /////////////////////
                 $options = new Options();
                 $options->set('isRemoteEnabled', true); // IMPORTANT (local images)
                 $options->set('defaultFont', 'DejaVu Sans');
@@ -212,11 +225,7 @@ class MailController extends Controller
                 $dompdf->setPaper('A4', 'portrait');
                 $dompdf->render();
 
-                /**
-                 * ==================================================
-                 * SAVE PDF
-                 * ==================================================
-                 */
+                /////////// SAVE PDF//////////
                 $pdfFile = $pdfDir . 'Group_QR_' .$visitors[0]['header_code']. '.pdf';
 
                 if (file_exists($pdfFile)) {
@@ -225,23 +234,35 @@ class MailController extends Controller
 
                 file_put_contents($pdfFile, $dompdf->output());
 
-                /**
-                 * ==================================================
-                 * SEND MAIL (SAME AS SINGLE QR STYLE)
-                 * ==================================================
-                 */
+
+                //////////////======= Send Whatsapp When Appraval Time ===========////////////
+
+                    if($mailType == 'Approve'){
+                       
+                        $pdfUrl = 'https://morth.nic.in/sites/default/files/dd12-13_0.pdf';
+                        // $pdfUrl = base_url('public/uploads/gate_pass_pdf/GatePass_' . $row['v_code'] . '.pdf');
+                        // $mobileNo =  $row['visitor_phone']; 
+                        $mobileNo = '9666211742';   
+
+                        $waResponse = $whatsapp->send($mobileNo, $pdfUrl);
+                        if (
+                            $waResponse['status'] === 'success' &&
+                            ($waResponse['response']['success'] ?? false)
+                        ) {
+                            $whatsappSuccessCount++;
+                        } else {
+                            $whatsappFailed[] = $mobileNo;
+                        }
+                    }
+
+                //////////////======= Send Whatsapp End  ===========////////////
+
+                ////////////========= SEND MAIL ====================////////////////
+                 
                 $emailService = \Config\Services::email();
                 $emailService->clear(true);
-
-                $emailService->setFrom(
-                    env('app.email.fromEmail'),
-                    env('app.email.fromName')
-                );
-
-                // Change TO if required
-                // $emailService->setTo($visitors[0]['visitor_email']);
+                $emailService->setFrom(env('app.email.fromEmail'),env('app.email.fromName'));
                 $emailService->setTo($email);
-
                 $emailService->setSubject('Group Visitor Gate Pass');
                 $emailService->setMessage(
                     "Dear Team,<br><br>
@@ -251,28 +272,12 @@ class MailController extends Controller
 
                 $emailService->attach($pdfFile);
 
+
+                
                 if(!$emailService->send()){
                     $status = 'FAILED';
                     $error =  $emailService->printDebugger();
                     
-                $GatepassMailLogModel->insert([
-                    'request_id'    => $visitors[0]['id'],
-                    'v_code'        => $visitors[0]['header_code'],
-                    'mail_type'     => ($mailType === 'Resend') ? 'GROUP_GATE_PASS_RESEND' : 'GROUP_GATE_PASS',
-                    'email_to'      => $email,
-                    'subject'       => 'Your Visitor Gate Pass',
-                    'status'        => $status,
-                    'error_message' => $emailService->printDebugger(),
-                    'sent_by'       => session()->get('user_id'),
-                    'sent_at'       => date('Y-m-d H:i:s')
-                ]);
-
-
-                    return $this->response->setJSON([
-                        'status' => 'error',
-                        'message' => $emailService->printDebugger()
-                    ]);
-                }
                     $GatepassMailLogModel->insert([
                         'request_id'    => $visitors[0]['id'],
                         'v_code'        => $visitors[0]['header_code'],
@@ -280,11 +285,28 @@ class MailController extends Controller
                         'email_to'      => $email,
                         'subject'       => 'Your Visitor Gate Pass',
                         'status'        => $status,
-                        'error_message' => null,
+                        'error_message' => $emailService->printDebugger(),
                         'sent_by'       => session()->get('user_id'),
                         'sent_at'       => date('Y-m-d H:i:s')
                     ]);
 
+                    return $this->response->setJSON([
+                        'status' => 'error',
+                        'message' => $emailService->printDebugger()
+                    ]);
+                }
+
+                $GatepassMailLogModel->insert([
+                    'request_id'    => $visitors[0]['id'],
+                    'v_code'        => $visitors[0]['header_code'],
+                    'mail_type'     => ($mailType === 'Resend') ? 'GROUP_GATE_PASS_RESEND' : 'GROUP_GATE_PASS',
+                    'email_to'      => $email,
+                    'subject'       => 'Your Visitor Gate Pass',
+                    'status'        => $status,
+                    'error_message' => null,
+                    'sent_by'       => session()->get('user_id'),
+                    'sent_at'       => date('Y-m-d H:i:s')
+                ]);
 
                 return $this->response->setJSON([
                     'status'  => 'success',

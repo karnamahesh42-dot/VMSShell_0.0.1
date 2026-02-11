@@ -89,7 +89,7 @@ $routes->post('/visitor/uploadPhoto', 'SecurityController::uploadPhoto');
 
 $routes->get('feedback', 'FeedbackController::index');
 $routes->post('feedback/save', 'FeedbackController::save');
-$routes->post('feedback/status/(:num)', 'FeedbackController::updateStatus/$1');
+$routes->post('feedback/updateStatus/(:num)', 'FeedbackController::updateStatus/$1');
 $routes->post('feedback/delete/(:num)', 'FeedbackController::delete/$1');
 
 ///////////////////////////// Whatsapp /////////////////////////////////////////////////////////////////

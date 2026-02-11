@@ -6,187 +6,187 @@
 
                  <!-- Satart view Visitor Request Form Pop-Up  -->
                     <!-- Visitor Request Modal -->
-<div class="modal fade" id="visitorModal">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content shadow-lg rounded-4 border-0">
+        <div class="modal fade" id="visitorModal">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content shadow-lg rounded-4 border-0">
 
-            <!-- HEADER -->
-            <div class="modal-header card-header text-white rounded-top-4">
-                <h5 class="modal-title">Visitor Request Details</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-            </div>
-
-            <!-- BODY -->
-            <div class="modal-body">
-
-                <!-- HEADER INFO CARD -->
-                <div class="card mb-2 border-0 shadow-sm rounded-4">
-                    <div class="card-body visitor-card">
-    
-                        <div class="row g-2">
-
-                            <div class="col-md-3 col-6">
-                                <label class="fw-semibold">Request ID:</label>
-                                <div id="h_code" class="text-primary  cardData"></div>
-                            </div>
-
-                            <div class="col-md-3 col-6">
-                                <label class="fw-semibold">Requested By:</label>
-                                <div id="h_requested_by" class="cardData"></div>
-                            </div>
-
-                             <div class="col-md-3 col-6">
-                                <label class="fw-semibold">Referred By:</label>
-                                <div id="referred_by" class="cardData"></div>
-                            </div>
-                              
-                            <div class="col-md-3 col-6">
-                                <label class="fw-semibold">Company:</label>
-                                <div id="h_company" class="cardData"></div>
-                            </div>
-
-                             <div class="col-md-3 col-6">
-                                <label class="fw-semibold">Department</label>
-                                <div id="h_department" class="cardData"></div>
-                            </div>
-
-                             <div class="col-md-3 col-6">
-                                <label class="fw-semibold">Visitors Count </label>
-                                <div id="h_count" class="cardData"></div>
-                            </div>
-
-                             <div class="col-md-3 col-6">
-                                <label class="fw-semibold">Email</label>
-                                <div id="h_email" class="cardData"></div>
-                            </div>
-
-                            <div class="col-md-3 col-6">
-                                <label class="fw-semibold">Purpose </label>
-                                <div id="h_purpose" class="cardData"></div>
-                            </div>
-
-                            <div class="col-md-3 col-6">
-                                <label class="fw-semibold">Visit Date & Time </label>
-                                <div id="h_date" class="cardData"></div>
-                            </div>
-                            
-                            <div class="col-md-6">
-                                <label class="fw-semibold">Description </label>
-                                <div id="h_description" class="cardData"></div>
-                            </div>
-
-                            <div class="col-md-3 col-6">
-                                <label class="fw-semibold">Actions</label>
-                                <?php if(session()->get('role_id') <= 2){ ?>
-                               
-                                <div id= "actionBtns"></div>
-                                
-                                <?php } ?>
-                                  <p class="text-danger" id="remarkLablle"><p>      
-                            </div>
-                                <!-- Reccee Details -->
-                                <div class="row" id="recceData" style="display:none;" >
-                                    <h5 class="text-primary font-weight-bold m-2">Recce Details</h5>
-                                    <div class="col-md-3 col-sm-6 col-6">
-                                        <label class="fw-semibold">Type of Recce</label>
-                                        <div id="typeOfRecce" class="cardData"></div>
-                                    </div>
-
-                                    <div class="col-md-3 col-sm-6 col-6">
-                                        <label class="fw-semibold">Art Director / Director</label>
-                                         <div id="director" class="cardData"></div>
-                                    </div>
-
-                                    <div class="col-md-3 col-sm-6 col-6">
-                                        <label class="fw-semibold">Company / Production</label>
-                                        <div id="production" class="cardData"></div>
-                                    </div>
-
-                                    <div class="col-md-3 col-sm-6 col-6">
-                                        <label class="fw-semibold">Tentative Shooting Date</label>
-                                         <div id="shootingDate" class="cardData"></div>
-                                    </div>
-
-                                    <div class="col-md-3 col-sm-6 col-6">
-                                        <label class="fw-semibold">Contact Person</label>
-                                        <div id="contactPerson" class="cardData"></div>
-                                    </div>
-
-                                    <div class="col-md-3 col-sm-6 col-6">
-                                        <label class="fw-semibold">Contact Peson Mail</label>
-                                        <div id="contactPersonEmail" class="cardData"></div>
-                                    </div>
-
-                                      <div class="col-md-3 col-sm-6 col-6">
-                                        <label class="fw-semibold">Contact Peson Mobile</label>
-                                        <div id="contactPersonMobile" class="cardData"></div>
-                                    </div>
-                                </div>
-
-
-                                <!-- Vendor Details -->
-                                <div class="row" id="vendorData" style="display:none;">
-                                    <h5 class="text-primary font-weight-bold m-2">Vendor Details</h5>
-
-                                    <div class="col-md-3 col-sm-6 col-6">
-                                        <label class="fw-semibold">Vendor Category</label>
-                                        <div id="vendorCategory" class="cardData"></div>
-                                    </div>
-
-                                    <div class="col-md-3 col-sm-6 col-6">
-                                        <label class="fw-semibold">Vendor Status</label>
-                                        <div id="vendorStatus" class="cardData"></div>
-                                    </div>
-
-                                    <div class="col-md-3 col-sm-6 col-6">
-                                        <label class="fw-semibold">Company</label>
-                                        <div id="vendorCompany" class="cardData"></div>
-                                    </div>
-
-                                    <div class="col-md-3 col-sm-6 col-6">
-                                        <label class="fw-semibold">Location</label>
-                                        <div id="vendorLocation" class="cardData"></div>
-                                    </div>
-
-                                    <div class="col-md-3 col-sm-6 col-6">
-                                        <label class="fw-semibold">Contact Person</label>
-                                        <div id="vendorContactPerson" class="cardData"></div>
-                                    </div>
-
-                                    <div class="col-md-3 col-sm-6 col-6">
-                                        <label class="fw-semibold">Email</label>
-                                        <div id="vendorEmail" class="cardData"></div>
-                                    </div>
-
-                                    <div class="col-md-3 col-sm-6 col-6">
-                                        <label class="fw-semibold">Mobile</label>
-                                        <div id="vendorMobile" class="cardData"></div>
-                                    </div>
-                                </div>
-
-                        </div>
+                    <!-- HEADER -->
+                    <div class="modal-header card-header text-white rounded-top-4">
+                        <h5 class="modal-title">Visitor Request Details</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                     </div>
-                </div>
 
-                <!-- VISITOR CARDS -->
-                     <!-- <div class="row mx-1" id="visitorCardsContainer"></div> -->
-                <!-- VISITOR CARDS END -->
-                <!-- VISITOR CARDS-2  -->
-                 <h6 class="fw-bold text-primary">| Visitor Details</h6>
-                   
-                   
-                        <div id="visitorCardsDetails" style="height:250px; width:100%; overflow:auto; overflow-x:hidden;">
+                    <!-- BODY -->
+                    <div class="modal-body">
+
+                        <!-- HEADER INFO CARD -->
+                        <div class="card mb-2 border-0 shadow-sm rounded-4">
+                            <div class="card-body visitor-card">
+            
+                                <div class="row g-2">
+
+                                    <div class="col-md-3 col-6">
+                                        <label class="fw-semibold">Request Code:</label>
+                                        <div id="h_code" class="text-primary  cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-6">
+                                        <label class="fw-semibold">Requested By:</label>
+                                        <div id="h_requested_by" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-6">
+                                        <label class="fw-semibold">Referred By:</label>
+                                        <div id="referred_by" class="cardData"></div>
+                                    </div>
+                                    
+                                    <div class="col-md-3 col-6">
+                                        <label class="fw-semibold">Company:</label>
+                                        <div id="h_company" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-6">
+                                        <label class="fw-semibold">Department</label>
+                                        <div id="h_department" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-6">
+                                        <label class="fw-semibold">Visitors Count </label>
+                                        <div id="h_count" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-6">
+                                        <label class="fw-semibold">Email</label>
+                                        <div id="h_email" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-6">
+                                        <label class="fw-semibold">Purpose </label>
+                                        <div id="h_purpose" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-6">
+                                        <label class="fw-semibold">Visit Date & Time </label>
+                                        <div id="h_date" class="cardData"></div>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <label class="fw-semibold">Description </label>
+                                        <div id="h_description" class="cardData"></div>
+                                    </div>
+
+                                    <div class="col-md-3 col-6">
+                                        <label class="fw-semibold">Actions</label>
+                                        <?php if(session()->get('role_id') <= 2){ ?>
+                                    
+                                        <div id= "actionBtns"></div>
+                                        
+                                        <?php } ?>
+                                        <p class="text-danger" id="remarkLablle"><p>      
+                                    </div>
+                                        <!-- Reccee Details -->
+                                        <div class="row" id="recceData" style="display:none;" >
+                                            <h5 class="text-primary font-weight-bold m-2">Recce Details</h5>
+                                            <div class="col-md-3 col-sm-6 col-6">
+                                                <label class="fw-semibold">Type of Recce</label>
+                                                <div id="typeOfRecce" class="cardData"></div>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6">
+                                                <label class="fw-semibold">Art Director / Director</label>
+                                                <div id="director" class="cardData"></div>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6">
+                                                <label class="fw-semibold">Company / Production</label>
+                                                <div id="production" class="cardData"></div>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6">
+                                                <label class="fw-semibold">Tentative Shooting Date</label>
+                                                <div id="shootingDate" class="cardData"></div>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6">
+                                                <label class="fw-semibold">Contact Person</label>
+                                                <div id="contactPerson" class="cardData"></div>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6">
+                                                <label class="fw-semibold">Contact Peson Mail</label>
+                                                <div id="contactPersonEmail" class="cardData"></div>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6">
+                                                <label class="fw-semibold">Contact Peson Mobile</label>
+                                                <div id="contactPersonMobile" class="cardData"></div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Vendor Details -->
+                                        <div class="row" id="vendorData" style="display:none;">
+                                            <h5 class="text-primary font-weight-bold m-2">Vendor Details</h5>
+
+                                            <div class="col-md-3 col-sm-6 col-6">
+                                                <label class="fw-semibold">Vendor Category</label>
+                                                <div id="vendorCategory" class="cardData"></div>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6">
+                                                <label class="fw-semibold">Vendor Status</label>
+                                                <div id="vendorStatus" class="cardData"></div>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6">
+                                                <label class="fw-semibold">Company</label>
+                                                <div id="vendorCompany" class="cardData"></div>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6">
+                                                <label class="fw-semibold">Location</label>
+                                                <div id="vendorLocation" class="cardData"></div>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6">
+                                                <label class="fw-semibold">Contact Person</label>
+                                                <div id="vendorContactPerson" class="cardData"></div>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6">
+                                                <label class="fw-semibold">Email</label>
+                                                <div id="vendorEmail" class="cardData"></div>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6">
+                                                <label class="fw-semibold">Mobile</label>
+                                                <div id="vendorMobile" class="cardData"></div>
+                                            </div>
+                                        </div>
+
+                                </div>
+                            </div>
                         </div>
-                <!-- VISITOR CARDS-2  -->
-            </div>
-            <!-- FOOTER -->
-            <div class="modal-footer justify-content-between">
-                <button class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-            </div>
 
+                        <!-- VISITOR CARDS -->
+                            <!-- <div class="row mx-1" id="visitorCardsContainer"></div> -->
+                        <!-- VISITOR CARDS END -->
+                        <!-- VISITOR CARDS-2  -->
+                        <h6 class="fw-bold text-primary">| Visitor Details</h6>
+                        
+                        
+                                <div id="visitorCardsDetails" style="height:250px; width:100%; overflow:auto; overflow-x:hidden;">
+                                </div>
+                        <!-- VISITOR CARDS-2  -->
+                    </div>
+                    <!-- FOOTER -->
+                    <div class="modal-footer justify-content-between">
+                        <button class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
                 <!-- End view Visitor Request Form Pop-Up  -->
                 <div class="col-12">
@@ -207,24 +207,25 @@
                         <!-- /.card-header -->
                          <!-- /.card-body -->
                             <div class="card-body table-responsive">
-                                <table class="table table-bordered table-hover"  id="visitorTable">
+                                <table class="table table-bordered table-hover" style="table-layout: fixed;"  id="visitorTable">
                                     <thead class="bg-light">
-                                    <tr>
-                                    <th>#</th>
-                                    <th>Request ID</th>
-                                    <th>Department</th>
-                                    <th>Purpose</th>
-                                    <th style="width:250px;" >Description</th>
-                                    <th>Visit Date</th>
-                                    <th>Visitors Count</th>
-                                    <th>Status</th>
-                                    <?php if(in_array($_SESSION['role_id'] , [1,2,5] )){?>
-                                    <th style="width:150px;" colspan="2">Actions</th>
-                                    <?php }?>
-                                    </tr>
+                                        <tr>
+                                            <th style="width:50px;">#</th>
+                                            <th style="width:110px;">Request Code</th>
+                                            <th style="width:140px;">Department</th>
+                                            <th style="width:130px;">Purpose</th>
+                                            <th style="width:300px;">Description</th>
+                                            <th style="width:100px;">Visit Date</th>
+                                            <th style="width:80px;">Visitors</th>
+                                            <th style="width:100px;">Status</th>
+
+                                            <?php if(in_array($_SESSION['role_id'], [1,2,5])) { ?>
+                                                <th style="width:160px;" colspan="2">Actions</th>
+                                            <?php } ?>
+                                        </tr>
                                     </thead>
                                     <tbody></tbody>
-                                </table>
+                                </table>    
                             </div>
 
                         <!-- /.card-body -->

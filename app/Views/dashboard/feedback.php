@@ -2,7 +2,7 @@
 <?= $this->include('/dashboard/layouts/navbar') ?>
 <style>
    .star-rating {
-    font-size: 50px;
+    font-size: 35px;
     cursor: pointer;
     user-select: none;
 }
@@ -43,7 +43,7 @@
             <table class="table table-bordered table-striped" id="feedbackTable">
                 <thead class="bg-light">
                 <tr>
-                    <th>ID</th>
+                    <th>S.No</th>
                     <th>User</th>
                     <th>Department</th>
                     <th>Type</th>
@@ -56,9 +56,9 @@
                 </thead>
 
                 <tbody>
-                <?php foreach($feedbacks as $f): ?>
+                <?php $i=1;  foreach($feedbacks as $f): ?>
                     <tr>
-                        <td><?= $f['feedback_id'] ?></td>
+                        <td><?= $i; ?></td>
                         <td><?= esc($f['user_name']) ?></td>
                         <td><?= esc($f['department_name']) ?></td>
                         <td><?= esc($f['feedback_type']) ?></td>
@@ -73,6 +73,10 @@
                             data-id="<?= $f['feedback_id'] ?>"
                             data-user="<?= esc($f['user_name']) ?>"
                             data-dept="<?= esc($f['department_name']) ?>"
+                            data-comp="<?= esc($f['company_name']) ?>"
+
+                            
+
                             data-type="<?= esc($f['feedback_type']) ?>"
                             data-module="<?= esc($f['module_name']) ?>"
                             data-rating="<?= $f['rating'] ?>"
@@ -86,7 +90,7 @@
                         </button>
                         </td>
                     </tr>
-                <?php endforeach; ?>
+                <?php $i++; endforeach; ?>
                 </tbody>
             </table>
 
@@ -107,16 +111,35 @@
     <!-- HEADER -->
     <div class="modal-header bg-primary text-white">
         <h5 class="modal-title" id="modalTitle">Submit Feedback</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" onclick="location.reload()" ></button>
     </div>
 
     <div class="modal-body">
 
-        <div class="row">
+        <div class="row px-3 mb-2">
+                
+        <div class="row view-only-info d-none">
+           
+          <div class="col-md-4 mb-2">
+                <label class='form-label'>Company</label>
+                <input type="text" id="view_company" class="form-control" readonly>
+            </div>
+            <div class="col-md-4 mb-2">
+                <label class='form-label'>Department</label>
+                <input type="text" id="view_dept" class="form-control" readonly>
+            </div>
+            <div class="col-md-4 mb-2">
+                <label class='form-label'>User</label>
+                <input type="text" id="view_user" class="form-control" readonly>
+            </div>
+
+          
+        </div>
+
 
             <!-- Type -->
-            <div class="col-md-6 mb-2">
-                <label>Type</label>
+            <div class="col-md-4 mb-2">
+                <label class='form-label'>Type</label>
                 <select name="feedback_type" id="feedback_type" class="form-control" required>
                     <option value="">Select</option>
                      <option>Appreciation</option>
@@ -128,8 +151,8 @@
             </div>
 
             <!-- Module -->
-            <div class="col-md-6 mb-2">
-                <label>Module</label>
+            <div class="col-md-4 mb-2">
+                <label class='form-label'>Module</label>
                 <select name="module_name" id="module_name" class="form-control" required>
                     <option>General</option>
                     <option>Visitor Request</option>
@@ -138,56 +161,54 @@
                 </select>
             </div>
 
-            <!-- Rating -->
-            <!-- <div class="col-md-6 mb-2">
-                <label>Rating</label>
-                <select name="rating" id="rating" class="form-control" required>
-                    <option value="5">⭐⭐⭐⭐⭐</option>
-                    <option value="4">⭐⭐⭐⭐</option>
-                    <option value="3">⭐⭐⭐</option>
-                    <option value="2">⭐⭐</option>
-                    <option value="1">⭐</option>
-                </select>
-            </div> -->
-            <!-- Rating -->
-<div class="col-md-6 mb-2">
-    <label>Rating</label>
-    <input type="hidden" name="rating" id="rating" required>
 
-    <div class="star-rating">
-        <span data-value="1">★</span>
-        <span data-value="2">★</span>
-        <span data-value="3">★</span>
-        <span data-value="4">★</span>
-        <span data-value="5">★</span>
-    </div>
-</div>
+            <div class="col-md-4 mb-2">
+                <label class='form-label'>Rating</label>
+                <input type="hidden" name="rating" id="rating" required>
+
+                <div class="star-rating">
+                    <span data-value="1">★</span>
+                    <span data-value="2">★</span>
+                    <span data-value="3">★</span>
+                    <span data-value="4">★</span>
+                    <span data-value="5">★</span>
+                </div>
+            </div>
 
 
             <!-- Comments -->
             <div class="col-md-12 mb-2">
-                <label>Comments</label>
+                <label class='form-label'>Comments</label>
                 <textarea name="comments" id="comments" class="form-control" required></textarea>
             </div>
 
             <!-- Suggestion -->
             <div class="col-md-12 mb-2">
-                <label>Suggestion</label>
+                <label class='form-label'>Suggestion</label>
                 <textarea name="suggestion" id="suggestion" class="form-control"></textarea>
             </div>
 
             <!-- Attachment -->
             <div class="col-md-6 mb-2">
-                <label>Attachment</label>
+                <label class='form-label'>Attachment</label>
                 <input type="file" name="attachment" id="attachment" class="form-control">
                 <div id="filePreview" class="mt-1 small text-primary"></div>
             </div>
 
-            <!-- Contact -->
-            <div class="col-md-6 d-flex align-items-center">
-                <input type="checkbox" name="contact_required" id="contact_required" value="Y">
-                &nbsp; Contact me
+            <?php if($_SESSION['role_id'] == 1): ?>
+            <!-- STATUS (VIEW MODE ONLY) -->
+            <div class="col-md-6 mb-2 view-only-info d-none">
+                <label class="form-label">Status</label>
+
+                <select id="view_status"
+                        class="form-select"
+                        data-id="">
+                    <option value="Open">Open</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Closed">Closed</option>
+                </select>
             </div>
+            <?php endif; ?>
 
         </div>
 
@@ -197,7 +218,10 @@
     <div class="modal-footer">
        <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
 
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      <button type="button"
+        class="btn btn-danger"
+        data-bs-dismiss="modal"
+        onclick="location.reload()"> Close</button>
     </div>
 
 </form>
@@ -252,13 +276,22 @@ $(document).on("click", "#openFeedback, .newFeedbackBtn", function(){
 $(document).on("click", ".viewBtn", function(){
 
     $("#modalTitle").text("View Feedback");
-
     $("#feedback_type").val($(this).data("type"));
     $("#module_name").val($(this).data("module"));
     $("#rating").val($(this).data("rating"));
     $("#comments").val($(this).data("comments"));
     $("#suggestion").val($(this).data("suggestion"));
+    // show view-only info
+    $(".view-only-info").removeClass("d-none");
+    // fill values
+    $("#view_user").val($(this).data("user"));
+    $("#view_dept").val($(this).data("dept"));
+    $("#view_company").val($(this).data("comp"));
 
+    let id = $(this).data("id");
+    let status = $(this).data("status");
+
+    $("#view_status").val(status).attr("data-id", id);
 
     if($(this).data("contact") === 'Y'){
         $("#contact_required").prop("checked", true);
@@ -294,7 +327,6 @@ $(document).on("click", ".viewBtn", function(){
         });
     }
         
-
     // disable fields
     $("#feedbackForm :input").prop("disabled", false);
     // hide submit button
@@ -383,5 +415,53 @@ $(".star-rating span").on("mouseenter", function () {
     });
 
 });
+
+
+$("#view_status").on("change", function () {
+
+    let select = $(this);
+    let id = select.data("id");
+    let oldStatus = select.data("old");
+    let newStatus = select.val();
+
+    if (!confirm("Change status to " + newStatus + " ?")) {
+        select.val(oldStatus);
+        return;
+    }
+
+    $.ajax({
+        url: "<?= base_url('feedback/updateStatus/') ?>" + id, // 👈 ID in URL
+        type: "POST",
+        data: {
+            status: newStatus
+        },
+        dataType: "json",
+
+        success: function (res) {
+
+            if (res.status === "success") {
+
+                select.data("old", newStatus);
+
+                Swal.fire({
+                    icon: "success",
+                    title: "Status updated",
+                    timer: 1000,
+                    showConfirmButton: false
+                });
+
+            } else {
+                select.val(oldStatus);
+            }
+        },
+
+        error: function () {
+            select.val(oldStatus);
+            alert("Update failed");
+        }
+    });
+});
+
+
 
 </script>

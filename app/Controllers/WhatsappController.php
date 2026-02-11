@@ -49,7 +49,7 @@ class WhatsappController extends Controller
 
     /*
     =====================================
-    STEP 2 — OPT IN USER  ⭐ IMPORTANT
+    STEP 2  OPT IN USER   IMPORTANT
     =====================================
     */
     private function optInUser($token, $mobile)
@@ -83,22 +83,33 @@ class WhatsappController extends Controller
     STEP 3 — SEND MESSAGE
     =====================================
     */
-    public function send($mobile,$gatepassPath)
-    {
+    public function send($mobile, $gatepassUrl)
+{
+    try {
+
+        /* ===============================
+           STEP 1 — TOKEN
+        =============================== */
         $token = $this->getToken();
 
         if (!$token) {
-            return $this->response->setJSON([
-                "status" => "error",
-                "message" => "Token failed"
-            ]);
+            return [
+                "status"  => "error",
+                "step"    => "TOKEN",
+                "message" => "Token generation failed"
+            ];
         }
 
-        // FIRST OPT-IN
+
+        /* ===============================
+           STEP 2 — OPT IN
+        =============================== */
         $optinResponse = $this->optInUser($token, $mobile);
 
-        $pdfUrl = base_url('uploads/gate_pass_pdf/GatePass_V00000001.pdf');
 
+        /* ===============================
+           STEP 3 — SEND MESSAGE
+        =============================== */
         $payload = [
             "recipient_type" => "individual",
             "to" => $mobile,
@@ -116,8 +127,8 @@ class WhatsappController extends Controller
                             [
                                 "type" => "document",
                                 "document" => [
-                                    "link" => $gatepassPath,
-                                    "filename" => "GatePass.pdf"
+                                    "link" => $gatepassUrl,
+                                    "filename" => basename($gatepassUrl)
                                 ]
                             ]
                         ]
@@ -125,6 +136,7 @@ class WhatsappController extends Controller
                 ]
             ]
         ];
+
 
         $ch = curl_init();
 
@@ -139,19 +151,59 @@ class WhatsappController extends Controller
             ]
         ]);
 
-        $response = curl_exec($ch);
+        $response  = curl_exec($ch);
+        $curlError = curl_error($ch);
+        $httpCode  = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
         curl_close($ch);
 
-            return [
-            "status" => "success",
-             "optin" => $optinResponse,
-            "api_response" => json_decode($response, true)
-            ];
 
-        // return $this->response->setJSON([
-        //     "status" => "success",
-        //     "optin" => $optinResponse,
-        //     "message_response" => json_decode($response, true)
-        // ]);
+        /* ===============================
+           CURL ERROR
+        =============================== */
+        if ($curlError) {
+            return [
+                "status"  => "error",
+                "step"    => "CURL",
+                "message" => $curlError
+            ];
+        }
+
+
+        $decoded = json_decode($response, true);
+
+
+        /* ===============================
+           API FAILURE
+        =============================== */
+        if ($httpCode != 200) {
+            return [
+                "status"   => "error",
+                "step"     => "WHATSAPP_API",
+                "httpCode" => $httpCode,
+                "response" => $decoded
+            ];
+        }
+
+
+        /* ===============================
+           SUCCESS
+        =============================== */
+        return [
+            "status"   => "success",
+            "mobile"   => $mobile,
+            "optin"    => $optinResponse,
+            "response" => $decoded
+        ];
+
+    } catch (\Exception $e) {
+
+        return [
+            "status"  => "error",
+            "step"    => "EXCEPTION",
+            "message" => $e->getMessage()
+        ];
     }
+}
+
 }

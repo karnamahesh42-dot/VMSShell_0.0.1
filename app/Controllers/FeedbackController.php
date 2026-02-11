@@ -20,8 +20,8 @@ class FeedbackController extends BaseController
     ===================================== */
     public function index()
     {
-        $data['feedbacks'] = $this->feedbackModel
-                                    ->getFeedbackWithUserDetails(); // joined data
+        $data['feedbacks'] = $this->feedbackModel->getFeedbackWithUserDetails(); // joined data
+        
         return view('dashboard/feedback', $data);
     }
 
