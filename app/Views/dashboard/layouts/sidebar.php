@@ -196,19 +196,17 @@ h1, h2, h3 {
 </li>
 <?php } ?>
 
-    
+    <li>
+        <a class="nav-link <?= (uri_string()=='user/changePass') ? 'active' : '' ?>"
+        href="<?= base_url('user/changePass') ?>">
+        <i class="bi bi-lock"></i> Change Password
+        </a>
+    </li>
+   
     <li>
         <a class="nav-link <?= (uri_string()=='feedback') ? 'active' : '' ?>"
             href="<?= base_url('feedback') ?>">
             <i class="fa fa-comments"></i>  Feedback
-        </a>
-    </li>
-
-    
-    <li>
-        <a class="nav-link <?= (uri_string()=='about') ? 'active' : '' ?>"
-            href="<?= base_url('about') ?>">
-            <i class="bi bi-grid-1x2"></i>  About Access360
         </a>
     </li>
 
@@ -219,10 +217,10 @@ h1, h2, h3 {
         </a>
     </li>
 
-    <li>
-        <a class="nav-link <?= (uri_string()=='user/changePass') ? 'active' : '' ?>"
-        href="<?= base_url('user/changePass') ?>">
-        <i class="bi bi-lock"></i> Change Password
+     <li>
+        <a class="nav-link <?= (uri_string()=='about') ? 'active' : '' ?>"
+            href="<?= base_url('about') ?>">
+            <i class="bi bi-grid-1x2"></i>  About Access360
         </a>
     </li>
 

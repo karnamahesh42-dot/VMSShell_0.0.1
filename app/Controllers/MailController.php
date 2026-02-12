@@ -73,8 +73,8 @@ class MailController extends Controller
 
                     if($mailType != 'Resend'){
                        
-                        $pdfUrl = 'https://morth.nic.in/sites/default/files/dd12-13_0.pdf';
-                        // $pdfUrl = base_url('public/uploads/gate_pass_pdf/GatePass_' . $row['v_code'] . '.pdf');
+                        // $pdfUrl = 'https://morth.nic.in/sites/default/files/dd12-13_0.pdf';
+                        $pdfUrl = base_url('public/uploads/gate_pass_pdf/GatePass_' . $row['v_code'] . '.pdf');
                         $mobileNo =  $row['visitor_phone']; 
                         // $mobileNo = '8919146333';   
 
@@ -237,12 +237,12 @@ class MailController extends Controller
 
                 //////////////======= Send Whatsapp When Appraval Time ===========////////////
 
-                    if($mailType == 'Approve'){
+                    // if($mailType == 'Approve'){
                        
-                        $pdfUrl = 'https://morth.nic.in/sites/default/files/dd12-13_0.pdf';
-                        // $pdfUrl = base_url('public/uploads/gate_pass_pdf/GatePass_' . $row['v_code'] . '.pdf');
-                        // $mobileNo =  $row['visitor_phone']; 
-                        $mobileNo = '9666211742';   
+                        // $pdfUrl = 'https://morth.nic.in/sites/default/files/dd12-13_0.pdf';
+                        $pdfUrl = base_url('public/uploads/gate_pass_pdf/GatePass_' . $row['v_code'] . '.pdf');
+                        $mobileNo =  $row['visitor_phone']; 
+                        // $mobileNo = '9666211742';   
 
                         $waResponse = $whatsapp->send($mobileNo, $pdfUrl);
                         if (
@@ -253,7 +253,7 @@ class MailController extends Controller
                         } else {
                             $whatsappFailed[] = $mobileNo;
                         }
-                    }
+                    // }
 
                 //////////////======= Send Whatsapp End  ===========////////////
 

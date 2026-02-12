@@ -260,11 +260,11 @@
                                         <tr>
                                             <td>1</td>
 
-                                            <td><input type="text" name="visitor_name[]" class="form-control nameField" required></td>
+                                            <td><input type="text" name="visitor_name[]" class="form-control nameField" placeholder="Enter Name" required></td>
 
-                                            <td><input type="email" name="visitor_email[]" class="form-control" required></td>
+                                            <td><input type="email" name="visitor_email[]" placeholder="Enter Email" class="form-control" required></td>
 
-                                            <td><input type="text" name="visitor_phone[]" class="form-control phoneField" required></td>
+                                            <td>   <input  type="tel" name="visitor_phone[]"  class="form-control phoneField" maxlength="10" pattern="[0-9]{10}" inputmode="numeric" placeholder="Enter Whatsapp Number" required ></td>
 
                                             <td>
                                                 <select name="proof_id_type[]" class="form-control" >
@@ -342,9 +342,9 @@ $(document).on('click', '.addRow', function () {
         <tr>
             <td>${serial}</td>
 
-            <td><input type="text" name="visitor_name[]" class="form-control" required></td>
-            <td><input type="email" name="visitor_email[]" class="form-control" required></td>
-            <td><input type="text" name="visitor_phone[]" class="form-control" required></td>
+            <td><input type="text" name="visitor_name[]" class="form-control" placeholder="Enter Name" required></td>
+            <td><input type="email" name="visitor_email[]" class="form-control" placeholder="Enter Email" required></td>
+            <td><input type="text" name="visitor_phone[]" class="form-control phoneField" maxlength="10" pattern="[0-9]{10}" inputmode="numeric" placeholder="Enter Whatsapp Number" required></td>
 
             <td>
                 <select name="proof_id_type[]" class="form-control" >
@@ -411,7 +411,12 @@ $(document).ready(function () {
         allowClear: false
     });
 
+    loadCurentDateTime()
+});
 
+
+
+function loadCurentDateTime(){
     let now = new Date();
     let date = now.toISOString().split('T')[0];
     let hours = String(now.getHours()).padStart(2, '0');
@@ -420,8 +425,7 @@ $(document).ready(function () {
 
     $('input[name="visit_date"]').val(date);
     $('input[name="visit_time"]').val(time);
-});
-
+}
 
 //////////////////////////////////////Form Submission start/////////////////////////////////////////////////
 let isGroupSubmitting = false;
@@ -454,6 +458,7 @@ $("#visitorForm").submit(function(e){
         success: function(res){
             if(res.status === "success"){
                 $("#visitorForm")[0].reset();
+                loadCurentDateTime();
 
                 Swal.fire({
                     icon: "success",

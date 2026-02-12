@@ -466,7 +466,7 @@
                                             <th>Referred</th>
                                             <th>Requested By</th>
                                             <th>Visitor</th>
-                                            <th>Contact</th>
+                                            <th>Vehicle</th>
                                             <th>Purpose</th>
                                             <th>Check-In By</th>
                                             <!-- <th>Check-Out By</th> -->
@@ -734,6 +734,8 @@ function loadAuthorizedVisitors() {
             v_code:   $("#f_v_code").val()
         },
         success: function(res) {
+                                            
+                      console.log(res);                          
 
             let tbody = $("#authorizedVisitorTable");
             tbody.empty();
@@ -801,7 +803,7 @@ function loadAuthorizedVisitors() {
                         <td>${v.referred_by_name}</td>
                         <td>${v.created_by_name}</td>
                         <td>${v.visitor_name}</td>
-                        <td>${v.visitor_phone}</td>
+                        <td>${v.vehicle_no}</td>
                         <td>${v.purpose}</td>
                         <td>${v.check_in_by ? v.check_in_by : '--'}</td>   
                         <td>${validityBadge}</td>

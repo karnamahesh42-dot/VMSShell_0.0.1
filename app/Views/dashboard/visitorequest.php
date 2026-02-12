@@ -219,7 +219,7 @@
                                 <div class="col-md-3 mb-2">
                                     <label class="form-label required">Phone</label>
                                     <input type="text" name="visitor_phone" id="phone"
-                                           class="form-control" maxlength="10" placeholder="Enter phone number" required>
+                                           class="form-control" maxlength="10" placeholder="Enter Whatsapp number" required>
                                 </div>
 
                                 <div class="col-md-3 mb-2">
@@ -310,7 +310,10 @@ $(document).ready(function () {
         width: '100%',
         allowClear: false
     });
-    
+    loadCurentDateTime();
+});
+
+function loadCurentDateTime(){
     let now = new Date();
     let date = now.toISOString().split('T')[0];
     let hours = String(now.getHours()).padStart(2, '0');
@@ -319,8 +322,7 @@ $(document).ready(function () {
 
     $('input[name="visit_date"]').val(date);
     $('input[name="visit_time"]').val(time);
-
-});
+}
 
 // Phone Number Validation (only digits + 10 length)
 $("#phone").on("input", function () {
@@ -378,7 +380,8 @@ $("#visitorForm").submit(function(e){
 
         success: function(res){
             if(res.status === "success"){
-                $("#visitorForm")[0].reset();
+                $("#visitorForm")[0].reset(); // Reset Form
+                loadCurentDateTime(); //DateTime Fields Loading with Cirent Time 
 
                 Swal.fire({
                     icon: "success",

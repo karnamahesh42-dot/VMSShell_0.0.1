@@ -134,6 +134,10 @@ class WhatsappController extends Controller
                         ]
                     ]
                 ]
+            ],
+            "metadata" => [
+                "messageId" => uniqid("GatePass_"),
+                "callbackDlrUrl" => "Visiting"
             ]
         ];
 
