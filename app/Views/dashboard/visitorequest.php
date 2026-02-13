@@ -67,69 +67,69 @@
                                     </div>  
                                 </div>
                             
-                                    <!-- Recce Details Start -->
-                                    <div class="row" id="recceData" style="display:none">
-                                        <h5 class="text-primary font-weight-bold m-2 required">Recce Details</h5>
-                                        <div class="col-md-3 mb-2">
-                                            <label class="form-label">Type of Recce</label>
-                                            <select class="form-control" name="recce_type" id="recce_type">
-                                                <option value="">-Select Recce Type-</option>
-                                                <?php foreach ($recceTypes as $recce): ?>
-                                                    <option value="<?= esc($recce['category_name']) ?>">
-                                                        <?= esc($recce['category_name']) ?>
-                                                    </option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                        </div>
-
-                                        <div class="col-md-3 mb-2">
-                                            <label class="form-label">Company / Production</label>
-                                            <input type="text" 
-                                                name="company" 
-                                                class="form-control" 
-                                                placeholder="Enter Production / Company Name">
-                                        </div>
-
-                                        <div class="col-md-3 mb-2">
-                                            <label class="form-label">Art Director / Director</label>
-                                            <input type="text" 
-                                                name="art_director" 
-                                                class="form-control" 
-                                                placeholder="Enter Art Director / Director Name">
-                                        </div>
-
-                                        <div class="col-md-3 mb-2">
-                                            <label class="form-label">Tentative Shooting Date</label>
-                                            <input type="date" 
-                                                name="shooting_date" 
-                                                class="form-control" 
-                                                placeholder="Select Tentative Shooting Date">
-                                        </div>
-
-                                        <div class="col-md-3 mb-2">
-                                            <label class="form-label">Contact Person</label>
-                                            <input type="text" 
-                                                name="contact_person" 
-                                                class="form-control" 
-                                                placeholder="Enter Contact Person Name">
-                                        </div>
-
-                                        <div class="col-md-3 mb-2">
-                                            <label class="form-label">Email</label>
-                                            <input type="email" 
-                                                name="contact_person_email" 
-                                                class="form-control" 
-                                                placeholder="Enter Contact Person Email">
-                                        </div>
-
-                                         <div class="col-md-3 mb-2">
-                                            <label class="form-label">Mobile No</label>
-                                            <input type="phone" 
-                                                name="contact_person_phone" 
-                                                class="form-control" 
-                                                placeholder="Enter Contact Person Mobile No">
-                                        </div>
+                                <!-- Recce Details Start -->
+                                <div class="row" id="recceData" style="display:none">
+                                    <h5 class="text-primary font-weight-bold m-2 required">Recce Details</h5>
+                                    <div class="col-md-3 mb-2">
+                                        <label class="form-label">Type of Recce</label>
+                                        <select class="form-control" name="recce_type" id="recce_type">
+                                            <option value="">-Select Recce Type-</option>
+                                            <?php foreach ($recceTypes as $recce): ?>
+                                                <option value="<?= esc($recce['category_name']) ?>">
+                                                    <?= esc($recce['category_name']) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
+
+                                    <div class="col-md-3 mb-2">
+                                        <label class="form-label">Company / Production</label>
+                                        <input type="text" 
+                                            name="company" 
+                                            class="form-control" 
+                                            placeholder="Enter Production / Company Name">
+                                    </div>
+
+                                    <div class="col-md-3 mb-2">
+                                        <label class="form-label">Art Director / Director</label>
+                                        <input type="text" 
+                                            name="art_director" 
+                                            class="form-control" 
+                                            placeholder="Enter Art Director / Director Name">
+                                    </div>
+
+                                    <div class="col-md-3 mb-2">
+                                        <label class="form-label">Tentative Shooting Date</label>
+                                        <input type="date" 
+                                            name="shooting_date" 
+                                            class="form-control" 
+                                            placeholder="Select Tentative Shooting Date">
+                                    </div>
+
+                                    <div class="col-md-3 mb-2">
+                                        <label class="form-label">Contact Person</label>
+                                        <input type="text" 
+                                            name="contact_person" 
+                                            class="form-control" 
+                                            placeholder="Enter Contact Person Name">
+                                    </div>
+
+                                    <div class="col-md-3 mb-2">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" 
+                                            name="contact_person_email" 
+                                            class="form-control" 
+                                            placeholder="Enter Contact Person Email">
+                                    </div>
+
+                                    <div class="col-md-3 mb-2">
+                                        <label class="form-label">Mobile No</label>
+                                        <input type="phone" 
+                                            name="contact_person_phone" 
+                                            class="form-control" 
+                                            placeholder="Enter Contact Person Mobile No">
+                                    </div>
+                                </div>
                             <!-- Recce Details End  -->
 
                             <!-- Vendor Details Start -->
@@ -249,7 +249,7 @@
 
                         <!-- Vehicle Details -->
                         <h5 class="text-primary font-weight-bold">Vehicle Details & Attachments </h5>                       
-                        <div class="row">
+                             <div class="row">
 
                                 <div class="col-md-3 mb-2">
                                     <label class="form-label">Vehicle Number</label>
@@ -449,24 +449,61 @@ $("#visitorForm").submit(function(e){
                 return false;
             }
 
+            // // Date validation
+            // let visitDate = $('input[name="visit_date"]').val();
+            // if (visitDate) {
+            //     let today = new Date();
+            //     today.setHours(0,0,0,0);
+
+            //     let selected = new Date(visitDate);
+
+            //     if (selected < today) {
+            //         Swal.fire({
+            //             icon: 'error',
+            //             title: 'Invalid Date',
+            //             text: 'Visit date cannot be earlier than today',
+            //             confirmButtonColor: '#3085d6'
+            //         });
+            //         return false;
+            //     }
+            // }
+
+
+
             // Date validation
             let visitDate = $('input[name="visit_date"]').val();
+
             if (visitDate) {
+
                 let today = new Date();
                 today.setHours(0,0,0,0);
 
+                let maxDate = new Date();
+                maxDate.setDate(today.getDate() + 60); // ✅ +60 days
+
                 let selected = new Date(visitDate);
 
+                // Past date check
                 if (selected < today) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Invalid Date',
-                        text: 'Visit date cannot be earlier than today',
-                        confirmButtonColor: '#3085d6'
+                        text: 'Visit date cannot be earlier than today'
+                    });
+                    return false;
+                }
+
+                // 60 days future check
+                if (selected > maxDate) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Invalid Date',
+                        text: 'Visit date cannot be more than 60 days from today'
                     });
                     return false;
                 }
             }
+
 
             return true;
         }

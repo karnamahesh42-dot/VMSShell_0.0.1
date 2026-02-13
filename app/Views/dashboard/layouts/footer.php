@@ -24,6 +24,104 @@
 
 <script>
    
+   function contactSupport() {
+
+    Swal.fire({
+        title: "Contact Support",
+        icon: "info",
+        width: 540,
+        confirmButtonText: "Close",
+        confirmButtonColor: "#3085d6",
+
+        html: `
+<div class="container-fluid text-start" style="font-size:14px;line-height:1.6">
+
+    <p class="mb-3">
+        For any assistance regarding <b>Access360</b>, please contact our support team below.
+    </p>
+
+    <div class="row g-2">
+
+        <!-- Support Card 1 -->
+        <div class="col-12 col-md-6">
+            <div class="card shadow-sm h-100 border-0">
+                <div class="card-body">
+
+                    <h6 class="fw-bold text-primary mb-3">
+                         <i class="fa fa-user me-2"></i> Srinivas
+                    </h6>
+
+                    <p class="mb-1">
+               
+                     <a href="mailto:srinivas.a@ramjifilmcity.com">
+                        srinivas.a@ramjifilmcity.com</a>
+                    </p>
+
+                    <p class="mb-1">
+                        <i class="fa fa-mobile-alt text-success me-2"></i>
+                         <a href="tel:9347364990">9347364990</a>
+                    </p>
+
+                    <p class="mb-0">
+                       <i class="fa fa-phone text-dark me-2"></i>
+                         Ext: <b>8906</b>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Support Card 2 -->
+        <div class="col-12 col-md-6">
+            <div class="card shadow-sm h-100 border-0">
+                <div class="card-body">
+
+                    <h6 class="fw-bold text-primary mb-3">
+                          <i class="fa fa-user me-2"></i>  Mahesh
+                    </h6>
+
+                    <p class="mb-1">
+                        <a href="mailto:developers@ramojifilmcity.com">
+                        developers@ramojifilmcity.com</a>
+                    </p>
+
+                    <p class="mb-1">
+                      <i class="fa fa-mobile-alt text-success me-2"></i>    
+                    <a href="tel:8919146333">8919146333</a>
+                    </p>
+
+                    <p class="mb-0">
+                          <i class="fa fa-phone text-dark me-2"></i>
+                           Ext: <b>8846</b>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <hr class="my-3">
+
+    <!-- Feedback box -->
+    <div class="alert alert-success small mb-0">
+      <i class="fa fa-comments me-2"></i>
+        <b> Feedback & Requests</b><br>
+        You can also share your issues, suggestions, or feature requests using the 
+        <b>Feedback</b> option inside the application.  
+        This helps us track and resolve your requests faster.
+    </div>
+
+</div>
+`
+
+    });
+
+}
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
 
     const sidebar = document.getElementById('sidebar');
@@ -98,8 +196,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-
-
 // works for ANY current/future image with class="zoomable"
 
 $(document).on('click', '.zoomable', function () {
@@ -111,12 +207,9 @@ $(document).on('click', '.zoomable', function () {
 });
 
 $(document).on('click', '.zoom-close, #imageZoomModal', function (e) {
-
     // prevent closing when clicking image itself
     if ($(e.target).is('#zoomedImage')) return;
-
     $('#imageZoomModal').fadeOut();
 });
-
 //Image preview in scann Visitor Popup and request management Popup End 
 </script>

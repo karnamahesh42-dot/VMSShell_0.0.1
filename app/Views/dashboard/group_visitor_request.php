@@ -540,24 +540,39 @@ function validateForm() {
     }
 
     
-            // Date validation
-            let visitDate = $('input[name="visit_date"]').val();
-            if (visitDate) {
-                let today = new Date();
-                today.setHours(0,0,0,0);
+    // Date validation
+    let visitDate = $('input[name="visit_date"]').val();
 
-                let selected = new Date(visitDate);
+    if (visitDate) {
 
-                if (selected < today) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Invalid Date',
-                        text: 'Visit date cannot be earlier than today',
-                        confirmButtonColor: '#3085d6'
-                    });
-                    return false;
-                }
-            }
+        let today = new Date();
+        today.setHours(0,0,0,0);
+
+        let maxDate = new Date();
+        maxDate.setDate(today.getDate() + 60); // ✅ +60 days
+
+        let selected = new Date(visitDate);
+
+        // Past date check
+        if (selected < today) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid Date',
+                text: 'Visit date cannot be earlier than today'
+            });
+            return false;
+        }
+
+        // 60 days future check
+        if (selected > maxDate) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid Date',
+                text: 'Visit date cannot be more than 60 days from today'
+            });
+            return false;
+        }
+    }
 
     return true;
 }

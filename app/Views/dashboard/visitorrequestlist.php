@@ -639,7 +639,10 @@ function approvalProcess(head_id, status, header_code, comment) {
                 });
                 
                 $("#visitorModal").modal("hide");
-                sendMail(res.head_id);
+                 
+                if(res.process_status == 'approved'){
+                    sendMail(res.head_id);
+                }    
                 loadVisitorList();
 
             } else {

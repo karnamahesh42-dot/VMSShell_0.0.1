@@ -541,7 +541,9 @@ public function groupSubmit()
             return $this->response->setJSON([
                 "status"  => "success",
                 "message" => "Head status & all visitors updated successfully!",
-                "head_id" => $head_id
+                "head_id" => $head_id,
+                "process_status" => $status,
+
             ]);
 
     }

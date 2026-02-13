@@ -633,9 +633,12 @@ function approvalProcess(head_id, status, header_code, comment) {
                     confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.isConfirmed) {
+                   
+                    if(res.process_status == 'approved'){
                          sendMail(res.head_id);
-                         // loadAuthorizedVisitors();
-                         location.reload();
+                    }
+                    location.reload();
+
                     }
                 });
 

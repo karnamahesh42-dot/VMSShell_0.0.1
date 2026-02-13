@@ -12,7 +12,6 @@ if (!$session->has('isLoggedIn') || !$session->has('user_id') || !$session->has(
   <meta charset="utf-8" />
   <title>RFC Access360</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- <restrict Google Console Acces > -->
   <meta name="robots" content="noindex,nofollow"> 
 
   <link rel="icon" type="image/png" href="<?= base_url('public/dist/ramoji-logo-3.png') ?>">
@@ -31,27 +30,13 @@ if (!$session->has('isLoggedIn') || !$session->has('user_id') || !$session->has(
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
 <style>
- body {
-    font-family: 'Nunito', sans-serif !important;
-} 
-/* h1, h2, h3, h4, .card-title {
-    font-family: 'Playfair Display', serif !important;
-} */
-/* 
 body {
-    font-family: 'Lato', sans-serif;
+font-family: 'Nunito', sans-serif !important;
+} 
+
+.card-header{
+    background: #398aaaff;
 }
-
-h1, h2, h3 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-} */
-</style>
-
-  <style>
-  .card-header{
-      background: #398aaaff;
-  }
 
 .sidebar::before {
     content: "";
@@ -66,23 +51,21 @@ h1, h2, h3 {
     opacity: 0.3;
     z-index: -1;
 }
-
-
-    /* Sidebar */
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: var(--sidebar-width);
-      height: 100%;
-      /* background: linear-gradient(180deg, #4aa8ff,#ff7272); */
-      background: rgba(0, 0, 0, 0.65);
-      color: #fff;
-      transition: all 0.3s ease;
-      overflow-y: auto;
-      padding: 0px 10px;
-      z-index: 1040;
-    }
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-width);
+    height: 100%;
+    /* background: linear-gradient(180deg, #4aa8ff,#ff7272); */
+    background: rgba(0, 0, 0, 0.65);
+    color: #fff;
+    transition: all 0.3s ease;
+    overflow-y: auto;
+    padding: 0px 10px;
+    z-index: 1040;
+}
 </style>
 
 </head>
@@ -148,53 +131,53 @@ h1, h2, h3 {
 
       <?php } ?>
 
-      
-<?php if (in_array($_SESSION['role_id'], ['1','2','5'])) { ?>
-<li class="nav-item">
-    <a class="nav-link <?= in_array(uri_string(), [
-            'report/daily',
-            'report/current',
-            'report/history'
-        ]) ? 'active' : '' ?>"
-       data-bs-toggle="collapse"
-       href="#reportMenu"
-       role="button"
-       aria-expanded="false"
-       aria-controls="reportMenu">
+        
+    <?php if (in_array($_SESSION['role_id'], ['1','2','5'])) { ?>
+    <li class="nav-item">
+        <a class="nav-link <?= in_array(uri_string(), [
+                'report/daily',
+                'report/current',
+                'report/history'
+            ]) ? 'active' : '' ?>"
+        data-bs-toggle="collapse"
+        href="#reportMenu"
+        role="button"
+        aria-expanded="false"
+        aria-controls="reportMenu">
 
-        <i class="bi bi-file-earmark-text-fill"></i> Report
-        <i class="bi bi-chevron-down float-end"></i>
-    </a>
+            <i class="bi bi-file-earmark-text-fill"></i> Report
+            <i class="bi bi-chevron-down float-end"></i>
+        </a>
 
-    <ul class="collapse list-unstyled ps-3 <?= in_array(uri_string(), [
-            'daily_visitor_report',
-            'request_to_checkout',
-            'report/history'
-        ]) ? 'show' : '' ?>" id="reportMenu">
+        <ul class="collapse list-unstyled ps-3 <?= in_array(uri_string(), [
+                'daily_visitor_report',
+                'request_to_checkout',
+                'report/history'
+            ]) ? 'show' : '' ?>" id="reportMenu">
 
-        <li>
-            <a class="nav-link <?= (uri_string()=='daily_visitor_report') ? 'active' : '' ?>"
-               href="<?= base_url('daily_visitor_report') ?>">
-               <i class="bi bi-calendar-day"></i> Daily Visitor Report
-            </a>
-        </li>
+            <li>
+                <a class="nav-link <?= (uri_string()=='daily_visitor_report') ? 'active' : '' ?>"
+                href="<?= base_url('daily_visitor_report') ?>">
+                <i class="bi bi-calendar-day"></i> Daily Visitor Report
+                </a>
+            </li>
 
-        <li>
-            <a class="nav-link <?= (uri_string()=='request_to_checkout') ? 'active' : '' ?>"
-               href="<?= base_url('request_to_checkout') ?>">
-               <i class="bi bi-person-check-fill"></i> Request to Checkout Report
-            </a>
-        </li>
+            <li>
+                <a class="nav-link <?= (uri_string()=='request_to_checkout') ? 'active' : '' ?>"
+                href="<?= base_url('request_to_checkout') ?>">
+                <i class="bi bi-person-check-fill"></i> Request to Checkout Report
+                </a>
+            </li>
 
-        <li>
-            <a class="nav-link <?= (uri_string()=='report/history') ? 'active' : '' ?>"
-               href="#">
-               <i class="bi bi-clock-history"></i> Visitor History
-            </a>
-        </li>
-    </ul>
-</li>
-<?php } ?>
+            <li>
+                <a class="nav-link <?= (uri_string()=='report/history') ? 'active' : '' ?>"
+                href="#">
+                <i class="bi bi-clock-history"></i> Visitor History
+                </a>
+            </li>
+        </ul>
+    </li>
+    <?php } ?>
 
     <li>
         <a class="nav-link <?= (uri_string()=='user/changePass') ? 'active' : '' ?>"
@@ -225,13 +208,18 @@ h1, h2, h3 {
     </li>
 
     <li>
+        <a href="javascript:void(0)" class="nav-link" onclick="contactSupport()">
+            <i class="fas fa-headset"></i> Contact Support
+        </a>
+    </li>
+
+    <li>
         <a class="nav-link" href="<?= base_url('logout') ?>">
         <i class="bi bi-box-arrow-right"></i> Logout
         </a>
     </li>
 
   </ul>
-
 </nav>
 
 
