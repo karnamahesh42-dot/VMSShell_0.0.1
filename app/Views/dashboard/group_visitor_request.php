@@ -50,8 +50,8 @@
                                 </div>
                                 
                                 <div class="col-md-2 mb-2">
-                                    <label class="form-label required">Email</label>
-                                    <input type="email" name="email"  class="form-control" placeholder=" Please Enter Email" required>
+                                    <label class="form-label ">Email</label>
+                                    <input type="email" name="email"  class="form-control" placeholder=" Please Enter Email" >
                                 </div>
 
                                                      
@@ -244,9 +244,9 @@
                                         <tr>
                                             <th>S.No</th>
                                             <th class="required">Visitor Name</th>
-                                            <th class="required">Email</th>
-                                            <th class="required">Phone</th>
-                                            <th>ID Type</th>
+                                            <th class="">Email ID</th>
+                                            <th class="required">Phone Number</th>
+                                            <th>ID Proof Type</th>
                                             <th>ID Number</th>
                                             <th>Vehicle No</th>
                                             <th>Vehicle Type</th>
@@ -262,13 +262,13 @@
 
                                             <td><input type="text" name="visitor_name[]" class="form-control nameField" placeholder="Enter Name" required></td>
 
-                                            <td><input type="email" name="visitor_email[]" placeholder="Enter Email" class="form-control" required></td>
+                                            <td><input type="email" name="visitor_email[]" placeholder="Enter Email" class="form-control" ></td>
 
-                                            <td>   <input  type="tel" name="visitor_phone[]"  class="form-control phoneField" maxlength="10" pattern="[0-9]{10}" inputmode="numeric" placeholder="Enter Whatsapp Number" required ></td>
+                                            <td> <input  type="tel" name="visitor_phone[]"  class="form-control phoneField" maxlength="10" pattern="[0-9]{10}" inputmode="numeric" placeholder="Enter Whatsapp Number" required ></td>
 
                                             <td>
                                                 <select name="proof_id_type[]" class="form-control" >
-                                                    <option value="">Select</option>
+                                                    <option value="">-Select ID Proof Type-</option>
                                                     <option>Aadhaar Card</option>
                                                     <option>PAN Card</option>
                                                     <option>Voter ID</option>
@@ -277,27 +277,37 @@
                                                 </select>
                                             </td>
 
-                                            <td><input type="text" name="proof_id_number[]" class="form-control idNumberField" ></td>
+                                            <td><input type="text" name="proof_id_number[]" class="form-control idNumberField"  placeholder="Enter ID Number"></td>
 
-                                            <td><input type="text" name="vehicle_no[]" class="form-control"></td>
+                                              <td><input type="text" name="vehicle_no[]" class="form-control" placeholder="Enter Vehicle Number"></td>
 
-                                            <td>
+                                              <td>
                                                 <select name="vehicle_type[]" class="form-control">
-                                                    <option value="">Select</option>
-                                                    <option>Bike</option>
-                                                    <option>Car</option>
-                                                    <option>Van</option>
-                                                    <option>Bus</option>
-                                                    <option>Auto</option>
-                                                    <option>Truck</option>
+                                                        <option value="">-- Select Vehicle Type --</option>
+                                                        <option>Bike</option>
+                                                        <option>Car</option>
+                                                        <option>Van</option>
+                                                        <option>Bus</option>
+                                                        <option>Auto</option>
+                                                        <option>Truck</option>
+                                                        <option>Lorry</option>
+                                                        <option>DCM</option>
+                                                        <option>Auto Trolley</option>
+                                                        <option>Mini Lorry</option>
+                                                        <option>Tractor</option>
+                                                        <option>Crane</option>
                                                 </select>
                                             </td>
+
+                                          
+
+                                          
 
                                             <td class="text-center">
                                                 <button type="button" class="btn btn-outline-primary btn-sm uploadBtn">
                                                     <i class="fa-solid fa-file-arrow-up"></i>
                                                 </button>
-                                                <input type="file" name="vehicle_id_proof[]" class="fileInput d-none">
+                                                <input type="file" name="vehicle_id_proof[]" class="fileInput d-none"  >
                                             </td>
 
                                             <td class="text-center">
@@ -309,6 +319,7 @@
 
                                             <td>
                                                 <button type="button" class="btn btn-success btn-sm addRow"><i class="fa-solid fa-user-plus"></i></button>
+                                                <button type="button" class="btn btn-danger btn-sm removeRow"><i class="fa-solid fa-user-xmark"></i></button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -334,20 +345,107 @@
 
 <!-- Dynamic Row Script -->
 <script>
-let serial = 1;
+let serial = 0;
+/* ================================
+   ADD ROW (Clone Last Row Values)
+================================ */
 
 $(document).on('click', '.addRow', function () {
+
+    let tbody = $("#visitorGrid tbody");
+    let lastRow = tbody.find("tr:last");
+
+    // If no row exists → add empty row
+    if (lastRow.length === 0) {
+        addEmptyRow();
+        return;
+    }
+
+    let newRow = lastRow.clone();
+
+    // Copy values manually
+    newRow.find("input, select").each(function () {
+
+        let name = $(this).attr("name");
+
+        if ($(this).attr("type") === "file") {
+            // Always clear file inputs
+            $(this).val("");
+        }else if (name === "visitor_name[]") {
+            $(this).val(""); //  DO NOT copy visitor name
+        }
+        else if (name === "proof_id_type[]") {
+            $(this).val(""); //  DO NOT copy visitor name
+        }
+        else if (name === "proof_id_number[]") {
+            $(this).val(""); //  DO NOT copy visitor name
+        }
+        else {
+            let value = lastRow.find(`[name='${name}']`).val();
+            $(this).val(value);
+        }
+    });
+
+    tbody.append(newRow);
+
+    updateSerialNumbers();
+});
+
+
+/* ================================
+   REMOVE ROW
+================================ */
+
+$(document).on('click', '.removeRow', function () {
+
+    let tbody = $("#visitorGrid tbody");
+    let totalRows = tbody.find("tr").length;
+
+    // Prevent deleting last row
+    if (totalRows === 1) {
+        alert("At least one visitor row must remain.");
+        return;
+    }
+
+    $(this).closest("tr").remove();
+
+    updateSerialNumbers();
+});
+
+
+/* ================================
+   UPDATE SERIAL NUMBERS
+================================ */
+
+function updateSerialNumbers() {
+
+    serial = 0;
+
+    $("#visitorGrid tbody tr").each(function () {
+        serial++;
+        $(this).find("td:first").text(serial);
+    });
+}
+
+
+/* ================================
+   OPTIONAL: ADD EMPTY ROW FUNCTION
+================================ */
+
+function addEmptyRow() {
+
     serial++;
+
     let row = `
         <tr>
             <td>${serial}</td>
 
-            <td><input type="text" name="visitor_name[]" class="form-control" placeholder="Enter Name" required></td>
-            <td><input type="email" name="visitor_email[]" class="form-control" placeholder="Enter Email" required></td>
-            <td><input type="text" name="visitor_phone[]" class="form-control phoneField" maxlength="10" pattern="[0-9]{10}" inputmode="numeric" placeholder="Enter Whatsapp Number" required></td>
+            <td><input type="text" name="visitor_name[]" class="form-control" required></td>
+            <td><input type="email" name="visitor_email[]" class="form-control" required></td>
+            <td><input type="text" name="visitor_phone[]" class="form-control" maxlength="10" required></td>
 
             <td>
-                <select name="proof_id_type[]" class="form-control" >
+                <select name="proof_id_type[]" class="form-control">
                     <option value="">Select</option>
                     <option>Aadhaar Card</option>
                     <option>PAN Card</option>
@@ -367,8 +465,6 @@ $(document).on('click', '.addRow', function () {
                     <option>Car</option>
                     <option>Van</option>
                     <option>Bus</option>
-                    <option>Auto</option>
-                    <option>Truck</option>
                 </select>
             </td>
 
@@ -387,13 +483,79 @@ $(document).on('click', '.addRow', function () {
             </td>
 
             <td>
-                <button type="button" class="btn btn-danger btn-sm removeRow"><i class="fa-solid fa-user-xmark"></i></button>
+                <button type="button" class="btn btn-danger btn-sm removeRow">
+                    <i class="fa-solid fa-user-xmark"></i>
+                </button>
             </td>
         </tr>
     `;
 
     $("#visitorGrid tbody").append(row);
-});
+}
+
+// $(document).on('click', '.addRow', function () {
+//     serial++;
+//     let row = `
+//         <tr>
+//             <td>${serial}</td>
+
+//             <td><input type="text" name="visitor_name[]" class="form-control" placeholder="Enter Name" required></td>
+//             <td><input type="email" name="visitor_email[]" class="form-control" placeholder="Enter Email" required></td>
+//             <td><input type="text" name="visitor_phone[]" class="form-control phoneField" maxlength="10" pattern="[0-9]{10}" inputmode="numeric" placeholder="Enter Whatsapp Number" required></td>
+
+//             <td>
+//                 <select name="proof_id_type[]" class="form-control" >
+//                     <option value="">Select</option>
+//                     <option>Aadhaar Card</option>
+//                     <option>PAN Card</option>
+//                     <option>Voter ID</option>
+//                     <option>Passport</option>
+//                     <option>Driving License</option>
+//                 </select>
+//             </td>
+
+//             <td><input type="text" name="proof_id_number[]" class="form-control"></td>
+//             <td><input type="text" name="vehicle_no[]" class="form-control"></td>
+
+//             <td>
+//                 <select name="vehicle_type[]" class="form-control">
+//                     <option value="">Select</option>
+//                     <option>Bike</option>
+//                     <option>Car</option>
+//                     <option>Van</option>
+//                     <option>Bus</option>
+//                     <option>Auto</option>
+//                     <option>Truck</option>
+//                     <option>Lorry</option>
+//                     <option>DCM</option>
+//                     <option>Auto Trolley</option>
+//                     <option>Mini Lorry</option>
+//                     <option>Tractor</option>
+//                 </select>
+//             </td>
+
+//             <td class="text-center">
+//                 <button type="button" class="btn btn-outline-primary btn-sm uploadBtn">
+//                     <i class="fa-solid fa-file-arrow-up"></i>
+//                 </button>
+//                 <input type="file" name="vehicle_id_proof[]" class="fileInput d-none">
+//             </td>
+
+//             <td class="text-center">
+//                 <button type="button" class="btn btn-outline-primary btn-sm uploadBtn">
+//                     <i class="fa-solid fa-file-arrow-up"></i>
+//                 </button>
+//                 <input type="file" name="visitor_id_proof[]" class="fileInput d-none">
+//             </td>
+
+//             <td>
+//                 <button type="button" class="btn btn-danger btn-sm removeRow"><i class="fa-solid fa-user-xmark"></i></button>
+//             </td>
+//         </tr>
+//     `;
+
+//     $("#visitorGrid tbody").append(row);
+// });
 
 $(document).on('click', '.removeRow', function () {
     $(this).closest('tr').remove();
@@ -413,7 +575,6 @@ $(document).ready(function () {
 
     loadCurentDateTime()
 });
-
 
 
 function loadCurentDateTime(){
@@ -498,21 +659,19 @@ $("#visitorForm").submit(function(e){
 
 
 function sendMail(head_id) {
-        $.ajax({
-        url: "<?= base_url('/send-email') ?>",
-        type: "POST",
-        data: { head_id: head_id },   //  single variable
-        success: function(res) {
-        console.log(res);
-        }
-        });
+    $.ajax({
+    url: "<?= base_url('/send-email') ?>",
+    type: "POST",
+    data: { head_id: head_id },   //  single variable
+    success: function(res) {
+    console.log(res);
+    }
+    });
 }
 
 $(document).on('click', '.uploadBtn', function () {
     $(this).closest('td').find('.fileInput').click();
 });
-
-
 
 function validateForm() {
 
@@ -520,7 +679,10 @@ function validateForm() {
     let recceType  = $('#recce_type').val();
     let vendorType = $('#vendor_category').val();
 
-    // Purpose-based validation
+    /* =========================================
+       PURPOSE VALIDATION
+    ========================================= */
+
     const rules = {
         Recce:  { field: '#recce_type',  msg: 'Recce Type is mandatory when Purpose is Recce' },
         Vendor: { field: '#vendor_category', msg: 'Vendor Type is mandatory when Purpose is Vendor' }
@@ -532,15 +694,16 @@ function validateForm() {
             Swal.fire({
                 icon: 'error',
                 title: 'Missing Information',
-                text: rules[purpose].msg,
-                confirmButtonColor: '#3085d6'
+                text: rules[purpose].msg
             });
             return false;
         }
     }
 
-    
-    // Date validation
+    /* =========================================
+       DATE VALIDATION
+    ========================================= */
+
     let visitDate = $('input[name="visit_date"]').val();
 
     if (visitDate) {
@@ -549,11 +712,10 @@ function validateForm() {
         today.setHours(0,0,0,0);
 
         let maxDate = new Date();
-        maxDate.setDate(today.getDate() + 60); // ✅ +60 days
+        maxDate.setDate(today.getDate() + 60);
 
         let selected = new Date(visitDate);
 
-        // Past date check
         if (selected < today) {
             Swal.fire({
                 icon: 'error',
@@ -563,7 +725,6 @@ function validateForm() {
             return false;
         }
 
-        // 60 days future check
         if (selected > maxDate) {
             Swal.fire({
                 icon: 'error',
@@ -574,9 +735,69 @@ function validateForm() {
         }
     }
 
+    /* =========================================
+       DUPLICATE VISITOR NAME CHECK
+    ========================================= */
+
+    let nameList = [];
+    let duplicateName = false;
+
+    $('input[name="visitor_name[]"]').each(function () {
+
+        let value = $(this).val().trim().toLowerCase();
+        $(this).removeClass("is-invalid");
+
+        if (value !== "") {
+            if (nameList.includes(value)) {
+                duplicateName = true;
+                $(this).addClass("is-invalid");
+            } else {
+                nameList.push(value);
+            }
+        }
+    });
+
+    if (duplicateName) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Duplicate Visitor Names Found',
+            text: 'Each visitor name must be unique.'
+        });
+        return false;
+    }
+
+    /* =========================================
+       DUPLICATE PROOF ID NUMBER CHECK
+    ========================================= */
+
+    let idList = [];
+    let duplicateID = false;
+
+    $('input[name="proof_id_number[]"]').each(function () {
+
+        let value = $(this).val().trim().toLowerCase();
+        $(this).removeClass("is-invalid");
+
+        if (value !== "") {
+            if (idList.includes(value)) {
+                duplicateID = true;
+                $(this).addClass("is-invalid");
+            } else {
+                idList.push(value);
+            }
+        }
+    });
+
+    if (duplicateID) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Duplicate ID Numbers Found',
+            text: 'Proof ID number must be unique.'
+        });
+        return false;
+    }
     return true;
 }
-
 
 // CSV Upload Event
 // CSV / Excel Upload Event
@@ -600,78 +821,105 @@ $("#excelUpload").change(function () {
 
             if (res.status === "success") {
 
+                // Convert to Camel Case
+                function toCamelCase(str) {
+                    if (!str) return "";
+                    return str.toLowerCase().replace(/\b\w/g, function (char) {
+                        return char.toUpperCase();
+                    });
+                }
+
+                // Convert to Uppercase
+                function toUpperCase(str) {
+                    return str ? str.toUpperCase() : "";
+                }
+
+                // Keep Only Numbers
+                function onlyNumbers(str) {
+                    return str ? str.replace(/\D/g, "") : "";
+                }
+
+
                 $("#visitorGrid tbody").html(""); // clear table
                 serial = 0;
 
                 res.data.forEach((row) => {
-                    serial++;
+                serial++;
 
-                    let newRow = `
-                        <tr>
-                            <td>${serial}</td>
+                //  Apply Formatting
+                let visitorName  = toCamelCase(row.visitor_name);
+                let email        = row.email ?? "";
+                let phone        = onlyNumbers(row.phone);
+                let vehicleNo    = toUpperCase(row.vehicle_no);
+                let idNumber     = row.id_number ?? "";
 
-                            <td><input type="text" name="visitor_name[]" 
-                                class="form-control" value="${row.visitor_name}" required></td>
+                let newRow = `
+                    <tr>
+                        <td>${serial}</td>
 
-                            <td><input type="email" name="visitor_email[]" 
-                                class="form-control" value="${row.email}" required></td>
+                        <td><input type="text" name="visitor_name[]" 
+                            class="form-control" value="${visitorName}" required></td>
 
-                            <td><input type="text" name="visitor_phone[]" 
-                                class="form-control" value="${row.phone}" required></td>
+                        <td><input type="email" name="visitor_email[]" 
+                            class="form-control" value="${email}" ></td>
 
-                            <td>
-                                <select name="proof_id_type[]" class="form-control" required>
-                                    <option value="">Select</option>
-                                    <option ${row.id_type == 'Aadhaar Card' ? 'selected' : ''}>Aadhaar Card</option>
-                                    <option ${row.id_type == 'PAN Card' ? 'selected' : ''}>PAN Card</option>
-                                    <option ${row.id_type == 'Voter ID' ? 'selected' : ''}>Voter ID</option>
-                                    <option ${row.id_type == 'Passport' ? 'selected' : ''}>Passport</option>
-                                    <option ${row.id_type == 'Driving License' ? 'selected' : ''}>Driving License</option>
-                                </select>
-                            </td>
+                        <td><input type="text" name="visitor_phone[]" 
+                            class="form-control phoneField" maxlength="10" 
+                            value="${phone}" required></td>
 
-                            <td><input type="text" name="proof_id_number[]" 
-                                class="form-control" value="${row.id_number}" required></td>
+                        <td>
+                            <select name="proof_id_type[]" class="form-control" required>
+                                <option value="">Select</option>
+                                <option ${row.id_type == 'Aadhaar Card' ? 'selected' : ''}>Aadhaar Card</option>
+                                <option ${row.id_type == 'PAN Card' ? 'selected' : ''}>PAN Card</option>
+                                <option ${row.id_type == 'Voter ID' ? 'selected' : ''}>Voter ID</option>
+                                <option ${row.id_type == 'Passport' ? 'selected' : ''}>Passport</option>
+                                <option ${row.id_type == 'Driving License' ? 'selected' : ''}>Driving License</option>
+                            </select>
+                        </td>
 
-                            <td><input type="text" name="vehicle_no[]" 
-                                class="form-control" value="${row.vehicle_no}"></td>
+                        <td><input type="text" name="proof_id_number[]" 
+                            class="form-control idNumberField" value="${idNumber}" required></td>
 
-                            <td>
-                                <select name="vehicle_type[]" class="form-control">
-                                    <option value="">Select</option>
-                                    <option ${row.vehicle_type == 'Bike' ? 'selected' : ''}>Bike</option>
-                                    <option ${row.vehicle_type == 'Car' ? 'selected' : ''}>Car</option>
-                                    <option ${row.vehicle_type == 'Van' ? 'selected' : ''}>Van</option>
-                                    <option ${row.vehicle_type == 'Bus' ? 'selected' : ''}>Bus</option>
-                                    <option ${row.vehicle_type == 'Auto' ? 'selected' : ''}>Auto</option>
-                                    <option ${row.vehicle_type == 'Truck' ? 'selected' : ''}>Truck</option>
-                                </select>
-                            </td>
+                        <td><input type="text" name="vehicle_no[]" 
+                            class="form-control" value="${vehicleNo}"></td>
 
-                            <td class="text-center">
-                                <button type="button" class="btn btn-outline-primary btn-sm uploadBtn">
-                                    <i class="fa-solid fa-file-arrow-up"></i>
-                                </button>
-                                <input type="file" name="vehicle_id_proof[]" class="fileInput d-none">
-                            </td>
+                        <td>
+                            <select name="vehicle_type[]" class="form-control">
+                                <option value="">Select</option>
+                                <option ${row.vehicle_type == 'Bike' ? 'selected' : ''}>Bike</option>
+                                <option ${row.vehicle_type == 'Car' ? 'selected' : ''}>Car</option>
+                                <option ${row.vehicle_type == 'Van' ? 'selected' : ''}>Van</option>
+                                <option ${row.vehicle_type == 'Bus' ? 'selected' : ''}>Bus</option>
+                                <option ${row.vehicle_type == 'Auto' ? 'selected' : ''}>Auto</option>
+                                <option ${row.vehicle_type == 'Truck' ? 'selected' : ''}>Truck</option>
+                            </select>
+                        </td>
 
-                            <td class="text-center">
-                                <button type="button" class="btn btn-outline-primary btn-sm uploadBtn">
-                                    <i class="fa-solid fa-file-arrow-up"></i>
-                                </button>
-                                <input type="file" name="visitor_id_proof[]" class="fileInput d-none">
-                            </td>
+                        <td class="text-center">
+                            <button type="button" class="btn btn-outline-primary btn-sm uploadBtn">
+                                <i class="fa-solid fa-file-arrow-up"></i>
+                            </button>
+                            <input type="file" name="vehicle_id_proof[]" class="fileInput d-none">
+                        </td>
 
-                            <td>
-                                <button type="button" class="btn btn-danger btn-sm removeRow">
-                                    <i class="fa-solid fa-user-xmark"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    `;
+                        <td class="text-center">
+                            <button type="button" class="btn btn-outline-primary btn-sm uploadBtn">
+                                <i class="fa-solid fa-file-arrow-up"></i>
+                            </button>
+                            <input type="file" name="visitor_id_proof[]" class="fileInput d-none">
+                        </td>
 
-                    $("#visitorGrid tbody").append(newRow);
-                });
+                        <td>
+                            <button type="button" class="btn btn-danger btn-sm removeRow">
+                                <i class="fa-solid fa-user-xmark"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+
+                $("#visitorGrid tbody").append(newRow);
+            });
             }
         },
         error: function () {
@@ -681,26 +929,26 @@ $("#excelUpload").change(function () {
 });
 
 
-    // Visitor Name Camel Case
-    $("#description").on("input", function () {
-        let val = this.value.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
-        this.value = val;
-    });
+// Visitor Name Camel Case
+$("#description").on("input", function () {
+    let val = this.value.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+    this.value = val;
+});
 
-  function purposeEvent() {
-        let purpose = $('#purpose').val();
-        if (purpose === "Recce") {
-         $('#recceData').show();   // show section
-        }else{
-          $('#recceData').hide();   // show section
-        }
-
-        if (purpose === "Vendor") {
-         $('#vendorData').show();   // show section
-        }else{
-          $('#vendorData').hide();   // show section
-        }
+function purposeEvent() {
+    let purpose = $('#purpose').val();
+    if (purpose === "Recce") {
+        $('#recceData').show();   // show section
+    }else{
+        $('#recceData').hide();   // show section
     }
+
+    if (purpose === "Vendor") {
+        $('#vendorData').show();   // show section
+    }else{
+        $('#vendorData').hide();   // show section
+    }
+}
 
 
 </script>

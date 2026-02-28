@@ -34,7 +34,10 @@ class VisitorRequestModel extends Model
         'visit_time',
         'securityCheckStatus',
         'spendTime',
-        'v_phopto_path'
+        'v_phopto_path',
+        'valid_from',
+        'valid_to',
+        'validity_type',
     ];
 
 

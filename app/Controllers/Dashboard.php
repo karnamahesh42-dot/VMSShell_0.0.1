@@ -141,37 +141,6 @@ class Dashboard extends BaseController
 
 
         //////////////////////////// Pending Request List Data /////////////////////////////////////////////////////
-                // $builder = $this->VisitorRequestHeaderModel
-                //     ->select("
-                //         id,
-                //         header_code,
-                //         purpose,
-                //         requested_date,
-                //         requested_time,
-                //         total_visitors,
-                //         description,
-                //         status
-                //     ")
-                //     ->where('status', 'pending');
-
-                // // Condition: Role wise filtering
-                // if ($roleId == 2) {
-                //     // Department Admin → show requests referred to him
-                //     $builder->where('referred_by', $userId);
-
-                // } elseif ($roleId == 3) {
-                //     // Normal user → show only requests he created
-                //     $builder->where('requested_by', $userId);
-                // }
-                // // roleId == 1 → no filter → show all
-
-                // $pendingList = $builder
-                //     ->orderBy('id', 'DESC')
-                //     ->limit(5)
-                //     ->findAll();
-
-                // $data['pendingList'] = $pendingList;
-
 
                 $builder = $this->VisitorRequestHeaderModel
             ->select("
@@ -205,11 +174,197 @@ class Dashboard extends BaseController
 
         $data['pendingList'] = $pendingList;
 
+//         /////////////////////////////////////////// Dashboard Count Display Values ///////////////////////////////////////////
 
-        //////////////////////////////////////////////////////////////////////////////////////////
+// $visitorsModel = new VisitorRequestModel();
+
+// $yearStart  = date('Y-01-01');
+// $yearEnd    = date('Y-12-31');
+
+// $monthStart = date('Y-m-01');
+// $monthEnd   = date('Y-m-t');
+
+// $weekStart  = date('Y-m-d', strtotime('monday this week'));
+// $weekEnd    = date('Y-m-d', strtotime('sunday this week'));
+
+// $today      = date('Y-m-d');
+
+
+// /* =====================================================================================
+//    THIS YEAR
+// ===================================================================================== */
+
+// $yearQuery = $visitorsModel
+//     ->builder()
+//     ->select('visitors.id')
+//     ->join('visitor_request_header', 'visitor_request_header.id = visitors.request_header_id', 'inner')
+//     ->where('visitors.securityCheckStatus !=', 0)
+//     ->groupStart()
+//         // SD
+//         ->groupStart()
+//             ->where('visitors.validity_type', 'SD')
+//             ->where('visitors.visit_date >=', $yearStart)
+//             ->where('visitors.visit_date <=', $yearEnd)
+//         ->groupEnd()
+//         // MD
+//         ->orGroupStart()
+//             ->where('visitors.validity_type', 'MD')
+//             ->where('visitors.valid_from <=', $yearEnd)
+//             ->where('visitors.valid_to >=', $yearStart)
+//         ->groupEnd()
+//     ->groupEnd();
+
+// if ($roleId == 2) {
+//     $yearQuery
+//         ->where('visitor_request_header.department', $departmentName)
+//         ->where('visitor_request_header.company', $compenyName);
+// } elseif ($roleId == 3) {
+//     $yearQuery->where('visitors.created_by', $userId);
+// }
+
+// $thisYearVisitors = $yearQuery->countAllResults();
+
+
+
+// /* =====================================================================================
+//    THIS MONTH
+// ===================================================================================== */
+
+// $monthQuery = $visitorsModel
+//     ->builder()
+//     ->select('visitors.id')
+//     ->join('visitor_request_header', 'visitor_request_header.id = visitors.request_header_id', 'inner')
+//     ->where('visitors.securityCheckStatus !=', 0)
+//     ->groupStart()
+//         ->groupStart()
+//             ->where('visitors.validity_type', 'SD')
+//             ->where('visitors.visit_date >=', $monthStart)
+//             ->where('visitors.visit_date <=', $monthEnd)
+//         ->groupEnd()
+//         ->orGroupStart()
+//             ->where('visitors.validity_type', 'MD')
+//             ->where('visitors.valid_from <=', $monthEnd)
+//             ->where('visitors.valid_to >=', $monthStart)
+//         ->groupEnd()
+//     ->groupEnd();
+
+// if ($roleId == 2) {
+//     $monthQuery
+//         ->where('visitor_request_header.department', $departmentName)
+//         ->where('visitor_request_header.company', $compenyName);
+// } elseif ($roleId == 3) {
+//     $monthQuery->where('visitors.created_by', $userId);
+// }
+
+// $monthVisitors = $monthQuery->countAllResults();
+
+
+
+// /* =====================================================================================
+//    THIS WEEK
+// ===================================================================================== */
+
+// $weekQuery = $visitorsModel
+//     ->builder()
+//     ->select('visitors.id')
+//     ->join('visitor_request_header', 'visitor_request_header.id = visitors.request_header_id', 'inner')
+//     ->where('visitors.securityCheckStatus !=', 0)
+//     ->groupStart()
+//         ->groupStart()
+//             ->where('visitors.validity_type', 'SD')
+//             ->where('visitors.visit_date >=', $weekStart)
+//             ->where('visitors.visit_date <=', $weekEnd)
+//         ->groupEnd()
+//         ->orGroupStart()
+//             ->where('visitors.validity_type', 'MD')
+//             ->where('visitors.valid_from <=', $weekEnd)
+//             ->where('visitors.valid_to >=', $weekStart)
+//         ->groupEnd()
+//     ->groupEnd();
+
+// if ($roleId == 2) {
+//     $weekQuery
+//         ->where('visitor_request_header.department', $departmentName)
+//         ->where('visitor_request_header.company', $compenyName);
+// } elseif ($roleId == 3) {
+//     $weekQuery->where('visitors.created_by', $userId);
+// }
+
+// $weekVisitors = $weekQuery->countAllResults();
+
+
+
+// /* =====================================================================================
+//    TODAY
+// ===================================================================================== */
+
+// $todayQuery = $visitorsModel
+//     ->builder()
+//     ->select('visitors.id')
+//     ->join('visitor_request_header', 'visitor_request_header.id = visitors.request_header_id', 'inner')
+//     ->where('visitors.securityCheckStatus !=', 0)
+//     ->groupStart()
+//         ->groupStart()
+//             ->where('visitors.validity_type', 'SD')
+//             ->where('visitors.visit_date', $today)
+//         ->groupEnd()
+//         ->orGroupStart()
+//             ->where('visitors.validity_type', 'MD')
+//             ->where('visitors.valid_from <=', $today)
+//             ->where('visitors.valid_to >=', $today)
+//         ->groupEnd()
+//     ->groupEnd();
+
+// if ($roleId == 2) {
+//     $todayQuery
+//         ->where('visitor_request_header.department', $departmentName)
+//         ->where('visitor_request_header.company', $compenyName);
+// } elseif ($roleId == 3) {
+//     $todayQuery->where('visitors.created_by', $userId);
+// }
+
+// $todayVisitors = $todayQuery->countAllResults();
+
+
+
+// /* =====================================================================================
+//    DASHBOARD DATA
+// ===================================================================================== */
+
+// $data['meds'] = [
+//     [
+//         'title' => 'Today Visited',
+//         'count' => $todayVisitors,
+//         'icon'  => 'fa-users',
+//         'desc'  => $todayVisitors . ' people visited today.'
+//     ],
+//     [
+//         'title' => 'This Week',
+//         'count' => $weekVisitors,
+//         'icon'  => 'fa-calendar-week',
+//         'desc'  => $weekVisitors . ' visitors this week.'
+//     ],
+//     [
+//         'title' => 'This Month',
+//         'count' => $monthVisitors,
+//         'icon'  => 'fa-calendar',
+//         'desc'  => $monthVisitors . ' visitors this month.'
+//     ],
+//     [
+//         'title' => 'This Year',
+//         'count' => $thisYearVisitors,
+//         'icon'  => 'fa-user',
+//         'desc'  => $thisYearVisitors . ' visitors this year.'
+//     ],
+// ];
+
+///////////////////////////////////////// End Dashboard Count ///////////////////////////////////////////
+
+        /////////////////////////////////////////// Dashboard Count Display Valus  Start ///////////////////////////////////////////////
+
+        /////----------------------------This Year-------------------------/////////
 
         $visitorsModel = new VisitorRequestModel();
-
         $yearStart = date('Y-01-01');
         $yearEnd   = date('Y-12-31');
 
@@ -232,7 +387,9 @@ class Dashboard extends BaseController
         }
 
         $thisYearVisitors = $yearQuery->countAllResults();
-        /////-----------------------------------------------------/////////
+
+
+        /////------------------------This Month-----------------------------/////////
 
         $monthStart = date('Y-m-01');
         $monthEnd   = date('Y-m-t');
@@ -253,7 +410,7 @@ class Dashboard extends BaseController
 
         $monthVisitors = $monthQuery->countAllResults();
 
-        ///////////-------------------------------------------------------///////////////
+        ///////////-------------------------This Week------------------------------///////////////
 
         $weekStart = date('Y-m-d', strtotime('monday this week'));
         $weekEnd   = date('Y-m-d', strtotime('sunday this week'));
@@ -274,7 +431,7 @@ class Dashboard extends BaseController
 
         $weekVisitors = $weekQuery->countAllResults();
 
-        ////////////////-------------------------------------------------////////////////
+        ////////////////----------------------Today---------------------------////////////////
         $today = date('Y-m-d');
 
         $todayQuery = $visitorsModel
@@ -292,17 +449,16 @@ class Dashboard extends BaseController
 
         $todayVisitors = $todayQuery->countAllResults();
 
-//////////////////////////////////////////////////////////////////////////////////////////
-
-                // Security alerts — example (0 for now, or fetch from DB)
-                // $alerts = 0;
-
         $data['meds'] = [
-        ['title' => 'Today Visited', 'count' => $todayVisitors, 'icon' => 'fa-users', 'desc' => $todayVisitors . ' people visited today.'],
-        ['title' => 'This Week', 'count' => $weekVisitors, 'icon' => 'fa-calendar-week', 'desc' => $weekVisitors . ' visitors this week.'],
-        ['title' => 'This Month', 'count' => $monthVisitors, 'icon' => 'fa-calendar', 'desc' => $monthVisitors . ' visitors this month.'],
-        ['title' => 'This Year', 'count' => $thisYearVisitors, 'icon' => 'fa-user', 'desc' => $thisYearVisitors . ' visitors this Year.'],  
-        ];
+                        ['title' => 'Today Visited', 'count' => $todayVisitors, 'icon' => 'fa-users', 'desc' => $todayVisitors . ' people visited today.'],
+                        ['title' => 'This Week', 'count' => $weekVisitors, 'icon' => 'fa-calendar-week', 'desc' => $weekVisitors . ' visitors this week.'],
+                        ['title' => 'This Month', 'count' => $monthVisitors, 'icon' => 'fa-calendar', 'desc' => $monthVisitors . ' visitors this month.'],
+                        ['title' => 'This Year', 'count' => $thisYearVisitors, 'icon' => 'fa-user', 'desc' => $thisYearVisitors . ' visitors this Year.'],  
+                        ];
+
+//////////////////////////////////////// ------ Dashboard Count Display Valus  Start ------/////////////////////////////////////////////////   
+
+      
         // ['title' => 'Alerts', 'count' => $alerts, 'icon' => 'fa-bell', 'desc' => $alerts == 0 ? 'No security alerts.' : $alerts . ' alerts pending.'],
                 
         $recentAuthorized = $this->SecurityGateLogModel->getRecentAuthorized(10);

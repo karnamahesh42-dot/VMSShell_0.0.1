@@ -126,7 +126,7 @@
                                 </div>
 
                                 <div class="col-md-3 col-6">
-                                    <label class="fw-semibold">Visit Date & Time:</label>
+                                    <label class="fw-semibold" id="visitDateTimeLabel">Visit Date & Time:</label>
                                     <div id="h_date" class="cardData"></div>
                                 </div>
 
@@ -144,14 +144,14 @@
                                 </div>
 
    
-                                <!-- SINGLE VISITOR DETAILS CARD -->
+                            <!-- SINGLE VISITOR DETAILS CARD -->
                             
                             <!-- Status Tracker start -->
                             <div class="status-tracker" id="statusTraker">
                                
                             </div>
                             <!-- Status Tracker End -->
-                      
+
                                
                                 <!-- <h5 class="fw-bold text-primary">Visitor Details</h5>   <span class='text-primary'> +Belongings</span> -->
                                     <div class="card shadow-sm p-3">
@@ -235,12 +235,34 @@
 
                                                 </div>
                                             </div>
-                                        
-                                        <table class="table table-bordered table-sm mt-3" id="belongingsTable">
+                                    
+
+                                            <!-- Visitor Details History Section (For Multi-Day Visitors) -->
+                                        <div id="mdVisitHistorySection" class="mt-3 d-none">
+                                            <h6 class="fw-bold text-primary">Visit Days History</h6>
+
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-sm">
+                                                    <thead class="table-light">
+                                                        <tr>
+                                                            <th class="text-center">Visit Date</th>
+                                                            <th class="text-center">Check In</th>
+                                                            <th class="text-center">Check Out</th>
+                                                            <th class="text-center">Status</th>
+                                                            <th class="text-center">Belongings</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="mdVisitHistoryBody">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                            <!-- Visitor Details History Section End -->
+                                
+                                        <table class="table table-bordered table-sm mt-3" id="belongingsTable" style="display:none;">
                                             <thead class="table-light">
                                                 <tr>
                                                     <th style="width:30%;">Belonging</th>
-                                              
                                                     <th>Description</th>
                                                     <th class="text-center" style="width:80px;">Action</th>
                                                 </tr>
@@ -464,13 +486,13 @@
                                             <th>Company</th>
                                             <th>Department</th>
                                             <th>Referred</th>
-                                            <th>Requested By</th>
                                             <th>Visitor</th>
                                             <th>Vehicle</th>
                                             <th>Purpose</th>
                                             <th>Check-In By</th>
                                             <!-- <th>Check-Out By</th> -->
                                             <th>Validity</th>
+                                            <th>Pass Validity Type</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
@@ -494,22 +516,6 @@ $(document).ready(function () {
     loadAuthorizedVisitors();
     // $('#f_v_code').focus();
 })
-
-// document.getElementById('f_v_code').addEventListener('input', function () {
-  
-//     const vCode = this.value.trim();
-//     // const scanBtn = document.getElementById('scanBtn');
-//     // // Conditions:
-//     // if (scanBtn.classList.contains('active') && vCode.length === 7) {
-//     // }
-
-//       if (vCode.length === 7) {
-//          processSecurity(vCode);
-//          $('#f_v_code').val('');
-//       }
-// });
-
-
 
 function processSecurity(vCode) {
     $.ajax({
@@ -574,14 +580,15 @@ function processSecurity(vCode) {
                     confirmButtonText: 'OK'
                 });
 
-            }
-            else if (res.status === 'invalid') {
+            }else if (res.status === 'invalid') {
                 Swal.fire("Denied", res.message, "error");
-            }
-            else if (res.status === 'already_used') {
+            }else if (res.status === 'already_used') {
                 Swal.fire("Warning", "This visitor code has already been used", "warning");
-            }
-            else {
+            }else if(res.status == "already_checked_out_today"){
+                Swal.fire("Warning", "This visitor has already checked out today. Multiple entries are not allowed.", "warning");
+            }else if(res.status == "not_allowed_checkout"){
+                Swal.fire("Warning", `Checkout not allowed within 15 minutes of check-in`, "warning");
+            }else {
                 Swal.fire("Error", res.message || "Something went wrong", "error");
             }
            
@@ -631,42 +638,6 @@ document.getElementById("closeScanner").addEventListener("click", () => {
     }
 });
 
-   
-// const scanBtn = document.getElementById("scanBtnMblPic");
-// const fileInput = document.getElementById("qrImageInput");
-
-// scanBtn.addEventListener("click", () => {
-//     fileInput.value = "";
-//     fileInput.click();
-// });
-
-// fileInput.addEventListener("change", async () => {
-//     const file = fileInput.files[0];
-//     if (!file) return;
-
-//     try {
-//         const processedFile = await preprocessImage(file);
-
-//         const html5QrCode = new Html5Qrcode("temp-reader");
-
-//         html5QrCode.scanFile(processedFile, true)
-//             .then(decodedText => {
-//                 processSecurity(decodedText);
-//             })
-//             .catch(() => {
-//                 Swal.fire(
-//                     "Warning",
-//                     "No QR code found in image, Capture Proper QR",
-//                     "warning"
-//                 );
-//             });
-
-//     } catch (err) {
-//         Swal.fire("Error", "Image processing failed", "error");
-//     }
-// });
-
-/*  FIX IMAGE FOR MOBILE CAMERA */
 
 function preprocessImage(file) {
     return new Promise((resolve, reject) => {
@@ -735,7 +706,7 @@ function loadAuthorizedVisitors() {
         },
         success: function(res) {
                                             
-                      console.log(res);                          
+            console.log(res);                          
 
             let tbody = $("#authorizedVisitorTable");
             tbody.empty();
@@ -749,68 +720,253 @@ function loadAuthorizedVisitors() {
                 return;
             }
 
-            res.forEach((v, index) => {
+            // res.forEach((v, index) => {
          
-                let statusBadge = "";
-             
-                if (v.securityCheckStatus == 0) {
-                    statusBadge = `
-                        <span class="badge bg-secondary p-2">
-                            Not Entered
-                        </span>
-                    `;
-                } else if (v.securityCheckStatus == 1 && v.meeting_status == 0) {
-                    statusBadge = `
-                        <span class="badge bg-primary warning text-lite p-2">
-                             Inside <br>
-                ${v.purpose} Not Yet Completed <br>
-                            In: ${v.check_in_time ?? '-'} <br>
-                        </span>
-                    `;
-                } 
-                else if (v.securityCheckStatus == 1 && v.meeting_status == 1){
-                      statusBadge = `
-                        <span class="badge bg-warning text-dark p-2">
-                             Inside <br>
-                               ${v.purpose} Completed <br>
-                            In: ${v.check_in_time ?? '-'} <br>
-                        </span>
-                    `;
-                }else {
-                    statusBadge = `
-                        <span class="badge bg-success p-2" >
-                            Completed <br>
-                            In: ${v.check_in_time ?? '-'} <br>
-                            Out: ${v.check_out_time ?? '-'} <br>
-                          
-                        </span>
-                    `;
-                }
+            //     let statusBadge = "";
+            //     let validityBadge = "";
 
-                let validityBadge = "";
-                if (v.validity == 1) {
-                     validityBadge = `<i class="bi bi-check-circle text-success" style="font-size: 20px; font-weight: bold;"></i>`;
-                } 
-                else {
-                   validityBadge = `<i class="bi bi-x-circle text-danger " style="font-size: 20px; font-weight: bold;"></i>`;
-                }
+                
+            //     if (v.validity_type == "MD") {
 
-                tbody.append(`
-                    <tr onclick="openVisitorPopup('${v.v_code}')">
-                        <td>${v.visit_date}</td>
-                        <td>${v.company}</td>
-                        <td>${v.department_name}</td>
-                        <td>${v.referred_by_name}</td>
-                        <td>${v.created_by_name}</td>
-                        <td>${v.visitor_name}</td>
-                        <td>${v.vehicle_no}</td>
-                        <td>${v.purpose}</td>
-                        <td>${v.check_in_by ? v.check_in_by : '--'}</td>   
-                        <td>${validityBadge}</td>
-                        <td>${statusBadge}</td>
-                    </tr>
-                `);
-            });
+            //             let latestLog = null;
+
+            //             if (v.mdLogs && v.mdLogs.length > 0) {
+            //                 latestLog = v.mdLogs[0]; // latest record (DESC order)
+            //             }
+
+            //             // 🚫 No record in MD log table
+            //             if (!latestLog) {
+
+            //                 statusBadge = `
+            //                     <span class="badge bg-secondary p-2">
+            //                         Not Entered Today
+            //                     </span>
+            //                 `;
+
+            //             }
+            //             else {
+
+            //                 // 🟢 Checked In but NOT checked out
+            //                 if (latestLog.check_in_time && !latestLog.check_out_time) {
+
+            //                     statusBadge = `
+            //                         <span class="badge bg-primary p-2">
+            //                             Inside <br>
+            //                             In: ${latestLog.check_in_time ?? '-'}
+            //                         </span>
+            //                     `;
+
+            //                 }
+
+            //                 // ✅ Completed (check-in + check-out)
+            //                 else if (latestLog.check_in_time && latestLog.check_out_time) {
+
+            //                     statusBadge = `
+            //                         <span class="badge bg-success p-2">
+            //                             Completed <br>
+            //                             In: ${latestLog.check_in_time ?? '-'} <br>
+            //                             Out: ${latestLog.check_out_time ?? '-'}
+            //                         </span>
+            //                     `;
+
+            //                 }
+
+            //                 // Fallback safety
+            //                 else {
+            //                     statusBadge = `
+            //                         <span class="badge bg-secondary p-2">
+            //                             Not Entered Today
+            //                         </span>
+            //                     `;
+            //                 }
+            //             }
+
+            //             // ✅ Validity Icon
+            //             if (v.validity == 1) {
+            //                 validityBadge = `<i class="bi bi-check-circle text-success" style="font-size: 20px;"></i>`;
+            //             } else {
+            //                 validityBadge = `<i class="bi bi-x-circle text-danger" style="font-size: 20px;"></i>`;
+            //             }
+            //     }
+
+            //     if(v.validity_type == "SD"){
+                        
+            //             if (v.securityCheckStatus == 0) {
+            //                 statusBadge = `
+            //                     <span class="badge bg-secondary p-2">
+            //                         Not Entered
+            //                     </span>
+            //                 `;
+            //             } else if (v.securityCheckStatus == 1 && v.meeting_status == 0) {
+            //                 statusBadge = `
+            //                     <span class="badge bg-primary warning text-lite p-2">
+            //                         Inside <br>
+            //             ${v.purpose} Not Yet Completed <br>
+            //                         In: ${v.check_in_time ?? '-'} <br>
+            //                     </span>
+            //                 `;
+            //             } 
+            //             else if (v.securityCheckStatus == 1 && v.meeting_status == 1){
+            //                 statusBadge = `
+            //                     <span class="badge bg-warning text-dark p-2">
+            //                         Inside <br>
+            //                         ${v.purpose} Completed <br>
+            //                         In: ${v.check_in_time ?? '-'} <br>
+            //                     </span>
+            //                 `;
+            //             }else {
+            //                 statusBadge = `
+            //                     <span class="badge bg-success p-2" >
+            //                         Completed <br>
+            //                         In: ${v.check_in_time ?? '-'} <br>
+            //                         Out: ${v.check_out_time ?? '-'} <br>
+            //                     </span>
+            //                 `;
+            //             }
+
+                     
+            //             if (v.validity == 1) {
+            //                 validityBadge = `<i class="bi bi-check-circle text-success" style="font-size: 20px; font-weight: bold;"></i>`;
+            //             } 
+            //             else {
+            //             validityBadge = `<i class="bi bi-x-circle text-danger " style="font-size: 20px; font-weight: bold;"></i>`;
+            //             }
+            //     }
+
+            //     tbody.append(`
+            //         <tr onclick="openVisitorPopup('${v.v_code}')">
+            //             <td>${v.visit_date}</td>
+            //             <td>${v.company}</td>
+            //             <td>${v.department_name}</td>
+            //             <td>${v.referred_by_name}</td>
+            //             <td>${v.created_by_name}</td>
+            //             <td>${v.visitor_name}</td>
+            //             <td>${v.vehicle_no}</td>
+            //             <td>${v.purpose}</td>
+            //             <td>${v.check_in_by ? v.check_in_by : '--'}</td>   
+            //             <td>${validityBadge}</td>
+            //             <td>${statusBadge}</td>
+            //         </tr>
+            //     `);
+            // });
+
+            res.forEach((v, index) => {
+
+                        let statusBadge = "";
+                        let validityBadge = "";
+
+                        // ==============================
+                        // MD LOGIC
+                        // ==============================
+                        if (v.validity_type === "MD") {
+
+                            // No entry in MD log
+                            if (!v.md_check_in && !v.md_check_out) {
+
+                                statusBadge = `
+                                    <span class="badge bg-secondary p-2">
+                                        Not Entered Today
+                                    </span>
+                                `;
+                            }
+
+                            // Checked In only
+                            else if (v.md_check_in && !v.md_check_out) {
+
+                                statusBadge = `
+                                    <span class="badge bg-primary p-2">
+                                        Inside <br>
+                                        In: ${v.md_check_in ?? '-'}
+                                    </span>
+                                `;
+                            }
+
+                            //  Completed
+                            else if (v.md_check_in && v.md_check_out) {
+
+                                statusBadge = `
+                                    <span class="badge bg-success p-2">
+                                        Completed <br>
+                                        In: ${v.md_check_in ?? '-'} <br>
+                                        Out: ${v.md_check_out ?? '-'}
+                                    </span>
+                                `;
+                            }
+
+                            // Validity Icon
+                            validityBadge = (v.validity == 1)
+                                ? `<i class="bi bi-check-circle text-success" style="font-size:20px;"></i>`
+                                : `<i class="bi bi-x-circle text-danger" style="font-size:20px;"></i>`;
+                        }
+
+
+                        // ==============================
+                        // SD LOGIC
+                        // ==============================
+                        else if (v.validity_type === "SD") {
+
+                            if (!v.sd_check_in && !v.sd_check_out) {
+
+                                statusBadge = `
+                                    <span class="badge bg-secondary p-2">
+                                        Not Entered
+                                    </span>
+                                `;
+                            }
+
+                            else if (v.sd_check_in && !v.sd_check_out) {
+
+                                if (v.meeting_status == 1) {
+                                    statusBadge = `
+                                        <span class="badge bg-warning text-dark p-2">
+                                            Inside <br>
+                                            ${v.purpose} Completed <br>
+                                            In: ${v.sd_check_in ?? '-'}
+                                        </span>
+                                    `;
+                                } else {
+                                    statusBadge = `
+                                        <span class="badge bg-primary p-2">
+                                            Inside <br>
+                                            ${v.purpose} Not Yet Completed <br>
+                                            In: ${v.sd_check_in ?? '-'}
+                                        </span>
+                                    `;
+                                }
+                            }
+
+                            else if (v.sd_check_in && v.sd_check_out) {
+
+                                statusBadge = `
+                                    <span class="badge bg-success p-2">
+                                        Completed <br>
+                                        In: ${v.sd_check_in ?? '-'} <br>
+                                        Out: ${v.sd_check_out ?? '-'}
+                                    </span>
+                                `;
+                            }
+
+                            validityBadge = (v.validity == 1)
+                                ? `<i class="bi bi-check-circle text-success" style="font-size:20px;"></i>`
+                                : `<i class="bi bi-x-circle text-danger" style="font-size:20px;"></i>`;
+                        }
+
+                        tbody.append(`
+                            <tr onclick="openVisitorPopup('${v.v_code}')">
+                                <td>${v.visit_date ?? '--'}</td>
+                                <td>${v.company ?? '--'}</td>
+                                <td>${v.department_name ?? '--'}</td>
+                                <td>${v.referred_by_name ?? '--'}</td>
+                                <td>${v.visitor_name ?? '--'}</td>
+                                <td>${v.vehicle_no ?? '--'}</td>
+                                <td>${v.purpose ?? '--'}</td>
+                                <td>${v.sd_verified_by_name || v.md_verified_by_name || '--'}</td>
+                                <td>${validityBadge}</td>
+                                <td>${v.validity_type ?? '--'}</td>
+                                <td>${statusBadge}</td>
+                            </tr>
+                        `);
+                    });
         }
     });
 }
@@ -886,7 +1042,7 @@ function openVisitorPopup(v_code){
                     $("#h_count").text(d.data.total_visitors);
                     $("#h_email").text(d.data.visitor_email);
                     $("#h_purpose").text(d.data.purpose);
-                    $("#h_date").text(d.data.visit_date + " " + d.data.visit_time);
+                    
                     $("#h_description").text(d.data.description);
                     $("#v_name").text(d.data.visitor_name);
                     $("#v_phone").text(d.data.visitor_phone);
@@ -897,6 +1053,14 @@ function openVisitorPopup(v_code){
                     $("#v_visit_time").text(d.data.visit_time);
                     $("#v_code").text(d.data.v_code);
 
+                     if(d.data.validity_type == "MD"){
+                        $("#visitDateTimeLabel").text("Validity Period");
+                        $("#h_date").text(d.data.valid_from + " to " + d.data.valid_to);
+                    } else {
+                        $("#visitDateTimeLabel").text("Visit Date & Time");
+                        $("#h_date").text(d.data.visit_date + " " + d.data.visit_time);
+                    } 
+                    
                     // console.log(d.data.v_phopto_path);
                     window.BASE_URL = "<?= base_url() ?>";
                     if (d.data.v_phopto_path && d.data.v_phopto_path !== '') {
@@ -918,6 +1082,7 @@ function openVisitorPopup(v_code){
                     }
 
                     let statusTrackerData ="";
+
                         statusTrackerData = `
                         <div class="status-tracker-horizontal"
                             style="--progress: ${
@@ -956,39 +1121,136 @@ function openVisitorPopup(v_code){
                                 <span class="label">Check Out</span>
                               <span class="label" style="margin-top:-6px;">${d.data.check_out ? d.data.check_out : '' }<br>${d.data.check_out_by ? d.data.check_out_by : '' }</span>
                             </div>
-
                         </div>`;
 
-                    $("#statusTraker").html(statusTrackerData);
-
+                                    
                 let actionHTML = "";
+                if (d.data.validity_type == 'SD') {
+                     $("#statusTraker").html(statusTrackerData);
+                     $("#belongingsTable").show();
 
-                if (d.data.securityCheckStatus == 0) {
-                    // NOT ENTERED → Allow Entry
-                    actionHTML = `
-                        <button class="btn btn-success btn-sm" onclick="processSecurity('${d.data.v_code}')">
-                            <i class="bi bi-door-open"></i> Allow Entry
-                        </button>
-                    `;
-                }
-                else if (d.data.securityCheckStatus == 1) {
-                    // INSIDE → Mark Exit
-                    actionHTML = `
-                        <button class="btn btn-warning btn-sm" onclick="processSecurity('${d.data.v_code}')" >
-                            <i class="bi bi-box-arrow-right"></i> Mark Exit
-                        </button>
-                    `;
-                }
-                else {
-                    // COMPLETED → No buttons
-                    actionHTML = `<span class="badge bg-success"><i class="bi bi-check-circle"></i> Completed</span>`;
-                }
+                        if (d.data.securityCheckStatus == 0) {
+                            // NOT ENTERED → Allow Entry
+                            actionHTML = `
+                                <button class="btn btn-success btn-sm" onclick="processSecurity('${d.data.v_code}')">
+                                    <i class="bi bi-door-open"></i> Allow Entry
+                                </button>
+                            `;
+                        }
+                        else if (d.data.securityCheckStatus == 1) {
+                            // INSIDE → Mark Exit
+                            actionHTML = `
+                                <button class="btn btn-warning btn-sm" onclick="processSecurity('${d.data.v_code}')" >
+                                    <i class="bi bi-box-arrow-right"></i> Mark Exit
+                                </button>
+                            `;
+                        }
+                        else {
+                            // COMPLETED → No buttons
+                            actionHTML = `<span class="badge bg-success"><i class="bi bi-check-circle"></i> Completed</span>`;
+                        }
+                        $("#actionBtns").html(actionHTML);
+                        $("#mdVisitHistorySection").addClass("d-none");
 
-                $("#actionBtns").html(actionHTML);
-                // Open Modal
-                $("#visitorModal").modal("show");
-                // Show Belongings Data
+                    }else if (d.data.validity_type == "MD"){
+                        
+                        $("#statusTraker").empty(); /// Empty Tracker for MD Type
+                        // Action Button Logic
+                        const today = new Date().toISOString().split('T')[0];
+                        const validFrom = d.data.valid_from;
+                        const validTo   = d.data.valid_to;
+                        const isWithinValidity = (today >= validFrom && today <= validTo);
+                          let todayRow = null;
+
+                        $("#mdVisitHistorySection").removeClass("d-none");
+                        let historyHTML = "";
+                        if(d.visitHistoryData.length == 0){
+                            historyHTML = `<tr><td colspan="5" class="text-center">No Visit History Found</td></tr>`;
+                        }
+                        d.visitHistoryData.forEach(function(row){
+                            
+                            if (row.visit_date === today) {
+                                todayRow = row;
+                            }
+
+                            historyHTML += `
+                                <tr ${row.is_today ? 'class="table-info"' : ''}>
+                                    <td class="text-center">${row.visit_date}</td>
+                                    <td class="text-center">${row.check_in_time ?? '-'} ${row.verified_by_name ?? '-'}</td>
+                                    <td class="text-center">${row.check_out_time ?? '-'} ${row.updated_by_name ?? '-'}</td>           
+                                    <td class="text-center">
+                                        ${row.check_in_time && !row.check_out_time ? 
+                                            '<span class="badge bg-primary">Inside</span>' : 
+                                            row.check_out_time ? '<span class="badge bg-success">Completed</span>' : 
+                                            '<span class="badge bg-secondary">Not Entered</span>'
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                    <button class="btn btn-sm btn-primary" onclick="viewBelongings('${row.visit_date}', '${row.v_code}')">
+                                       <i class="fa fa-suitcase"></i>
+                                    </button>
+                                    </td>            
+                                </tr>`;
+                        });
+                        $("#mdVisitHistoryBody").html(historyHTML);
+
+                         let actionHTML = "";
+
+                            if (!isWithinValidity) {
+
+                                actionHTML = `
+                                    <span class="badge bg-danger">
+                                        <i class="bi bi-x-circle"></i> Not Valid Today
+                                    </span>
+                                `;
+
+                            } else {
+
+                                if (!todayRow) {
+
+                                    // No record for today → Allow Entry
+                                    actionHTML = `
+                                        <button class="btn btn-success btn-sm"
+                                            onclick="processSecurity('${d.data.v_code}')">
+                                            <i class="bi bi-door-open"></i> Allow Entry
+                                        </button>
+                                    `;
+
+                                } 
+                                else if (todayRow.check_in_time && !todayRow.check_out_time) {
+
+                                    // Checked in → Show Exit
+                                    actionHTML = `
+                                        <button class="btn btn-warning btn-sm"
+                                            onclick="processSecurity('${d.data.v_code}')">
+                                            <i class="bi bi-box-arrow-right"></i> Mark Exit
+                                        </button>
+                                    `;
+
+                                } 
+                                else if (todayRow.check_out_time) {
+
+                                    // Completed today
+                                    actionHTML = `
+                                        <span class="badge bg-success">
+                                            <i class="bi bi-check-circle"></i> Completed Today
+                                        </span>
+                                    `;
+                                }
+                            }
+
+                            $("#actionBtns").html(actionHTML);
+
+                    }else {
+
+                        $("#mdVisitHistorySection").addClass("d-none");
+                    
+                    }
+
                   
+                    // Open Modal
+                    $("#visitorModal").modal("show");
+                    // Show Belongings Data 
                     showBelongingsData(d.data.v_code);
                                                 
                 }else{
@@ -1064,10 +1326,6 @@ function uploadVisitorPhoto(input) {
         Swal.fire("Error", "Upload failed", "error");
     });
 }
-
-
-
-
 
 
 function addBelongingRow(btn) {
@@ -1181,10 +1439,15 @@ function showBelongingsData(v_code){
                                     <option value="${item.name}" selected>${item.name}</option>
                                 </select>
                             </td>
-                            <td width="70%">
+                            <td width="50%">
                                 <input type="text"
                                        class="form-control form-control-sm"
                                        value="${item.description}" readonly>
+                            </td>
+                            <td width="20%">
+                                <input type="text"
+                                       class="form-control form-control-sm"
+                                       value="${item.v_date}" readonly>
                             </td>
                         </tr>`;
                 });
@@ -1199,39 +1462,39 @@ function showBelongingsData(v_code){
                         <td width="20%">
                             <select class="form-select form-select-sm">
                               <option value="">-- Select --</option>
-                                                            <optgroup label="Tools & Equipment">
-                                                                <option value="Tool Kit">Tool Kit</option>
-                                                                <option value="Measuring Instruments">Measuring Instruments</option>
-                                                                <option value="Multimeter">Multimeter</option>
-                                                                <option value="Drill Machine">Drill Machine</option>
-                                                                <option value="Testing Device">Testing Device</option>
-                                                            </optgroup>
+                                <optgroup label="Tools & Equipment">
+                                    <option value="Tool Kit">Tool Kit</option>
+                                    <option value="Measuring Instruments">Measuring Instruments</option>
+                                    <option value="Multimeter">Multimeter</option>
+                                    <option value="Drill Machine">Drill Machine</option>
+                                    <option value="Testing Device">Testing Device</option>
+                                </optgroup>
 
-                                                            <optgroup label="Electronic Devices">
-                                                                <option value="Laptop">Laptop</option>
-                                                                <option value="Mobile Phone">Mobile Phone</option>
-                                                                <option value="Tablet">Tablet</option>
-                                                                <option value="Camera">Camera</option>
-                                                                <option value="Hard Disk">Hard Disk</option>
-                                                                <option value="Pen Drive">Pen Drive</option>
-                                                                <option value="Walkie-Talkie">Walkie-Talkie</option>
-                                                            </optgroup>
+                                <optgroup label="Electronic Devices">
+                                    <option value="Laptop">Laptop</option>
+                                    <option value="Mobile Phone">Mobile Phone</option>
+                                    <option value="Tablet">Tablet</option>
+                                    <option value="Camera">Camera</option>
+                                    <option value="Hard Disk">Hard Disk</option>
+                                    <option value="Pen Drive">Pen Drive</option>
+                                    <option value="Walkie-Talkie">Walkie-Talkie</option>
+                                </optgroup>
 
-                                                            <optgroup label="Personal / Safety">
-                                                                <option value="Bag">Bag</option>
-                                                                <option value="Helmet">Helmet</option>
-                                                                <option value="Safety Jacket">Safety Jacket</option>
-                                                                <option value="Safety Shoes">Safety Shoes</option>
-                                                                <option value="Lunch Box">Lunch Box</option>
-                                                            </optgroup>
+                                <optgroup label="Personal / Safety">
+                                    <option value="Bag">Bag</option>
+                                    <option value="Helmet">Helmet</option>
+                                    <option value="Safety Jacket">Safety Jacket</option>
+                                    <option value="Safety Shoes">Safety Shoes</option>
+                                    <option value="Lunch Box">Lunch Box</option>
+                                </optgroup>
 
-                                                            <optgroup label="Vendor / Delivery">
-                                                                <option value="Carton Box">Carton Box</option>
-                                                                <option value="Parcel">Parcel</option>
-                                                                <option value="Spare Parts">Spare Parts</option>
-                                                                <option value="Raw Materials">Raw Materials</option>
-                                                                <option value="Sample Materials">Sample Materials</option>
-                                                            </optgroup>
+                                <optgroup label="Vendor / Delivery">
+                                    <option value="Carton Box">Carton Box</option>
+                                    <option value="Parcel">Parcel</option>
+                                    <option value="Spare Parts">Spare Parts</option>
+                                    <option value="Raw Materials">Raw Materials</option>
+                                    <option value="Sample Materials">Sample Materials</option>
+                                </optgroup>
                             </select>
                         </td>
                         <td width="70%">
@@ -1252,5 +1515,115 @@ function showBelongingsData(v_code){
     });
 }
 
+
+function viewBelongings(visitDate, v_code) {
+    // Show table
+    // Optional: Scroll to table smoothly
+    $('html, body').animate({
+        scrollTop: $("#belongingsTable").offset().top - 100
+    }, 400);
+
+    // Load belongings data (AJAX)
+    $.ajax({
+        url: "<?= base_url('/security/get-belongings-by-date') ?>",
+        type: "GET",
+        data: {
+            visit_date: visitDate,
+            v_code: v_code
+        },
+        dataType: "json",
+        success: function (res) {
+            if (res.status === "success") {
+                $("#belongingsTable").show();
+                let tbody = "";
+                    // 🔹 Existing belongings → view mode
+                    res.data.forEach(item => {
+                        tbody += `
+                            <tr>
+                                <td width="20%">
+                                    <select class="form-select form-select-sm" disabled>
+                                        <option value="${item.name}" selected>${item.name}</option>
+                                    </select>
+                                </td>
+                                <td width="70%">
+                                    <input type="text"
+                                        class="form-control form-control-sm"
+                                        value="${item.description ?? '-'}" readonly>
+                                </td>
+                            </tr>`;
+                    });
+
+                    $('#saveBtn').hide(); // hide save if data exists
+                $("#belongingsTable tbody").html(tbody);
+            } else {
+                        $("#belongingsTable tbody").empty();
+                        if(res.status == "not_allowed"){
+                            Swal.fire("No Belongings Found", res.message, "warning");
+                            return;
+                        }
+
+                        $("#belongingsTable").show();
+                        let tbody = "";
+            
+                        tbody = `
+                                <tr>
+                                    <td width="20%">
+                                        <select class="form-select form-select-sm">
+                                        <option value="">-- Select --</option>
+                                            <optgroup label="Tools & Equipment">
+                                                <option value="Tool Kit">Tool Kit</option>
+                                                <option value="Measuring Instruments">Measuring Instruments</option>
+                                                <option value="Multimeter">Multimeter</option>
+                                                <option value="Drill Machine">Drill Machine</option>
+                                                <option value="Testing Device">Testing Device</option>
+                                            </optgroup>
+
+                                            <optgroup label="Electronic Devices">
+                                                <option value="Laptop">Laptop</option>
+                                                <option value="Mobile Phone">Mobile Phone</option>
+                                                <option value="Tablet">Tablet</option>
+                                                <option value="Camera">Camera</option>
+                                                <option value="Hard Disk">Hard Disk</option>
+                                                <option value="Pen Drive">Pen Drive</option>
+                                                <option value="Walkie-Talkie">Walkie-Talkie</option>
+                                            </optgroup>
+
+                                            <optgroup label="Personal / Safety">
+                                                <option value="Bag">Bag</option>
+                                                <option value="Helmet">Helmet</option>
+                                                <option value="Safety Jacket">Safety Jacket</option>
+                                                <option value="Safety Shoes">Safety Shoes</option>
+                                                <option value="Lunch Box">Lunch Box</option>
+                                            </optgroup>
+
+                                            <optgroup label="Vendor / Delivery">
+                                                <option value="Carton Box">Carton Box</option>
+                                                <option value="Parcel">Parcel</option>
+                                                <option value="Spare Parts">Spare Parts</option>
+                                                <option value="Raw Materials">Raw Materials</option>
+                                                <option value="Sample Materials">Sample Materials</option>
+                                            </optgroup>
+                                        </select>
+                                    </td>
+                                    <td width="70%">
+                                        <input type="text"
+                                            class="form-control form-control-sm"
+                                            placeholder="Enter description">
+                                    </td>
+                                    <td width="10%" class="text-center">
+                                        <button type="button"
+                                                class="btn btn-sm btn-success"
+                                                onclick="addBelongingRow(this)">+</button>
+                                    </td>
+                                </tr>`;
+                                $("#belongingsTable tbody").html(tbody);
+                                $('#saveBtn').show(); // show save button
+
+                                $("#belongingsTable").show();
+                            
+                }
+        }
+    });
+}
 
 </script>

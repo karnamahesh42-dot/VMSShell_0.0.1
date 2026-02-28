@@ -66,7 +66,7 @@
                                     </div>
 
                                     <div class="col-md-3 col-6">
-                                        <label class="fw-semibold">Visit Date & Time </label>
+                                        <label class="fw-semibold" id="visitDateTimeLabel">Visit Date & Time </label>
                                         <div id="h_date" class="cardData"></div>
                                     </div>
                                     
@@ -173,16 +173,39 @@
                         <!-- VISITOR CARDS END -->
                         <!-- VISITOR CARDS-2  -->
                         <h6 class="fw-bold text-primary">| Visitor Details</h6>
-                        
-                        
                                 <div id="visitorCardsDetails" style="height:250px; width:100%; overflow:auto; overflow-x:hidden;">
                                 </div>
-                        <!-- VISITOR CARDS-2  -->
+
+                                <!-- Visitor Details History Section (For Multi-Day Visitors) -->
+                                <div id="mdVisitHistorySection" class="mt-3 d-none">
+                                    <h6 class="fw-bold text-primary">Visit Days History</h6>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-sm">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th class="text-center">Visit Date</th>
+                                                    <th class="text-center">Check In</th>
+                                                    <th class="text-center">Check Out</th>
+                                                    <th class="text-center">Action</th>
+                                                    <th class="text-center">Belongings</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="mdVisitHistoryBody">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- Visitor Details History Section End -->
+
+                               <!-- VISITOR CARDS-2  -->
                     </div>
                     <!-- FOOTER -->
                     <div class="modal-footer justify-content-between">
                         <button class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     </div>
+
+                   
 
                 </div>
             </div>
@@ -327,8 +350,8 @@ function view_visitor(id){
         dataType: "json",
 
         success: function (res) {
+              console.log(res);
 
-              console.log(res)
             if (res.status !== "success" || res.data.length === 0) {
                 alert("No data found");
                 return;
@@ -337,9 +360,6 @@ function view_visitor(id){
             // Fill header
             let actionButtons = "";
             let h = res.data[0];
-
-            console.log(res)
-           // console.log(h.status);
             
             if (h.status === "pending" ) {
 
@@ -365,12 +385,10 @@ function view_visitor(id){
             $("#h_count").text(h.total_visitors);
             $("#h_requested_by").text(h.visitor_created_by_name);
             $("#h_purpose").text(h.purpose);
-            $("#h_date").text(h.requested_date +" & "+ h.requested_time);
             $("#h_description").text(h.description);
             $("#remarkLablle").text(h.remarks);
             $("#referred_by").text(h.referred_by_name);
         
-            
             $("#director").text(h.art_director);
             $("#production").text(h.productio);
             $("#contactPerson").text(h.contact_person);
@@ -378,8 +396,16 @@ function view_visitor(id){
             $("#shootingDate").text(h.shooting_date);
             $("#contactPersonEmail").text(h.mail_id);
             $("#contactPersonMobile").text(h.mobile);
-
         
+            if(h.validity_type == "MD"){
+                let validityInfo = ` ${h.valid_from} to ${h.valid_to} `;
+                $("#visitDateTimeLabel").text("Validity Period");
+                $("#h_date").text(validityInfo);
+            } else {
+             $("#h_date").text(h.requested_date +" & "+ h.requested_time);
+                $("#visitDateTimeLabel").text("Visit Date & Time");
+            }
+
             if (h.purpose === "Vendor") {
 
                 $('#vendorData').show();
@@ -445,7 +471,7 @@ function view_visitor(id){
 
               
         window.BASE_URL = "<?= base_url() ?>";
-          let imgPath =  window.BASE_URL + 'public/dist/User_Profile.png'
+        let imgPath =  window.BASE_URL + 'public/dist/User_Profile.png'
 
         if (v.v_phopto_path && v.v_phopto_path !== '') {
           imgPath = window.BASE_URL + 'public/uploads/visitor_photos/' + v.v_phopto_path;
@@ -511,55 +537,121 @@ function view_visitor(id){
                                           </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> `;
 
 
 
-                                <!-- Status Tracker start -->
-                                <div class="status-tracker" id="statusTraker">
-                                    <div class="status-tracker-horizontal"
-                                        style="--progress: ${
-                                            v.securityCheckStatus >= 2 ? '100%' :
-                                            v.meeting_status >= 1 ? '75%' :
-                                            v.securityCheckStatus >= 1 ? '50%' :
-                                            v.status == 'approved' ? '25%' : '0%'
-                                             }; margin-top:-20px;">
+                           if(v.validity_type == "SD" ){
+                                htmlvisitorCard +=` <!-- Status Tracker start -->
+                                    <div class="status-tracker" id="statusTraker">
+                                        <div class="status-tracker-horizontal"
+                                            style="--progress: ${
+                                                v.securityCheckStatus >= 2 ? '100%' :
+                                                v.meeting_status >= 1 ? '75%' :
+                                                v.securityCheckStatus >= 1 ? '50%' :
+                                                v.status == 'approved' ? '25%' : '0%'
+                                                }; margin-top:-20px;">
 
-                                        <div class="step ${v.status == 'approved' ? 'active' : ''}">
-                                            <span class="circle">
-                                                <i class="fa-solid fa-file-circle-check"></i>
-                                            </span>
-                                            <span class="label">Request Approved</span>
-                                        </div>
+                                            <div class="step ${v.status == 'approved' ? 'active' : ''}">
+                                                <span class="circle">
+                                                    <i class="fa-solid fa-file-circle-check"></i>
+                                                </span>
+                                                <span class="label">Request Approved</span>
+                                            </div>
 
-                                        <div class="step ${v.securityCheckStatus >= 1 ? 'active' : ''}">
-                                            <span class="circle">
-                                                <i class="fa-solid fa-right-to-bracket"></i>
-                                            </span>
-                                            <span class="label">Check In</span>
-                                            <span class="label"  style="margin-top:-6px;">${v.check_in ? v.check_in  : '' } </br> ${v.check_in_by ? v.check_in_by : ''}</span>
+                                            <div class="step ${v.securityCheckStatus >= 1 ? 'active' : ''}">
+                                                <span class="circle">
+                                                    <i class="fa-solid fa-right-to-bracket"></i>
+                                                </span>
+                                                <span class="label">Check In</span>
+                                                <span class="label"  style="margin-top:-6px;">${v.check_in ? v.check_in  : '' } </br> ${v.check_in_by ? v.check_in_by : ''}</span>
 
-                                        </div>
+                                            </div>
 
-                                        <div class="step ${v.meeting_status >= 1 ? 'active' : ''}">
-                                            <span class="circle">
-                                                <i class="fa-solid fa-people-arrows"></i>
-                                            </span>
-                                            <span class="label">Session Complete</span>
-                                        </div>
+                                            <div class="step ${v.meeting_status >= 1 ? 'active' : ''}">
+                                                <span class="circle">
+                                                    <i class="fa-solid fa-people-arrows"></i>
+                                                </span>
+                                                <span class="label">Session Complete</span>
+                                            </div>
 
-                                        <div class="step ${v.securityCheckStatus >= 2 ? 'active' : ''}">
-                                            <span class="circle">
-                                                <i class="fa-solid fa-right-from-bracket"></i>
-                                            </span>
-                                            <span class="label">Check Out</span>
-                                           <span class="label" style="margin-top:-6px;">${v.check_out ? v.check_out : '' }<br>${v.check_out_by ? v.check_out_by : '' }</span>
+                                            <div class="step ${v.securityCheckStatus >= 2 ? 'active' : ''}">
+                                                <span class="circle">
+                                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                                </span>
+                                                <span class="label">Check Out</span>
+                                            <span class="label" style="margin-top:-6px;">${v.check_out ? v.check_out : '' }<br>${v.check_out_by ? v.check_out_by : '' }</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                         `;
+                                </div> `;
 
+                            }else if(v.validity_type == "MD" ){
+
+                            htmlvisitorCard +=`<!-- Visitor Details History Section (For Multi-Day Visitors) -->
+                                <div id="mdVisitHistorySection" >
+                                    <h6 class="fw-bold text-primary">Visit Days History</h6>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-sm">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th class="text-center">Visit Date</th>
+                                                    <th class="text-center">Check In</th>
+                                                    <th class="text-center">Check Out</th>
+                                                    <th class="text-center">Visit Status</th>
+                                                  
+                                                </tr>
+                                            </thead>
+                                            <tbody id="mdVisitHistoryBody">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- Visitor Details History Section End -->
+                                `
+                   
+                                    $.ajax({
+                                        url: "<?= base_url('/get-visitor-details') ?>",
+                                        type: "POST",
+                                        data: { v_code: v.v_code },
+                                        dataType: "json",
+                                        success: function (d) {
+                                            if(d.status === "success") {
+                                                $("#mdVisitHistorySection").removeClass("d-none");
+                                                let historyHTML = "";
+                                                if(d.visitHistoryData.length == 0){
+                                                    historyHTML = `<tr><td colspan="4" class="text-center">No Visit History Found</td></tr>`;
+                                                }
+                                                d.visitHistoryData.forEach(function(row){
+                                          
+                                                    historyHTML += `
+                                                        <tr ${row.is_today ? 'class="table-info"' : ''}>
+                                                            <td class="text-center">${row.visit_date}</td>
+                                                            <td class="text-center">${row.check_in_time ?? '-'} - ${row.verified_by_name ?? '-'}</td>
+                                                            <td class="text-center">${row.check_out_time ?? '-'} - ${row.updated_by_name ?? '-'}</td>
+                                                                        
+                                                            <td class="text-center">
+                                                                ${row.check_in_time && !row.check_out_time ? 
+                                                                    '<span class="badge bg-primary">Inside</span>' : 
+                                                                    row.check_out_time ? '<span class="badge bg-success">Completed</span>' : 
+                                                                    '<span class="badge bg-secondary">Not Entered</span>'
+                                                                }
+                                                            </td>
+                                                                      
+                                                        </tr>`;
+                                                });
+                                                $("#mdVisitHistoryBody").html(historyHTML);
+                                            }
+                                        }
+                                    });
+
+                            }
+                            
+                    
+
+                 
+                          
              });
 
         

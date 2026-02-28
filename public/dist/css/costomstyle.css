@@ -655,8 +655,11 @@ input[type="file"] {
 .dynamic-form-table input[type="text"],
 .dynamic-form-table input[type="email"],
 .dynamic-form-table input[type="date"],
-.dynamic-form-table input[type="time"] {
-    width: 130px; /* reduce width */
+.dynamic-form-table input[type="time"],
+.dynamic-form-table input[type="tel"],
+.dynamic-form-table input[type="number"],
+.dynamic-form-table select.form-control{
+    width: 145px; /* reduce width */
 }
 
 /* Very small columns */

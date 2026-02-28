@@ -54,8 +54,6 @@ $routes->post('mail/group-qr', 'MailController::sendGroupQrMail');
 
 // $routes->post('send-email', 'MailController::sendMailTwo');
 
-
-
 $routes->get('reference', 'ReferenceControllere::index');
 $routes->post('/reference_save', 'ReferenceControllere::create');
 $routes->get('/referenceData', 'ReferenceControllere::getReferencePersons');
@@ -79,6 +77,7 @@ $routes->get('/authorized_visitors_list', 'SecurityController::View_authorized_v
 $routes->get('/security/authorized_visitors_list_data', 'SecurityController::authorized_visitors_list_data');
 $routes->get('/security/todayVisitorListOfDashboard', 'SecurityController::todayVisitorListOfDashboard');
 $routes->post('/security/detBelongingsData', 'SecurityController::detBelongingsData');
+$routes->get('/security/get-belongings-by-date', 'SecurityController::getBelongingsByDate');
 
 $routes->post('/security/verify', 'SecurityController::verifyVisitor');
 $routes->post('/security/saveBelongings', 'SecurityController::saveBelongings');

@@ -54,17 +54,87 @@
                                                 <?php endif; ?>
                                             </select>   
                                         <?php }  ?>
-                                    </div>
+                                </div>
                                         
-                                    <div class="col-md-3 mb-2">
-                                        <label class="form-label required">Date of Visit</label>
-                                        <input type="date" name="visit_date" class="form-control" required>
-                                    </div>
 
-                                    <div class="col-md-3 mb-2">
-                                        <label class="form-label required">Time of Visit</label>
-                                        <input type="time" name="visit_time" class="form-control" required>
-                                    </div>  
+                                    <!--                              
+                                        <div class="col-md-2 mb-2">
+                                            <label class="form-label">Type of Pass</label>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" 
+                                                    name="pass_type" id="passSingle" value="SD" checked>
+                                                <label class="form-check-label" for="passSingle">
+                                                    Single Day
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" 
+                                                    name="pass_type" id="passMultiple" value="MD">
+                                                <label class="form-check-label" for="passMultiple">
+                                                    Multiple Day
+                                                </label>
+                                            </div>
+                                        </div>
+                                            
+                                        <div class="col-md-2 mb-2">
+                                            <label class="form-label required">Date of Visit</label>
+                                            <input type="date" name="visit_date" class="form-control" required>
+                                        </div>
+
+                                        <div class="col-md-2 mb-2">
+                                            <label class="form-label required">Time of Visit</label>
+                                            <input type="time" name="visit_time" class="form-control" required>
+                                        </div>   -->
+
+                                        <div class="col-md-2 mb-2">
+                                            <label class="form-label">Pass Validity Type</label>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" 
+                                                    name="validity_type" id="passSingle" value="SD" checked>
+                                                <label class="form-check-label" for="passSingle">
+                                                    Single Day
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" 
+                                                    name="validity_type" id="passMultiple" value="MD">
+                                                <label class="form-check-label" for="passMultiple">
+                                                    Multi Day
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <!-- Single Day Fields -->
+                                        <div id="singleDayFields" class="col-md-4 d-flex gap-2">
+                                            <div class="col-md-6 mb-2">
+                                                <label class="form-label required">Date of Visit</label>
+                                                <input type="date" name="visit_date" id="visitDate" class="form-control">
+                                            </div>
+
+                                            <div class="col-md-6 mb-2">
+                                                <label class="form-label required">Time of Visit</label>
+                                                <input type="time" name="visit_time" id="visitTime" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <!-- Multi Day Fields (Hidden by default) -->
+                                        <div id="multiDayFields" class="col-md-4 d-none">
+                                            <div class="row g-2">
+                                                <div class="col-6">
+                                                    <label class="form-label required">Valid From</label>
+                                                    <input type="date" name="valid_from" id="validFrom" class="form-control">
+                                                </div>
+
+                                                <div class="col-6">
+                                                    <label class="form-label required">Valid To</label>
+                                                    <input type="date" name="valid_to" id="validTo" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
                                 </div>
                             
                                 <!-- Recce Details Start -->
@@ -208,12 +278,12 @@
                                 <div class="col-md-3 mb-2">
                                     <label class="form-label required">Visitor Name</label>
                                     <input type="text" name="visitor_name" id="visitorName"
-                                           class="form-control" placeholder="Enter visitor full name"  maxlength="20" required>
+                                           class="form-control" placeholder="Enter Visitor Full Name"  maxlength="20" required>
                                 </div>
 
                                 <div class="col-md-3 mb-2">
-                                    <label class="form-label required">Email</label>
-                                    <input type="email" name="visitor_email" class="form-control" placeholder="Enter email address" required>
+                                    <label class="form-label ">Email</label>
+                                    <input type="email" name="visitor_email" class="form-control" placeholder="Enter Email Address" >
                                 </div>
 
                                 <div class="col-md-3 mb-2">
@@ -238,12 +308,12 @@
 
                                 <div class="col-md-3 mb-2">
                                     <label class="form-label">ID Number</label>
-                                    <input type="text" name="proof_id_number" id="idNumber" class="form-control" placeholder="Enter ID card number" >
+                                    <input type="text" name="proof_id_number" id="idNumber" class="form-control" placeholder="Enter ID Card Number" >
                                 </div>
 
                                  <div class="col-md-9 mb-2">
                                     <label class="form-label">Description</label>
-                                    <textarea name="description" id="description" class="form-control" rows="2" placeholder="Enter visit purpose details (optional)"></textarea>
+                                    <textarea name="description" id="description" class="form-control" rows="2" placeholder="Enter Visit Purpose Details (Optional)"></textarea>
                                 </div>
                             </div>
 
@@ -254,7 +324,7 @@
                                 <div class="col-md-3 mb-2">
                                     <label class="form-label">Vehicle Number</label>
                                     <input type="text" name="vehicle_no" id="vehicleNo"
-                                           class="form-control" placeholder="Enter vehicle number (optional)">
+                                           class="form-control" placeholder="Enter Vehicle Number (Optional)" maxlength="15">
                                 </div>
 
                                 <div class="col-md-3 mb-2">
@@ -269,6 +339,10 @@
                                         <option>Truck</option>
                                         <option>Lorry</option>
                                         <option>DCM</option>
+                                        <option>Auto Trolley</option>
+                                        <option>Mini Lorry</option>
+                                        <option>Tractor</option>
+                                        <option>Crane</option>
                                     </select>
                                 </div>
                         
@@ -306,11 +380,18 @@
 <script>
 $(document).ready(function () {
 
-    $('.select2').select2({
-        width: '100%',
-        allowClear: false
+        $('.select2').select2({
+            width: '100%',
+            allowClear: false
+        });
+        loadCurentDateTime();
+
+        togglePassFields(); // Run on load
+
+        $('input[name="validity_type"]').change(function () {
+            togglePassFields();
     });
-    loadCurentDateTime();
+
 });
 
 function loadCurentDateTime(){
@@ -382,6 +463,7 @@ $("#visitorForm").submit(function(e){
             if(res.status === "success"){
                 $("#visitorForm")[0].reset(); // Reset Form
                 loadCurentDateTime(); //DateTime Fields Loading with Cirent Time 
+                togglePassFields(); // Toggle Pass Fields to default (Single Day)
 
                 Swal.fire({
                     icon: "success",
@@ -418,6 +500,7 @@ $("#visitorForm").submit(function(e){
             let recceType  = $('#recce_type').val();
             let vendorType = $('#vendor_category').val();
             let phone      = $('#phone').val().trim();
+            let validityType = $('input[name="validity_type"]:checked').val();
 
             const rules = {
                 Recce:  { field: '#recce_type',  msg: 'Recce Type is mandatory when Purpose is Recce' },
@@ -504,6 +587,48 @@ $("#visitorForm").submit(function(e){
                 }
             }
 
+            //  Multi Day (MD) Validation – Max 7 Days Only
+            if (validityType === "MD") {
+
+                let validFrom = $('#validFrom').val();
+                let validTo   = $('#validTo').val();
+
+                if (!validFrom || !validTo) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Missing Dates',
+                        text: 'Valid From and Valid To are required for Multi Day pass'
+                    });
+                    return false;
+                }
+
+                let fromDate = new Date(validFrom);
+                let toDate   = new Date(validTo);
+
+                // Check if valid_to is before valid_from
+                if (toDate < fromDate) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Invalid Date Range',
+                        text: 'Valid To must be after Valid From'
+                    });
+                    return false;
+                }
+
+                // Calculate difference in days
+                let diffTime = toDate - fromDate;
+                let diffDays = diffTime / (1000 * 60 * 60 * 24);
+
+                if (diffDays > 6) {  // 7 calendar days allowed
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Validity Limit Exceeded',
+                        text: 'Multi Day pass cannot exceed 7 days'
+                    });
+                    return false;
+                }
+            }
+
 
             return true;
         }
@@ -533,8 +658,6 @@ $("#visitorForm").submit(function(e){
         }
         });
     }
-
-
 
     function purposeEvent() {
         let purpose = $('#purpose').val();
@@ -567,6 +690,50 @@ $("#visitorForm").submit(function(e){
 //     });
 // }
 
- 
+
+
+// ===============================
+// GLOBAL FUNCTIONS
+// ===============================
+
+function formatDate(date) {
+    let d = new Date(date);
+    let month = ('0' + (d.getMonth() + 1)).slice(-2);
+    let day = ('0' + d.getDate()).slice(-2);
+    return d.getFullYear() + '-' + month + '-' + day;
+}
+
+function setDefaultMultiDates() {
+    let today = new Date();
+    let tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1);
+
+    $("#validFrom").val(formatDate(today));
+    $("#validTo").val(formatDate(tomorrow));
+}
+
+function togglePassFields() {
+
+    let selectedType = $('input[name="validity_type"]:checked').val();
+
+    if (selectedType === "MD") {
+
+        $("#singleDayFields").addClass("d-none");
+        $("#multiDayFields").removeClass("d-none");
+
+        $("#visitDate, #visitTime").prop("required", false);
+        $("#validFrom, #validTo").prop("required", true);
+
+        setDefaultMultiDates();
+
+    } else {
+
+        $("#singleDayFields").removeClass("d-none");
+        $("#multiDayFields").addClass("d-none");
+
+        $("#visitDate, #visitTime").prop("required", true);
+        $("#validFrom, #validTo").prop("required", false);
+    }
+}
 
 </script>

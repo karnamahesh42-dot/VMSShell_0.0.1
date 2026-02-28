@@ -120,36 +120,80 @@
                                     </tr>
                                     </thead>
 
-                                    <tbody >
+                                    <tbody>
                                         <?php foreach ($report as $row): ?>
+
+                                        <?php
+                                            // ------------------------------
+                                            // VALIDITY TYPE LOGIC (SD / MD)
+                                            // ------------------------------
+                                            $validityType = $row['validity_type'] ?? 'SD';
+
+                                            if ($validityType === 'MD') {
+
+                                                $checkIn  = $row['md_check_in']  ?? null;
+                                                $checkOut = $row['md_check_out'] ?? null;
+
+                                                $validFrom = $row['valid_from'] ?? '-';
+                                                $validTo   = $row['valid_to']   ?? '-';
+
+                                                $visitDateDisplay = $validFrom . ' to ' . $validTo;
+
+                                            } else {
+
+                                                $checkIn  = $row['sd_check_in']  ?? null;
+                                                $checkOut = $row['sd_check_out'] ?? null;
+
+                                                $visitDateDisplay = $row['visit_date'] ?? '-';
+                                            }
+
+                                            // ------------------------------
+                                            // STATUS LOGIC
+                                            // ------------------------------
+                                            if (empty($checkIn)) {
+                                                $statusText = "Not Entered";
+                                                $badgeClass = "bg-secondary";
+                                            } elseif (!empty($checkIn) && empty($checkOut)) {
+                                                $statusText = "Inside";
+                                                $badgeClass = "bg-primary";
+                                            } else {
+                                                $statusText = "Exit";
+                                                $badgeClass = "bg-success";
+                                            }
+                                        ?>
+
                                         <tr>
-                                            <td><?= esc($row['group_code']) ?></td>
-                                            <td><?= esc($row['v_code']) ?></td>
-                                            <td><?= esc($row['visitor_name']) ?></td>
-                                            <td><?= esc($row['visitor_phone']) ?></td>
-                                            <td><?= esc($row['purpose']) ?></td>
-                                            <td><?= esc($row['company']) ?></td>
-                                            <td><?= esc($row['department']) ?></td>
-                                            <td><?= esc($row['visit_date']) ?></td>
-                                            <td><?= esc($row['reffered_by']) ?></td>
-                                            <td><?= esc($row['check_in_time'] ?? '-') ?></td>
-                                            <td><?= esc($row['check_out_time'] ?? '-') ?></td>
+                                            <td><?= esc($row['group_code'] ?? '-') ?></td>
+                                            <td><?= esc($row['v_code'] ?? '-') ?></td>
+                                            <td><?= esc($row['visitor_name'] ?? '-') ?></td>
+                                            <td><?= esc($row['visitor_phone'] ?? '-') ?></td>
+                                            <td><?= esc($row['purpose'] ?? '-') ?></td>
+                                            <td><?= esc($row['company'] ?? '-') ?></td>
+                                            <td><?= esc($row['department'] ?? '-') ?></td>
+
+                                            <!-- Visit Date -->
+                                            <td><?= esc($visitDateDisplay) ?></td>
+
+                                            <td><?= esc($row['referred_by'] ?? '-') ?></td>
+
+                                            <!-- Check In -->
+                                            <td><?= esc($checkIn ?? '-') ?></td>
+
+                                            <!-- Check Out -->
+                                            <td><?= esc($checkOut ?? '-') ?></td>
+
                                             <td><?= esc($row['spendTime'] ?? '-') ?></td>
+
+                                            <!-- Status -->
                                             <td>
-                                           
-                                                <?php if($row['securityCheckStatus'] == '0'){
-                                                    echo "Not Entered";
-                                                }else if($row['securityCheckStatus'] == '1'){
-                                                    echo "Inside";
-                                                }else{
-                                                    echo "Exit";
-                                                }?>
-                                  
+                                                <span class="badge <?= $badgeClass ?>">
+                                                    <?= $statusText ?>
+                                                </span>
                                             </td>
                                         </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
 
+                                        <?php endforeach; ?>
+                                        </tbody>
                                 </table>
                                 </div>
                             </div>

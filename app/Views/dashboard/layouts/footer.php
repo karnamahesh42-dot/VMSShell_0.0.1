@@ -54,7 +54,7 @@
                     <p class="mb-1">
                
                      <a href="mailto:srinivas.a@ramjifilmcity.com">
-                        srinivas.a@ramjifilmcity.com</a>
+                        srinivas.a@ramojifilmcity.com</a>
                     </p>
 
                     <p class="mb-1">

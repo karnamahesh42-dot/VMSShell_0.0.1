@@ -37,20 +37,8 @@ class VisitorRequestHeaderModel extends Model
        visitors.request_header_id = visitor_request_header.id
     ============================================================ */
    
-  public function getHeaderWithVisitors($headerId)
+public function getHeaderWithVisitors($headerId)
 {
-    // return $this->select("
-    //         visitor_request_header.*,
-    //         visitors.*,
-    //         users.name AS visitor_created_by_name,
-    //         users.email AS visitor_created_by_email
-    //     ")
-    //     ->join('visitors', 'visitors.request_header_id = visitor_request_header.id', 'left')
-    //     ->join('users', 'users.id = visitors.created_by', 'left') // 👈 corrected
-    //      ->join('users', 'users.id = visitor_request_header.referred_by', 'left') // 👈 corrected
-        
-    //     ->where('visitor_request_header.id', $headerId)
-    //     ->findAll();
     return $this->select("
         visitor_request_header.*,
         visitors.*,
@@ -76,7 +64,6 @@ class VisitorRequestHeaderModel extends Model
         security_gate_logs.check_out_time as check_out,
         u3.name as check_in_by,
         u4.name as check_out_by,
-
     ")
     ->join('visitors', 'visitors.request_header_id = visitor_request_header.id', 'left')
     ->join('users u1', 'u1.id = visitors.created_by', 'left')
@@ -104,7 +91,10 @@ public function getHeaderWithVisitorsMailData($headerId)
             visitors.qr_code, 
             visitors.vehicle_no,
             visitors.visit_date,
-            visitors.visit_time, 
+            visitors.visit_time,
+            visitors.valid_from,
+            visitors.valid_to,
+            visitors.validity_type, 
             visitors.vehicle_type,    
             users.name AS created_by_name,
             users.email AS created_by_email,
@@ -169,6 +159,9 @@ public function getHeaderWithVisitorsMailDataByVCode($vCode)
             'visitors.vehicle_no',
             'visitors.visit_date',
             'visitors.visit_time',
+            'visitors.valid_from',
+            'visitors.valid_to',
+            'visitors.validity_type',
             'visitors.vehicle_type',
             'visitors.v_phopto_path',
             'visitors.securityCheckStatus',

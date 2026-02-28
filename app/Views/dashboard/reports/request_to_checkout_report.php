@@ -15,7 +15,7 @@
                                 <h5 class="mb-0"> Request to Checkout Report </h5>
                             </div>
 
-                            <div class="card-body table-responsive" >
+                            <div class="card-body"  style="max-height: 700px; overflow-y: auto;">
 
                                 <form method="get" class="row g-2 mb-3">
                                     <div class="col-md-2">
@@ -26,7 +26,7 @@
                                             <option value="DHPL">DHPL</option>
                                             <option value="ETPL">ETPL</option>
                                         </select> -->
-                                    <?php if($_SESSION['role_id'] == 1){?>
+                                    <?php if(in_array($_SESSION['role_id'], [1,5])){?>
                                         <select name="company" class="form-select" >
                                         <option value="">-- Select Company --</option>
                                         <?php foreach ($companies as $comp): ?>
@@ -42,7 +42,7 @@
 
                                     <div class="col-md-2">
                                         <label>Department</label>
-                                        <?php if($_SESSION['role_id'] == 1){?>
+                                        <?php if(in_array($_SESSION['role_id'], [1,5])){?>
                                             <select name="department" class="form-select">
                                                 <option value="">-- Select Department --</option>
                                                 <?php foreach ($departments as $dept): ?>
@@ -100,6 +100,15 @@
                                     </div>
 
                                     <div class="col-md-2">
+                                         <label>Pass Valid Type</label>
+                                        <select name="validity_type" class="form-select">
+                                            <option value="">-- Select Validity Type --</option>
+                                            <option value="SD" <?= (($_GET['validity_type'] ?? '') == 'SD') ? 'selected' : '' ?>>Single Day</option>
+                                            <option value="MD" <?= (($_GET['validity_type'] ?? '') == 'MD') ? 'selected' : '' ?>>Multi Day</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-2">
                                         <label> Visit Date From</label>
                                         <input type="date" name="from_date" class="form-control"
                                             value="<?= esc($_GET['from_date'] ?? '') ?>">
@@ -135,83 +144,163 @@
                                 </div>
 
                                 </form>
-                                  <div class="table-scroll">              
-                                   <table class="table table-bordered table-hover table-sm" id="checkoutTable">
+                                <div class="table-scroll" id="tableScrollWrapper" >              
+                                    <table class="table table-bordered table-hover table-sm" id="checkoutTable"  style="table-layout: fixed; width:100%;">
                                     <thead class="table-light">
                                         <tr>
-                                            <th>S.no</th>
-                                            <th>Request ID</th>
-                                            <th>Visitor Code</th>
-                                            <th>Company</th>
-                                            <th>Department</th>
-                                            <th>Visitor Name</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Purpose</th>
-                                            <th>Description</th>
-                                            <th>Visit Date</th>
-                                            <th>Visit Time</th>
-                                            <th>Total Visitors</th>
-                                            <th>Referred By</th>
-                                            <th>Request Created By</th>
-                                            <th>Vehicle No</th>
-                                            <th>Vehicle Type</th>
-                                            <th>Proof Type</th>
-                                            <th>Proof Number</th>
-                                            <th>Request Status</th> 
-                                            <th>Meeting Status</th>
-                                            <th>Meeting Completed At</th>      
-                                            <th>Check-In By</th>
-                                            <th>Check In At</th>
-                                            <th>Check-Out By</th>
-                                            <th>Check Out At</th>
-                                            <th>Time Spent</th>
+                                            <th style="width:50px;">S.no</th>
+                                            <th style="width:120px;">Request ID</th>
+                                            <th style="width:110px;">Visitor Code</th>
+                                            <th style="width:130px;">Company</th>
+                                            <th style="width:130px;">Department</th>
+                                            <th style="width:150px;">Visitor Name</th>
+                                            <th style="width:180px;">Email</th>
+                                            <th style="width:120px;">Phone</th>
+                                            <th style="width:120px;">Purpose</th>
+                                            <th style="width:250px;">Description</th>
+                                            <th style="width:200px;">Visit Date</th>
+                                            <th style="width:90px;">Visit Time</th>
+                                            <th style="width:100px;">Total Visitors</th>
+                                            <th style="width:150px;">Referred By</th>
+                                            <th style="width:160px;">Request Created By</th>
+                                            <th style="width:120px;">Vehicle No</th>
+                                            <th style="width:110px;">Vehicle Type</th>
+                                            <th style="width:120px;">Proof Type</th>
+                                            <th style="width:150px;">Proof Number</th>
+                                            <th style="width:120px;">Request Status</th>
+                                            <th style="width:120px;">Meeting Status</th>
+                                            <th style="width:120px;">Validity Type</th>
+                                            <th style="width:130px;">Check-In By</th>
+                                            <th style="width:150px;">Check In At</th>
+                                            <th style="width:130px;">Check-Out By</th>
+                                            <th style="width:150px;">Check Out At</th>
+                                            <th style="width:120px;">Time Spent</th>
                                         </tr>
-                                    </thead>
+                                        </thead>
+
                                     <tbody>
                                     <?php $i = 1; foreach ($report as $row): ?>
-                                    <tr>
-                                        <td><?= $i ?></td>     
-                                        <td><?= esc($row['group_code']) ?></td>
-                                        <td><?= esc($row['v_code']) ?></td>
-                                        <td><?= esc($row['company']) ?></td>
-                                        <td><?= esc($row['department']) ?></td>
-                                        <td><?= esc($row['visitor_name']) ?></td>
-                                        <td><?= esc($row['visitor_email']) ?></td>
-                                        <td><?= esc($row['visitor_phone']) ?></td>
-                                        <td><?= esc($row['purpose']) ?></td>
-                                        <td><?= esc($row['description']) ?></td>
-                                        <td><?= esc($row['visit_date']) ?></td>
-                                        <td><?= esc($row['visit_time']) ?></td>
-                                        <td><?= esc($row['total_visitors']) ?></td>
-                                        <td><?= esc($row['referred_by'] ?? '-') ?></td>
-                                        <td><?= esc($row['rqst_created_by'] ?? '-') ?></td>
-                                        <td><?= esc($row['vehicle_no']) ?></td>
-                                        <td><?= esc($row['vehicle_type']) ?></td>
-                                        <td><?= esc($row['proof_id_type']) ?></td>
-                                        <td><?= esc($row['proof_id_number']) ?></td>
-                                        <td><?= esc($row['status']) ?></td>
-                                        <td><?= $row['meeting_status'] ? 'Completed' : 'Pending' ?></td>
-                                        <td><?= esc($row['meeting_completed_at'] ?? '-') ?></td>
-                                        <td><?= esc($row['s_checkin_by'] ?? '-') ?></td>
-                                        <td><?= esc($row['check_in_time']) ?></td>
-                                        <td><?= esc($row['s_checkout_by'] ?? '-') ?> </td>
-                                        <td><?= esc($row['check_out_time']) ?></td>
-                                        <td><?= esc($row['spendTime'] ?? '-') ?></td>
-                                    </tr>
+
+                                    <?php
+                                        // =========================
+                                        // VALIDITY TYPE HANDLING
+                                        // =========================
+                                        $validityType = $row['validity_type'] ?? 'SD';
+
+                                        if ($validityType === 'MD') {
+
+                                            $checkIn    = $row['md_check_in'] ?? null;
+                                            $checkOut   = $row['md_check_out'] ?? null;
+
+                                            $visitDate  = ($row['valid_from'] ?? '-') . ' to ' . ($row['valid_to'] ?? '-');
+                                            $visitTime  = '-';
+
+                                        } else {
+
+                                            $checkIn    = $row['sd_check_in'] ?? null;
+                                            $checkOut   = $row['sd_check_out'] ?? null;
+
+                                            $visitDate  = $row['visit_date'] ?? '-';
+                                            $visitTime  = $row['visit_time'] ?? '-';
+                                        }
+
+                                        // =========================
+                                        // Meeting Badge
+                                        // =========================
+                                        $meetingBadge = (!empty($row['meeting_status']))
+                                            ? '<span class="badge bg-success">Completed</span>'
+                                            : '<span class="badge bg-warning text-dark">Pending</span>';
+                                    ?>
+
+                                        <tr>
+                                            <td><?= $i ?></td>
+                                            <td><?= esc($row['group_code'] ?? '-') ?></td>
+                                            <td><?= esc($row['v_code'] ?? '-') ?></td>
+                                            <td><?= esc($row['company'] ?? '-') ?></td>
+                                            <td><?= esc($row['department'] ?? '-') ?></td>
+                                            <td><?= esc($row['visitor_name'] ?? '-') ?></td>
+                                            <td><?= esc($row['visitor_email'] ?? '-') ?></td>
+                                            <td><?= esc($row['visitor_phone'] ?? '-') ?></td>
+                                            <td><?= esc($row['purpose'] ?? '-') ?></td>
+                                            <td style="width:150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><?= esc($row['description'] ?? '-') ?></td>
+
+                                            <!-- Visit Date -->
+                                            <td><?= esc($visitDate) ?></td>
+
+                                            <!-- Visit Time -->
+                                            <td><?= esc($visitTime) ?></td>
+
+                                            <td><?= esc($row['total_visitors'] ?? '-') ?></td>
+                                            <td><?= esc($row['referred_by'] ?? '-') ?></td>
+                                            <td><?= esc($row['rqst_created_by'] ?? '-') ?></td>
+                                            <td><?= esc($row['vehicle_no'] ?? '-') ?></td>
+                                            <td><?= esc($row['vehicle_type'] ?? '-') ?></td>
+                                            <td><?= esc($row['proof_id_type'] ?? '-') ?></td>
+                                            <td><?= esc($row['proof_id_number'] ?? '-') ?></td>
+
+                                            <!-- Request Status -->
+                                            <td><?= esc($row['status'] ?? '-') ?></td>
+
+                                            <!-- Meeting Status -->
+                                            <td><?= $meetingBadge ?></td>
+                                            <td><?= $validityType ?></td>
+                                        
+
+                                            <!-- Check-In By -->
+                                            <td><?= esc($row['s_checkin_by'] ?? '-') ?></td>
+
+                                            <!-- Check-In Time -->
+                                            <td><?= esc($checkIn ?? '-') ?></td>
+
+                                            <!-- Check-Out By -->
+                                            <td><?= esc($row['s_checkout_by'] ?? '-') ?></td>
+
+                                            <!-- Check-Out Time -->
+                                            <td><?= esc($checkOut ?? '-') ?></td>
+
+                                            <!-- Time Spent -->
+                                            <td><?= esc($row['spendTime'] ?? '-') ?></td>
+                                        </tr>
+
                                     <?php $i++; endforeach; ?>
                                     </tbody>
-                                   </table>
-                                   </div>
+                                    </table>
+                                </div>
                             </div>
+                                <div class="card-footer text-center">
+
+                                    <div class="d-flex justify-content-center align-items-center gap-3">
+
+                                        <button type="button"
+                                        class="btn btn-secondary"
+                                        onmousedown="startScroll('left')"
+                                        onmouseup="stopScroll()"
+                                        onmouseleave="stopScroll()">
+                                        <i class="fa-solid fa fa-chevron-left"></i>
+                                            
+                                        </button>
+                                        <!-- Row Count -->
+                                        <span class="fw-bold">
+                                            Rows : 
+                                            <span id="rowCount">0</span>
+                                        </span>
+
+                                        <button type="button"
+                                        class="btn btn-secondary"
+                                        onmousedown="startScroll('right')"
+                                        onmouseup="stopScroll()"
+                                        onmouseleave="stopScroll()">
+                                        <i class="fa-solid fa fa-chevron-right"></i>
+                                            
+                                        </button>
+                                    </div>
+
+                                </div>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
-
-
-
 
 <?= $this->include('/dashboard/layouts/footer') ?>
 
@@ -261,4 +350,34 @@ function exportTableById(tableId) {
     link.click();
     document.body.removeChild(link);
 }
+
+
+let scrollInterval;
+
+function startScroll(direction) {
+
+    const wrapper = document.getElementById("tableScrollWrapper");
+    const speed = 15; // smaller = slower
+
+    scrollInterval = setInterval(() => {
+
+        if (direction === "right") {
+            wrapper.scrollLeft += speed;
+        } else {
+            wrapper.scrollLeft -= speed;
+        }
+
+    }, 10); // 10ms = smooth movement
+}
+
+function stopScroll() {
+    clearInterval(scrollInterval);
+}
+
+
+    // Row Count Auto Detect
+    document.addEventListener("DOMContentLoaded", function () {
+        const rowCount = document.querySelectorAll("#checkoutTable tbody tr").length;
+        document.getElementById("rowCount").innerText = rowCount;
+    });
 </script>

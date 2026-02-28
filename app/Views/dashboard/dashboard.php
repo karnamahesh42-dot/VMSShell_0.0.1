@@ -256,7 +256,7 @@
                     <div class="d-flex justify-content-between align-items-center mb-1 pending-header">
                         <div>
                             <h5 class="mb-0">Pending Approvals</h5>
-                            <div class="muted">Requests that need action</div>
+                            <div class="muted">Requests That Need Action</div>
                         </div>
                         <div><a href="<?= base_url('visitorequestlist') ?>" class="btn btn-sm btn-outline-primary"><i class="bi bi-list"></i></a></div>
                     </div>
@@ -304,7 +304,7 @@
                                 <?php endforeach; ?>
                             <?php else: ?>
                                 <li>
-                                    <div class="text-center text-muted w-100">No pending requests</div>
+                                    <div class="text-center text-muted w-100">No Pending Requests</div>
                                 </li>
                             <?php endif; ?>
                         </ul>
@@ -339,6 +339,7 @@
                                         <th>Contact</th>
                                         <th>Purpose</th>
                                         <th>QR Validity</th>
+                                        <th>Validity Type</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -413,7 +414,7 @@
                                                 <!-- <th>S.No</th> -->
                                                 <!-- <th>Request Code</th> -->
                                                 <!-- <th>V-Code</th> -->
-                                               <th>Visit Date</th>
+                                                <th>Visit Date</th>
                                                 <th>Company</th>
                                                 <th>Department</th>
                                                 <th>Referred</th>
@@ -443,6 +444,13 @@
   <?= $this->include('/dashboard/layouts/footer') ?>
 
   <script>
+
+    $(document).ready(function () {
+        updateVisitorValidity();
+        loadAuthorizedVisitors();
+        todayVisitorsList();
+    });
+
 
     function view_visitor(id){
     // alert(id);
@@ -679,11 +687,7 @@ function sendMail(head_id) {
 }
 ///////////////////////////////////////Approvel Process End //////////////////////////////////////////////////////
 
-$(document).ready(function () {
-    updateVisitorValidity();
-    loadAuthorizedVisitors();
-    todayVisitorsList()
-});
+
 
 function updateVisitorValidity() {
  $.ajax({
@@ -710,94 +714,135 @@ function todayVisitorsList() {
             company: $("#filterCompany").val(),
             department: $("#filterDepartment").val(),
             securityCheckStatus: $("#filterSecurity").val(),
-            requestcode:  $("#requestcode").val(),
-            v_code:   $("#f_v_code").val()
+            requestcode: $("#requestcode").val(),
+            v_code: $("#f_v_code").val()
         },
-        success: function(res) {
+        success: function (res) {
 
-            // console.log(res[0].meeting_status);
-            
             let tbody = $("#todayVisitorsList");
             tbody.empty();
 
             if (!res.length) {
                 tbody.append(`
                     <tr>
-                        <td colspan='13' class='text-center text-muted'> No authorized visitors scheduled for today.</td>
+                        <td colspan='10' class='text-center text-muted'>
+                            No authorized visitors scheduled for today.
+                        </td>
                     </tr>
                 `);
                 return;
             }
 
-            res.forEach((v, index) => {
-         
+            res.forEach((v) => {
+
+                // =====================================
+                // SD / MD CHECK-IN LOGIC
+                // =====================================
+
+                let checkIn  = "-";
+                let checkOut = "-";
+
+                if (v.validity_type === "MD") {
+                    checkIn  = v.md_check_in ?? "-";
+                    checkOut = v.md_check_out ?? "-";
+                } else {
+                    checkIn  = v.sd_check_in ?? "-";
+                    checkOut = v.sd_check_out ?? "-";
+                }
+
+                // =====================================
+                // STATUS BADGE
+                // =====================================
+
                 let statusBadge = "";
-                if (v.securityCheckStatus == 0) {
+
+                if (!checkIn || checkIn === "-") {
+
                     statusBadge = `
                         <span class="badge bg-secondary">
                             Not Entered
                         </span>
                     `;
-                } else if (v.securityCheckStatus == 1 && v.meeting_status == 0) {
 
-                           <?php if($_SESSION['role_id'] == '2' || $_SESSION['role_id'] == '1'){?>
-                            statusBadge = ` <span class="btn meetingCmpleteBtn cursor-pointer" onclick="markMeetingCompleted('${v.v_code}')">
-                                        Inside <br>
-                                        Session Not Yet Completed <br>
-                                    In: ${v.check_in_time ?? '-'} <br>
-                                    Out: ${v.check_out_time ?? '-'} <br>
-                                </span> `;
-                             
-                          <?php }else{ ?>
-                                statusBadge = `<span class="badge bg-primary text-lite" >
-                                        Inside <br>
-                                        Session Not Yet Completed <br>
-                                        In: ${v.check_in_time ?? '-'} <br>
-                                        Out: ${v.check_out_time ?? '-'} <br>
-                                      </span>`;
-                          <?php } ?>
-                } 
-                else if (v.securityCheckStatus == 1 && v.meeting_status == 1){
-                      statusBadge = `
-                        <span class="badge bg-warning text-dark" >
-                             Inside <br>
-                             Session Completed <br>
-                            In: ${v.check_in_time ?? '-'} <br>
-                            Out: ${v.check_out_time ?? '-'} <br>
-                          
+                } else if (checkIn && (!checkOut || checkOut === "-")) {
+
+                    <?php if($_SESSION['role_id'] == '2' || $_SESSION['role_id'] == '1'){ ?>
+                        statusBadge = `
+                            <span class="btn meetingCmpleteBtn cursor-pointer"
+                                  onclick="markMeetingCompleted('${v.v_code}')">
+                                Inside <br>
+                                Session Not Yet Completed <br>
+                                In: ${checkIn} <br>
+                                Out: ${checkOut}
+                            </span>
+                        `;
+                    <?php } else { ?>
+                        statusBadge = `
+                            <span class="badge bg-primary text-light">
+                                Inside <br>
+                                Session Not Yet Completed <br>
+                                In: ${checkIn} <br>
+                                Out: ${checkOut}
+                            </span>
+                        `;
+                    <?php } ?>
+
+                } else if (v.meeting_status == 1 && checkOut !== "-") {
+
+                    statusBadge = `
+                        <span class="badge bg-warning text-dark">
+                            Inside <br>
+                            Session Completed <br>
+                            In: ${checkIn} <br>
+                            Out: ${checkOut}
                         </span>
                     `;
-                }else {
+
+                } else {
+
                     statusBadge = `
                         <span class="badge bg-success">
                             Completed <br>
-                            In: ${v.check_in_time ?? '-'} <br>
-                            Out: ${v.check_out_time ?? '-'} <br>
-                          
+                            In: ${checkIn} <br>
+                            Out: ${checkOut}
                         </span>
                     `;
                 }
+
+                // =====================================
+                // VALIDITY ICON
+                // =====================================
+
                 let validityBadge = "";
-           
+
                 if (v.validity == 1) {
-                     validityBadge = `<i class="bi bi-check-circle text-success" style="font-size: large; font-weight: bold;"></i>`;
-                } 
-                else {
-                   validityBadge = `<i class="bi bi-x-circle text-danger" style="font-size: large; font-weight: bold;"></i>`;
+                    validityBadge = `
+                        <i class="bi bi-check-circle text-success"
+                           style="font-size: large; font-weight: bold;"></i>
+                    `;
+                } else {
+                    validityBadge = `
+                        <i class="bi bi-x-circle text-danger"
+                           style="font-size: large; font-weight: bold;"></i>
+                    `;
                 }
 
+                // =====================================
+                // APPEND ROW
+                // =====================================
 
                 tbody.append(`
                     <tr>
-                        <td>${v.visit_date}</td>
-                        <td>${v.company}</td>
-                        <td>${v.department_name}</td>
-                        <td>${v.referred_by_name}</td>
-                        <td>${v.created_by_name}</td>
-                        <td>${v.visitor_name}</td>
-                        <td>${v.visitor_phone}</td>
-                        <td>${v.purpose}</td>
+                        <td>${v.validity_type === "MD" ? (v.valid_from + " to " + v.valid_to) : v.visit_date}</td>
+                        <td>${v.company ?? "-"}</td>
+                        <td>${v.department_name ?? "-"}</td>
+                        <td>${v.referred_by_name ?? "-"}</td>
+                        <td>${v.created_by_name ?? "-"}</td>
+                        <td>${v.visitor_name ?? "-"}</td>
+                        <td>${v.visitor_phone ?? "-"}</td>
+                        <td>${v.purpose ?? "-"}</td>
                         <td>${validityBadge}</td>
+                        <td>${v.validity_type ?? "-"}</td>
                         <td>${statusBadge}</td>
                     </tr>
                 `);
@@ -807,8 +852,112 @@ function todayVisitorsList() {
 }
 
 
+// function todayVisitorsList() {
+
+//     $.ajax({
+//         url: "<?= base_url('/security/todayVisitorListOfDashboard') ?>",
+//         type: "GET",
+//         dataType: "json",
+//         data: {
+//             company: $("#filterCompany").val(),
+//             department: $("#filterDepartment").val(),
+//             securityCheckStatus: $("#filterSecurity").val(),
+//             requestcode:  $("#requestcode").val(),
+//             v_code:   $("#f_v_code").val()
+//         },
+//         success: function(res) {
+
+//             // console.log(res[0].meeting_status);
+            
+//             let tbody = $("#todayVisitorsList");
+//             tbody.empty();
+
+//             if (!res.length) {
+//                 tbody.append(`
+//                     <tr>
+//                         <td colspan='13' class='text-center text-muted'> No authorized visitors scheduled for today.</td>
+//                     </tr>
+//                 `);
+//                 return;
+//             }
+
+//             res.forEach((v, index) => {
+         
+//                 let statusBadge = "";
+//                 if (v.securityCheckStatus == 0) {
+//                     statusBadge = `
+//                         <span class="badge bg-secondary">
+//                             Not Entered
+//                         </span>
+//                     `;
+//                 } else if (v.securityCheckStatus == 1 && v.meeting_status == 0) {
+
+//                         <?php if($_SESSION['role_id'] == '2' || $_SESSION['role_id'] == '1'){?>
+//                         statusBadge = ` <span class="btn meetingCmpleteBtn cursor-pointer" onclick="markMeetingCompleted('${v.v_code}')">
+//                                     Inside <br>
+//                                     Session Not Yet Completed <br>
+//                                 In: ${v.check_in_time ?? '-'} <br>
+//                                 Out: ${v.check_out_time ?? '-'} <br>
+//                             </span> `;
+                            
+//                         <?php }else{ ?>
+//                             statusBadge = `<span class="badge bg-primary text-lite" >
+//                                     Inside <br>
+//                                     Session Not Yet Completed <br>
+//                                     In: ${v.check_in_time ?? '-'} <br>
+//                                     Out: ${v.check_out_time ?? '-'} <br>
+//                                     </span>`;
+//                         <?php } ?>
+//                 } 
+//                 else if (v.securityCheckStatus == 1 && v.meeting_status == 1){
+//                       statusBadge = `
+//                         <span class="badge bg-warning text-dark" >
+//                              Inside <br>
+//                              Session Completed <br>
+//                             In: ${v.check_in_time ?? '-'} <br>
+//                             Out: ${v.check_out_time ?? '-'} <br>
+                          
+//                         </span>
+//                     `;
+//                 }else {
+//                     statusBadge = `
+//                         <span class="badge bg-success">
+//                             Completed <br>
+//                             In: ${v.check_in_time ?? '-'} <br>
+//                             Out: ${v.check_out_time ?? '-'} <br>
+                          
+//                         </span>
+//                     `;
+//                 }
+//                 let validityBadge = "";
+           
+//                 if (v.validity == 1) {
+//                      validityBadge = `<i class="bi bi-check-circle text-success" style="font-size: large; font-weight: bold;"></i>`;
+//                 } 
+//                 else {
+//                    validityBadge = `<i class="bi bi-x-circle text-danger" style="font-size: large; font-weight: bold;"></i>`;
+//                 }
 
 
+//                 tbody.append(`
+//                     <tr>
+//                         <td>${v.visit_date}</td>
+//                         <td>${v.company}</td>
+//                         <td>${v.department_name}</td>
+//                         <td>${v.referred_by_name}</td>
+//                         <td>${v.created_by_name}</td>
+//                         <td>${v.visitor_name}</td>
+//                         <td>${v.visitor_phone}</td>
+//                         <td>${v.purpose}</td>
+//                         <td>${validityBadge}</td>
+//                         <td>${statusBadge}</td>
+//                     </tr>
+//                 `);
+//             });
+
+//         }
+//     });
+// }
 
 
 
@@ -841,79 +990,213 @@ function todayVisitorsList() {
                     return;
                 }
 
-                res.forEach((v, index) => {
+                // res.forEach((v, index) => {
             
-                    let statusBadge = "";
-                    if (v.securityCheckStatus == 0) {
+                //     let statusBadge = "";
+                //     if (v.securityCheckStatus == 0) {
+                //         statusBadge = `
+                //             <span class="badge bg-secondary">
+                //                 Not Entered
+                //             </span>
+                //         `;
+                //     } else if (v.securityCheckStatus == 1 && v.meeting_status == 0) {
+
+                //             <?php if(in_array($_SESSION['role_id'], [1,2,3])){?>
+                //                 statusBadge = ` <span class="btn meetingCmpleteBtn cursor-pointer" onclick="markMeetingCompleted('${v.v_code}')">
+                //                             Inside <br>
+                //                             ${v.purpose} Not Yet Completed <br>
+                //                         In: ${v.check_in_time ?? '-'} <br>
+                //                         Out: ${v.check_out_time ?? '-'} <br>
+                //                     </span> `;
+                                
+                //             <?php }else{ ?>
+                //                     statusBadge = `<span class="badge bg-primary text-lite" >
+                //                             Inside <br>
+                //                             ${v.purpose} Not Yet Completed <br>
+                //                             In: ${v.check_in_time ?? '-'} <br>
+                //                             Out: ${v.check_out_time ?? '-'} <br>
+                //                         </span>`;
+                //             <?php } ?>
+                //     } 
+                //     else if (v.securityCheckStatus == 1 && v.meeting_status == 1){
+                //         statusBadge = `
+                //             <span class="badge bg-warning text-dark" >
+                //                 Inside <br>
+                //     ${v.purpose} Completed <br>
+                //                 In: ${v.check_in_time ?? '-'} <br>
+                //                 Out: ${v.check_out_time ?? '-'} <br>
+                            
+                //             </span>
+                //         `;
+                //     }else {
+                //         statusBadge = `
+                //             <span class="badge bg-success">
+                //                 Completed <br>
+                //                 In: ${v.check_in_time ?? '-'} <br>
+                //                 Out: ${v.check_out_time ?? '-'} <br>
+                            
+                //             </span>
+                //         `;
+                //     }
+                //     let validityBadge = "";
+            
+                //     if (v.validity == 1) {
+                //         validityBadge = `<i class="bi bi-check-circle text-success" style="font-size: large; font-weight: bold;"></i>`;
+                //     } 
+                //     else {
+                //     validityBadge = `<i class="bi bi-x-circle text-danger" style="font-size: large; font-weight: bold;"></i>`;
+                //     }
+
+                //     tbody.append(`
+                //         <tr>
+                //             <td>${v.visit_date}</td>
+                //             <td>${v.company}</td>
+                //             <td>${v.department_name}</td>
+                //             <td>${v.referred_by_name}</td>
+                //             <td>${v.created_by_name}</td>
+                //             <td>${v.visitor_name}</td>
+                //             <td>${v.visitor_phone}</td>
+                //             <td>${v.purpose}</td>
+                //             <td>${validityBadge}</td>
+                //             <td>${statusBadge}</td>
+                //         </tr>
+                //     `);
+                // });
+
+            res.forEach((v, index) => {
+
+                let statusBadge = "";
+                let validityBadge = "";
+
+                // ===============================
+                // SD VISITOR
+                // ===============================
+                if (v.validity_type === "SD") {
+
+                    // 🚫 Not Entered
+                    if (!v.sd_check_in && !v.sd_check_out) {
+
                         statusBadge = `
                             <span class="badge bg-secondary">
                                 Not Entered
                             </span>
                         `;
-                    } else if (v.securityCheckStatus == 1 && v.meeting_status == 0) {
+                    }
 
-                            <?php if($_SESSION['role_id'] == '2' || $_SESSION['role_id'] == '1'){?>
-                                statusBadge = ` <span class="btn meetingCmpleteBtn cursor-pointer" onclick="markMeetingCompleted('${v.v_code}')">
-                                            Inside <br>
-                                            ${v.purpose} Not Yet Completed <br>
-                                        In: ${v.check_in_time ?? '-'} <br>
-                                        Out: ${v.check_out_time ?? '-'} <br>
-                                    </span> `;
-                                
-                            <?php }else{ ?>
-                                    statusBadge = `<span class="badge bg-primary text-lite" >
-                                            Inside <br>
-                                            ${v.purpose} Not Yet Completed <br>
-                                            In: ${v.check_in_time ?? '-'} <br>
-                                            Out: ${v.check_out_time ?? '-'} <br>
-                                        </span>`;
+                    // 🟢 Inside (Checked-in only)
+                    else if (v.sd_check_in && !v.sd_check_out) {
+
+                        if (v.meeting_status == 0) {
+
+                            <?php if(in_array($_SESSION['role_id'], [1,2,3])){ ?>
+                                statusBadge = `
+                                    <span class="btn meetingCmpleteBtn cursor-pointer"
+                                        onclick="markMeetingCompleted('${v.v_code}')">
+                                        Inside <br>
+                                        ${v.purpose} Not Yet Completed <br>
+                                        In: ${v.sd_check_in ?? '-'}
+                                    </span>
+                                `;
+                            <?php } else { ?>
+                                statusBadge = `
+                                    <span class="badge bg-primary">
+                                        Inside <br>
+                                        ${v.purpose} Not Yet Completed <br>
+                                        In: ${v.sd_check_in ?? '-'}
+                                    </span>
+                                `;
                             <?php } ?>
-                    } 
-                    else if (v.securityCheckStatus == 1 && v.meeting_status == 1){
-                        statusBadge = `
-                            <span class="badge bg-warning text-dark" >
-                                Inside <br>
-                    ${v.purpose} Completed <br>
-                                In: ${v.check_in_time ?? '-'} <br>
-                                Out: ${v.check_out_time ?? '-'} <br>
-                            
-                            </span>
-                        `;
-                    }else {
+
+                        } else {
+
+                            statusBadge = `
+                                <span class="badge bg-warning text-dark">
+                                    Inside <br>
+                                    ${v.purpose} Completed <br>
+                                    In: ${v.sd_check_in ?? '-'}
+                                </span>
+                            `;
+                        }
+                    }
+
+                    // ✅ Completed
+                    else if (v.sd_check_in && v.sd_check_out) {
+
                         statusBadge = `
                             <span class="badge bg-success">
                                 Completed <br>
-                                In: ${v.check_in_time ?? '-'} <br>
-                                Out: ${v.check_out_time ?? '-'} <br>
-                            
+                                In: ${v.sd_check_in ?? '-'} <br>
+                                Out: ${v.sd_check_out ?? '-'}
                             </span>
                         `;
                     }
-                    let validityBadge = "";
-            
-                    if (v.validity == 1) {
-                        validityBadge = `<i class="bi bi-check-circle text-success" style="font-size: large; font-weight: bold;"></i>`;
-                    } 
-                    else {
-                    validityBadge = `<i class="bi bi-x-circle text-danger" style="font-size: large; font-weight: bold;"></i>`;
+                }
+
+
+                // ===============================
+                // MD VISITOR
+                // ===============================
+                else if (v.validity_type === "MD") {
+
+                    if (!v.md_check_in && !v.md_check_out) {
+
+                        statusBadge = `
+                            <span class="badge bg-secondary">
+                                Not Entered Today
+                            </span>
+                        `;
                     }
 
+                    else if (v.md_check_in && !v.md_check_out) {
 
-                    tbody.append(`
-                        <tr>
-                            <td>${v.visit_date}</td>
-                            <td>${v.company}</td>
-                            <td>${v.department_name}</td>
-                            <td>${v.referred_by_name}</td>
-                            <td>${v.created_by_name}</td>
-                            <td>${v.visitor_name}</td>
-                            <td>${v.visitor_phone}</td>
-                            <td>${v.purpose}</td>
-                            <td>${validityBadge}</td>
-                            <td>${statusBadge}</td>
-                        </tr>
-                    `);
-                });
+                        statusBadge = `
+                            <span class="badge bg-primary">
+                                Inside <br>
+                                In: ${v.md_check_in ?? '-'}
+                            </span>
+                        `;
+                    }
+
+                    else if (v.md_check_in && v.md_check_out) {
+
+                        statusBadge = `
+                            <span class="badge bg-success">
+                                Completed <br>
+                                In: ${v.md_check_in ?? '-'} <br>
+                                Out: ${v.md_check_out ?? '-'}
+                            </span>
+                        `;
+                    }
+                }
+
+
+                // ===============================
+                // VALIDITY ICON
+                // ===============================
+                validityBadge = (v.validity == 1)
+                    ? `<i class="bi bi-check-circle text-success" style="font-size: large; font-weight: bold;"></i>`
+                    : `<i class="bi bi-x-circle text-danger" style="font-size: large; font-weight: bold;"></i>`;
+
+
+                // ===============================
+                // APPEND ROW
+                // ===============================
+                tbody.append(`
+                    <tr>
+                        <td>${v.visit_date ?? '--'}</td>
+                        <td>${v.company ?? '--'}</td>
+                        <td>${v.department_name ?? '--'}</td>
+                        <td>${v.referred_by_name ?? '--'}</td>
+                        <td>${v.created_by_name ?? '--'}</td>
+                        <td>${v.visitor_name ?? '--'}</td>
+                        <td>${v.visitor_phone ?? '--'}</td>
+                        <td>${v.purpose ?? '--'}</td>
+                        <td>${validityBadge}</td>
+                        <td>${statusBadge}</td>
+                    </tr>
+                `);
+
+            });
             }
         });
     }

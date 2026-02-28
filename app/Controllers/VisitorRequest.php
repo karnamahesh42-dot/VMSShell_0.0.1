@@ -31,11 +31,6 @@ class VisitorRequest extends BaseController
         $this->VendorModel                  = new VendorModel();
     }
 
-    // public function index(): string
-    // {
-    //     return view('dashboard/visitorequest');
-    // }
-
     public function index(): string
     {
         $session = session();
@@ -212,10 +207,24 @@ class VisitorRequest extends BaseController
         ]);
     }
 
+
+    // Single Visitor Request Save 
     public function submit()
     {
         if (!$this->request->isAJAX()) return;
+        
+        // print_r($this->request->getPost());
+        // exit;
+        $validityType = $this->request->getPost('validity_type');
+        $visitDate = $this->request->getPost('visit_date');
+        $validFrom = $this->request->getPost('valid_from');
+        $validTo = $this->request->getPost('valid_to');
 
+        if($validityType == "SD"){
+            $validFrom = $visitDate;
+            $validTo = $visitDate;
+        }
+        
         // Uploads
         $vehicleID = $this->uploadFile($this->request->getFile('vehicle_id_proof'), 'public/uploads/vehicle');
         $visitorID = $this->uploadFile($this->request->getFile('visitor_id_proof'), 'public/uploads/visitor');
@@ -238,7 +247,7 @@ class VisitorRequest extends BaseController
         $headerData = [
             'header_code'     => $groupCode,
             'requested_by'    => session()->get('user_id'),
-            'referred_by'  => $this->request->getPost('referred_by'),
+            'referred_by'     => $this->request->getPost('referred_by'),
             'requested_date'  => $this->request->getPost('visit_date'),
             'requested_time'  => $this->request->getPost('visit_time'),
             'department'      => session()->get('department_name'),
@@ -252,6 +261,8 @@ class VisitorRequest extends BaseController
         ];
 
         $headerId = $this->VisitorRequestHeaderModel->insert($headerData);
+
+
 
         /* =======================================================
         STEP 2 — INSERT INTO visitors (link to header)
@@ -267,7 +278,7 @@ class VisitorRequest extends BaseController
             'purpose'           => $this->request->getPost('purpose'),
             'proof_id_type'     => $this->request->getPost('proof_id_type'),
             'proof_id_number'   => $this->request->getPost('proof_id_number'),
-            'visit_date'        => $this->request->getPost('visit_date'),
+            'visit_date'        =>  $visitDate,
             'visit_time'        => $this->request->getPost('visit_time'),
             'description'       => $this->request->getPost('description'),
             'vehicle_no'        => $this->request->getPost('vehicle_no'),
@@ -277,10 +288,18 @@ class VisitorRequest extends BaseController
             'host_user_id'      => session()->get('user_id'),
             'status'            => $status,
             'qr_code'           => $qrFile,
+            'qr_code'           => $qrFile,
+            'qr_code'           => $qrFile,
+            'valid_from'        => $validFrom,
+            'valid_to'          => $validTo,
+            'validity_type'     => $validityType,
             'created_by'        => session()->get('user_id'),
         ];
 
         $visitorId = $this->visitorModel->insert($visitorData);
+
+    
+
 
         if ($headerId && $this->request->getPost('purpose') == 'Recce') {
 
@@ -605,7 +624,32 @@ public function groupSubmit()
         $v_code = $this->request->getPost('v_code');
 
         $headerModel = new \App\Models\VisitorRequestHeaderModel();
+        $securityGateLogMD = new \App\Models\SecurityGateLogMDModel();
+        
         $data = $headerModel->getHeaderWithVisitorsMailDataByVCode($v_code);
+
+        // $securityGateLogMDData = $securityGateLogMD->where('v_code', $v_code)->findAll();   
+   
+        // $securityGateLogMDData = $securityGateLogMD
+        // ->where('v_code', $v_code)
+        // ->orderBy('id', 'DESC')
+        // ->findAll();
+
+        $db = \Config\Database::connect();
+
+        $securityGateLogMDData = $db->table('security_gate_logs_md md')
+        ->select("
+            md.*,
+            u1.name AS verified_by_name,
+            u2.name AS updated_by_name
+            ")
+            ->join('users u1', 'u1.id = md.verified_by', 'left')
+            ->join('users u2', 'u2.id = md.updated_by', 'left')
+            ->where('md.v_code', $v_code)
+            ->orderBy('md.id', 'DESC')
+            ->get()
+        ->getResultArray();
+
 
         //  If no record found
         if (empty($data)) {
@@ -620,7 +664,8 @@ public function groupSubmit()
         return $this->response->setJSON([
             'status'  => 'success',
             'message' => 'Visitor details fetched successfully',
-            'data'    => $data[0]
+            'data'    => $data[0],
+            'visitHistoryData'  => $securityGateLogMDData
         ]);
 
         // return $this->response->setJSON($data[0]);
@@ -737,40 +782,150 @@ public function groupSubmit()
         }
 
 
+        // public function updateVisitorValidity()
+        // {
+        //     // Get all expired visitors (older than 1 day & validity = 1)
+        //     $visitorRequestModelObj = new VisitorRequestModel();
+        //     $expiredVisitorPassModel = new ExpiredVisitorPassModel();
+                
+        //     $expiredVisitors = $visitorRequestModelObj
+        //                         ->where('validity', 1)
+        //                         ->where('securityCheckStatus', 0)    // Visitor not checked in / not in gate log
+        //                         ->where('visit_date <', date('Y-m-d'))  // Visit date older than today
+        //                         ->findAll();
+
+        //         // print_r($expiredVisitors);
+
+        //     foreach ($expiredVisitors as $visitor) {
+
+        //         // Insert into expired_visitor_passes table
+        //         $expiredVisitorPassModel->insert([
+        //             'visitor_request_id' => $visitor['id'],
+        //             'v_code'       => $visitor['v_code'],   // change column names if needed
+        //             'header_code'        => $visitor['group_code'],    // change column names if needed
+        //             'expired_at'         => date('Y-m-d H:i:s')
+        //         ]);
+                
+        //         $visitorRequestModelObj->update($visitor['id'], ['validity' => 0]);     
+        //     }
+
+        //     return $this->response->setJSON([
+        //         'status' => 'success',
+        //         'expired_count' => count($expiredVisitors),
+        //         'message' => 'Expired visitor passes stored successfully'
+        //     ]);
+        // }
+
+
         public function updateVisitorValidity()
         {
-            // Get all expired visitors (older than 1 day & validity = 1)
             $visitorRequestModelObj = new VisitorRequestModel();
             $expiredVisitorPassModel = new ExpiredVisitorPassModel();
-                
-            $expiredVisitors = $visitorRequestModelObj
-                                ->where('validity', 1)
-                                ->where('securityCheckStatus', 0)    // Visitor not checked in / not in gate log
-                                ->where('visit_date <', date('Y-m-d'))  // Visit date older than today
-                                ->findAll();
 
-                // print_r($expiredVisitors);
+            $today = date('Y-m-d');
+
+            /*
+            ---------------------------------------------------
+            1️⃣  EXPIRE SD (Single Day) Visitors
+            ---------------------------------------------------
+            */
+            $expiredSDVisitors = $visitorRequestModelObj
+                ->where('validity', 1)
+                ->where('validity_type', 'SD')
+                ->where('securityCheckStatus', 0)
+                ->where('visit_date <', $today)
+                ->findAll();
+
+            /*
+            ---------------------------------------------------
+            2️⃣  EXPIRE MD (Multi Day) Visitors
+            ---------------------------------------------------
+            */
+            // $expiredMDVisitors = $visitorRequestModelObj
+            //     ->where('validity', 1)
+            //     ->where('validity_type', 'MD')
+            //     ->where('valid_to <', $today)   // Today is greater than valid_to
+            //     ->findAll();
+
+            $db = \Config\Database::connect();
+
+            $expiredMDVisitors = $db->table('visitors vr')
+                ->select('vr.*')
+                ->where('vr.validity', 1)
+                ->where('vr.validity_type', 'MD')
+                ->where('vr.valid_to <', $today)
+                ->where("NOT EXISTS (
+                    SELECT 1 
+                    FROM security_gate_logs_md md 
+                    WHERE md.v_code = vr.v_code
+                )", null, false)   // IMPORTANT: false prevents escaping
+                ->get()
+                ->getResultArray();
+
+            // Merge both arrays
+            $expiredVisitors = array_merge($expiredSDVisitors, $expiredMDVisitors);
 
             foreach ($expiredVisitors as $visitor) {
 
-                // Insert into expired_visitor_passes table
-                $expiredVisitorPassModel->insert([
-                    'visitor_request_id' => $visitor['id'],
-                    'v_code'       => $visitor['v_code'],   // change column names if needed
-                    'header_code'        => $visitor['group_code'],    // change column names if needed
-                    'expired_at'         => date('Y-m-d H:i:s')
+                // Avoid duplicate insert (optional safety check)
+                $alreadyExists = $expiredVisitorPassModel
+                    ->where('visitor_request_id', $visitor['id'])
+                    ->first();
+
+                if (!$alreadyExists) {
+
+                    $expiredVisitorPassModel->insert([
+                        'visitor_request_id' => $visitor['id'],
+                        'v_code'             => $visitor['v_code'],
+                        'header_code'        => $visitor['group_code'] ?? null,
+                        'expired_at'         => date('Y-m-d H:i:s')
+                    ]);
+                }
+
+                // Update visitor validity
+                $visitorRequestModelObj->update($visitor['id'], [
+                    'validity' => 0
                 ]);
-                
-                $visitorRequestModelObj->update($visitor['id'], ['validity' => 0]);     
             }
 
+
+            $autoExit = $this->autoExitMDVisitors();
+
+
             return $this->response->setJSON([
-                'status' => 'success',
+                'status'        => 'success',
                 'expired_count' => count($expiredVisitors),
-                'message' => 'Expired visitor passes stored successfully'
+                'message'       => 'Expired visitor passes processed successfully'
             ]);
         }
 
+public function autoExitMDVisitors()
+{
+    $db = \Config\Database::connect();
+
+    /*
+    ----------------------------------------------------
+    Update records where:
+    - Entry exists
+    - Exit not done
+    - Entry date is before today (day completed)
+    ----------------------------------------------------
+    */
+
+    $db->table('security_gate_logs_md')
+        ->where('check_in_time IS NOT NULL', null, false)
+        ->where('check_out_time IS NULL', null, false)
+        ->where('DATE(check_in_time) <', date('Y-m-d')) // Only past days
+        ->set('check_out_time', "CONCAT(DATE(check_in_time), ' 23:59:59')", false)
+        ->set('updated_by', 0)
+        ->set('updated_at', date('Y-m-d H:i:s'))
+        ->update();
+
+    return $this->response->setJSON([
+        'status' => 'success',
+        'message' => 'Auto exit processed successfully'
+    ]);
+}
 
 
 public function completeMeeting()
