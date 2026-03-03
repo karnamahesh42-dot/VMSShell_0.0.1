@@ -14,6 +14,10 @@ $routes->get('/login', 'Login::index');
 $routes->get('/logout', 'Login::logout');
 $routes->get('/usermanuals', 'Dashboard::usermanuals');
 
+$routes->get('requestToCheckoutDataDashboard', 'Dashboard::requestToCheckoutDataDashboard');
+
+
+
 $routes->post('/login', 'Login::checkLogin');
 
 $routes->get('/user', 'User::index');

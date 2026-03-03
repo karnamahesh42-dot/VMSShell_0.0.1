@@ -212,4 +212,19 @@ $(document).on('click', '.zoom-close, #imageZoomModal', function (e) {
     $('#imageZoomModal').fadeOut();
 });
 //Image preview in scann Visitor Popup and request management Popup End 
+
+/// Scrolle table function for reports with many columns
+function scrollTable(direction) {
+
+    const container = document.getElementById("tableScrollWrapper");
+    const scrollAmount = 500;
+
+    if (direction === 'left') {
+        container.scrollLeft -= scrollAmount;
+    } else {
+        container.scrollLeft += scrollAmount;
+    }
+}
+
+
 </script>

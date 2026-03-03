@@ -475,8 +475,18 @@
 
                          </div>
                          <div class="card-body p-0">
-                            <div class="table-responsive">                            
-                                <table class="table table-hover mb-0  table-bordered">
+                             <!-- TOP SCROLL BUTTONS -->
+                                <div class="scroll-controls">
+                                          <!-- TOTAL ROW COUNT -->
+                                    <div class="tblRowCountLbl" >
+                                        Total Records: <span id="recordCount">0</span>
+                                    </div>
+                                    <button class="scroll-btn" onclick="scrollTable('left')" title="Scroll Left"> <i class="fa fa-chevron-left"></i> </button>
+                                    <button class="scroll-btn" onclick="scrollTable('right')" title="Scroll Right">  <i class="fa fa-chevron-right"></i></button>
+                                </div>
+
+                            <div class="table-responsive table-scroll" id="tableScrollWrapper">                            
+                                <table class="table table-hover mb-0 table-bordered">
                                     <thead class="table-light" id="authorizedVisitorTablehead">
                                         <tr>
                                             <!-- <th>S.No</th> -->
@@ -719,254 +729,125 @@ function loadAuthorizedVisitors() {
                 `);
                 return;
             }
-
-            // res.forEach((v, index) => {
-         
-            //     let statusBadge = "";
-            //     let validityBadge = "";
-
-                
-            //     if (v.validity_type == "MD") {
-
-            //             let latestLog = null;
-
-            //             if (v.mdLogs && v.mdLogs.length > 0) {
-            //                 latestLog = v.mdLogs[0]; // latest record (DESC order)
-            //             }
-
-            //             // 🚫 No record in MD log table
-            //             if (!latestLog) {
-
-            //                 statusBadge = `
-            //                     <span class="badge bg-secondary p-2">
-            //                         Not Entered Today
-            //                     </span>
-            //                 `;
-
-            //             }
-            //             else {
-
-            //                 // 🟢 Checked In but NOT checked out
-            //                 if (latestLog.check_in_time && !latestLog.check_out_time) {
-
-            //                     statusBadge = `
-            //                         <span class="badge bg-primary p-2">
-            //                             Inside <br>
-            //                             In: ${latestLog.check_in_time ?? '-'}
-            //                         </span>
-            //                     `;
-
-            //                 }
-
-            //                 // ✅ Completed (check-in + check-out)
-            //                 else if (latestLog.check_in_time && latestLog.check_out_time) {
-
-            //                     statusBadge = `
-            //                         <span class="badge bg-success p-2">
-            //                             Completed <br>
-            //                             In: ${latestLog.check_in_time ?? '-'} <br>
-            //                             Out: ${latestLog.check_out_time ?? '-'}
-            //                         </span>
-            //                     `;
-
-            //                 }
-
-            //                 // Fallback safety
-            //                 else {
-            //                     statusBadge = `
-            //                         <span class="badge bg-secondary p-2">
-            //                             Not Entered Today
-            //                         </span>
-            //                     `;
-            //                 }
-            //             }
-
-            //             // ✅ Validity Icon
-            //             if (v.validity == 1) {
-            //                 validityBadge = `<i class="bi bi-check-circle text-success" style="font-size: 20px;"></i>`;
-            //             } else {
-            //                 validityBadge = `<i class="bi bi-x-circle text-danger" style="font-size: 20px;"></i>`;
-            //             }
-            //     }
-
-            //     if(v.validity_type == "SD"){
-                        
-            //             if (v.securityCheckStatus == 0) {
-            //                 statusBadge = `
-            //                     <span class="badge bg-secondary p-2">
-            //                         Not Entered
-            //                     </span>
-            //                 `;
-            //             } else if (v.securityCheckStatus == 1 && v.meeting_status == 0) {
-            //                 statusBadge = `
-            //                     <span class="badge bg-primary warning text-lite p-2">
-            //                         Inside <br>
-            //             ${v.purpose} Not Yet Completed <br>
-            //                         In: ${v.check_in_time ?? '-'} <br>
-            //                     </span>
-            //                 `;
-            //             } 
-            //             else if (v.securityCheckStatus == 1 && v.meeting_status == 1){
-            //                 statusBadge = `
-            //                     <span class="badge bg-warning text-dark p-2">
-            //                         Inside <br>
-            //                         ${v.purpose} Completed <br>
-            //                         In: ${v.check_in_time ?? '-'} <br>
-            //                     </span>
-            //                 `;
-            //             }else {
-            //                 statusBadge = `
-            //                     <span class="badge bg-success p-2" >
-            //                         Completed <br>
-            //                         In: ${v.check_in_time ?? '-'} <br>
-            //                         Out: ${v.check_out_time ?? '-'} <br>
-            //                     </span>
-            //                 `;
-            //             }
-
-                     
-            //             if (v.validity == 1) {
-            //                 validityBadge = `<i class="bi bi-check-circle text-success" style="font-size: 20px; font-weight: bold;"></i>`;
-            //             } 
-            //             else {
-            //             validityBadge = `<i class="bi bi-x-circle text-danger " style="font-size: 20px; font-weight: bold;"></i>`;
-            //             }
-            //     }
-
-            //     tbody.append(`
-            //         <tr onclick="openVisitorPopup('${v.v_code}')">
-            //             <td>${v.visit_date}</td>
-            //             <td>${v.company}</td>
-            //             <td>${v.department_name}</td>
-            //             <td>${v.referred_by_name}</td>
-            //             <td>${v.created_by_name}</td>
-            //             <td>${v.visitor_name}</td>
-            //             <td>${v.vehicle_no}</td>
-            //             <td>${v.purpose}</td>
-            //             <td>${v.check_in_by ? v.check_in_by : '--'}</td>   
-            //             <td>${validityBadge}</td>
-            //             <td>${statusBadge}</td>
-            //         </tr>
-            //     `);
-            // });
+            $('#recordCount').text(res.length);
 
             res.forEach((v, index) => {
 
-                        let statusBadge = "";
-                        let validityBadge = "";
+                    let statusBadge = "";
+                    let validityBadge = "";
 
-                        // ==============================
-                        // MD LOGIC
-                        // ==============================
-                        if (v.validity_type === "MD") {
+                    // ==============================
+                    // MD LOGIC
+                    // ==============================
+                    if (v.validity_type === "MD") {
 
-                            // No entry in MD log
-                            if (!v.md_check_in && !v.md_check_out) {
+                        // No entry in MD log
+                        if (!v.md_check_in && !v.md_check_out) {
 
+                            statusBadge = `
+                                <span class="badge bg-secondary p-2">
+                                    Not Entered Today
+                                </span>
+                            `;
+                        }
+
+                        // Checked In only
+                        else if (v.md_check_in && !v.md_check_out) {
+
+                            statusBadge = `
+                                <span class="badge bg-primary p-2">
+                                    Inside <br>
+                                    In: ${v.md_check_in ?? '-'}
+                                </span>
+                            `;
+                        }
+
+                        //  Completed
+                        else if (v.md_check_in && v.md_check_out) {
+
+                            statusBadge = `
+                                <span class="badge bg-success p-2">
+                                    Completed <br>
+                                    In: ${v.md_check_in ?? '-'} <br>
+                                    Out: ${v.md_check_out ?? '-'}
+                                </span>
+                            `;
+                        }
+
+                        // Validity Icon
+                        validityBadge = (v.validity == 1)
+                            ? `<i class="bi bi-check-circle text-success" style="font-size:20px;"></i>`
+                            : `<i class="bi bi-x-circle text-danger" style="font-size:20px;"></i>`;
+                    }
+
+
+                    // ==============================
+                    // SD LOGIC
+                    // ==============================
+                    else if (v.validity_type === "SD") {
+
+                        if (!v.sd_check_in && !v.sd_check_out) {
+
+                            statusBadge = `
+                                <span class="badge bg-secondary p-2">
+                                    Not Entered
+                                </span>
+                            `;
+                        }
+
+                        else if (v.sd_check_in && !v.sd_check_out) {
+
+                            if (v.meeting_status == 1) {
                                 statusBadge = `
-                                    <span class="badge bg-secondary p-2">
-                                        Not Entered Today
+                                    <span class="badge bg-warning text-dark p-2">
+                                        Inside <br>
+                                        ${v.purpose} Completed <br>
+                                        In: ${v.sd_check_in ?? '-'}
                                     </span>
                                 `;
-                            }
-
-                            // Checked In only
-                            else if (v.md_check_in && !v.md_check_out) {
-
+                            } else {
                                 statusBadge = `
                                     <span class="badge bg-primary p-2">
                                         Inside <br>
-                                        In: ${v.md_check_in ?? '-'}
+                                        ${v.purpose} Not Yet Completed <br>
+                                        In: ${v.sd_check_in ?? '-'}
                                     </span>
                                 `;
                             }
-
-                            //  Completed
-                            else if (v.md_check_in && v.md_check_out) {
-
-                                statusBadge = `
-                                    <span class="badge bg-success p-2">
-                                        Completed <br>
-                                        In: ${v.md_check_in ?? '-'} <br>
-                                        Out: ${v.md_check_out ?? '-'}
-                                    </span>
-                                `;
-                            }
-
-                            // Validity Icon
-                            validityBadge = (v.validity == 1)
-                                ? `<i class="bi bi-check-circle text-success" style="font-size:20px;"></i>`
-                                : `<i class="bi bi-x-circle text-danger" style="font-size:20px;"></i>`;
                         }
 
+                        else if (v.sd_check_in && v.sd_check_out) {
 
-                        // ==============================
-                        // SD LOGIC
-                        // ==============================
-                        else if (v.validity_type === "SD") {
-
-                            if (!v.sd_check_in && !v.sd_check_out) {
-
-                                statusBadge = `
-                                    <span class="badge bg-secondary p-2">
-                                        Not Entered
-                                    </span>
-                                `;
-                            }
-
-                            else if (v.sd_check_in && !v.sd_check_out) {
-
-                                if (v.meeting_status == 1) {
-                                    statusBadge = `
-                                        <span class="badge bg-warning text-dark p-2">
-                                            Inside <br>
-                                            ${v.purpose} Completed <br>
-                                            In: ${v.sd_check_in ?? '-'}
-                                        </span>
-                                    `;
-                                } else {
-                                    statusBadge = `
-                                        <span class="badge bg-primary p-2">
-                                            Inside <br>
-                                            ${v.purpose} Not Yet Completed <br>
-                                            In: ${v.sd_check_in ?? '-'}
-                                        </span>
-                                    `;
-                                }
-                            }
-
-                            else if (v.sd_check_in && v.sd_check_out) {
-
-                                statusBadge = `
-                                    <span class="badge bg-success p-2">
-                                        Completed <br>
-                                        In: ${v.sd_check_in ?? '-'} <br>
-                                        Out: ${v.sd_check_out ?? '-'}
-                                    </span>
-                                `;
-                            }
-
-                            validityBadge = (v.validity == 1)
-                                ? `<i class="bi bi-check-circle text-success" style="font-size:20px;"></i>`
-                                : `<i class="bi bi-x-circle text-danger" style="font-size:20px;"></i>`;
+                            statusBadge = `
+                                <span class="badge bg-success p-2">
+                                    Completed <br>
+                                    In: ${v.sd_check_in ?? '-'} <br>
+                                    Out: ${v.sd_check_out ?? '-'}
+                                </span>
+                            `;
                         }
 
-                        tbody.append(`
-                            <tr onclick="openVisitorPopup('${v.v_code}')">
-                                <td>${v.visit_date ?? '--'}</td>
-                                <td>${v.company ?? '--'}</td>
-                                <td>${v.department_name ?? '--'}</td>
-                                <td>${v.referred_by_name ?? '--'}</td>
-                                <td>${v.visitor_name ?? '--'}</td>
-                                <td>${v.vehicle_no ?? '--'}</td>
-                                <td>${v.purpose ?? '--'}</td>
-                                <td>${v.sd_verified_by_name || v.md_verified_by_name || '--'}</td>
-                                <td>${validityBadge}</td>
-                                <td>${v.validity_type ?? '--'}</td>
-                                <td>${statusBadge}</td>
-                            </tr>
-                        `);
-                    });
+                        validityBadge = (v.validity == 1)
+                            ? `<i class="bi bi-check-circle text-success" style="font-size:20px;"></i>`
+                            : `<i class="bi bi-x-circle text-danger" style="font-size:20px;"></i>`;
+                    }
+
+                    tbody.append(`
+                        <tr onclick="openVisitorPopup('${v.v_code}')">
+                            <td>${v.visit_date ?? '--'}</td>
+                            <td>${v.company ?? '--'}</td>
+                            <td>${v.department_name ?? '--'}</td>
+                            <td>${v.referred_by_name ?? '--'}</td>
+                            <td>${v.visitor_name ?? '--'}</td>
+                            <td>${v.vehicle_no ?? '--'}</td>
+                            <td>${v.purpose ?? '--'}</td>
+                            <td>${v.sd_verified_by_name || v.md_verified_by_name || '--'}</td>
+                            <td>${validityBadge}</td>
+                            <td>${v.validity_type ?? '--'}</td>
+                            <td>${statusBadge}</td>
+                        </tr>
+                    `);
+                });
         }
     });
 }

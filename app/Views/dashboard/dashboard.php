@@ -1,7 +1,25 @@
 
   <?= $this->include('/dashboard/layouts/sidebar') ?>
   <?= $this->include('/dashboard/layouts/navbar') ?>
-        
+     
+  <style>
+.collapse-card {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.4s ease;
+    opacity: 0;
+}
+
+.collapse-card.open {
+    max-height: 1000px;   /* large enough for content */
+    opacity: 1;
+}
+
+.highlight-card {
+    box-shadow: 0 0 20px rgba(0,123,255,0.4);
+    transition: box-shadow 0.4s ease;
+}
+</style>
       <!-- Main Content -->
       <main class="main-content" id="mainContent">
         <div class="container-fluid">
@@ -209,22 +227,23 @@
     </div>
 </div>
 
+
           <!-- End view Visitor Request Form Pop-Up  -->
 
           <!-- ROW 1: Small Cards -->
-            <section class="dash-row">
-              <?php foreach($smallCards as $c): ?>
-                  <div class="card-dash-sm <?= $c['color'] ?>">
-                      <div class="left">
-                          <div class="title"><?= esc($c['title']) ?></div>
-                          <div class="value"><?= esc($c['value']) ?></div>
-                      </div>
-                      <div class="right">
-                          <i class="fa <?= esc($c['icon']) ?> fa-2x"></i>
-                      </div>
-                  </div>
-              <?php endforeach; ?>
-            </section>
+    <section class="dash-row">
+        <?php foreach($smallCards as $c): ?>
+            <div class="card-dash-sm <?= $c['color'] ?>">
+                <div class="left">
+                    <div class="title"><?= esc($c['title']) ?></div>
+                    <div class="value"><?= esc($c['value']) ?></div>
+                </div>
+                <div class="right">
+                    <i class="fa <?= esc($c['icon']) ?> fa-2x"></i>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </section>
           <!-- ROW 2: Medium Cards -->
     <?php if (!in_array($_SESSION['role_id'], [3,4])) { ?>
     <section class="dash-row row-medium mb-3">
@@ -247,8 +266,89 @@
     </section>
     <?php } ?>
 
-        
+
+<!--///////////// Visitor Analytics Chart Start //////////////-->
+    <?php if (in_array($_SESSION['role_id'], [1,5])) { ?>
+        <section class="card row row-large mx-1">
+                <div class="card-header d-flex justify-content-between align-items-center"
+                    style="cursor:pointer;"
+                    onclick="toggleVisitorCard()">
+
+                    <h5 class="mb-0">
+                        <i class="fa fa-bar-chart" aria-hidden="true"></i> Visitor Analytics Chart
+                    </h5>
+
+                    <i id="visitorToggleIcon" class="fas fa-chevron-down"></i>
+                </div>
+
+                <div class="card-body collapse-card" id="visitorCardBody">
+
+                    <div class="row mb-3">
+
+                        <div class="col-md-2">
+                            <label>Company</label>
+                            <select id="company" class="form-control">
+                                <option value="">All Companies</option>
+                                <?php foreach($companies as $comp): ?>
+                                    <option value="<?= $comp['company_name'] ?>">
+                                        <?= $comp['company_name'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>Department</label>
+                            <select id="department" class="form-control">
+                                <option value="">All Departments</option>
+                                <?php foreach($departments as $dept): ?>
+                                    <option value="<?= $dept['department_name'] ?>">
+                                        <?= $dept['department_name'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>From Date</label>
+                            <input type="date" id="from_date" class="form-control">
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>To Date</label>
+                            <input type="date" id="to_date" class="form-control">
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>Quick Filter</label>
+                            <select id="quick_range" class="form-select" onchange="setQuickRange()">
+                                <option value="">Select Range</option>
+                                <option value="today">Today</option>
+                                <option value="yesterday">Yesterday</option>
+                                <option value="this_week">This Week</option>
+                                <option value="last_week">Last Week</option>
+                                <option value="this_month">This Month</option>
+                                <option value="last_month">Last Month</option>
+                                <option value="this_year">This Year</option>
+                                <option value="last_year">Last Year</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>&nbsp;</label>
+                            <button onclick="vistorChartDataView()" class="btn btn-primary mt-4">
+                                <i class="fas fa-filter me-1"></i> Filter
+                            </button>
+                        </div>
+                    </div>
+                    <canvas id="visitorBarChart" height="80"></canvas>
+                </div>
+            </section>
+        <?php } ?>
+    <!--//////////// Visitor Analytics Chart End ///////////-->
+  
         <section class="row row-large mb-3">
+           
             <!-- ROW 3: Pending  List -->
             <?php if($_SESSION['role_id'] != 4){?>
                 <div class="col-md-9"> 
@@ -376,7 +476,8 @@
                         <!-- <a href="<?= base_url('security_authorization') ?>"><i class="bi bi-shield-lock-fill me-2"></i> Security Authorization</a> -->
                         <a href="<?= base_url('usermanuals') ?>"><i class="bi bi-collection-play me-2"></i>User Manuals</a>
                         <a href="<?= base_url('feedback') ?>"><i class="fa fa-comments me-2"></i>Feedback</a>
-           
+                        <a href="#" onclick="toggleVisitorCard()">
+                            <i class="fa fa-bar-chart" aria-hidden="true"></i> Visitor Analytics Chart</a>
                     </div>
                     </div>
                 </div>
@@ -443,12 +544,15 @@
 
   <?= $this->include('/dashboard/layouts/footer') ?>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <script>
 
     $(document).ready(function () {
         updateVisitorValidity();
         loadAuthorizedVisitors();
         todayVisitorsList();
+    
     });
 
 
@@ -852,113 +956,6 @@ function todayVisitorsList() {
 }
 
 
-// function todayVisitorsList() {
-
-//     $.ajax({
-//         url: "<?= base_url('/security/todayVisitorListOfDashboard') ?>",
-//         type: "GET",
-//         dataType: "json",
-//         data: {
-//             company: $("#filterCompany").val(),
-//             department: $("#filterDepartment").val(),
-//             securityCheckStatus: $("#filterSecurity").val(),
-//             requestcode:  $("#requestcode").val(),
-//             v_code:   $("#f_v_code").val()
-//         },
-//         success: function(res) {
-
-//             // console.log(res[0].meeting_status);
-            
-//             let tbody = $("#todayVisitorsList");
-//             tbody.empty();
-
-//             if (!res.length) {
-//                 tbody.append(`
-//                     <tr>
-//                         <td colspan='13' class='text-center text-muted'> No authorized visitors scheduled for today.</td>
-//                     </tr>
-//                 `);
-//                 return;
-//             }
-
-//             res.forEach((v, index) => {
-         
-//                 let statusBadge = "";
-//                 if (v.securityCheckStatus == 0) {
-//                     statusBadge = `
-//                         <span class="badge bg-secondary">
-//                             Not Entered
-//                         </span>
-//                     `;
-//                 } else if (v.securityCheckStatus == 1 && v.meeting_status == 0) {
-
-//                         <?php if($_SESSION['role_id'] == '2' || $_SESSION['role_id'] == '1'){?>
-//                         statusBadge = ` <span class="btn meetingCmpleteBtn cursor-pointer" onclick="markMeetingCompleted('${v.v_code}')">
-//                                     Inside <br>
-//                                     Session Not Yet Completed <br>
-//                                 In: ${v.check_in_time ?? '-'} <br>
-//                                 Out: ${v.check_out_time ?? '-'} <br>
-//                             </span> `;
-                            
-//                         <?php }else{ ?>
-//                             statusBadge = `<span class="badge bg-primary text-lite" >
-//                                     Inside <br>
-//                                     Session Not Yet Completed <br>
-//                                     In: ${v.check_in_time ?? '-'} <br>
-//                                     Out: ${v.check_out_time ?? '-'} <br>
-//                                     </span>`;
-//                         <?php } ?>
-//                 } 
-//                 else if (v.securityCheckStatus == 1 && v.meeting_status == 1){
-//                       statusBadge = `
-//                         <span class="badge bg-warning text-dark" >
-//                              Inside <br>
-//                              Session Completed <br>
-//                             In: ${v.check_in_time ?? '-'} <br>
-//                             Out: ${v.check_out_time ?? '-'} <br>
-                          
-//                         </span>
-//                     `;
-//                 }else {
-//                     statusBadge = `
-//                         <span class="badge bg-success">
-//                             Completed <br>
-//                             In: ${v.check_in_time ?? '-'} <br>
-//                             Out: ${v.check_out_time ?? '-'} <br>
-                          
-//                         </span>
-//                     `;
-//                 }
-//                 let validityBadge = "";
-           
-//                 if (v.validity == 1) {
-//                      validityBadge = `<i class="bi bi-check-circle text-success" style="font-size: large; font-weight: bold;"></i>`;
-//                 } 
-//                 else {
-//                    validityBadge = `<i class="bi bi-x-circle text-danger" style="font-size: large; font-weight: bold;"></i>`;
-//                 }
-
-
-//                 tbody.append(`
-//                     <tr>
-//                         <td>${v.visit_date}</td>
-//                         <td>${v.company}</td>
-//                         <td>${v.department_name}</td>
-//                         <td>${v.referred_by_name}</td>
-//                         <td>${v.created_by_name}</td>
-//                         <td>${v.visitor_name}</td>
-//                         <td>${v.visitor_phone}</td>
-//                         <td>${v.purpose}</td>
-//                         <td>${validityBadge}</td>
-//                         <td>${statusBadge}</td>
-//                     </tr>
-//                 `);
-//             });
-
-//         }
-//     });
-// }
-
 
 
     function loadAuthorizedVisitors() {
@@ -990,79 +987,7 @@ function todayVisitorsList() {
                     return;
                 }
 
-                // res.forEach((v, index) => {
-            
-                //     let statusBadge = "";
-                //     if (v.securityCheckStatus == 0) {
-                //         statusBadge = `
-                //             <span class="badge bg-secondary">
-                //                 Not Entered
-                //             </span>
-                //         `;
-                //     } else if (v.securityCheckStatus == 1 && v.meeting_status == 0) {
-
-                //             <?php if(in_array($_SESSION['role_id'], [1,2,3])){?>
-                //                 statusBadge = ` <span class="btn meetingCmpleteBtn cursor-pointer" onclick="markMeetingCompleted('${v.v_code}')">
-                //                             Inside <br>
-                //                             ${v.purpose} Not Yet Completed <br>
-                //                         In: ${v.check_in_time ?? '-'} <br>
-                //                         Out: ${v.check_out_time ?? '-'} <br>
-                //                     </span> `;
-                                
-                //             <?php }else{ ?>
-                //                     statusBadge = `<span class="badge bg-primary text-lite" >
-                //                             Inside <br>
-                //                             ${v.purpose} Not Yet Completed <br>
-                //                             In: ${v.check_in_time ?? '-'} <br>
-                //                             Out: ${v.check_out_time ?? '-'} <br>
-                //                         </span>`;
-                //             <?php } ?>
-                //     } 
-                //     else if (v.securityCheckStatus == 1 && v.meeting_status == 1){
-                //         statusBadge = `
-                //             <span class="badge bg-warning text-dark" >
-                //                 Inside <br>
-                //     ${v.purpose} Completed <br>
-                //                 In: ${v.check_in_time ?? '-'} <br>
-                //                 Out: ${v.check_out_time ?? '-'} <br>
-                            
-                //             </span>
-                //         `;
-                //     }else {
-                //         statusBadge = `
-                //             <span class="badge bg-success">
-                //                 Completed <br>
-                //                 In: ${v.check_in_time ?? '-'} <br>
-                //                 Out: ${v.check_out_time ?? '-'} <br>
-                            
-                //             </span>
-                //         `;
-                //     }
-                //     let validityBadge = "";
-            
-                //     if (v.validity == 1) {
-                //         validityBadge = `<i class="bi bi-check-circle text-success" style="font-size: large; font-weight: bold;"></i>`;
-                //     } 
-                //     else {
-                //     validityBadge = `<i class="bi bi-x-circle text-danger" style="font-size: large; font-weight: bold;"></i>`;
-                //     }
-
-                //     tbody.append(`
-                //         <tr>
-                //             <td>${v.visit_date}</td>
-                //             <td>${v.company}</td>
-                //             <td>${v.department_name}</td>
-                //             <td>${v.referred_by_name}</td>
-                //             <td>${v.created_by_name}</td>
-                //             <td>${v.visitor_name}</td>
-                //             <td>${v.visitor_phone}</td>
-                //             <td>${v.purpose}</td>
-                //             <td>${validityBadge}</td>
-                //             <td>${statusBadge}</td>
-                //         </tr>
-                //     `);
-                // });
-
+             
             res.forEach((v, index) => {
 
                 let statusBadge = "";
@@ -1073,7 +998,7 @@ function todayVisitorsList() {
                 // ===============================
                 if (v.validity_type === "SD") {
 
-                    // 🚫 Not Entered
+                    //  Not Entered
                     if (!v.sd_check_in && !v.sd_check_out) {
 
                         statusBadge = `
@@ -1083,7 +1008,7 @@ function todayVisitorsList() {
                         `;
                     }
 
-                    // 🟢 Inside (Checked-in only)
+                    // Inside (Checked-in only)
                     else if (v.sd_check_in && !v.sd_check_out) {
 
                         if (v.meeting_status == 0) {
@@ -1119,7 +1044,7 @@ function todayVisitorsList() {
                         }
                     }
 
-                    // ✅ Completed
+                    //  Completed
                     else if (v.sd_check_in && v.sd_check_out) {
 
                         statusBadge = `
@@ -1236,4 +1161,219 @@ function todayVisitorsList() {
         });
     }
 
+
+    let visitorChart = null;
+
+    function vistorChartDataView() {
+
+    let company     = document.getElementById('company').value;
+    let department  = document.getElementById('department').value;
+    let fromDate    = document.getElementById('from_date').value;
+    let toDate      = document.getElementById('to_date').value;
+
+    let url = "<?= base_url('requestToCheckoutDataDashboard') ?>?"
+        + "company=" + company
+        + "&department=" + department
+        + "&from_date=" + fromDate
+        + "&to_date=" + toDate;
+
+    fetch(url)
+    .then(res => res.json())
+    .then(data => {
+
+        const ctx = document.getElementById("visitorBarChart").getContext("2d");
+
+        if (visitorChart !== null) {
+            visitorChart.destroy();
+        }
+
+        // 🔹 Find max value
+        const maxValue = Math.max(...data.counts);
+
+        // 🔹 Generate colors based on value
+        const barColors = data.counts.map(value => {
+            if (value >= maxValue * 0.7) {
+                return '#28a745'; // Green (High)
+            } else if (value >= maxValue * 0.4) {
+                return '#ffc107'; // Yellow (Medium)
+            } else {
+                return '#dc3545'; // Red (Low)
+            }
+        });
+
+        visitorChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: data.labels,
+                datasets: [{
+                    label: 'Visitor Entries',
+                    data: data.counts,
+                    backgroundColor: barColors
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+    });
+}
+
+    // function vistorChartDataView() {
+
+    //     let company     = document.getElementById('company').value;
+    //     let department  = document.getElementById('department').value;
+    //     let fromDate    = document.getElementById('from_date').value;
+    //     let toDate      = document.getElementById('to_date').value;
+
+    //     let url = "<?= base_url('requestToCheckoutDataDashboard') ?>?"
+    //         + "company=" + company
+    //         + "&department=" + department
+    //         + "&from_date=" + fromDate
+    //         + "&to_date=" + toDate;
+
+    //     fetch(url)
+    //     .then(res => res.json())
+    //     .then(data => {
+
+    //         const ctx = document.getElementById("visitorBarChart").getContext("2d");
+
+    //         if (visitorChart !== null) {
+    //             visitorChart.destroy();
+    //         }
+
+    //         visitorChart = new Chart(ctx, {
+    //             type: 'bar',
+    //             data: {
+    //                 labels: data.labels,
+    //                 datasets: [{
+    //                     label: 'Visitor Entries',
+    //                     data: data.counts,
+    //                     backgroundColor: '#007bff'
+    //                 }]
+    //             },
+    //             options: {
+    //                 responsive: true,
+    //                 scales: {
+    //                     y: { beginAtZero: true }
+    //                 }
+    //             }
+    //         });
+
+    //     });
+    // }
+
+
+function formatDate(date) {
+return date.toISOString().split('T')[0];
+}
+
+function setQuickRange() {
+
+    const range = document.getElementById("quick_range").value;
+    const fromInput = document.getElementById("from_date");
+    const toInput = document.getElementById("to_date");
+
+    const today = new Date();
+    let fromDate, toDate;
+
+    switch(range) {
+
+        case "today":
+            fromDate = toDate = today;
+            break;
+
+        case "yesterday":
+            let y = new Date();
+            y.setDate(today.getDate() - 1);
+            fromDate = toDate = y;
+            break;
+
+        case "this_week":
+            let firstDay = new Date(today.setDate(today.getDate() - today.getDay() + 1));
+            let lastDay = new Date(today.setDate(firstDay.getDate() + 6));
+            fromDate = firstDay;
+            toDate = lastDay;
+            break;
+
+        case "last_week":
+            let lwStart = new Date();
+            lwStart.setDate(today.getDate() - today.getDay() - 6);
+            let lwEnd = new Date();
+            lwEnd.setDate(today.getDate() - today.getDay());
+            fromDate = lwStart;
+            toDate = lwEnd;
+            break;
+
+        case "this_month":
+            fromDate = new Date(today.getFullYear(), today.getMonth(), 1);
+            toDate = new Date();
+            break;
+
+        case "last_month":
+            fromDate = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+            toDate = new Date(today.getFullYear(), today.getMonth(), 0);
+            break;
+
+        case "this_year":
+            fromDate = new Date(today.getFullYear(), 0, 1);
+            toDate = new Date();
+            break;
+
+        case "last_year":
+            fromDate = new Date(today.getFullYear() - 1, 0, 1);
+            toDate = new Date(today.getFullYear() - 1, 11, 31);
+            break;
+
+        default:
+            return;
+    }
+
+    fromInput.value = formatDate(fromDate);
+    toInput.value = formatDate(toDate);
+}
+
+
+function toggleVisitorCard() {
+
+    const body = document.getElementById("visitorCardBody");
+    const icon = document.getElementById("visitorToggleIcon");
+    const section = document.getElementById("visitorAnalyticsSection");
+
+    if (!body.classList.contains("open")) {
+
+        // ✅ OPEN CARD (Smooth)
+        body.classList.add("open");
+
+        icon.classList.remove("fa-chevron-down");
+        icon.classList.add("fa-chevron-up");
+
+        // ✅ Set Quick Filter to THIS MONTH
+        document.getElementById("quick_range").value = "this_month";
+        setQuickRange();
+
+        // ✅ Load Chart Automatically
+        vistorChartDataView();
+
+        // ✅ Smooth Scroll + Focus
+        section.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        // Highlight effect
+        section.classList.add("highlight-card");
+        setTimeout(() => {
+            section.classList.remove("highlight-card");
+        }, 2000);
+
+    } else {
+
+        // ✅ CLOSE CARD (Smooth)
+        body.classList.remove("open");
+
+        icon.classList.remove("fa-chevron-up");
+        icon.classList.add("fa-chevron-down");
+    }
+}
   </script>

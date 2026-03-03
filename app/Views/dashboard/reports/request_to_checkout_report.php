@@ -2,6 +2,8 @@
 <?= $this->include('/dashboard/layouts/navbar') ?>
 
 
+
+
 <main class="main-content" id="mainContent">
    <div class="container-fluid">
 
@@ -144,8 +146,20 @@
                                 </div>
 
                                 </form>
+                            
+                                <!-- TOP SCROLL BUTTONS -->
+                                <div class="scroll-controls">
+                                          <!-- TOTAL ROW COUNT -->
+                                    <div class="tblRowCountLbl" >
+                                        Total Records: <?= count($report); ?>
+                                    </div>
+                                    <button class="scroll-btn" onclick="scrollTable('left')" title="Scroll Left"> <i class="fa fa-chevron-left"></i> </button>
+                                    <button class="scroll-btn" onclick="scrollTable('right')" title="Scroll Right">  <i class="fa fa-chevron-right"></i></button>
+                                </div>
+                                    
+
                                 <div class="table-scroll" id="tableScrollWrapper" >              
-                                    <table class="table table-bordered table-hover table-sm" id="checkoutTable"  style="table-layout: fixed; width:100%;">
+                                    <table class="table table-bordered table-hover table-sm" id="checkoutTable"  style="table-layout: fixed; min-width: 2500px;">
                                     <thead class="table-light">
                                         <tr>
                                             <th style="width:50px;">S.no</th>
@@ -195,6 +209,9 @@
                                             $visitDate  = ($row['valid_from'] ?? '-') . ' to ' . ($row['valid_to'] ?? '-');
                                             $visitTime  = '-';
 
+                                            $checkOutBy = $row['m_checkout_by'] ?? null;
+                                            $checkInBy = $row['m_checkin_by'] ?? null;
+
                                         } else {
 
                                             $checkIn    = $row['sd_check_in'] ?? null;
@@ -202,6 +219,17 @@
 
                                             $visitDate  = $row['visit_date'] ?? '-';
                                             $visitTime  = $row['visit_time'] ?? '-';
+
+                                            $checkOutBy = $row['s_checkout_by'] ?? null;
+                                            $checkInBy = $row['s_checkin_by'] ?? null;
+                                        }
+                                        
+                                        $spendTime = '-';
+                                        if ($checkIn && $checkOut) {
+                                            $checkInTime = new \DateTime($checkIn);
+                                            $checkOutTime = new \DateTime($checkOut);
+                                            $interval = $checkInTime->diff($checkOutTime);
+                                            $spendTime = $interval->format('%H:%I:%S');
                                         }
 
                                         // =========================
@@ -247,19 +275,19 @@
                                         
 
                                             <!-- Check-In By -->
-                                            <td><?= esc($row['s_checkin_by'] ?? '-') ?></td>
+                                            <td><?= esc($checkInBy ?? '-') ?></td>
 
                                             <!-- Check-In Time -->
                                             <td><?= esc($checkIn ?? '-') ?></td>
 
                                             <!-- Check-Out By -->
-                                            <td><?= esc($row['s_checkout_by'] ?? '-') ?></td>
+                                            <td><?= esc($checkOutBy ?? '-') ?></td>
 
                                             <!-- Check-Out Time -->
                                             <td><?= esc($checkOut ?? '-') ?></td>
 
                                             <!-- Time Spent -->
-                                            <td><?= esc($row['spendTime'] ?? '-') ?></td>
+                                            <td><?= esc($spendTime ?? '-') ?></td>
                                         </tr>
 
                                     <?php $i++; endforeach; ?>
@@ -267,35 +295,7 @@
                                     </table>
                                 </div>
                             </div>
-                                <div class="card-footer text-center">
-
-                                    <div class="d-flex justify-content-center align-items-center gap-3">
-
-                                        <button type="button"
-                                        class="btn btn-secondary"
-                                        onmousedown="startScroll('left')"
-                                        onmouseup="stopScroll()"
-                                        onmouseleave="stopScroll()">
-                                        <i class="fa-solid fa fa-chevron-left"></i>
-                                            
-                                        </button>
-                                        <!-- Row Count -->
-                                        <span class="fw-bold">
-                                            Rows : 
-                                            <span id="rowCount">0</span>
-                                        </span>
-
-                                        <button type="button"
-                                        class="btn btn-secondary"
-                                        onmousedown="startScroll('right')"
-                                        onmouseup="stopScroll()"
-                                        onmouseleave="stopScroll()">
-                                        <i class="fa-solid fa fa-chevron-right"></i>
-                                            
-                                        </button>
-                                    </div>
-
-                                </div>
+                               
                         </div>
                     </div>
                 </div>
@@ -352,32 +352,6 @@ function exportTableById(tableId) {
 }
 
 
-let scrollInterval;
-
-function startScroll(direction) {
-
-    const wrapper = document.getElementById("tableScrollWrapper");
-    const speed = 15; // smaller = slower
-
-    scrollInterval = setInterval(() => {
-
-        if (direction === "right") {
-            wrapper.scrollLeft += speed;
-        } else {
-            wrapper.scrollLeft -= speed;
-        }
-
-    }, 10); // 10ms = smooth movement
-}
-
-function stopScroll() {
-    clearInterval(scrollInterval);
-}
 
 
-    // Row Count Auto Detect
-    document.addEventListener("DOMContentLoaded", function () {
-        const rowCount = document.querySelectorAll("#checkoutTable tbody tr").length;
-        document.getElementById("rowCount").innerText = rowCount;
-    });
 </script>

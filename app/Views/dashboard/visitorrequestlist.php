@@ -218,38 +218,57 @@
                             <h5 class="mb-0">Visitor Request Management</h5>
 
                             <div class="card-header-actions">
+                                
+                                <a href="<?= base_url('visitorequest') ?>" class="btn btn-warning mx-1">
+                                    <i class="fa-solid fa-user"></i> New Request
+                                </a>
+                                
                                 <a href="<?= base_url('group_visito_request') ?>" class="btn btn-warning mx-1">
                                     <i class="fa-solid fa-users"></i> Group Request
                                 </a>
 
-                                <a href="<?= base_url('visitorequest') ?>" class="btn btn-warning mx-1">
-                                    <i class="fa-solid fa-user"></i> New Request
-                                </a>
                             </div>
                         </div>
                         <!-- /.card-header -->
                          <!-- /.card-body -->
-                            <div class="card-body table-responsive">
-                                <table class="table table-bordered table-hover" style="table-layout: fixed;"  id="visitorTable">
-                                    <thead class="bg-light">
-                                        <tr>
-                                            <th style="width:50px;">#</th>
-                                            <th style="width:110px;">Request Code</th>
-                                            <th style="width:140px;">Department</th>
-                                            <th style="width:130px;">Purpose</th>
-                                            <th style="width:300px;">Description</th>
-                                            <th style="width:100px;">Visit Date</th>
-                                            <th style="width:80px;">Visitors</th>
-                                            <th style="width:100px;">Status</th>
+                            <div class="card-body">
 
-                                            <?php if(in_array($_SESSION['role_id'], [1,2,5])) { ?>
-                                                <th style="width:160px;" colspan="2">Actions</th>
-                                            <?php } ?>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>    
+                            
+                                <!-- TOP SCROLL BUTTONS -->
+                                <div class="scroll-controls">
+                                          <!-- TOTAL ROW COUNT -->
+                                    <div class="tblRowCountLbl">
+                                        Total Records: <span id="totalRecordsCount">0</span>
+                                    </div>
+                                    <button class="scroll-btn" onclick="scrollTable('left')" title="Scroll Left"> <i class="fa fa-chevron-left"></i> </button>
+                                    <button class="scroll-btn" onclick="scrollTable('right')" title="Scroll Right">  <i class="fa fa-chevron-right"></i></button>
+                                </div>
+                                
+
+                                <div class="table-responsive table-scroll" id="tableScrollWrapper">   
+
+                                    <table class="table table-bordered table-hover" style="table-layout: fixed;"  id="visitorTable">
+                                        <thead class="bg-light">
+                                            <tr>
+                                                <th style="width:50px;">#</th>
+                                                <th style="width:110px;">Request Code</th>
+                                                <th style="width:140px;">Department</th>
+                                                <th style="width:130px;">Purpose</th>
+                                                <th style="width:300px;">Description</th>
+                                                <th style="width:100px;">Visit Date</th>
+                                                <th style="width:80px;">Visitors</th>
+                                                <th style="width:100px;">Status</th>
+
+                                                <?php if(in_array($_SESSION['role_id'], [1,2,5])) { ?>
+                                                    <th style="width:160px;" colspan="2">Actions</th>
+                                                <?php } ?>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>    
+                                </div>
                             </div>
+
 
                         <!-- /.card-body -->
                     </div>
@@ -280,6 +299,7 @@ function loadVisitorList() {
 
             let rows = "";
             let i = 1;
+
 
             data.forEach(function(item){
 
@@ -335,6 +355,7 @@ function loadVisitorList() {
             });
 
             $("#visitorTable tbody").html(rows);
+            $("#totalRecordsCount").text(data.length);
         }
     });
 }

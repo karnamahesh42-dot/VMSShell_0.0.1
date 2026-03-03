@@ -99,8 +99,19 @@
                                 </div>
                             </form>
                                 
-                            <div class='table-scroll'>
+                            <!-- TOP SCROLL BUTTONS -->
+                            <div class="scroll-controls">
+                                    <!-- TOTAL ROW COUNT -->
+                                <div class="tblRowCountLbl">
+                                    Total Records: <?= count($report); ?>
+                                </div>
+                                <button class="scroll-btn" onclick="scrollTable('left')" title="Scroll Left"> <i class="fa fa-chevron-left"></i> </button>
+                                <button class="scroll-btn" onclick="scrollTable('right')" title="Scroll Right">  <i class="fa fa-chevron-right"></i></button>
+                            </div>
+                                    
 
+                           <div class="table-responsive table-scroll" id="tableScrollWrapper">   
+     
                                 <table class="table table-bordered table-hover">
                                    <thead>
                                     <tr>
@@ -113,6 +124,7 @@
                                         <th>Department</th>
                                         <th>Visit Date</th>
                                         <th>Referred By</th>
+                                        <th>Pass Validity Type</th>
                                         <th>Check-In</th>
                                         <th>Check-Out</th>
                                         <th>Time Spent</th>
@@ -160,6 +172,20 @@
                                                 $statusText = "Exit";
                                                 $badgeClass = "bg-success";
                                             }
+
+
+                                            $spendTime = '-';
+                                            if (!empty($checkIn) && !empty($checkOut)) {    
+                                                $checkInTime = new DateTime($checkIn);
+                                                $checkOutTime = new DateTime($checkOut);
+                                                $interval = $checkInTime->diff($checkOutTime);
+
+                                                $hours = $interval->h;
+                                                $minutes = $interval->i;
+                                                $seconds = $interval->s;
+
+                                                $spendTime = sprintf("%02d:%02d:%02d", $hours, $minutes, $seconds);
+                                            }
                                         ?>
 
                                         <tr>
@@ -175,6 +201,8 @@
                                             <td><?= esc($visitDateDisplay) ?></td>
 
                                             <td><?= esc($row['referred_by'] ?? '-') ?></td>
+                                            
+                                            <td><?= esc($row['validity_type'] ?? '-') ?></td>
 
                                             <!-- Check In -->
                                             <td><?= esc($checkIn ?? '-') ?></td>
@@ -182,7 +210,7 @@
                                             <!-- Check Out -->
                                             <td><?= esc($checkOut ?? '-') ?></td>
 
-                                            <td><?= esc($row['spendTime'] ?? '-') ?></td>
+                                            <td><?= esc($spendTime ?? '-') ?></td>
 
                                             <!-- Status -->
                                             <td>
