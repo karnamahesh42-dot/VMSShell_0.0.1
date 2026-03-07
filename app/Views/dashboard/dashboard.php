@@ -275,7 +275,7 @@
                     onclick="toggleVisitorCard()">
 
                     <h5 class="mb-0">
-                        <i class="fa fa-bar-chart" aria-hidden="true"></i> Visitor Analytics Chart
+                        <i class="fa fa-bar-chart" aria-hidden="true"></i> Visitor Entry Activity Chart
                     </h5>
 
                     <i id="visitorToggleIcon" class="fas fa-chevron-down"></i>
@@ -476,8 +476,9 @@
                         <!-- <a href="<?= base_url('security_authorization') ?>"><i class="bi bi-shield-lock-fill me-2"></i> Security Authorization</a> -->
                         <a href="<?= base_url('usermanuals') ?>"><i class="bi bi-collection-play me-2"></i>User Manuals</a>
                         <a href="<?= base_url('feedback') ?>"><i class="fa fa-comments me-2"></i>Feedback</a>
-                        <a href="#" onclick="toggleVisitorCard()">
-                            <i class="fa fa-bar-chart" aria-hidden="true"></i> Visitor Analytics Chart</a>
+                        <?php if (in_array($_SESSION['role_id'], [1,5])) { ?>
+                        <a href="#" onclick="toggleVisitorCard()"> <i class="fa fa-bar-chart" aria-hidden="true"></i> Visitor Entry Activity Chart</a>
+                        <?php } ?>
                     </div>
                     </div>
                 </div>
@@ -546,834 +547,794 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <script>
+<script>
 
-    $(document).ready(function () {
-        updateVisitorValidity();
-        loadAuthorizedVisitors();
-        todayVisitorsList();
-    
-    });
-
-
-    function view_visitor(id){
-    // alert(id);
-    $.ajax({
-        url: "<?= base_url('getvisitorrequestdata/') ?>" + id,
-        type: "GET",
-        dataType: "json",
-
-        success: function (res) {
-
-              console.log(res)
-            if (res.status !== "success" || res.data.length === 0) {
-                alert("No data found");
-                return;
-            }  
-
-            // Fill header
-            let actionButtons = "";
-            let h = res.data[0];
-
-            // console.log(h)
-            // console.log(h.status);
-            
-            if (h.status === "pending" ) {
-
-                actionButtons = `
-                    <button class="btn btn-success btn-sm"
-                        onclick="approvalProcess(${h.request_header_id}, 'approved', '${h.header_code}')">
-                        <i class="fas fa-check-circle"></i> Approve
-                    </button>
-
-                    <button class="btn btn-danger btn-sm"
-                        onclick="rejectComment(${h.request_header_id }, 'rejected', '${h.header_code}')">
-                        <i class="fas fa-times-circle"></i> Reject
-                    </button>
-                `;
-            } 
-        
-            $("#actionBtns").html(actionButtons);
-            $("#h_code").text(h.header_code);
-            $("#h_requested_by").text(h.requested_by);
-            $("#h_department").text(h.department);
-            $("#h_email").text(h.email ?? "-");
-            $("#h_company").text(h.company);
-            
-            $("#h_count").text(h.total_visitors);
-            $("#h_requested_by").text(h.visitor_created_by_name);
-            $("#h_purpose").text(h.purpose);
-            $("#h_date").text(h.requested_date +" & "+ h.requested_time);
-            $("#h_description").text(h.description);
-            $("#referred_by").text(h.referred_by_name);
-
-         
-            // if (h.purpose === "Recce") {
-            // $('#recceData').show();   // Recce Details
-            // $("#director").text(h.art_director);
-            // $("#production").text(h.productio);
-            // $("#contactPerson").text(h.contact_person);
-            // $("#typeOfRecce").text(h.recce_type);
-            // $("#shootingDate").text(h.shooting_date);
-            // }
-            
-            $('#recceData').hide();
-            $('#vendorData').hide();
-            
-            if (h.purpose === "Vendor") {
-            $('#vendorData').show();
-            $('#recceData').hide();
-            $("#vendorCategory").text(h.v_category);
-            $("#vendorStatus").text(h.v_status);
-            $("#vendorCompany").text(h.v_company);
-            $("#vendorLocation").text(h.v_location);
-            $("#vendorContactPerson").text(h.v_contact_person);
-            $("#vendorEmail").text(h.v_email);
-            $("#vendorMobile").text(h.v_mobile);
-            }
-
-            if (h.purpose === "Recce") {
-            $('#recceData').show();
-            $('#vendorData').hide();
-            $("#typeOfRecce").text(h.recce_type);
-            $("#director").text(h.art_director);
-            $("#production").text(h.company);
-            $("#shootingDate").text(h.shooting_date);
-            $("#contactPerson").text(h.contact_person);
-            $("#contactPersonEmail").text(h.mail_id);
-            $("#contactPersonMobile").text(h.mobile);
-            }
-     
-            
-            let cardsHtml = "";
-
-            res.data.forEach(v => {
-
-                let qrImg = v.qr_code 
-                    ? `<?= base_url('public/uploads/qr_codes/') ?>${v.qr_code}`
-                    : "";
-                let resendButton = " <span>--</span>";
-
+                $(document).ready(function () {
+                    updateVisitorValidity();
+                    loadAuthorizedVisitors();
+                    todayVisitorsList();
+                      
                 
-                if (v.status === "approved") {
-                    resendButton = `
-                        <button class="btn btn-warning btn-sm w-100"
-                            onclick="resendqr('${v.v_code}')">
-                            <i class="fas fa-paper-plane"></i> Re-send QR
-                        </button>`;
-                }
-
-                cardsHtml += `
-                <div class="card visitor-card p-3 p-md-4 col-12 col-sm-6 col-md-4 m-2">
-                        <div class="row visitor-card-body">
-                            <!-- Visitor Details -->
-                            <div class="col-12 visitor-details">
-                                <h5 class="visitor-name">
-                                    <i class="fas fa-user text-primary me-2"></i> ${v.visitor_name}
-                                </h5>
-                                <p class="visitor-email">${v.visitor_email}</p>
-                                <p class="visitor-code">Code: ${v.v_code}</p>
-                                <p class="visitor-info"><b>Phone :</b> ${v.visitor_phone}</p>
-                                <p class="visitor-info"><b>Vehicle Type :</b> ${v.vehicle_type}</p>
-                                <p class="visitor-info"><b>ID Type :</b> ${v.proof_id_type}</p>
-                                <p class="visitor-info"><b>ID Number :</b> ${v.proof_id_number}</p>
-                                <p class="visitor-info"><b>Vehicle No :</b> ${v.vehicle_no}</p>
-                            </div>
-                            <!-- QR & Resend -->
-                        </div>
-                    </div>`;
-            });
-
-            $("#visitorCardsContainer").html(cardsHtml);
-            $("#visitorModal").modal("show");
-        }
-    });
-}
+                });
 
 
-function rejectComment(head_id, status, header_code, comment) {
+                function view_visitor(id){
+                // alert(id);
+                $.ajax({
+                    url: "<?= base_url('getvisitorrequestdata/') ?>" + id,
+                    type: "GET",
+                    dataType: "json",
 
-     $("#visitorModal").modal("hide");
+                    success: function (res) {
 
-    Swal.fire({
-        title: "Reject Visitor Request",
-        input: "text",
-        inputLabel: "Enter rejection comment",
-        inputPlaceholder: "Write your comment...",
-        showCancelButton: true,
-        confirmButtonText: "Submit",
-    }).then((result) => {
-        if (result.isConfirmed) {
-            let comment = result.value; // user comment
-            // Call your approval process with comment
-            approvalProcess(head_id, status, header_code, comment);
-        }
-    });
-}
+                        console.log(res)
+                        if (res.status !== "success" || res.data.length === 0) {
+                            alert("No data found");
+                            return;
+                        }  
+
+                        // Fill header
+                        let actionButtons = "";
+                        let h = res.data[0];
+
+                        // console.log(h)
+                        // console.log(h.status);
+                        
+                        if (h.status === "pending" ) {
+
+                            actionButtons = `
+                                <button class="btn btn-success btn-sm"
+                                    onclick="approvalProcess(${h.request_header_id}, 'approved', '${h.header_code}')">
+                                    <i class="fas fa-check-circle"></i> Approve
+                                </button>
+
+                                <button class="btn btn-danger btn-sm"
+                                    onclick="rejectComment(${h.request_header_id }, 'rejected', '${h.header_code}')">
+                                    <i class="fas fa-times-circle"></i> Reject
+                                </button>
+                            `;
+                        } 
+                    
+                        $("#actionBtns").html(actionButtons);
+                        $("#h_code").text(h.header_code);
+                        $("#h_requested_by").text(h.requested_by);
+                        $("#h_department").text(h.department);
+                        $("#h_email").text(h.email ?? "-");
+                        $("#h_company").text(h.company);
+                        
+                        $("#h_count").text(h.total_visitors);
+                        $("#h_requested_by").text(h.visitor_created_by_name);
+                        $("#h_purpose").text(h.purpose);
+                        $("#h_date").text(h.requested_date +" & "+ h.requested_time);
+                        $("#h_description").text(h.description);
+                        $("#referred_by").text(h.referred_by_name);
+
+                    
+                        // if (h.purpose === "Recce") {
+                        // $('#recceData').show();   // Recce Details
+                        // $("#director").text(h.art_director);
+                        // $("#production").text(h.productio);
+                        // $("#contactPerson").text(h.contact_person);
+                        // $("#typeOfRecce").text(h.recce_type);
+                        // $("#shootingDate").text(h.shooting_date);
+                        // }
+                        
+                        $('#recceData').hide();
+                        $('#vendorData').hide();
+                        
+                        if (h.purpose === "Vendor") {
+                        $('#vendorData').show();
+                        $('#recceData').hide();
+                        $("#vendorCategory").text(h.v_category);
+                        $("#vendorStatus").text(h.v_status);
+                        $("#vendorCompany").text(h.v_company);
+                        $("#vendorLocation").text(h.v_location);
+                        $("#vendorContactPerson").text(h.v_contact_person);
+                        $("#vendorEmail").text(h.v_email);
+                        $("#vendorMobile").text(h.v_mobile);
+                        }
+
+                        if (h.purpose === "Recce") {
+                        $('#recceData').show();
+                        $('#vendorData').hide();
+                        $("#typeOfRecce").text(h.recce_type);
+                        $("#director").text(h.art_director);
+                        $("#production").text(h.company);
+                        $("#shootingDate").text(h.shooting_date);
+                        $("#contactPerson").text(h.contact_person);
+                        $("#contactPersonEmail").text(h.mail_id);
+                        $("#contactPersonMobile").text(h.mobile);
+                        }
+                
+                        
+                        let cardsHtml = "";
+
+                        res.data.forEach(v => {
+
+                            let qrImg = v.qr_code 
+                                ? `<?= base_url('public/uploads/qr_codes/') ?>${v.qr_code}`
+                                : "";
+                            let resendButton = " <span>--</span>";
+
+                            
+                            if (v.status === "approved") {
+                                resendButton = `
+                                    <button class="btn btn-warning btn-sm w-100"
+                                        onclick="resendqr('${v.v_code}')">
+                                        <i class="fas fa-paper-plane"></i> Re-send QR
+                                    </button>`;
+                            }
+
+                            cardsHtml += `
+                            <div class="card visitor-card p-3 p-md-4 col-12 col-sm-6 col-md-4 m-2">
+                                    <div class="row visitor-card-body">
+                                        <!-- Visitor Details -->
+                                        <div class="col-12 visitor-details">
+                                            <h5 class="visitor-name">
+                                                <i class="fas fa-user text-primary me-2"></i> ${v.visitor_name}
+                                            </h5>
+                                            <p class="visitor-email">${v.visitor_email}</p>
+                                            <p class="visitor-code">Code: ${v.v_code}</p>
+                                            <p class="visitor-info"><b>Phone :</b> ${v.visitor_phone}</p>
+                                            <p class="visitor-info"><b>Vehicle Type :</b> ${v.vehicle_type}</p>
+                                            <p class="visitor-info"><b>ID Type :</b> ${v.proof_id_type}</p>
+                                            <p class="visitor-info"><b>ID Number :</b> ${v.proof_id_number}</p>
+                                            <p class="visitor-info"><b>Vehicle No :</b> ${v.vehicle_no}</p>
+                                        </div>
+                                        <!-- QR & Resend -->
+                                    </div>
+                                </div>`;
+                        });
+
+                        $("#visitorCardsContainer").html(cardsHtml);
+                        $("#visitorModal").modal("show");
+                    }
+                });
+            }
 
 
-/////////////////////////////////Approvel Process Start ////////////////////////////////////////////////////
+            function rejectComment(head_id, status, header_code, comment) {
 
-let approvalInProgress = false;  // Prevent double click / double call
-
-function approvalProcess(head_id, status, header_code, comment) {
-
-    if (approvalInProgress) {
-        return;
-    }
-
-    approvalInProgress = true; // lock
-
-    $.ajax({
-        url: "<?= base_url('/approvalprocess') ?>",
-        type: "POST",
-        data: { 
-            head_id: head_id, 
-            status: status, 
-            header_code: header_code, 
-            comment: comment 
-        },
-        dataType: "json",
-
-        success: function (res) {
-            if (res.status === "success") {
+                $("#visitorModal").modal("hide");
 
                 Swal.fire({
-                    icon: 'success',
-                    title: 'Action Completed Successfully!',
-                    showConfirmButton: true,
-                    confirmButtonText: 'OK'
+                    title: "Reject Visitor Request",
+                    input: "text",
+                    inputLabel: "Enter rejection comment",
+                    inputPlaceholder: "Write your comment...",
+                    showCancelButton: true,
+                    confirmButtonText: "Submit",
                 }).then((result) => {
                     if (result.isConfirmed) {
-                   
-                    if(res.process_status == 'approved'){
-                         sendMail(res.head_id);
-                    }
-                    location.reload();
-
+                        let comment = result.value; // user comment
+                        // Call your approval process with comment
+                        approvalProcess(head_id, status, header_code, comment);
                     }
                 });
-
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Update Failed!',
-                    text: res.message ?? "Please try again",
-                    confirmButtonColor: '#d33'
-                });
-            }
-        },
-
-        error: function () {
-            Swal.fire({
-                icon: 'error',
-                title: 'Server Error!',
-                text: 'Please try again later'
-            });
-        },
-
-        complete: function () {
-            approvalInProgress = false; // 🔓 unlock after request completes
-        }
-    });
-}
-
-
-function sendMail(head_id) {
-        $.ajax({
-        url: "<?= base_url('/send-email') ?>",
-        type: "POST",
-        data: { head_id: head_id },   //  single variable
-        success: function(res) {
-        console.log(res);
-        }
-        });
-}
-///////////////////////////////////////Approvel Process End //////////////////////////////////////////////////////
-
-
-
-function updateVisitorValidity() {
- $.ajax({
-        url: "<?= base_url('/updateVisitorValidity') ?>",
-        type: "POST",
-        dataType: "json",
-        success: function (res) {
-            console.log(res);
-        },
-        error: function (xhr) {
-            console.log(xhr);
-        }
-    });
-}
-
-
-function todayVisitorsList() {
-
-    $.ajax({
-        url: "<?= base_url('/security/todayVisitorListOfDashboard') ?>",
-        type: "GET",
-        dataType: "json",
-        data: {
-            company: $("#filterCompany").val(),
-            department: $("#filterDepartment").val(),
-            securityCheckStatus: $("#filterSecurity").val(),
-            requestcode: $("#requestcode").val(),
-            v_code: $("#f_v_code").val()
-        },
-        success: function (res) {
-
-            let tbody = $("#todayVisitorsList");
-            tbody.empty();
-
-            if (!res.length) {
-                tbody.append(`
-                    <tr>
-                        <td colspan='10' class='text-center text-muted'>
-                            No authorized visitors scheduled for today.
-                        </td>
-                    </tr>
-                `);
-                return;
             }
 
-            res.forEach((v) => {
 
-                // =====================================
-                // SD / MD CHECK-IN LOGIC
-                // =====================================
+            /////////////////////////////////Approvel Process Start ////////////////////////////////////////////////////
 
-                let checkIn  = "-";
-                let checkOut = "-";
+            let approvalInProgress = false;  // Prevent double click / double call
 
-                if (v.validity_type === "MD") {
-                    checkIn  = v.md_check_in ?? "-";
-                    checkOut = v.md_check_out ?? "-";
-                } else {
-                    checkIn  = v.sd_check_in ?? "-";
-                    checkOut = v.sd_check_out ?? "-";
-                }
+            function approvalProcess(head_id, status, header_code, comment) {
 
-                // =====================================
-                // STATUS BADGE
-                // =====================================
-
-                let statusBadge = "";
-
-                if (!checkIn || checkIn === "-") {
-
-                    statusBadge = `
-                        <span class="badge bg-secondary">
-                            Not Entered
-                        </span>
-                    `;
-
-                } else if (checkIn && (!checkOut || checkOut === "-")) {
-
-                    <?php if($_SESSION['role_id'] == '2' || $_SESSION['role_id'] == '1'){ ?>
-                        statusBadge = `
-                            <span class="btn meetingCmpleteBtn cursor-pointer"
-                                  onclick="markMeetingCompleted('${v.v_code}')">
-                                Inside <br>
-                                Session Not Yet Completed <br>
-                                In: ${checkIn} <br>
-                                Out: ${checkOut}
-                            </span>
-                        `;
-                    <?php } else { ?>
-                        statusBadge = `
-                            <span class="badge bg-primary text-light">
-                                Inside <br>
-                                Session Not Yet Completed <br>
-                                In: ${checkIn} <br>
-                                Out: ${checkOut}
-                            </span>
-                        `;
-                    <?php } ?>
-
-                } else if (v.meeting_status == 1 && checkOut !== "-") {
-
-                    statusBadge = `
-                        <span class="badge bg-warning text-dark">
-                            Inside <br>
-                            Session Completed <br>
-                            In: ${checkIn} <br>
-                            Out: ${checkOut}
-                        </span>
-                    `;
-
-                } else {
-
-                    statusBadge = `
-                        <span class="badge bg-success">
-                            Completed <br>
-                            In: ${checkIn} <br>
-                            Out: ${checkOut}
-                        </span>
-                    `;
-                }
-
-                // =====================================
-                // VALIDITY ICON
-                // =====================================
-
-                let validityBadge = "";
-
-                if (v.validity == 1) {
-                    validityBadge = `
-                        <i class="bi bi-check-circle text-success"
-                           style="font-size: large; font-weight: bold;"></i>
-                    `;
-                } else {
-                    validityBadge = `
-                        <i class="bi bi-x-circle text-danger"
-                           style="font-size: large; font-weight: bold;"></i>
-                    `;
-                }
-
-                // =====================================
-                // APPEND ROW
-                // =====================================
-
-                tbody.append(`
-                    <tr>
-                        <td>${v.validity_type === "MD" ? (v.valid_from + " to " + v.valid_to) : v.visit_date}</td>
-                        <td>${v.company ?? "-"}</td>
-                        <td>${v.department_name ?? "-"}</td>
-                        <td>${v.referred_by_name ?? "-"}</td>
-                        <td>${v.created_by_name ?? "-"}</td>
-                        <td>${v.visitor_name ?? "-"}</td>
-                        <td>${v.visitor_phone ?? "-"}</td>
-                        <td>${v.purpose ?? "-"}</td>
-                        <td>${validityBadge}</td>
-                        <td>${v.validity_type ?? "-"}</td>
-                        <td>${statusBadge}</td>
-                    </tr>
-                `);
-            });
-        }
-    });
-}
-
-
-
-
-    function loadAuthorizedVisitors() {
-
-        $.ajax({
-            url: "<?= base_url('/security/authorized_visitors_list_data') ?>",
-            type: "GET",
-            dataType: "json",
-            data: {
-                company: $("#filterCompany").val(),
-                department: $("#filterDepartment").val(),
-                securityCheckStatus: $("#filterSecurity").val(),
-                requestcode:  $("#requestcode").val(),
-                v_code:   $("#f_v_code").val()
-            },
-            success: function(res) {
-
-                // console.log(res[0].meeting_status);
-                
-                let tbody = $("#authorizedVisitorTable");
-                tbody.empty();
-
-                if (!res.length) {
-                    tbody.append(`
-                        <tr>
-                            <td colspan='13' class='text-center text-muted'>No authorized visitors found</td>
-                        </tr>
-                    `);
+                if (approvalInProgress) {
                     return;
                 }
 
-             
-            res.forEach((v, index) => {
+                approvalInProgress = true; // lock
 
-                let statusBadge = "";
-                let validityBadge = "";
-
-                // ===============================
-                // SD VISITOR
-                // ===============================
-                if (v.validity_type === "SD") {
-
-                    //  Not Entered
-                    if (!v.sd_check_in && !v.sd_check_out) {
-
-                        statusBadge = `
-                            <span class="badge bg-secondary">
-                                Not Entered
-                            </span>
-                        `;
-                    }
-
-                    // Inside (Checked-in only)
-                    else if (v.sd_check_in && !v.sd_check_out) {
-
-                        if (v.meeting_status == 0) {
-
-                            <?php if(in_array($_SESSION['role_id'], [1,2,3])){ ?>
-                                statusBadge = `
-                                    <span class="btn meetingCmpleteBtn cursor-pointer"
-                                        onclick="markMeetingCompleted('${v.v_code}')">
-                                        Inside <br>
-                                        ${v.purpose} Not Yet Completed <br>
-                                        In: ${v.sd_check_in ?? '-'}
-                                    </span>
-                                `;
-                            <?php } else { ?>
-                                statusBadge = `
-                                    <span class="badge bg-primary">
-                                        Inside <br>
-                                        ${v.purpose} Not Yet Completed <br>
-                                        In: ${v.sd_check_in ?? '-'}
-                                    </span>
-                                `;
-                            <?php } ?>
-
-                        } else {
-
-                            statusBadge = `
-                                <span class="badge bg-warning text-dark">
-                                    Inside <br>
-                                    ${v.purpose} Completed <br>
-                                    In: ${v.sd_check_in ?? '-'}
-                                </span>
-                            `;
-                        }
-                    }
-
-                    //  Completed
-                    else if (v.sd_check_in && v.sd_check_out) {
-
-                        statusBadge = `
-                            <span class="badge bg-success">
-                                Completed <br>
-                                In: ${v.sd_check_in ?? '-'} <br>
-                                Out: ${v.sd_check_out ?? '-'}
-                            </span>
-                        `;
-                    }
-                }
-
-
-                // ===============================
-                // MD VISITOR
-                // ===============================
-                else if (v.validity_type === "MD") {
-
-                    if (!v.md_check_in && !v.md_check_out) {
-
-                        statusBadge = `
-                            <span class="badge bg-secondary">
-                                Not Entered Today
-                            </span>
-                        `;
-                    }
-
-                    else if (v.md_check_in && !v.md_check_out) {
-
-                        statusBadge = `
-                            <span class="badge bg-primary">
-                                Inside <br>
-                                In: ${v.md_check_in ?? '-'}
-                            </span>
-                        `;
-                    }
-
-                    else if (v.md_check_in && v.md_check_out) {
-
-                        statusBadge = `
-                            <span class="badge bg-success">
-                                Completed <br>
-                                In: ${v.md_check_in ?? '-'} <br>
-                                Out: ${v.md_check_out ?? '-'}
-                            </span>
-                        `;
-                    }
-                }
-
-
-                // ===============================
-                // VALIDITY ICON
-                // ===============================
-                validityBadge = (v.validity == 1)
-                    ? `<i class="bi bi-check-circle text-success" style="font-size: large; font-weight: bold;"></i>`
-                    : `<i class="bi bi-x-circle text-danger" style="font-size: large; font-weight: bold;"></i>`;
-
-
-                // ===============================
-                // APPEND ROW
-                // ===============================
-                tbody.append(`
-                    <tr>
-                        <td>${v.visit_date ?? '--'}</td>
-                        <td>${v.company ?? '--'}</td>
-                        <td>${v.department_name ?? '--'}</td>
-                        <td>${v.referred_by_name ?? '--'}</td>
-                        <td>${v.created_by_name ?? '--'}</td>
-                        <td>${v.visitor_name ?? '--'}</td>
-                        <td>${v.visitor_phone ?? '--'}</td>
-                        <td>${v.purpose ?? '--'}</td>
-                        <td>${validityBadge}</td>
-                        <td>${statusBadge}</td>
-                    </tr>
-                `);
-
-            });
-            }
-        });
-    }
-
-
-    function markMeetingCompleted(v_code) {
-        Swal.fire({
-            title: "Complete Session?",
-            text: "Confirm that the visitor Session is completed.",
-            icon: "question",
-            showCancelButton: true,
-            confirmButtonText: "Yes, Complete",
-            cancelButtonText: "Cancel"
-        }).then((result) => {
-            if (result.isConfirmed) {
                 $.ajax({
-                    url: "<?= base_url('/visitor/complete-meeting') ?>",
+                    url: "<?= base_url('/approvalprocess') ?>",
                     type: "POST",
-                    data: { v_code: v_code },
+                    data: { 
+                        head_id: head_id, 
+                        status: status, 
+                        header_code: header_code, 
+                        comment: comment 
+                    },
                     dataType: "json",
+
                     success: function (res) {
                         if (res.status === "success") {
+
                             Swal.fire({
-                                icon: "success",
-                                title: "Session Completed",
-                                timer: 1500,
-                                showConfirmButton: false
+                                icon: 'success',
+                                title: 'Action Completed Successfully!',
+                                showConfirmButton: true,
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                            
+                                if(res.process_status == 'approved'){
+                                    sendMail(res.head_id);
+                                }
+                                location.reload();
+
+                                }
                             });
-                            location.reload();
-                        
+
                         } else {
-                            Swal.fire("Error", res.message, "error");
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Update Failed!',
+                                text: res.message ?? "Please try again",
+                                confirmButtonColor: '#d33'
+                            });
                         }
+                    },
+
+                    error: function () {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Server Error!',
+                            text: 'Please try again later'
+                        });
+                    },
+
+                    complete: function () {
+                        approvalInProgress = false; // 🔓 unlock after request completes
                     }
                 });
             }
-        });
-    }
 
 
-    let visitorChart = null;
-
-    function vistorChartDataView() {
-
-    let company     = document.getElementById('company').value;
-    let department  = document.getElementById('department').value;
-    let fromDate    = document.getElementById('from_date').value;
-    let toDate      = document.getElementById('to_date').value;
-
-    let url = "<?= base_url('requestToCheckoutDataDashboard') ?>?"
-        + "company=" + company
-        + "&department=" + department
-        + "&from_date=" + fromDate
-        + "&to_date=" + toDate;
-
-    fetch(url)
-    .then(res => res.json())
-    .then(data => {
-
-        const ctx = document.getElementById("visitorBarChart").getContext("2d");
-
-        if (visitorChart !== null) {
-            visitorChart.destroy();
-        }
-
-        // 🔹 Find max value
-        const maxValue = Math.max(...data.counts);
-
-        // 🔹 Generate colors based on value
-        const barColors = data.counts.map(value => {
-            if (value >= maxValue * 0.7) {
-                return '#28a745'; // Green (High)
-            } else if (value >= maxValue * 0.4) {
-                return '#ffc107'; // Yellow (Medium)
-            } else {
-                return '#dc3545'; // Red (Low)
+            function sendMail(head_id) {
+                    $.ajax({
+                    url: "<?= base_url('/send-email') ?>",
+                    type: "POST",
+                    data: { head_id: head_id },   //  single variable
+                    success: function(res) {
+                    console.log(res);
+                    }
+                    });
             }
-        });
+            ///////////////////////////////////////Approvel Process End //////////////////////////////////////////////////////
 
-        visitorChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: data.labels,
-                datasets: [{
-                    label: 'Visitor Entries',
-                    data: data.counts,
-                    backgroundColor: barColors
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: { beginAtZero: true }
+
+
+            function updateVisitorValidity() {
+            $.ajax({
+                    url: "<?= base_url('/updateVisitorValidity') ?>",
+                    type: "POST",
+                    dataType: "json",
+                    success: function (res) {
+                        console.log(res);
+                    },
+                    error: function (xhr) {
+                        console.log(xhr);
+                    }
+                });
+            }
+
+
+            function todayVisitorsList() {
+
+                $.ajax({
+                    url: "<?= base_url('/security/todayVisitorListOfDashboard') ?>",
+                    type: "GET",
+                    dataType: "json",
+                    data: {
+                        company: $("#filterCompany").val(),
+                        department: $("#filterDepartment").val(),
+                        securityCheckStatus: $("#filterSecurity").val(),
+                        requestcode: $("#requestcode").val(),
+                        v_code: $("#f_v_code").val()
+                    },
+                    success: function (res) {
+
+                        let tbody = $("#todayVisitorsList");
+                        tbody.empty();
+
+                        if (!res.length) {
+                            tbody.append(`
+                                <tr>
+                                    <td colspan='10' class='text-center text-muted'>
+                                        No authorized visitors scheduled for today.
+                                    </td>
+                                </tr>
+                            `);
+                            return;
+                        }
+
+                        res.forEach((v) => {
+
+                            // =====================================
+                            // SD / MD CHECK-IN LOGIC
+                            // =====================================
+
+                            let checkIn  = "-";
+                            let checkOut = "-";
+
+                            if (v.validity_type === "MD") {
+                                checkIn  = v.md_check_in ?? "-";
+                                checkOut = v.md_check_out ?? "-";
+                            } else {
+                                checkIn  = v.sd_check_in ?? "-";
+                                checkOut = v.sd_check_out ?? "-";
+                            }
+
+                            // =====================================
+                            // STATUS BADGE
+                            // =====================================
+
+                            let statusBadge = "";
+
+                            if (!checkIn || checkIn === "-") {
+
+                                statusBadge = `
+                                    <span class="badge bg-secondary">
+                                        Not Entered
+                                    </span>
+                                `;
+
+                            } else if (checkIn && (!checkOut || checkOut === "-")) {
+
+                                <?php if($_SESSION['role_id'] == '2' || $_SESSION['role_id'] == '1'){ ?>
+                                    statusBadge = `
+                                        <span class="btn meetingCmpleteBtn cursor-pointer"
+                                            onclick="markMeetingCompleted('${v.v_code}')">
+                                            Inside <br>
+                                            Session Not Yet Completed <br>
+                                            In: ${checkIn} <br>
+                                            Out: ${checkOut}
+                                        </span>
+                                    `;
+                                <?php } else { ?>
+                                    statusBadge = `
+                                        <span class="badge bg-primary text-light">
+                                            Inside <br>
+                                            Session Not Yet Completed <br>
+                                            In: ${checkIn} <br>
+                                            Out: ${checkOut}
+                                        </span>
+                                    `;
+                                <?php } ?>
+
+                            } else if (v.meeting_status == 1 && checkOut !== "-") {
+
+                                statusBadge = `
+                                    <span class="badge bg-warning text-dark">
+                                        Inside <br>
+                                        Session Completed <br>
+                                        In: ${checkIn} <br>
+                                        Out: ${checkOut}
+                                    </span>
+                                `;
+
+                            } else {
+
+                                statusBadge = `
+                                    <span class="badge bg-success">
+                                        Completed <br>
+                                        In: ${checkIn} <br>
+                                        Out: ${checkOut}
+                                    </span>
+                                `;
+                            }
+
+                            // =====================================
+                            // VALIDITY ICON
+                            // =====================================
+
+                            let validityBadge = "";
+
+                            if (v.validity == 1) {
+                                validityBadge = `
+                                    <i class="bi bi-check-circle text-success"
+                                    style="font-size: large; font-weight: bold;"></i>
+                                `;
+                            } else {
+                                validityBadge = `
+                                    <i class="bi bi-x-circle text-danger"
+                                    style="font-size: large; font-weight: bold;"></i>
+                                `;
+                            }
+
+                            // =====================================
+                            // APPEND ROW
+                            // =====================================
+
+                            tbody.append(`
+                                <tr>
+                                    <td>${v.validity_type === "MD" ? (v.valid_from + " to " + v.valid_to) : v.visit_date}</td>
+                                    <td>${v.company ?? "-"}</td>
+                                    <td>${v.department_name ?? "-"}</td>
+                                    <td>${v.referred_by_name ?? "-"}</td>
+                                    <td>${v.created_by_name ?? "-"}</td>
+                                    <td>${v.visitor_name ?? "-"}</td>
+                                    <td>${v.visitor_phone ?? "-"}</td>
+                                    <td>${v.purpose ?? "-"}</td>
+                                    <td>${validityBadge}</td>
+                                    <td>${v.validity_type ?? "-"}</td>
+                                    <td>${statusBadge}</td>
+                                </tr>
+                            `);
+                        });
+                    }
+                });
+            }
+
+
+
+
+                function loadAuthorizedVisitors() {
+
+                    $.ajax({
+                        url: "<?= base_url('/security/authorized_visitors_list_data') ?>",
+                        type: "GET",
+                        dataType: "json",
+                        data: {
+                            company: $("#filterCompany").val(),
+                            department: $("#filterDepartment").val(),
+                            securityCheckStatus: $("#filterSecurity").val(),
+                            requestcode:  $("#requestcode").val(),
+                            v_code:   $("#f_v_code").val()
+                        },
+                        success: function(res) {
+
+                            // console.log(res[0].meeting_status);
+                            
+                            let tbody = $("#authorizedVisitorTable");
+                            tbody.empty();
+
+                            if (!res.length) {
+                                tbody.append(`
+                                    <tr>
+                                        <td colspan='13' class='text-center text-muted'>No authorized visitors found</td>
+                                    </tr>
+                                `);
+                                return;
+                            }
+
+                        
+                        res.forEach((v, index) => {
+
+                            let statusBadge = "";
+                            let validityBadge = "";
+
+                            // ===============================
+                            // SD VISITOR
+                            // ===============================
+                            if (v.validity_type === "SD") {
+
+                                //  Not Entered
+                                if (!v.sd_check_in && !v.sd_check_out) {
+
+                                    statusBadge = `
+                                        <span class="badge bg-secondary">
+                                            Not Entered
+                                        </span>
+                                    `;
+                                }
+
+                                // Inside (Checked-in only)
+                                else if (v.sd_check_in && !v.sd_check_out) {
+
+                                    if (v.meeting_status == 0) {
+
+                                        <?php if(in_array($_SESSION['role_id'], [1,2,3])){ ?>
+                                            statusBadge = `
+                                                <span class="btn meetingCmpleteBtn cursor-pointer"
+                                                    onclick="markMeetingCompleted('${v.v_code}')">
+                                                    Inside <br>
+                                                    ${v.purpose} Not Yet Completed <br>
+                                                    In: ${v.sd_check_in ?? '-'}
+                                                </span>
+                                            `;
+                                        <?php } else { ?>
+                                            statusBadge = `
+                                                <span class="badge bg-primary">
+                                                    Inside <br>
+                                                    ${v.purpose} Not Yet Completed <br>
+                                                    In: ${v.sd_check_in ?? '-'}
+                                                </span>
+                                            `;
+                                        <?php } ?>
+
+                                    } else {
+
+                                        statusBadge = `
+                                            <span class="badge bg-warning text-dark">
+                                                Inside <br>
+                                                ${v.purpose} Completed <br>
+                                                In: ${v.sd_check_in ?? '-'}
+                                            </span>
+                                        `;
+                                    }
+                                }
+
+                                //  Completed
+                                else if (v.sd_check_in && v.sd_check_out) {
+
+                                    statusBadge = `
+                                        <span class="badge bg-success">
+                                            Completed <br>
+                                            In: ${v.sd_check_in ?? '-'} <br>
+                                            Out: ${v.sd_check_out ?? '-'}
+                                        </span>
+                                    `;
+                                }
+                            }
+
+
+                            // ===============================
+                            // MD VISITOR
+                            // ===============================
+                            else if (v.validity_type === "MD") {
+
+                                if (!v.md_check_in && !v.md_check_out) {
+
+                                    statusBadge = `
+                                        <span class="badge bg-secondary">
+                                            Not Entered Today
+                                        </span>
+                                    `;
+                                }
+
+                                else if (v.md_check_in && !v.md_check_out) {
+
+                                    statusBadge = `
+                                        <span class="badge bg-primary">
+                                            Inside <br>
+                                            In: ${v.md_check_in ?? '-'}
+                                        </span>
+                                    `;
+                                }
+
+                                else if (v.md_check_in && v.md_check_out) {
+
+                                    statusBadge = `
+                                        <span class="badge bg-success">
+                                            Completed <br>
+                                            In: ${v.md_check_in ?? '-'} <br>
+                                            Out: ${v.md_check_out ?? '-'}
+                                        </span>
+                                    `;
+                                }
+                            }
+
+
+                            // ===============================
+                            // VALIDITY ICON
+                            // ===============================
+                            validityBadge = (v.validity == 1)
+                                ? `<i class="bi bi-check-circle text-success" style="font-size: large; font-weight: bold;"></i>`
+                                : `<i class="bi bi-x-circle text-danger" style="font-size: large; font-weight: bold;"></i>`;
+
+
+                            // ===============================
+                            // APPEND ROW
+                            // ===============================
+                            tbody.append(`
+                                <tr>
+                                    <td>${v.visit_date ?? '--'}</td>
+                                    <td>${v.company ?? '--'}</td>
+                                    <td>${v.department_name ?? '--'}</td>
+                                    <td>${v.referred_by_name ?? '--'}</td>
+                                    <td>${v.created_by_name ?? '--'}</td>
+                                    <td>${v.visitor_name ?? '--'}</td>
+                                    <td>${v.visitor_phone ?? '--'}</td>
+                                    <td>${v.purpose ?? '--'}</td>
+                                    <td>${validityBadge}</td>
+                                    <td>${statusBadge}</td>
+                                </tr>
+                            `);
+
+                        });
+                        }
+                    });
+                }
+
+
+                function markMeetingCompleted(v_code) {
+                    Swal.fire({
+                        title: "Complete Session?",
+                        text: "Confirm that the visitor Session is completed.",
+                        icon: "question",
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, Complete",
+                        cancelButtonText: "Cancel"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url: "<?= base_url('/visitor/complete-meeting') ?>",
+                                type: "POST",
+                                data: { v_code: v_code },
+                                dataType: "json",
+                                success: function (res) {
+                                    if (res.status === "success") {
+                                        Swal.fire({
+                                            icon: "success",
+                                            title: "Session Completed",
+                                            timer: 1500,
+                                            showConfirmButton: false
+                                        });
+                                        location.reload();
+                                    
+                                    } else {
+                                        Swal.fire("Error", res.message, "error");
+                                    }
+                                }
+                            });
+                        }
+                    });
+                }
+
+
+                let visitorChart = null;
+
+                function vistorChartDataView() {
+
+                let company     = document.getElementById('company').value;
+                let department  = document.getElementById('department').value;
+                let fromDate    = document.getElementById('from_date').value;
+                let toDate      = document.getElementById('to_date').value;
+
+                let url = "<?= base_url('requestToCheckoutDataDashboard') ?>?"
+                    + "company=" + company
+                    + "&department=" + department
+                    + "&from_date=" + fromDate
+                    + "&to_date=" + toDate;
+
+                fetch(url)
+                .then(res => res.json())
+                .then(data => {
+
+                    const ctx = document.getElementById("visitorBarChart").getContext("2d");
+
+                    if (visitorChart !== null) {
+                        visitorChart.destroy();
+                    }
+
+                    // 🔹 Find max value
+                    const maxValue = Math.max(...data.counts);
+
+                    // 🔹 Generate colors based on value
+                    const barColors = data.counts.map(value => {
+                        if (value >= maxValue * 0.7) {
+                            return '#28a745'; // Green (High)
+                        } else if (value >= maxValue * 0.4) {
+                            return '#ffc107'; // Yellow (Medium)
+                        } else {
+                            return '#dc3545'; // Red (Low)
+                        }
+                    });
+
+                    visitorChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: data.labels,
+                            datasets: [{
+                                label: 'Visitor Entries',
+                                data: data.counts,
+                                backgroundColor: barColors
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: { beginAtZero: true }
+                            }
+                        }
+                    });
+
+                });
+            }
+
+
+            function formatDate(date) {
+            return date.toISOString().split('T')[0];
+            }
+
+            function setQuickRange() {
+
+                const range = document.getElementById("quick_range").value;
+                const fromInput = document.getElementById("from_date");
+                const toInput = document.getElementById("to_date");
+
+                const today = new Date();
+                let fromDate, toDate;
+
+                switch(range) {
+
+                    case "today":
+                        fromDate = toDate = today;
+                        break;
+
+                    case "yesterday":
+                        let y = new Date();
+                        y.setDate(today.getDate() - 1);
+                        fromDate = toDate = y;
+                        break;
+
+                    case "this_week":
+                        let firstDay = new Date(today.setDate(today.getDate() - today.getDay() + 1));
+                        let lastDay = new Date(today.setDate(firstDay.getDate() + 6));
+                        fromDate = firstDay;
+                        toDate = lastDay;
+                        break;
+
+                    case "last_week":
+                        let lwStart = new Date();
+                        lwStart.setDate(today.getDate() - today.getDay() - 6);
+                        let lwEnd = new Date();
+                        lwEnd.setDate(today.getDate() - today.getDay());
+                        fromDate = lwStart;
+                        toDate = lwEnd;
+                        break;
+
+                    case "this_month":
+                        fromDate = new Date(today.getFullYear(), today.getMonth(), 1);
+                        toDate = new Date();
+                        break;
+
+                    case "last_month":
+                        fromDate = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+                        toDate = new Date(today.getFullYear(), today.getMonth(), 0);
+                        break;
+
+                    case "this_year":
+                        fromDate = new Date(today.getFullYear(), 0, 1);
+                        toDate = new Date();
+                        break;
+
+                    case "last_year":
+                        fromDate = new Date(today.getFullYear() - 1, 0, 1);
+                        toDate = new Date(today.getFullYear() - 1, 11, 31);
+                        break;
+
+                    default:
+                        return;
+                }
+
+                fromInput.value = formatDate(fromDate);
+                toInput.value = formatDate(toDate);
+            }
+
+
+            function toggleVisitorCard() {
+
+                const body = document.getElementById("visitorCardBody");
+                const icon = document.getElementById("visitorToggleIcon");
+                const section = document.getElementById("visitorAnalyticsSection");
+
+                if (!body.classList.contains("open")) {
+
+                    //  OPEN CARD (Smooth)
+                    body.classList.add("open");
+
+                    icon.classList.remove("fa-chevron-down");
+                    icon.classList.add("fa-chevron-up");
+
+                    //  Set Quick Filter to THIS MONTH
+                    document.getElementById("quick_range").value = "this_month";
+                    setQuickRange();
+
+                    //  Load Chart Automatically
+                    vistorChartDataView();
+
+                    //  Smooth Scroll + Focus
+                    section.scrollIntoView({ behavior: "smooth", block: "start" });
+
+                    // Highlight effect
+                    section.classList.add("highlight-card");
+                    setTimeout(() => {
+                        section.classList.remove("highlight-card");
+                    }, 2000);
+
+                } else {
+
+                    //  CLOSE CARD (Smooth)
+                    body.classList.remove("open");
+
+                    icon.classList.remove("fa-chevron-up");
+                    icon.classList.add("fa-chevron-down");
                 }
             }
-        });
 
-    });
-}
+              
 
-    // function vistorChartDataView() {
-
-    //     let company     = document.getElementById('company').value;
-    //     let department  = document.getElementById('department').value;
-    //     let fromDate    = document.getElementById('from_date').value;
-    //     let toDate      = document.getElementById('to_date').value;
-
-    //     let url = "<?= base_url('requestToCheckoutDataDashboard') ?>?"
-    //         + "company=" + company
-    //         + "&department=" + department
-    //         + "&from_date=" + fromDate
-    //         + "&to_date=" + toDate;
-
-    //     fetch(url)
-    //     .then(res => res.json())
-    //     .then(data => {
-
-    //         const ctx = document.getElementById("visitorBarChart").getContext("2d");
-
-    //         if (visitorChart !== null) {
-    //             visitorChart.destroy();
-    //         }
-
-    //         visitorChart = new Chart(ctx, {
-    //             type: 'bar',
-    //             data: {
-    //                 labels: data.labels,
-    //                 datasets: [{
-    //                     label: 'Visitor Entries',
-    //                     data: data.counts,
-    //                     backgroundColor: '#007bff'
-    //                 }]
-    //             },
-    //             options: {
-    //                 responsive: true,
-    //                 scales: {
-    //                     y: { beginAtZero: true }
-    //                 }
-    //             }
-    //         });
-
-    //     });
-    // }
-
-
-function formatDate(date) {
-return date.toISOString().split('T')[0];
-}
-
-function setQuickRange() {
-
-    const range = document.getElementById("quick_range").value;
-    const fromInput = document.getElementById("from_date");
-    const toInput = document.getElementById("to_date");
-
-    const today = new Date();
-    let fromDate, toDate;
-
-    switch(range) {
-
-        case "today":
-            fromDate = toDate = today;
-            break;
-
-        case "yesterday":
-            let y = new Date();
-            y.setDate(today.getDate() - 1);
-            fromDate = toDate = y;
-            break;
-
-        case "this_week":
-            let firstDay = new Date(today.setDate(today.getDate() - today.getDay() + 1));
-            let lastDay = new Date(today.setDate(firstDay.getDate() + 6));
-            fromDate = firstDay;
-            toDate = lastDay;
-            break;
-
-        case "last_week":
-            let lwStart = new Date();
-            lwStart.setDate(today.getDate() - today.getDay() - 6);
-            let lwEnd = new Date();
-            lwEnd.setDate(today.getDate() - today.getDay());
-            fromDate = lwStart;
-            toDate = lwEnd;
-            break;
-
-        case "this_month":
-            fromDate = new Date(today.getFullYear(), today.getMonth(), 1);
-            toDate = new Date();
-            break;
-
-        case "last_month":
-            fromDate = new Date(today.getFullYear(), today.getMonth() - 1, 1);
-            toDate = new Date(today.getFullYear(), today.getMonth(), 0);
-            break;
-
-        case "this_year":
-            fromDate = new Date(today.getFullYear(), 0, 1);
-            toDate = new Date();
-            break;
-
-        case "last_year":
-            fromDate = new Date(today.getFullYear() - 1, 0, 1);
-            toDate = new Date(today.getFullYear() - 1, 11, 31);
-            break;
-
-        default:
-            return;
-    }
-
-    fromInput.value = formatDate(fromDate);
-    toInput.value = formatDate(toDate);
-}
-
-
-function toggleVisitorCard() {
-
-    const body = document.getElementById("visitorCardBody");
-    const icon = document.getElementById("visitorToggleIcon");
-    const section = document.getElementById("visitorAnalyticsSection");
-
-    if (!body.classList.contains("open")) {
-
-        // ✅ OPEN CARD (Smooth)
-        body.classList.add("open");
-
-        icon.classList.remove("fa-chevron-down");
-        icon.classList.add("fa-chevron-up");
-
-        // ✅ Set Quick Filter to THIS MONTH
-        document.getElementById("quick_range").value = "this_month";
-        setQuickRange();
-
-        // ✅ Load Chart Automatically
-        vistorChartDataView();
-
-        // ✅ Smooth Scroll + Focus
-        section.scrollIntoView({ behavior: "smooth", block: "start" });
-
-        // Highlight effect
-        section.classList.add("highlight-card");
-        setTimeout(() => {
-            section.classList.remove("highlight-card");
-        }, 2000);
-
-    } else {
-
-        // ✅ CLOSE CARD (Smooth)
-        body.classList.remove("open");
-
-        icon.classList.remove("fa-chevron-up");
-        icon.classList.add("fa-chevron-down");
-    }
-}
-  </script>
+</script>

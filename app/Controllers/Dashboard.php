@@ -9,6 +9,7 @@ use App\Models\VisitorRequestHeaderModel;
 use App\Models\CompanyModel;
 use App\Models\DepartmentModel;
 
+
 class Dashboard extends BaseController
 {
     protected $visitorModel;
@@ -16,14 +17,21 @@ class Dashboard extends BaseController
     protected $SecurityGateLogModel;
     protected $VisitorRequestHeaderModel;
 
+
+    
+
     public function __construct()
     {
         $this->visitorModel = new VisitorRequestModel();
         $this->logModel     = new VisitorLogModel();
         $this->SecurityGateLogModel     = new SecurityGateLogModel();
         $this->VisitorRequestHeaderModel     = new VisitorRequestHeaderModel();
-
+       
     }
+
+
+     
+  
 
     public function index()
     {
@@ -41,8 +49,8 @@ class Dashboard extends BaseController
                 $departmentId = $_SESSION['department_id'];
                 $departmentName = $_SESSION['department_name'];
                 $compenyName = $_SESSION['company_name'];
-
-            
+                
+       
                 $pendingQuery = $this->visitorModel
                 ->join(
                 'visitor_request_header', 

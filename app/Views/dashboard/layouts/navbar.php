@@ -10,7 +10,12 @@
 </div>
   
   <div class="top-actions">
-    <button class="btn btn-outline-secondary" id="fullScreenBtn" title="Fullscreen"><i class="bi bi-arrows-fullscreen"></i></button>
+    <!-- <button class="btn btn-outline-secondary" id="fullScreenBtn" title="Fullscreen"><i class="bi bi-arrows-fullscreen"></i></button> -->
+    <!-- notification bell -->
+    <button class="btn btn-outline-secondary position-relative" id="notificationBell" title="Notifications">
+        <i class="bi bi-bell"></i>
+        <span id="notificationCount" class="badge bg-danger position-absolute top-0 start-100 translate-middle p-1 rounded-circle notification-badge-pulse" style="display:none; font-size:.6rem;"></span>
+    </button>
     <div class="dropdown">
     <a class="btn btn-light dropdown-toggle profile-btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="bi bi-person-circle"></i><span id="navebarUserName"> <?= session()->get('name'); ?></span>

@@ -108,6 +108,20 @@ $routes->get('/masterdata', 'MasterDataController::index');
 $routes->post('master/save', 'MasterDataController::save');
 
 
+$routes->get('notification', 'NotificationController::index');
+$routes->get('notification/create', 'NotificationController::create');
+$routes->post('notification/store', 'NotificationController::store');
+$routes->get('notification/delete/(:num)', 'NotificationController::delete/$1');
+$routes->post('notification/update', 'NotificationController::update'); // Update
+// $routes->post('notification/markRead', 'NotificationController::markRead');
+$routes->get('notification/getUnread', 'NotificationController::getUnread');
+$routes->post('notification/markRead', 'NotificationController::markRead');
+$routes->get('notification/getAll', 'NotificationController::getAll');
+$routes->post('notification/toggleStatus/(:num)', 'NotificationController::toggleStatus/$1');
+
+
+
+
 $routes->group('api', ['filter' => 'authtokenfilter'], function ($routes) {
 
     $routes->get('visitors', 'API\TestAPIController::visitorsList');

@@ -97,6 +97,14 @@ font-family: 'Nunito', sans-serif !important;
              href="<?= base_url('masterdata') ?>">
            <i class="bi bi-kanban-fill"></i>  Master Data
       </a></li>
+
+
+      
+        <li><a class="nav-link <?= (uri_string()=='notification') ? 'active' : '' ?>" 
+             href="<?= base_url('notification') ?>">
+           <i class="fas fa-bell me-2"></i> Notification Management
+      </a></li>
+
       <?php } ?>
 
       <?php if(in_array($_SESSION['role_id'], ['1','2','3','5'])){ ?>

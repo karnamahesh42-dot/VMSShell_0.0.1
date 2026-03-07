@@ -21,6 +21,8 @@
 
 <!-- SweetAlert2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="<?= base_url('public/dist/JS/notification.js') ?>"></script>
 
 <script>
    
@@ -225,6 +227,5 @@ function scrollTable(direction) {
         container.scrollLeft += scrollAmount;
     }
 }
-
 
 </script>
