@@ -227,8 +227,28 @@
     </div>
 </div>
 
-
           <!-- End view Visitor Request Form Pop-Up  -->
+
+          <!-- Table Info Modal -->
+          <div class="modal fade" id="authTableInfoModal">
+              <div class="modal-dialog">
+                  <div class="modal-content shadow-lg rounded-4 border-0">
+                      <div class="modal-header bg-info text-white rounded-top-4">
+                          <h5 class="modal-title"><i class="fas fa-info-circle me-1"></i> About this Table</h5>
+                          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                      </div>
+                      <div class="modal-body">
+                          <p><strong>This list displays recently approved visitors.</strong> Visitors will automatically appear here once they check in at the front gate.</p>
+                          <div class="alert alert-primary mb-0" role="alert">
+                              <i class="bi bi-person-check-fill mt-1"></i> <strong>Note:</strong> Once a visitor has finished their meeting, please click the <strong>blue button</strong> inside their status badge to log their session as Complete.
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                          <button class="btn btn-secondary" data-bs-dismiss="modal">Got it</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
 
           <!-- ROW 1: Small Cards -->
     <section class="dash-row">
@@ -268,8 +288,8 @@
 
 
 <!--///////////// Visitor Analytics Chart Start //////////////-->
-    <?php if (in_array($_SESSION['role_id'], [1,5])) { ?>
-        <section class="card row row-large mx-1">
+
+        <section id="visitorAnalyticsSection" class="card row row-large mx-1">
                 <div class="card-header d-flex justify-content-between align-items-center"
                     style="cursor:pointer;"
                     onclick="toggleVisitorCard()">
@@ -277,17 +297,25 @@
                     <h5 class="mb-0">
                         <i class="fa fa-bar-chart" aria-hidden="true"></i> Visitor Entry Activity Chart
                     </h5>
-
+                    
                     <i id="visitorToggleIcon" class="fas fa-chevron-down"></i>
                 </div>
-
+                
                 <div class="card-body collapse-card" id="visitorCardBody">
+                
+                
+                    
+                    <div class="alert alert-info py-2 shadow-sm border-0" role="alert" style="font-size: 0.95rem;">
+                        <i class="fas fa-info-circle me-1"></i> 
+                        <strong>About this Chart:</strong> This chart visualizes visitor traffic volumes across different departments. Use the filters below to refine the data by company, department, request status, or specific date ranges.
+                    </div>
+
 
                     <div class="row mb-3">
 
                         <div class="col-md-2">
                             <label>Company</label>
-                            <select id="company" class="form-control">
+                            <select id="company" class="form-control" onchange="vistorChartDataView()">
                                 <option value="">All Companies</option>
                                 <?php foreach($companies as $comp): ?>
                                     <option value="<?= $comp['company_name'] ?>">
@@ -299,7 +327,7 @@
 
                         <div class="col-md-2">
                             <label>Department</label>
-                            <select id="department" class="form-control">
+                            <select id="department" class="form-control" onchange="vistorChartDataView()">
                                 <option value="">All Departments</option>
                                 <?php foreach($departments as $dept): ?>
                                     <option value="<?= $dept['department_name'] ?>">
@@ -311,12 +339,25 @@
 
                         <div class="col-md-2">
                             <label>From Date</label>
-                            <input type="date" id="from_date" class="form-control">
+                            <input type="date" id="from_date" class="form-control" onchange="vistorChartDataView()">
                         </div>
 
                         <div class="col-md-2">
                             <label>To Date</label>
-                            <input type="date" id="to_date" class="form-control">
+                            <input type="date" id="to_date" class="form-control" onchange="vistorChartDataView()">
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>Status</label>
+                            <select id="status_filter" class="form-select" onchange="vistorChartDataView()">
+                                <option value="">Entered</option>
+                                <option value="pending">Pending</option>
+                                <option value="approved">Approved</option>
+                                <option value="rejected">Rejected</option>
+                                <option value="not_entered">Not Entered</option>
+                                <option value="inside">Inside (Not Completed)</option>
+                                <option value="checkout">Checkout (Exit)</option>
+                            </select>
                         </div>
 
                         <div class="col-md-2">
@@ -333,25 +374,26 @@
                                 <option value="last_year">Last Year</option>
                             </select>
                         </div>
-
-                        <div class="col-md-2">
-                            <label>&nbsp;</label>
-                            <button onclick="vistorChartDataView()" class="btn btn-primary mt-4">
-                                <i class="fas fa-filter me-1"></i> Filter
-                            </button>
-                        </div>
+                    </div>
+                    <div class="px-2 mb-3 d-flex justify-content-between align-items-center">
+                        <h5 id="chartStatusSubtitle" class="text-primary fw-bold mb-0" style="font-size: 0.95rem;"></h5>
+                      
+                        <button class="btn btn-sm btn-outline-danger" onclick="exportChartToPDF()" title="Export Chart to PDF">
+                            <i class="fas fa-file-pdf"></i> Export PDF
+                        </button>
+                    
                     </div>
                     <canvas id="visitorBarChart" height="80"></canvas>
                 </div>
-            </section>
-        <?php } ?>
+        </section>
+   
     <!--//////////// Visitor Analytics Chart End ///////////-->
   
         <section class="row row-large mb-3">
            
             <!-- ROW 3: Pending  List -->
             <?php if($_SESSION['role_id'] != 4){?>
-                <div class="col-md-9"> 
+                <div class="col-md-9" > 
                     <div class="card-dash card-large">
                     <div class="d-flex justify-content-between align-items-center mb-1 pending-header">
                         <div>
@@ -492,24 +534,24 @@
 
                       <!-- AUTHORIZED VISITOR LIST -->
                         <div class="card visitor-list-card">
-                            <div class="card-header text-white d-flex">
+                            <div class="card-header text-white d-flex justify-content-between align-items-center">
                                 <h5 class="mb-0">
                                     <i class="fas fa-users"></i> Recent Authorized Visitor List
                                 </h5>
-                                <!-- <span class="badge bg-light text-success fw-bold" id="authCount">0</span> -->
+                                <i class="fas fa-info-circle fs-5 cursor-pointer" data-bs-toggle="modal" data-bs-target="#authTableInfoModal" title="About this Table" style="cursor: pointer;"></i>
                             </div>
                          
                             <div class="card-body p-0">
-
-                            <!-- NOTE SECTION -->
-                            <div class="d-flex justify-content-end mb-2">
-                                <small class="text-muted">
-                                    <i class="bi bi-info-circle-fill text-primary"></i>
-                                <strong>Note:</strong> Please click the <span class="text-primary fw-bold">blue button</span> to complete the Session.
-                                </small>
-                            </div>
-
-                                <div class="table-responsive">                            
+                             <!-- TOP SCROLL BUTTONS -->
+                                <div class="scroll-controls">
+                                          <!-- TOTAL ROW COUNT -->
+                                    <div class="tblRowCountLbl">
+                                        Total Records: <span id="totalRecordsCount">0</span>
+                                    </div>
+                                    <button class="scroll-btn" onclick="scrollTable('left')" title="Scroll Left"> <i class="fa fa-chevron-left"></i> </button>
+                                    <button class="scroll-btn" onclick="scrollTable('right')" title="Scroll Right">  <i class="fa fa-chevron-right"></i></button>
+                                </div>
+                                <div class="table-responsive table-scroll" id="tableScrollWrapper">                            
                                     <table class="table table-hover mb-0 table-bordered">
                                         <thead class="table-light" id="authorizedVisitorTablehead">
                                             <tr>
@@ -539,13 +581,17 @@
                  <!--///////////////////// Recent Otherisation List To the User End  ///////////////  -->    
                 <?php } ?>
 
-          </section>
+        </section>
         </div>
       </main>
 
   <?= $this->include('/dashboard/layouts/footer') ?>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  
+  <!-- jsPDF Library for Export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
 
@@ -976,7 +1022,7 @@
                         success: function(res) {
 
                             // console.log(res[0].meeting_status);
-                            
+                            $('#totalRecordsCount').text(res.length);
                             let tbody = $("#authorizedVisitorTable");
                             tbody.empty();
 
@@ -1172,16 +1218,55 @@
                 let department  = document.getElementById('department').value;
                 let fromDate    = document.getElementById('from_date').value;
                 let toDate      = document.getElementById('to_date').value;
+                let status      = document.getElementById('status_filter').value;
 
                 let url = "<?= base_url('requestToCheckoutDataDashboard') ?>?"
                     + "company=" + company
                     + "&department=" + department
                     + "&from_date=" + fromDate
-                    + "&to_date=" + toDate;
+                    + "&to_date=" + toDate
+                    + "&status=" + status;
+
+                // Update subtitle text based on status
+                let subtitleText = "";
+                switch (status) {
+                    case "pending":
+                        subtitleText = "Showing visitors who are yet to get approval from the HOD.";
+                        break;
+                    case "approved":
+                        subtitleText = "Showing requests that have been approved by the HOD.";
+                        break;
+                    case "rejected":
+                        subtitleText = "Showing requests that were rejected by the HOD.";
+                        break;
+                    case "not_entered":
+                        subtitleText = "Showing visitors whose requests are approved but have not yet entered the premises.";
+                        break;
+                    case "inside":
+                        subtitleText = "Showing visitors who have checked in but are currently inside (session not completed).";
+                        break;
+                    case "checkout":
+                        subtitleText = "Showing visitors who have successfully checked out of the premises.";
+                        break;
+                    default:
+                        subtitleText = "Showing visitors who have entered the RFC Organization.";
+                        break;
+                }
+                document.getElementById('chartStatusSubtitle').innerText = subtitleText;
 
                 fetch(url)
                 .then(res => res.json())
                 .then(data => {
+
+                    // Calculate total count
+                    let totalCount = 0;
+                    if (data.counts && data.counts.length > 0) {
+                        totalCount = data.counts.reduce((a, b) => a + Number(b), 0);
+                    }
+                    
+                    // Append total count to subtitle safely
+                    let subEl = document.getElementById('chartStatusSubtitle');
+                    subEl.innerText = subtitleText + " (Total Count: " + totalCount + ")";
 
                     const ctx = document.getElementById("visitorBarChart").getContext("2d");
 
@@ -1189,19 +1274,8 @@
                         visitorChart.destroy();
                     }
 
-                    // 🔹 Find max value
-                    const maxValue = Math.max(...data.counts);
-
-                    // 🔹 Generate colors based on value
-                    const barColors = data.counts.map(value => {
-                        if (value >= maxValue * 0.7) {
-                            return '#28a745'; // Green (High)
-                        } else if (value >= maxValue * 0.4) {
-                            return '#ffc107'; // Yellow (Medium)
-                        } else {
-                            return '#dc3545'; // Red (Low)
-                        }
-                    });
+                    // 🔹 Set a single color for all bars
+                    const barColors = '#007bff'; // Blue
 
                     visitorChart = new Chart(ctx, {
                         type: 'bar',
@@ -1267,7 +1341,7 @@
                         break;
 
                     case "this_month":
-                        fromDate = new Date(today.getFullYear(), today.getMonth(), 1);
+                        fromDate = new Date(today.getFullYear(), today.getMonth(),2);
                         toDate = new Date();
                         break;
 
@@ -1292,6 +1366,9 @@
 
                 fromInput.value = formatDate(fromDate);
                 toInput.value = formatDate(toDate);
+
+                // Auto-refresh the chart after quick range is selected
+                vistorChartDataView();
             }
 
 
@@ -1310,11 +1387,9 @@
                     icon.classList.add("fa-chevron-up");
 
                     //  Set Quick Filter to THIS MONTH
+                    //  This will automatically call vistorChartDataView() via onchange
                     document.getElementById("quick_range").value = "this_month";
                     setQuickRange();
-
-                    //  Load Chart Automatically
-                    vistorChartDataView();
 
                     //  Smooth Scroll + Focus
                     section.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1335,6 +1410,110 @@
                 }
             }
 
-              
+
+            function exportChartToPDF() {
+                const canvas = document.getElementById("visitorBarChart");
+
+                // ── Collect active filter values ──────────────────────────────
+                const companyEl  = document.getElementById('company');
+                const deptEl     = document.getElementById('department');
+                const fromDateEl = document.getElementById('from_date');
+                const toDateEl   = document.getElementById('to_date');
+                const statusEl   = document.getElementById('status_filter');
+                const quickEl    = document.getElementById('quick_range');
+
+                const filterCompany  = companyEl  ? (companyEl.value  || 'All Companies')   : 'All Companies';
+                const filterDept     = deptEl     ? (deptEl.value     || 'All Departments') : 'All Departments';
+                const filterFromDate = fromDateEl ? (fromDateEl.value || 'Not Set')         : 'Not Set';
+                const filterToDate   = toDateEl   ? (toDateEl.value   || 'Not Set')         : 'Not Set';
+                const filterStatus   = statusEl   ? (statusEl.options[statusEl.selectedIndex].text || 'Entered') : 'Entered';
+                const filterQuick    = quickEl    ? (quickEl.value !== '' ? quickEl.options[quickEl.selectedIndex].text : 'Custom Range') : 'Custom Range';
+
+                // ── Build a fully self-contained meaningful subtitle ──────────
+                const dateRange = (filterFromDate !== 'Not Set' && filterToDate !== 'Not Set')
+                    ? `${filterFromDate} to ${filterToDate}`
+                    : (filterFromDate !== 'Not Set' ? `${filterFromDate} onwards` : 'all available dates');
+
+                const richSubtitle =
+                    `This report provides a comprehensive analysis of visitor entry activity `
+                    + `for ${filterCompany}, covering the ${filterDept}. `
+                    + `The data spans the period from ${dateRange} `
+                    + `(${filterQuick}), and reflects visitors with status: "${filterStatus}".`;
+
+                // ── Chart image with white background ─────────────────────────
+                const newCanvas  = document.createElement("canvas");
+                newCanvas.width  = canvas.width;
+                newCanvas.height = canvas.height;
+                const ctx        = newCanvas.getContext("2d");
+                ctx.fillStyle    = "#ffffff";
+                ctx.fillRect(0, 0, newCanvas.width, newCanvas.height);
+                ctx.drawImage(canvas, 0, 0);
+                const imgData = newCanvas.toDataURL("image/jpeg", 1.0);
+
+                // ── PDF setup ─────────────────────────────────────────────────
+                const { jsPDF } = window.jspdf;
+                const pageW = newCanvas.width + 40;
+                // Reserve: title(36) + timestamp(20) + divider(16) + subtitle banner(~50) + divider(16) + chart
+                const headerH = 36 + 20 + 16 + 54 + 16;
+                const pageH   = newCanvas.height + headerH;
+
+                const pdf = new jsPDF({
+                    orientation: "landscape",
+                    unit: "px",
+                    format: [pageW, pageH]
+                });
+
+                const fullW = pdf.internal.pageSize.getWidth();
+                let y = 28;
+
+                // ── Report Title ──────────────────────────────────────────────
+                pdf.setFont(undefined, 'bold');
+                pdf.setFontSize(18);
+                pdf.setTextColor(20, 60, 140);
+                pdf.text("Visitor Entry Activity Report", 20, y);
+                y += 22;
+
+                // ── Generated timestamp (right-aligned) ───────────────────────
+                const now   = new Date();
+                const genOn = `Generated on: ${now.toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' })}  |  ${now.toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit' })}`;
+                pdf.setFont(undefined, 'normal');
+                pdf.setFontSize(9);
+                pdf.setTextColor(140, 140, 140);
+                pdf.text(genOn, fullW - 20, y, { align: 'right' });
+                y += 14;
+
+                // ── Thin divider ──────────────────────────────────────────────
+                pdf.setDrawColor(180, 180, 180);
+                pdf.line(20, y, fullW - 20, y);
+                y += 10;
+
+                // ── Highlighted subtitle banner ───────────────────────────────
+                const subtitleLines = pdf.splitTextToSize(richSubtitle, fullW - 56);
+                const bannerH       = subtitleLines.length * 14 + 18;
+
+                // Filled rectangle (light blue tint)
+                pdf.setFillColor(232, 242, 255);
+                pdf.setDrawColor(120, 170, 230);
+                pdf.roundedRect(16, y, fullW - 32, bannerH, 4, 4, 'FD');
+
+                // Subtitle text inside banner
+                pdf.setFont(undefined, 'bolditalic');
+                pdf.setFontSize(11);
+                pdf.setTextColor(15, 50, 110);
+                pdf.text(subtitleLines, 28, y + 13);
+                y += bannerH + 12;
+
+                // ── Thin divider before chart ─────────────────────────────────
+                pdf.setDrawColor(180, 180, 180);
+                pdf.line(20, y, fullW - 20, y);
+                y += 10;
+
+                // ── Chart image ───────────────────────────────────────────────
+                const pdfWidth  = fullW - 40;
+                const pdfHeight = (newCanvas.height * pdfWidth) / newCanvas.width;
+                pdf.addImage(imgData, 'JPEG', 20, y, pdfWidth, pdfHeight);
+
+                pdf.save("Visitor_Analytics_Report.pdf");
+            }
 
 </script>

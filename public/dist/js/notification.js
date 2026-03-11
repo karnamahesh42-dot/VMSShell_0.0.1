@@ -26,7 +26,7 @@ function checkNotification(showModal = true){
                             type: "GET",
                             dataType: "json",
                             success: function(res){
-            
+                                
                                 // update badge count every call
                                 if(res.length > 0){
                                     $("#notificationCount").text(res.length).show();
@@ -65,6 +65,8 @@ function displayLatestNotifications(res){
                     </div>
                 `,
                 icon: "success",
+                showCloseButton: true,
+                closeButtonAriaLabel: 'Close',
                 confirmButtonText: "<i class='fas fa-times'></i> Close",
                 confirmButtonColor: "#0ea5e9",
                 width: '700px',
@@ -124,6 +126,9 @@ function showAllNotifications(){
         type: "GET",
         dataType: "json",
         success: function(res){
+           
+            console.log(res);
+
             if(res.length > 0){
                 let message = '';
                 generateNotificationHTML(res, message, function(htmlContent){
@@ -138,6 +143,8 @@ function showAllNotifications(){
                             </div>
                         `,
                         icon: "success",
+                        showCloseButton: true,
+                        closeButtonAriaLabel: 'Close',
                         confirmButtonText: "<i class='fas fa-times'></i> Close",
                         confirmButtonColor: "#0ea5e9",
                         width: '700px',
@@ -206,7 +213,7 @@ function generateNotificationHTML(notifications, message, callback){
                                         'warning': '#ff6b6b',
                                         'error': '#dc3545',
                                         'update': '#2196f3',
-                                        'New Feature': '#07b91f',
+                                        'New Feature': '#77eb87',
                                         'Module Extension': '#8b5cf6',
                                         'System Update': '#6366f1',
                                         'Bug Fix': '#ff6b6b',
@@ -218,21 +225,21 @@ function generateNotificationHTML(notifications, message, callback){
                                     };
 
                                     let bgColor = {
-                                        'alert': '#fff8e1',
-                                        'info': '#e3f2fd',
-                                        'success': '#f1f8e9',
-                                        'warning': '#ffebee',
-                                        'error': '#ffebee',
-                                        'update': '#f3e5f5',
-                                        'New Feature': '#eff6ff',
-                                        'Module Extension': '#f3e8ff',
-                                        'System Update': '#e0e7ff',
-                                        'Bug Fix': '#fee2e2',
-                                        'Visitor Alert': '#fffbeb',
-                                        'Security Alert': '#fee2e2',
-                                        'Admin Announcement': '#f3e8ff',
-                                        'Reminder': '#fef3c7',
-                                        'Urgent Notice': '#fee2e2'
+                                        'alert': '#fffdf5',
+                                        'info': '#f0f7ff',
+                                        'success': '#f7fcf3',
+                                        'warning': '#fff5f5',
+                                        'error': '#fff5f5',
+                                        'update': '#faf2ff',
+                                        'New Feature': '#f7fbff',
+                                        'Module Extension': '#faf5ff',
+                                        'System Update': '#f2f5ff',
+                                        'Bug Fix': '#fff5f5',
+                                        'Visitor Alert': '#fffdf2',
+                                        'Security Alert': '#fff5f5',
+                                        'Admin Announcement': '#faf5ff',
+                                        'Reminder': '#fffcea',
+                                        'Urgent Notice': '#fff5f5'
                                     };
 
                                     let headerBgColor = {
@@ -300,7 +307,7 @@ function generateNotificationHTML(notifications, message, callback){
 
                                                     <strong style="font-size: 16px; color: ${textCol}; display: block; margin-bottom: 8px; margin-top: 8px;">${n.title}</strong>
                                                     <p style="margin: 0 0 12px 0; color: ${textCol}; font-size: 14px; line-height: 1.6;">
-                                                        ${n.message}
+                                                        ${n.message.replace(/\r\n/g, '<br>').replace(/\n/g, '<br>')}
                                                     </p>
                                                  
                                                     ${n.attachment ? `
@@ -321,3 +328,47 @@ function generateNotificationHTML(notifications, message, callback){
                                 }
 
                
+/* ===================================================
+   CLICK RIPPLE & PARTICLE BURST EFFECT
+=================================================== */
+(function () {
+    // Particle colors — feel free to customize
+    const particleColors = [
+        '#4e79ff', '#ffae42', '#34c759',
+        '#ff5b5b', '#7f67ff', '#00bcd4',
+        '#0ea5e9', '#f59e0b', '#10b981'
+    ];
+
+    document.addEventListener('click', function (e) {
+        spawnParticles(e.clientX, e.clientY);
+    });
+
+    function spawnParticles(x, y) {
+        const count = 8;
+        for (let i = 0; i < count; i++) {
+            const el = document.createElement('div');
+            el.classList.add('click-particle');
+
+            // Random direction
+            const angle  = (360 / count) * i + Math.random() * 20 - 10;
+            const dist   = 28 + Math.random() * 22;
+            const rad    = angle * (Math.PI / 180);
+            const px     = Math.cos(rad) * dist;
+            const py     = Math.sin(rad) * dist;
+
+            // Random color
+            const color  = particleColors[Math.floor(Math.random() * particleColors.length)];
+
+            el.style.left            = x + 'px';
+            el.style.top             = y + 'px';
+            el.style.background      = color;
+            el.style.setProperty('--px', px + 'px');
+            el.style.setProperty('--py', py + 'px');
+            el.style.animationDelay  = (Math.random() * 0.08) + 's';
+
+            document.body.appendChild(el);
+            el.addEventListener('animationend', () => el.remove());
+        }
+    }
+})();
+

@@ -331,95 +331,102 @@ $data['meds'] = [
             $request = service('request');
             $session = session();
 
-            $roleId            = $session->get('role_id');
-            $fromDate   = $request->getGet('from_date') ?? date('Y-m-01');
-            $toDate     = $request->getGet('to_date') ?? date('Y-m-d');
-            $company    = $request->getGet('company');
-            $department = $request->getGet('department');
+            $roleId       = $session->get('role_id');
+            $fromDate     = $request->getGet('from_date') ?? date('Y-m-01');
+            $toDate       = $request->getGet('to_date') ?? date('Y-m-d');
+            $company      = $request->getGet('company');
+            $department   = $request->getGet('department');
+            $statusFilter = $request->getGet('status');
 
-            /*
-            ==========================
-            SD QUERY
-            ==========================
-            */
-            $sdQuery = $db->table('security_gate_logs sgl')
-                ->select('vrh.department, COUNT(sgl.id) as total')
-                ->join('visitors vr', 'vr.id = sgl.visitor_request_id')
-                ->join('visitor_request_header vrh', 'vrh.id = vr.request_header_id')
-                ->where('DATE(sgl.check_in_time) >=', $fromDate)
-                ->where('DATE(sgl.check_in_time) <=', $toDate)
-                ->where('vr.status', 'approved')
-                ->groupBy('vrh.department');
+            $builder = $db->table('visitors vr')
+                ->select('vrh.department, COUNT(DISTINCT vr.id) as total')
+                ->join('visitor_request_header vrh', 'vrh.id = vr.request_header_id', 'left')
+                ->join('security_gate_logs sgl', 'vr.id = sgl.visitor_request_id AND DATE(sgl.check_in_time) >= "'. $fromDate .'" AND DATE(sgl.check_in_time) <= "'. $toDate .'"', 'left')
+                ->join('security_gate_logs_md md', 'vr.v_code = md.v_code AND DATE(md.check_in_time) >= "'. $fromDate .'" AND DATE(md.check_in_time) <= "'. $toDate .'"', 'left');
 
-            /*
-            ==========================
-            MD QUERY
-            ==========================
-            */
-            $mdQuery = $db->table('security_gate_logs_md md')
-                ->select('vrh.department, COUNT(md.id) as total')
-                ->join('visitors vr', 'vr.v_code = md.v_code')
-                ->join('visitor_request_header vrh', 'vrh.id = vr.request_header_id')
-                ->where('DATE(md.check_in_time) >=', $fromDate)
-                ->where('DATE(md.check_in_time) <=', $toDate)
-                ->where('vr.status', 'approved')
-                ->groupBy('vrh.department');
-
-            /*
-            ==========================
-            DROPDOWN FILTERS
-            ==========================
-            */
+            // Apply the date filters properly to include visit date limits across ranges
+            $builder->groupStart()
+                ->where("DATE(sgl.check_in_time) >=", $fromDate)
+                ->where("DATE(sgl.check_in_time) <=", $toDate)
+                ->orGroupStart()
+                    ->where("DATE(md.check_in_time) >=", $fromDate)
+                    ->where("DATE(md.check_in_time) <=", $toDate)
+                ->groupEnd()
+                ->orGroupStart()
+                    ->where("vr.visit_date >=", $fromDate)
+                    ->where("vr.visit_date <=", $toDate)
+                ->groupEnd()
+            ->groupEnd();
 
             if (!empty($company)) {
-                $sdQuery->where('vrh.company', $company);
-                $mdQuery->where('vrh.company', $company);
+                $builder->where('vrh.company', $company);
             }
 
             if (!empty($department)) {
-                $sdQuery->where('vrh.department', $department);
-                $mdQuery->where('vrh.department', $department);
+                $builder->where('vrh.department', $department);
             }
-
-            // /*
-            // ==========================
-            // ROLE BASED FILTER
-            // ==========================
-            // */
-            // if (!in_array($roleId, [1,5])) {
-            //     $sdQuery->where('vrh.company', $sessionCompany)
-            //             ->where('vrh.department', $sessionDepartment);
-
-            //     $mdQuery->where('vrh.company', $sessionCompany)
-            //             ->where('vrh.department', $sessionDepartment);
-            // }
-
-            $sdResults = $sdQuery->get()->getResultArray();
-            $mdResults = $mdQuery->get()->getResultArray();
 
             /*
             ==========================
-            MERGE SD + MD
+            STATUS FILTERS
             ==========================
             */
+            if (!empty($statusFilter)) {
+                if ($statusFilter === 'pending') {
+                    $builder->where('vr.status', 'pending');
+                } elseif ($statusFilter === 'approved') {
+                    $builder->where('vr.status', 'approved');
+                } elseif ($statusFilter === 'rejected') {
+                    $builder->where('vr.status', 'rejected');
+                } elseif ($statusFilter === 'not_entered') {
+                    $builder->where('vr.status', 'approved');
+                    $builder->groupStart()
+                        ->where('sgl.check_in_time IS NULL')
+                        ->where('md.check_in_time IS NULL')
+                    ->groupEnd();
+                } elseif ($statusFilter === 'inside') {
+                    $builder->where('vr.status', 'approved');
+                    $builder->groupStart()
+                        ->groupStart()
+                            ->where('sgl.check_in_time IS NOT NULL')
+                            ->where('sgl.check_out_time IS NULL')
+                        ->groupEnd()
+                        ->orGroupStart()
+                            ->where('md.check_in_time IS NOT NULL')
+                            ->where('md.check_out_time IS NULL')
+                        ->groupEnd()
+                    ->groupEnd();
+                } elseif ($statusFilter === 'checkout') {
+                    $builder->where('vr.status', 'approved');
+                    $builder->groupStart()
+                        ->where('sgl.check_out_time IS NOT NULL')
+                        ->orWhere('md.check_out_time IS NOT NULL')
+                    ->groupEnd();
+                }
+            } else {
+                // By default, if no status is selected, only show approved visitors who checked in (matches old behavior)
+                // Adjust if you want the default to be EVERYTHING
+                $builder->where('vr.status', 'approved');
+                $builder->groupStart()
+                    ->where('sgl.check_in_time IS NOT NULL')
+                    ->orWhere('md.check_in_time IS NOT NULL')
+                ->groupEnd();
+            }
+
+            $builder->where('vrh.department IS NOT NULL');
+            $builder->where('vrh.department !=', '');
+            $builder->groupBy('vrh.department');
+
+            $results = $builder->get()->getResultArray();
 
             $finalData = [];
-
-            foreach ($sdResults as $row) {
+            foreach ($results as $row) {
                 $finalData[$row['department']] = $row['total'];
             }
 
-            foreach ($mdResults as $row) {
-                if (isset($finalData[$row['department']])) {
-                    $finalData[$row['department']] += $row['total'];
-                } else {
-                    $finalData[$row['department']] = $row['total'];
-                }
-            }
-
             return $this->response->setJSON([
-                'labels' => array_keys($finalData),
-                'counts' => array_values($finalData)
+                'labels' => empty($finalData) ? [] : array_keys($finalData),
+                'counts' => empty($finalData) ? [] : array_values($finalData)
             ]);
         }
     
